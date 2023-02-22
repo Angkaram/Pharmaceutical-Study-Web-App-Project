@@ -1,0 +1,121 @@
+@font-face {
+    font-family: "roboto";
+    src: url("../Fonts/RobotoCondensed-Regular.ttf");
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    font-family: roboto;
+}
+
+body {
+    background-color: rgb(9, 9, 22);
+}
+
+.container {
+    padding-top: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0em;
+}
+
+.background {
+    max-width: fit-content;
+    max-height: fit-content;
+    padding: 70px;
+    border: thin solid rgba(255, 255, 255, 0.76);
+    border-radius: 1em;
+    background-color: rgb(36, 36, 36);
+    color: aliceblue;
+}
+
+.login-button {
+    display:flexbox;
+    min-width: fit-content;
+    cursor: pointer;
+    background-color: limegreen;
+    color: white;
+    border-radius: 10px;
+    margin: auto;
+    height: 2.5em;
+    width: 15em;
+    margin-top: 3em;
+    font-size: large;
+    border: limegreen;
+    padding: 2.5%;
+}
+
+.login-button:hover {
+    background-color: rgb(27, 114, 27);
+}
+
+.org-btn {
+    cursor: pointer;
+} 
+
+.input {
+    display: block;
+    width: 15em;
+    padding: 3.4%;
+    border: thin solid black;
+    text-align: left;
+    margin: auto;
+}
+
+.drop-down {
+    text-align: center;
+    display: block;
+    width: 15em;
+    padding: 3.4%;
+    border: thin solid black;
+    text-align: left;
+    margin: auto;
+    cursor: pointer;
+}
+
+.drop-down:hover {
+    background-color: rgb(192, 192, 192);
+}
+
+.header {
+    margin-top: 2em;
+}
+
+.header-org {
+    margin-top: 1.5em;
+    color: rgb(0, 148, 158);
+}
+
+.add-btn {
+    display: flexbox;
+    min-width: fit-content;
+    cursor: pointer;
+    background-color: brown;
+    color: white;
+    border-radius: 10px;
+    margin: auto;
+    width: 15em;
+    height: 2.5em;
+    margin-top: 3em;
+    margin-bottom: 2.5em;
+    font-size: large;
+    border: brown;
+    padding: 2.5%;
+}
+
+.add-btn:hover:hover {
+    background-color: rgb(88, 37, 37);
+}
+
+
+.prompt {
+    margin-top: 2.5em;
+}
+
+.header-create {
+    color: rgb(0, 148, 158);
+}
+
+
