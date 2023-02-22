@@ -1,5 +1,12 @@
 # CSC-131-Project
 Our REACT and Vendia project for the medical website. 
+
+# Please Note:
+
+### `npm install firebase`
+
+### `npm install react-router-dom`
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
