@@ -18,7 +18,7 @@ function SignUp() {
         try {
         const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
         console.log(user);
-        navigate("/success");
+        navigate("/Login");
         } catch (error) {
             console.log(error.message);
         }
@@ -32,7 +32,7 @@ function SignUp() {
             <input className = "input" type = "text" onChange={(event => {setRegisterEmail(event.target.value);
             })}/>
 
-            <p className="prompt">Create Password</p>
+            <p className="prompt">Create Password (Min 6 Characters)</p>
             <input className = "input" type = "password" onChange={(event => {setRegisterPassword(event.target.value);
             })}/>        
 
@@ -46,6 +46,11 @@ function SignUp() {
 
             <div>
                 <button button onClick={register} className="login-button">Create Account</button>    
+            </div> 
+
+            <div>
+                <p className="prompt">Have an account?</p>
+                <button button onClick={() => {navigate("/Login");}} className="add-btn">Login Instead</button>    
             </div> 
 
          </div>

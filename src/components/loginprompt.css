@@ -98,7 +98,7 @@ body {
     margin: auto;
     width: 15em;
     height: 2.5em;
-    margin-top: 3em;
+    margin-top: 0em;
     margin-bottom: 2.5em;
     font-size: large;
     border: brown;
@@ -117,5 +117,60 @@ body {
 .header-create {
     color: rgb(0, 148, 158);
 }
+
+.text {
+    color:aliceblue;
+}
+
+.user-type {
+    display:flexbox;
+    min-width: fit-content;
+    cursor: pointer;
+    background-color: limegreen;
+    color: white;
+    border-radius: 10px;
+    margin: auto;
+    height: 2.5em;
+    width: 15em;
+
+    margin-top: 3em;
+    margin-right: 3em;
+    margin-left: 3em;
+    font-size: large;
+    border: limegreen;
+    padding: 2.5%;
+    padding-bottom: 4%;
+}
+
+.user-type:hover {
+    background-color: rgb(27, 114, 27);
+}
+
+.back-btn {
+    display:flexbox;
+    min-width: fit-content;
+    cursor: pointer;
+    background-color: brown;
+    color: white;
+    border-radius: 10px;
+    margin: auto;
+    height: 2.5em;
+    width: 15em;
+    margin-top: 10em;
+    margin-right: 3em;
+    margin-left: 3em;
+    font-size: large;
+    border: brown;
+    padding: 2.5%;
+    padding-top: 2.6%;
+    padding-bottom: 4%;
+    
+}
+
+.back-btn:hover {
+    background-color: rgb(88, 37, 37);
+}
+
+
 
 
