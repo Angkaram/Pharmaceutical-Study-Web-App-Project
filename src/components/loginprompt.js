@@ -20,7 +20,7 @@ function LoginPrompt() {
         try {
         const user = await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
         console.log(user);
-        navigate("/success");
+        navigate("/View");
         } catch (error) {
             console.log(error.message);
         }
@@ -41,7 +41,7 @@ function LoginPrompt() {
             <div>
                 <button onClick={login} className = "login-button">Login</button>    
             </div>
-
+            <p className="prompt">Don't have an account?</p>
             <div>
                 <button onClick={() => {navigate("/SignUp");
                 }} className="add-btn">Create Account</button>    

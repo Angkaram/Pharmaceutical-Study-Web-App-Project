@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
-import './App.css';
+import './loginprompt.css';
+import { signOut } from "firebase/auth";
+import { auth } from "./firebase-config";
+import { useNavigate } from "react-router-dom";
 
-function App() {
+function View() {
+  // eslint-disable-next-line
   const [activeButton, setActiveButton] = useState(null); // buttons to change states
   const [currentView, setCurrentView] = useState('Welcome'); // so that we can go "back" to different views
 
@@ -37,15 +41,28 @@ function App() {
 
 // what is shown on WelcomeView
 function WelcomeView({ handleButtonClick }) {
+  let navigate = useNavigate();
+
+  const logout = async () => {
+      await signOut(auth);  
+      navigate("/");
+      
+  };
+
   return (
     <div style={{ textAlign: 'center' }}>
-      <h1>Welcome to our website</h1>
-      <p>Please select your user type:</p>
+      <h1 className='text'>Welcome to our website</h1>
+      <p className='text'>Please select your user type:</p>
       <div style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '1em' }}>
-        <button onClick={() => handleButtonClick('Patient')}>Patient</button>
-        <button onClick={() => handleButtonClick('Doctor')}>Doctor</button>
-        <button onClick={() => handleButtonClick('FDA')}>FDA</button>
+        <button className='user-type' onClick={() => handleButtonClick('Patient')}>Patient</button>
+        <button className='user-type' onClick={() => handleButtonClick('Doctor')}>Doctor</button>
+        <button className='user-type' onClick={() => handleButtonClick('FDA')}>FDA</button>
       </div>
+      
+      <div>
+        <button onClick = {logout} className='back-btn'>Log Out</button>
+      </div>
+
     </div>
   );
 }
@@ -54,9 +71,9 @@ function WelcomeView({ handleButtonClick }) {
 function PatientView({ handleBackButtonClick }) {
   return (
     <div>
-      <h1>This is the patient view.</h1>
-      <p>More patient text goes here</p>
-      <button onClick={handleBackButtonClick}>Back</button>
+      <h1 className='text'>This is the patient view.</h1>
+      <p className='text'>More patient text goes here</p>
+      <button className='back-btn' onClick={handleBackButtonClick}>Back</button>
     </div>
   );
 }
@@ -65,9 +82,9 @@ function PatientView({ handleBackButtonClick }) {
 function DoctorView({ handleBackButtonClick }) {
   return (
     <div>
-      <h1>This is the doctor view.</h1>
-      <p>More doctor text goes here</p>
-      <button onClick={handleBackButtonClick}>Back</button>
+      <h1 className='text'>This is the doctor view.</h1>
+      <p className='text'>More doctor text goes here</p>
+      <button className='back-btn' onClick={handleBackButtonClick}>Back</button>
     </div>
   );
 }
@@ -76,12 +93,12 @@ function DoctorView({ handleBackButtonClick }) {
 function FDAView({ handleBackButtonClick }) {
   return (
     <div>
-      <h1>This is the TESTING view.</h1>
-      <p>More FDA text goes here</p>
-      <button onClick={handleBackButtonClick}>Back</button>
+      <h1 className='text'>This is the TESTING view.</h1>
+      <p className='text'>More FDA text goes here</p>
+      <button className='back-btn' onClick={handleBackButtonClick}>Back</button>
     </div>
   );
 }
 
-export default App;
+export default View;
 
