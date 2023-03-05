@@ -76,7 +76,7 @@ body {
 }
 
 .drop-down:hover {
-    background-color: rgb(192, 192, 192);
+    background-color: rgba(255, 255, 255, 0.884);
 }
 
 .header {
