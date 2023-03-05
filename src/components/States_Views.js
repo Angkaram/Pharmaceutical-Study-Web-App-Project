@@ -3,9 +3,9 @@ import './loginprompt.css';
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
 import { useNavigate } from "react-router-dom";
+import ValidateDomain from "./validation";
 
 function View() {
-
   // ------------ TEMPORARY STUFF ------------
   /* Should be resolved with Issue #5, we really just need the email for this part
      even though the display name would also be nice so they can be compared */
@@ -13,9 +13,9 @@ function View() {
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(userAuth => {
       const user = {
-        uid: userAuth.uid,
-        email: userAuth.email,
-        role: userAuth.displayName
+        email: userAuth?.email,
+        role: userAuth?.displayName,
+        id: userAuth?.uid
       }
       if (userAuth) {
         console.log(userAuth)
@@ -26,21 +26,6 @@ function View() {
     })
     return unsubscribe
   }, []);
-
-  // Reused from signup.js (MAKE A NEW COMPONENT)
-  const emailDomain = {
-    bavaria: "bavaria.org",
-    fda: "fda.gov",
-    admin: "janehopkins.admin",
-    doctor: "janehopkins.org",
-  };
-
-  // This is reused from signup.js (MAKE A NEW COMPONENT)
-  function ValidateDomain(email, role) {
-    const domain = emailDomain[role];
-    const regex = new RegExp(`^[a-z0-9._%+-]+@${domain}$`, "i");
-    return regex.test(email);
-}
   // --------- END OF TEMPORARY STUFF ---------
 
   // eslint-disable-next-line
@@ -49,7 +34,7 @@ function View() {
 
   const handleButtonClick = (buttonName) => { // when we click on a button, it sets it to activeButton and
     let roleString = buttonName.toLowerCase();
-    if (ValidateDomain(user.email, roleString) === true) {
+    if (user.role === roleString && ValidateDomain(user.email, roleString) === true) {
       setActiveButton(buttonName);	      // bases the view based on the active button clicked
       setCurrentView(buttonName + 'View');
     } else {
@@ -87,7 +72,7 @@ function WelcomeView({ handleButtonClick }) {
   let navigate = useNavigate();
 
   const logout = async () => {
-      await signOut(auth);  
+      await signOut(auth); 
       navigate("/");
   };
 
