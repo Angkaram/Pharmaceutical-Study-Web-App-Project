@@ -1,17 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './loginprompt.css';
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
 import { useNavigate } from "react-router-dom";
+import ValidateDomain from "./validation";
 
 function View() {
+  // ------------ TEMPORARY STUFF ------------
+  /* Should be resolved with Issue #5, we really just need the email for this part
+     even though the display name would also be nice so they can be compared */
+  const [user, setUser] = useState(null)
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(userAuth => {
+      const user = {
+        email: userAuth?.email,
+        role: userAuth?.displayName,
+        id: userAuth?.uid
+      }
+      if (userAuth) {
+        console.log(userAuth)
+        setUser(user)
+      } else {
+        setUser(null)
+      }
+    })
+    return unsubscribe
+  }, []);
+  // --------- END OF TEMPORARY STUFF ---------
+
   // eslint-disable-next-line
   const [activeButton, setActiveButton] = useState(null); // buttons to change states
   const [currentView, setCurrentView] = useState('Welcome'); // so that we can go "back" to different views
 
   const handleButtonClick = (buttonName) => { // when we click on a button, it sets it to activeButton and
-    setActiveButton(buttonName);	      // bases the view based on the active button clicked
-    setCurrentView(buttonName + 'View');
+    let roleString = buttonName.toLowerCase();
+    if (user.role === roleString && ValidateDomain(user.email, roleString) === true) {
+      setActiveButton(buttonName);	      // bases the view based on the active button clicked
+      setCurrentView(buttonName + 'View');
+    } else {
+      alert("You do not have access to this view");
+    }
   };
 
   const handleBackButtonClick = () => {
@@ -44,9 +72,8 @@ function WelcomeView({ handleButtonClick }) {
   let navigate = useNavigate();
 
   const logout = async () => {
-      await signOut(auth);  
+      await signOut(auth); 
       navigate("/");
-      
   };
 
   return (
