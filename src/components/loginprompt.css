@@ -171,6 +171,12 @@ body {
     background-color: rgb(88, 37, 37);
 }
 
+/* makes it so that <h4> text is white */
+h4 {
+    color: white;
+  }
 
-
+.FDA-login {
+color: white;
+}
 

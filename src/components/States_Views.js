@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import './loginprompt.css';
+import "./loginprompt.js";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
 import { useNavigate } from "react-router-dom";
 import ValidateDomain from "./validation";
 
 function View() {
-  // ------------ TEMPORARY STUFF ------------
-  /* Should be resolved with Issue #5, we really just need the email for this part
-     even though the display name would also be nice so they can be compared */
+  
+  // the email for the user is displayed.
+  // changes based on state, role, and view
   const [user, setUser] = useState(null)
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(userAuth => {
@@ -26,7 +27,6 @@ function View() {
     })
     return unsubscribe
   }, []);
-  // --------- END OF TEMPORARY STUFF ---------
 
   // eslint-disable-next-line
   const [activeButton, setActiveButton] = useState(null); // buttons to change states
@@ -56,7 +56,7 @@ function View() {
   } else if (currentView === 'DoctorView') {
     view = <DoctorView handleBackButtonClick={handleBackButtonClick} />;
   } else if (currentView === 'FDAView') {
-    view = <FDAView handleBackButtonClick={handleBackButtonClick} />;
+    view = <FDAView user = {user} handleBackButtonClick={handleBackButtonClick} />;
   }
 
   // styling
@@ -116,11 +116,13 @@ function DoctorView({ handleBackButtonClick }) {
   );
 }
 
-// what is shown on FDAView
-function FDAView({ handleBackButtonClick }) {
+// what is shown on FDAView. Line below h4 displays the user email logged in to FDA view
+function FDAView({ user, handleBackButtonClick }) {
   return (
-    <div>
-      <h1 className='text'>This is the TESTING view.</h1>
+    <div className='FDA-login'>
+      <h1>This is the TESTING view.</h1>
+      <h4> User logged in: </h4>
+      {user?.email}
       <p className='text'>More FDA text goes here</p>
       <button className='back-btn' onClick={handleBackButtonClick}>Back</button>
     </div>
