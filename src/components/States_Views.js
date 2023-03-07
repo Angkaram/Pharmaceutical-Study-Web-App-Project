@@ -52,9 +52,9 @@ function View() {
   if (currentView === 'Welcome') {
     view = <WelcomeView handleButtonClick={handleButtonClick} />;
   } else if (currentView === 'PatientView') {
-    view = <PatientView handleBackButtonClick={handleBackButtonClick} />;
+    view = <PatientView user = {user} handleBackButtonClick={handleBackButtonClick} />;
   } else if (currentView === 'DoctorView') {
-    view = <DoctorView handleBackButtonClick={handleBackButtonClick} />;
+    view = <DoctorView user = {user} handleBackButtonClick={handleBackButtonClick} />;
   } else if (currentView === 'FDAView') {
     view = <FDAView user = {user} handleBackButtonClick={handleBackButtonClick} />;
   }
@@ -95,10 +95,12 @@ function WelcomeView({ handleButtonClick }) {
 }
 
 // what is shown on PatientView
-function PatientView({ handleBackButtonClick }) {
+function PatientView({ user, handleBackButtonClick }) {
   return (
-    <div>
-      <h1 className='text'>This is the patient view.</h1>
+    <div className='states_viewsLoginViews'>
+      <h1>This is the patient view.</h1>
+      <h4> User logged in: </h4>
+      {user?.email}
       <p className='text'>More patient text goes here</p>
       <button className='back-btn' onClick={handleBackButtonClick}>Back</button>
     </div>
@@ -106,10 +108,12 @@ function PatientView({ handleBackButtonClick }) {
 }
 
 // what is shown on DoctorView
-function DoctorView({ handleBackButtonClick }) {
+function DoctorView({ user, handleBackButtonClick }) {
   return (
-    <div>
-      <h1 className='text'>This is the doctor view.</h1>
+    <div className='states_viewsLoginViews'>
+      <h1>This is the doctor view.</h1>
+      <h4> User logged in: </h4>
+      {user?.email}
       <p className='text'>More doctor text goes here</p>
       <button className='back-btn' onClick={handleBackButtonClick}>Back</button>
     </div>
@@ -119,8 +123,8 @@ function DoctorView({ handleBackButtonClick }) {
 // what is shown on FDAView. Line below h4 displays the user email logged in to FDA view
 function FDAView({ user, handleBackButtonClick }) {
   return (
-    <div className='FDA-login'>
-      <h1>This is the TESTING view.</h1>
+    <div className='states_viewsLoginViews'>
+      <h1>This is the FDA view.</h1>
       <h4> User logged in: </h4>
       {user?.email}
       <p className='text'>More FDA text goes here</p>
