@@ -41,7 +41,7 @@ body {
     margin: auto;
     height: 2.5em;
     width: 15em;
-    margin-top: 3em;
+    margin-top: 5em;
     font-size: large;
     border: limegreen;
     padding: 2.5%;
@@ -76,7 +76,7 @@ body {
 }
 
 .drop-down:hover {
-    background-color: rgb(192, 192, 192);
+    background-color: rgba(255, 255, 255, 0.884);
 }
 
 .header {
@@ -171,6 +171,12 @@ body {
     background-color: rgb(88, 37, 37);
 }
 
+/* makes it so that <h4> text is white */
+h4 {
+    color: white;
+  }
 
-
+.FDA-login {
+color: white;
+}
 

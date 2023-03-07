@@ -1,27 +1,55 @@
-// This page is for account creation and signing up
+// This page is for account creation and signing up ALSO VALIDATION
 import React, { useState } from "react";
 import "./loginprompt.css";
 import { useNavigate } from "react-router-dom";
 
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "./firebase-config";
+import ValidateDomain from "./validation";
 
+// Account Creation
 function SignUp() {
-    
     let navigate = useNavigate();
+    
+    // Initial state of the dropdown menu
+    const initialState = () => {
+        const value = "doctor";
+        return value;
+    }
+
+    // Change value depending on dropdown menu
+    const [value, setValue] = useState(initialState);
+
+    const handleChange = (e) => {
+        setValue(e.target.value);
+    }
 
     const [registerEmail, setRegisterEmail] = useState("");
     const [registerPassword, setRegisterPassword] = useState("");
 
+    // Register the user
     const register = async () => {
-
+        // Validate the roles between email and dropdown, if they do NOT match an alert pops up
+        let role = value;
+        if (ValidateDomain(registerEmail, role) === false) {
+            alert("Invalid email address for role");
+            return;
+        }
         try {
-        const user = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
-        console.log(user);
-        navigate("/Login");
+            // Make the user
+            const userCred = await createUserWithEmailAndPassword(auth, registerEmail, registerPassword);
+            console.log(userCred);
+            navigate("/Login");
+            const user = userCred.user;
+            await updateProfile(user, {
+                displayName: role
+            });
+            console.log(user);
+
         } catch (error) {
             console.log(error.message);
         }
+        
     };
 
     return (
@@ -36,21 +64,22 @@ function SignUp() {
             <input className = "input" type = "password" onChange={(event => {setRegisterPassword(event.target.value);
             })}/>        
 
-            <h1 className = "header-org">Select Organization</h1>
-            <select className = "drop-down" name="select-organization">
-                <option value = "Doctor">Jane Hopkins (Doctor)</option>
-                <option value = "Admin">Jane Hopkins (Admin)</option>
-                <option value = "Bavaria">Bavaria</option>
-                <option value = "FDA">FDA</option>
+            <h1 className = "header-org">Confirm Organization</h1>
+            
+            <select value={value} onChange={handleChange} className = "drop-down" name = "select-organization">
+                <option value = "doctor">Jane Hopkins (Doctor)</option>
+                <option value = "admin">Jane Hopkins (Admin)</option>
+                <option value = "bavaria">Bavaria</option>
+                <option value = "fda">FDA</option>
             </select>
 
             <div>
-                <button button onClick={register} className="login-button">Create Account</button>    
+                <button onClick={register} className="login-button">Create Account</button>    
             </div> 
 
             <div>
                 <p className="prompt">Have an account?</p>
-                <button button onClick={() => {navigate("/Login");}} className="add-btn">Login Instead</button>    
+                <button onClick={() => {navigate("/Login");}} className="add-btn">Login Instead</button>    
             </div> 
 
          </div>
@@ -59,3 +88,5 @@ function SignUp() {
 }
 
 export default SignUp;
+
+// My cat typed this: =]p0;/543

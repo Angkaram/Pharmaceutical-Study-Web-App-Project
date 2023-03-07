@@ -1,17 +1,45 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './loginprompt.css';
+import "./loginprompt.js";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
 import { useNavigate } from "react-router-dom";
+import ValidateDomain from "./validation";
 
 function View() {
+  
+  // the email for the user is displayed.
+  // changes based on state, role, and view
+  const [user, setUser] = useState(null)
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(userAuth => {
+      const user = {
+        email: userAuth?.email,
+        role: userAuth?.displayName,
+        id: userAuth?.uid
+      }
+      if (userAuth) {
+        console.log(userAuth)
+        setUser(user)
+      } else {
+        setUser(null)
+      }
+    })
+    return unsubscribe
+  }, []);
+
   // eslint-disable-next-line
   const [activeButton, setActiveButton] = useState(null); // buttons to change states
   const [currentView, setCurrentView] = useState('Welcome'); // so that we can go "back" to different views
 
   const handleButtonClick = (buttonName) => { // when we click on a button, it sets it to activeButton and
-    setActiveButton(buttonName);	      // bases the view based on the active button clicked
-    setCurrentView(buttonName + 'View');
+    let roleString = buttonName.toLowerCase();
+    if (user.role === roleString && ValidateDomain(user.email, roleString) === true) {
+      setActiveButton(buttonName);	      // bases the view based on the active button clicked
+      setCurrentView(buttonName + 'View');
+    } else {
+      alert("You do not have access to this view");
+    }
   };
 
   const handleBackButtonClick = () => {
@@ -28,7 +56,7 @@ function View() {
   } else if (currentView === 'DoctorView') {
     view = <DoctorView handleBackButtonClick={handleBackButtonClick} />;
   } else if (currentView === 'FDAView') {
-    view = <FDAView handleBackButtonClick={handleBackButtonClick} />;
+    view = <FDAView user = {user} handleBackButtonClick={handleBackButtonClick} />;
   }
 
   // styling
@@ -44,9 +72,8 @@ function WelcomeView({ handleButtonClick }) {
   let navigate = useNavigate();
 
   const logout = async () => {
-      await signOut(auth);  
+      await signOut(auth); 
       navigate("/");
-      
   };
 
   return (
@@ -89,11 +116,13 @@ function DoctorView({ handleBackButtonClick }) {
   );
 }
 
-// what is shown on FDAView
-function FDAView({ handleBackButtonClick }) {
+// what is shown on FDAView. Line below h4 displays the user email logged in to FDA view
+function FDAView({ user, handleBackButtonClick }) {
   return (
-    <div>
-      <h1 className='text'>This is the TESTING view.</h1>
+    <div className='FDA-login'>
+      <h1>This is the TESTING view.</h1>
+      <h4> User logged in: </h4>
+      {user?.email}
       <p className='text'>More FDA text goes here</p>
       <button className='back-btn' onClick={handleBackButtonClick}>Back</button>
     </div>
