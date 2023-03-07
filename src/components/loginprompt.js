@@ -28,6 +28,7 @@ function LoginPrompt() {
 
     return (
     <section className="container">
+        
         <div className="background">
             <h1 className = "header">Sign-In</h1>
             <p className="prompt">Email Address</p>
@@ -39,6 +40,7 @@ function LoginPrompt() {
             })}/>
 
             <div>
+                <p></p>
                 <button onClick={login} className = "login-button">Login</button>    
             </div>
             <p className="prompt">Don't have an account?</p>

@@ -53,11 +53,11 @@ function WelcomeView({ handleButtonClick }) {
     <div style={{ textAlign: 'center' }}>
       <h1 className='text'>Welcome to our website</h1>
       <p className='text'>Please select your user type:</p>
-      <div style={{ display: 'flex', justifyContent: 'space-evenly', marginTop: '1em' }}>
-        <button className='user-type' onClick={() => handleButtonClick('Patient')}>Patient</button>
-        <button className='user-type' onClick={() => handleButtonClick('Doctor')}>Doctor</button>
-        <button className='user-type' onClick={() => handleButtonClick('FDA')}>FDA</button>
-      </div>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '.5em' }}>
+  <button className='user-type' onClick={() => handleButtonClick('Patient')}>Patient</button>
+  <button className='user-type' onClick={() => handleButtonClick('Doctor')}>Doctor</button>
+  <button className='user-type' onClick={() => handleButtonClick('FDA')}>FDA</button>
+</div>
       
       <div>
         <button onClick = {logout} className='back-btn'>Log Out</button>
