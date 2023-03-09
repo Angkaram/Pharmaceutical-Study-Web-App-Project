@@ -61,6 +61,21 @@
   padding: 1.5%;
 }
 
+.patient-display {
+    display:flexbox;
+    min-width: fit-content;
+    cursor: pointer;
+    background-color: limegreen;
+    color: white;
+    border-radius: 10px;
+    margin: auto;
+    height: 2.5em;
+    width: 15em;
+    margin-top: 10em;
+    font-size: large;
+    border: limegreen;
+    padding: 2.5%;
+}
 
 .login-button {
     position: relative;
