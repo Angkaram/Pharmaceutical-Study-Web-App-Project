@@ -1,25 +1,40 @@
-//import './App.css';
-import LoginPrompt from "./components/loginprompt";
-import SignUp from "./components/signup";
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import AddPatientButton from './components/addButton';
+import './categories.styles.scss';
 
-import Nav from "./components/Navbar";
-import View from "./components/States_Views";
+const App = () => {
 
-function App() {
+  const categories = [
+    {
+      id: 1,
+      title: 'JH Hospital',
+      imageURL: 'https://wallpaperaccess.com/full/4287504.jpg',
+    },
+    {
+      id: 2,
+      title: 'FDA',
+      imageURL: 'https://www.fda.gov/themes/custom/preview/img/FDA-Social-Graphic.png',
+    },
+    {
+      id: 3,
+      title: 'Bavaria',
+      imageURL: 'https://wallpaperaccess.com/full/4204907.jpg',
+    },
+  ];
 
   return (
-    <BrowserRouter>
-        <Routes>
-          <Route path = "/" element = {<Nav />} />
-          <Route path = "/Login" element = {<LoginPrompt />} />
-          <Route path = "/SignUp" element = {<SignUp />} />
-          <Route path = "/AddPatientButton" element = {<AddPatientButton />} />
-          <Route path = "/View" element = {<View />} />
-        </Routes>
-  </BrowserRouter>
+    <div className='categories-container'>
+      {categories.map(({title, id, imageURL}) => (
+        <div key={id} className='category-container'>
+          <div className='background-image' style={{
+            backgroundImage: `url(${imageURL})`
+          }} />
+          <div className='category-body-container'>
+            <h2>{title}</h2>
+            <p>Login / Signup</p>
+          </div>
+        </div>
+      ))}
+    </div>
   );
-}
+};
 
 export default App;
