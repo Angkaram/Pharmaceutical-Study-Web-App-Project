@@ -2,18 +2,41 @@
 
 import useJaneHopkins from '../hooks/useJaneHopkins';
 import "./loginprompt.css";
+//import * as React from 'react'; //removed (temp)
+import React, { useState } from 'react';
 
 function AddPatientButton() {
     const {entities} = useJaneHopkins();
+    const [format, setFormat] = useState("list")
+    const [patients, setPatients] = useState();
   
     const addPatient = async() => {
-      const addPatientResponse = await entities.patient.add({
-        name: "Billy",
+      let patientList = await entities.patient.list();
+      const addPatientResponse = await entities.patient.add(
+        {
+        name: "Test Patient",
         dob: "Januray 17, 2000",
         insuranceNumber: "114528972",
-      });
+        weight: "101"
+        },
+        {
+          aclInput:{
+            acl:[
+              {
+                principal: {
+                  nodes: ["FDA", "Bavaria"]
+                },
+                operations: ["READ"],
+                path: "weight",
+              },
+            ],
+          },
+        }
+      );
       console.log(addPatientResponse);
-    }
+      console.log(patientList.items[8]);
+      setPatients(patientList.items[8]);
+    };
   
     return (
 
@@ -21,8 +44,12 @@ function AddPatientButton() {
         <button className = "login-button" onClick = {() => {
           addPatient();
         }}>Add patient</button>
-      </div>
 
+        <button className = "patient-display">
+            {patients.weight}
+        </button>
+      </div>
+      
 
     );
   }
