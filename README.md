@@ -1,3 +1,5 @@
+# THIS BRANCH IS UP TO DATE FOR ALL ISSUES EXCEPT HOOKS, DASH'S HOMEPAGE OVERHAUL, ETC. DO NOT EDIT
+
 # CSC-131-Project
 Our REACT and Vendia project for the medical website. 
 
