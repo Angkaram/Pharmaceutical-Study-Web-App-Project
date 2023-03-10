@@ -119,10 +119,8 @@ function DoctorView({ user, handleBackButtonClick }) {
       <h4> User logged in: </h4>
       {user?.email}
       
-      <div className='add-btn'>
-        {AddPatientButton }
-      </div>
-
+      <AddPatientButton />
+ 
       <div>
         <h2>Patient Data</h2>
         <DisplayPatientData patientId={patientId}/>
