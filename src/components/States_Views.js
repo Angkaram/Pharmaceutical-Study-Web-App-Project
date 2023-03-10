@@ -5,6 +5,8 @@ import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
 import { useNavigate } from "react-router-dom";
 import ValidateDomain from "./validation";
+import AddPatientButton from './addButton.js';
+import DisplayPatientData from './DisplayPatientData';
 
 function View() {
   
@@ -109,11 +111,23 @@ function PatientView({ user, handleBackButtonClick }) {
 
 // what is shown on DoctorView
 function DoctorView({ user, handleBackButtonClick }) {
+  // can type in patient ID and it will display correct patient from Vendia
+  const patientId = '0186b496-32f6-9a7f-cdfe-1e37ab416338';
   return (
     <div className='text'>
       <h1>This is the doctor view.</h1>
       <h4> User logged in: </h4>
       {user?.email}
+      
+      <div className='add-btn'>
+        {AddPatientButton }
+      </div>
+
+      <div>
+        <h2>Patient Data</h2>
+        <DisplayPatientData patientId={patientId}/>
+      </div>
+      
       <p className='text'>More doctor text goes here</p>
       <button className='back-btn' onClick={handleBackButtonClick}>Back</button>
     </div>

@@ -5,9 +5,6 @@ import "./loginprompt.css";
 //import * as React from 'react'; //removed (temp)
 import React, { useState } from 'react';
 
-
-
-
 function AddPatientButton() {
     const {entities} = useJaneHopkins();
     const [format, setFormat] = useState("list")
@@ -17,7 +14,7 @@ function AddPatientButton() {
       let patientList = await entities.patient.list();
       const addPatientResponse = await entities.patient.add(
         {
-        name: "Test Patient",
+        name: "Billy Patient",
         dob: "Januray 17, 2000",
         insuranceNumber: "114528972",
         weight: "101"
@@ -40,24 +37,17 @@ function AddPatientButton() {
       console.log(patientList.items[8]);
       setPatients(patientList.items[8]);
     };
-
-
-
-    
   
     return (
 
-      <div className='container'>
-        <button className = "login-button" onClick = {() => {
+      <div className='back-button'>
+        <button className = "back-button" onClick = {() => {
           addPatient();
-        }}>Add patient</button>
-
-        <button className = "patient-display">
+          }}>Add patient</button>
+        <button className = "back-button">
             {patients.weight}
         </button>
       </div>
-      
-
     );
   }
   export default AddPatientButton;
