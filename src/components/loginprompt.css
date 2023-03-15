@@ -5,14 +5,16 @@
     font-style: normal;
 }
 
-* {
+.font-roboto {
     font-family: roboto;
 }
+    body {
+        background-color: black;
+       
+    }
 
-body {
-    background-color: rgb(9, 9, 22);
-}
 
+  
 .container {
     padding-top: 3%;
     display: flex;
@@ -29,33 +31,161 @@ body {
     border-radius: 1em;
     background-color: rgb(36, 36, 36);
     color: aliceblue;
+    position: relative; /* Add position relative for the shadow effect */
 }
+
+.background::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(255,94,247,1) 17.8%, rgba(2,245,255,1) 100.2% ); /* Set a semi-transparent black background */
+    filter: blur(20px); /* Add the blur effect to the semi-transparent black background */
+    z-index: -1;
+    position: absolute;
+    left: 0px; /* Adjust the left and top position to move the shadow */
+    top: 0px;
+}
+.login-button,
+.add-btn,
+.user-type,
+.back-btn {
+  display:flexbox;
+  min-width: fit-content;
+  cursor: pointer;
+  border-radius: 10px;
+  margin: auto;
+  height: 3em;
+  width: 15em;
+  margin-top: .5em;
+  font-size: x-large;
+  padding: 1.5%;
+}
+
 
 .login-button {
-    display:flexbox;
-    min-width: fit-content;
+    position: relative;
+    padding: 1em 1.8em;
+    outline: none;
+    border: 3px solid #0a5ef0;
+    background: #212121;
+    color: #0a5ef0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 15px;
+    overflow: hidden;
+    transition: 0.2s;
+    border-radius: 20px;
     cursor: pointer;
-    background-color: limegreen;
-    color: white;
-    border-radius: 10px;
-    margin: auto;
-    height: 2.5em;
-    width: 15em;
-    margin-top: 5em;
-    font-size: large;
-    border: limegreen;
-    padding: 2.5%;
-}
-
+    font-weight: bold;
+    display: flex;
+justify-content: center;
+align-items: center;
+   }
+   
 .login-button:hover {
-    background-color: rgb(27, 114, 27);
+    
+    box-shadow: 0 0 10px #31d6cb, 0 0 25px #0047AB, 0 0 30px #ff5ef7;
+    border: 1px solid white;
+   }
+   
+
+.add-btn {
+    position: relative;
+    padding: 1em 1.8em;
+    outline: none;
+    border: 3px solid #8e2cde;
+    background: #212121;
+    color: #8e2cde;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 15px;
+    overflow: hidden;
+    transition: 0.2s;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+justify-content: center;
+align-items: center;
 }
 
+.add-btn:hover {
+    box-shadow: 0 0 10px #31d6cb, 0 0 25px #0047AB, 0 0 30px #ff5ef7;
+    border: 1px solid white;
+}
+
+
+.user-type {
+    width: 250px;
+    height: 78px;
+    cursor: pointer;
+    color: #fff;
+    font-size: 17px;
+    border-radius: 1rem;
+    border: none;
+    position: relative;
+    background: #100720;
+    transition: 0.1s;
+  }
+  
+  .user-type::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(255,94,247,1) 17.8%, rgba(2,245,255,1) 100.2% );
+    filter: blur(15px);
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  
+  
+  .user-type:hover {
+    transform: scale(0.9) rotate(3deg);
+    background: radial-gradient( circle farthest-corner at 10% 20%,  rgba(255,94,247,1) 17.8%, rgba(2,245,255,1) 100.2% );
+    transition: 0.5s;
+  }
+  
+
+
+.back-btn {
+    width: 165px;
+  height: 62px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 17px;
+  border-radius: 1rem;
+  border: none;
+  position: relative;
+  background: #100720;
+  transition: 0.1s;
+}
+
+
+.back-btn::after {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  red , red );
+    filter: blur(15px);
+    z-index: -1;
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  
+.back-btn:hover {
+    transform: scale(0.9) rotate(3deg);
+    background: radial-gradient( circle farthest-corner at 10% 20%,  red, red );
+    transition: 0.5s;
+  }
 .org-btn {
     cursor: pointer;
 } 
 
-.input {
+.input,
+.drop-down {
     display: block;
     width: 15em;
     padding: 3.4%;
@@ -66,12 +196,6 @@ body {
 
 .drop-down {
     text-align: center;
-    display: block;
-    width: 15em;
-    padding: 3.4%;
-    border: thin solid black;
-    text-align: left;
-    margin: auto;
     cursor: pointer;
 }
 
@@ -79,43 +203,15 @@ body {
     background-color: rgba(255, 255, 255, 0.884);
 }
 
-.header {
+.header,
+.header-org,
+.header-create {
     margin-top: 2em;
-}
-
-.header-org {
-    margin-top: 1.5em;
     color: rgb(0, 148, 158);
 }
-
-.add-btn {
-    display: flexbox;
-    min-width: fit-content;
-    cursor: pointer;
-    background-color: brown;
-    color: white;
-    border-radius: 10px;
-    margin: auto;
-    width: 15em;
-    height: 2.5em;
-    margin-top: 0em;
-    margin-bottom: 2.5em;
-    font-size: large;
-    border: brown;
-    padding: 2.5%;
-}
-
-.add-btn:hover:hover {
-    background-color: rgb(88, 37, 37);
-}
-
 
 .prompt {
     margin-top: 2.5em;
-}
-
-.header-create {
-    color: rgb(0, 148, 158);
 }
 
 .text {
@@ -176,7 +272,6 @@ h4 {
     color: white;
   }
 
-.states_viewsLoginViews {
+.FDA-login {
 color: white;
 }
-

@@ -14,6 +14,32 @@
 .navbar .links {
   margin-left: auto;
 }
+.coder-name {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  padding: 10px;
+  background-color: #000;
+  color: black;
+  font-size: 16px;
+  
+}
+
+.coder-name::after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(255,94,247,1) 17.8%, rgba(2,245,255,1) 100.2% ); /* Set a semi-transparent black background */
+  filter: blur(20px); /* Add the blur effect to the semi-transparent black background */
+  z-index: -1;
+  position: absolute;
+  left: 0px; /* Adjust the left and top position to move the shadow */
+  top: 0px;
+}
+
+
+
+
 .navbar a {
   margin-left: 16px;
   text-decoration: none;
@@ -33,7 +59,13 @@
   margin-left: 250px;
 }
 .background-color {
-  background-color: rgb(240, 248, 255);
+  background-color: black;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
 }
 
 
