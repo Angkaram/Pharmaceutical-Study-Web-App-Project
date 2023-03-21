@@ -29,7 +29,7 @@
     padding: 70px;
     border: thin solid rgba(255, 255, 255, 0.76);
     border-radius: 1em;
-    background-color: rgb(36, 36, 36);
+    background-color: rgb(255, 251, 251);
     color: aliceblue;
     position: relative; /* Add position relative for the shadow effect */
 }
@@ -227,8 +227,10 @@ align-items: center;
 
 .prompt {
     margin-top: 2.5em;
+    color:rgb(0, 0, 0);
 }
 
 .text {
-    color:rgb(240, 248, 255);
+    color:rgb(0, 0, 0);
+    background-color: white;
 }

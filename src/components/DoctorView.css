@@ -1,0 +1,54 @@
+/* Table for Patient Data */
+.patientTable {
+    box-sizing: border-box;
+    position: absolute;
+    width: 1268px;
+    height: 588px;
+    left: 85px;
+    top: 406px;
+    background: #FFFFFF;
+    border: 3px solid #747474;
+}
+  
+/* Table header styles */
+.patientTable th {
+    background-color: #0E619C;
+    color: white;
+}
+
+/* Table row styles */
+.patientTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+/* Trying to alternate row colors */
+.patientTable tr.even {
+    background-color: #f2f2f2;
+}
+
+.patientTable tr.odd {
+    background-color: #FFFFFF;
+}
+
+/* Table cell styles */
+.patientTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+/* Table hover styles */
+.patientTable tr:hover {
+    background-color: #ddd;
+}
+
+/* Table responsive styles */
+.patientTable-responsive {
+    overflow-x: auto;
+}
+
+/* Doctor View Background */
+.doctorBackground {
+    background-color: white;
+    display: 'flex';
+    height: '100vh';
+    
+}

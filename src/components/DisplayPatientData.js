@@ -1,6 +1,9 @@
 import useJaneHopkins from '../hooks/useJaneHopkins';
 import { useEffect, useState } from 'react';
+import { css } from "@emotion/react";
+import { ClipLoader } from "react-spinners";
 
+/*
 function DisplayPatientData({ patientId }) { // patient ID from Vendia can be passed in
   const { entities } = useJaneHopkins();
   const [patient, setPatient] = useState();
@@ -24,35 +27,59 @@ function DisplayPatientData({ patientId }) { // patient ID from Vendia can be pa
     </div>
   );
 }
-
-// the code below spams all the data into the page rather than based on the ID (singular patient)
-/*
-function DisplayPatientData({}) {
-    const { entities } = useJaneHopkins();
-    const [patients, setPatients] = useState([]);
-  
-    useEffect(() => {
-      async function fetchPatients() {
-        const patientList = await entities.patient.list();
-        setPatients(patientList.items);
-      }
-  
-      fetchPatients();
-    }, [entities.patient]);
-  
-    return (
-      <div>
-        {patients.map((patient) => (
-          <div key={patient.id}>
-            <h2>{patient.name}</h2>
-            <p>Date of Birth: {patient.dob}</p>
-            <p>Insurance Number: {patient.insuranceNumber}</p>
-            <p>Weight: {patient.weight}</p>
-          </div>
-        ))}
-      </div>
-    );
-  }
 */
 
-  export default DisplayPatientData;
+// the code below spams all the data into the page rather than based on the ID (singular patient)
+function DisplayPatientData() {
+  const { entities } = useJaneHopkins();
+  const [patients, setPatients] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchPatients() {
+      const patientList = await entities.patient.list();
+      setPatients(patientList.items);
+      setIsLoading(false);
+    }
+
+    fetchPatients();
+  }, [entities.patient]);
+
+  const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+  `;
+
+  return (
+    <div>
+      <ClipLoader color={"blue"} loading={isLoading} css={override} size={40} />
+      {!isLoading && (
+        <table className="patientTable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Date of Birth</th>
+              <th>Insurance Number</th>
+              <th>Address</th>
+            </tr>
+          </thead>
+          <tbody>
+            {patients.map((patient) => (
+              <tr key={patient.id}>
+                <td>{patient.name}</td>
+                <td>{patient.age}</td>
+                <td>{patient.dob}</td>
+                <td>{patient.insuranceNumber}</td>
+                <td>{patient.address}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </div>
+  );
+}
+
+export default DisplayPatientData;

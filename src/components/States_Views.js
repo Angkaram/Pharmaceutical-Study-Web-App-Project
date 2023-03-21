@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import ValidateDomain from "./validation";
 import AddPatientButton from './addButton.js';
 import DisplayPatientData from './DisplayPatientData';
+import './DoctorView.css';
 
 function View() {
   
@@ -63,7 +64,7 @@ function View() {
 
   // styling
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+    <div className='text'>
       {view}
     </div>
   );
@@ -112,7 +113,7 @@ function PatientView({ user, handleBackButtonClick }) {
 // what is shown on DoctorView
 function DoctorView({ user, handleBackButtonClick }) {
   // can type in patient ID and it will display correct patient from Vendia
-  const patientId = '0186b496-32f6-9a7f-cdfe-1e37ab416338';
+  const patientId = '01865363-2bec-5ef5-cbd3-bb917b33c37b';
   return (
     <div className='text'>
       <h1>This is the doctor view.</h1>
