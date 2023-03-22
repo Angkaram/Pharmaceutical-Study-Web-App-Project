@@ -11,8 +11,7 @@ import './DoctorView.css';
 
 function View() {
   
-  // the email for the user is displayed.
-  // changes based on state, role, and view
+  /* the email for the user is displayed and changes based on state, role, and view*/
   const [user, setUser] = useState(null)
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(userAuth => {
@@ -41,7 +40,7 @@ function View() {
       setActiveButton(buttonName);	      // bases the view based on the active button clicked
       setCurrentView(buttonName + 'View');
     } else {
-      alert("You do not have access to this view");
+      alert("You do not have access to this view"); // alerts you if you try clicking on wrong view
     }
   };
 
@@ -64,7 +63,7 @@ function View() {
 
   // styling
   return (
-    <div className='text'>
+    <div className='managePatient'>
       {view}
     </div>
   );
@@ -84,15 +83,13 @@ function WelcomeView({ handleButtonClick }) {
       <h1 className='text'>Welcome to our website</h1>
       <p className='text'>Please select your user type:</p>
       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginTop: '.5em' }}>
-  <button className='user-type' onClick={() => handleButtonClick('Patient')}>Patient</button>
-  <button className='user-type' onClick={() => handleButtonClick('Doctor')}>Doctor</button>
-  <button className='user-type' onClick={() => handleButtonClick('FDA')}>FDA</button>
-</div>
-      
+        <button className='user-type' onClick={() => handleButtonClick('Patient')}>Patient</button>
+        <button className='user-type' onClick={() => handleButtonClick('Doctor')}>Doctor</button>
+        <button className='user-type' onClick={() => handleButtonClick('FDA')}>FDA</button>
+      </div>
       <div>
         <button onClick = {logout} className='back-btn'>Log Out</button>
       </div>
-
     </div>
   );
 }
@@ -115,10 +112,27 @@ function DoctorView({ user, handleBackButtonClick }) {
   // can type in patient ID and it will display correct patient from Vendia
   const patientId = '01865363-2bec-5ef5-cbd3-bb917b33c37b';
   return (
-    <div className='text'>
-      <h1>This is the doctor view.</h1>
-      <h4> User logged in: </h4>
-      {user?.email}
+    <div className='managePatient'>
+      <div className='doctorNavbar'>
+        <div className='doctorViewTitle'>
+          <div className='janeHopkinsTitleText'>Jane Hopkins</div>
+          <div className='hospitalTitleText'>Hospital</div>
+        </div>
+        <div className='displayEmail'>{user?.email}</div>
+        <div className='doctorSignOut'>
+          <div className='signOutIcon'></div>
+          <button className='signOutButton' onClick={handleBackButtonClick}></button>
+          <div className='signOutText'>Sign Out</div>
+        </div>
+      </div>
+      <div className='doctorNavButtons'>
+        <div className='welcomeButton'>
+          <div className='welcomeContainer'></div>
+          <div className='welcomeText'>Welcome Page</div>
+        </div>
+
+      </div>
+      
       
       <div className='add-btn'>
         {AddPatientButton }
@@ -128,9 +142,6 @@ function DoctorView({ user, handleBackButtonClick }) {
         <h2>Patient Data</h2>
         <DisplayPatientData patientId={patientId}/>
       </div>
-      
-      <p className='text'>More doctor text goes here</p>
-      <button className='back-btn' onClick={handleBackButtonClick}>Back</button>
     </div>
   );
 }

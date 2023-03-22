@@ -20,6 +20,7 @@
 .patientTable tr:nth-child(even) {
     background-color: #f2f2f2;
 }
+
 /* Trying to alternate row colors */
 .patientTable tr.even {
     background-color: #f2f2f2;
@@ -45,10 +46,198 @@
     overflow-x: auto;
 }
 
-/* Doctor View Background */
-.doctorBackground {
-    background-color: white;
-    display: 'flex';
-    height: '100vh';
-    
+/* Manage Patient Page View */
+.managePatient {
+    position: relative;
+    width: 1440px;
+    height: 1024px;
+    background: #ffffff;
+}
+
+/* Navbar */
+.doctorNavbar {
+    position: absolute;
+    width: 1440px;
+    height: 140px;
+    left: -1px;
+    top: 0px;
+    background-color: #0E619C;
+}
+
+/* Title */
+.doctorViewTitle {
+    position: absolute;
+    width: 400px;
+    height: 139px;
+    left: 30px;
+    top: 1px;
+}
+
+/* Jane Hopkins Text*/
+.janeHopkinsTitleText {
+    position: absolute;
+    width: 400px;
+    height: 57px;
+    left: 30px;
+    top: 1px;
+
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 71px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFFFFF;
+}
+
+/* Hospital Text*/
+.hospitalTitleText {
+    position: absolute;
+    width: 393px;
+    height: 121px;
+    left: 88px;
+    top: 19px;
+
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 71px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+}
+
+/* Email */
+.displayEmail {
+    position: absolute;
+    width: 285px;
+    height: 34px;
+    left: 907px;
+    top: 42px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    text-align: right;
+
+    color: #FFFFFF;
+}
+
+/* Sign Out */
+.doctorSignOut {
+    position: absolute;
+    width: 150px;
+    height: 47px;
+    left: 800px;
+    top: 36px;
+}
+
+/* Sign out Icon */
+.signOutIcon {
+    position: absolute;
+    width: 29px;
+    height: 27px;
+    left: 400px;
+    top: 0px;
+
+    background-image: url(signOutIcon.webp);
+    border-radius: 107px;
+}
+
+/* Sign Out Text */
+.signOutText {
+    position: absolute;
+    width: 99px;
+    height: 30px;
+    left: 483px;
+    top: 12px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #0E619C;
+}
+
+/* Sign Out/Log In Button */
+.signOutButton {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 150px;
+    height: 47px;
+    left: 450px;
+    top: 5px;
+
+    background: #FFFFFF;
+    border: 1px solid #0E619C;
+    border-radius: 50px;
+}
+
+/* Nav Buttons */
+.doctorNavButtons {
+    position: absolute;
+    width: 953px;
+    height: 44px;
+    left: 243px;
+    top: 134px;
+}
+
+/* Welcome Button */
+.welcomeButton {
+    position: absolute;
+    width: 279px;
+    height: 44px;
+    left: 243px;
+    top: 134px;
+}
+
+/* Welcome Page */
+.welcomeText {
+    position: absolute;
+    width: 221px;
+    height: 43px;
+    left: 290px;
+    top: 45px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #0E619C;
+}
+
+/* Welcome */
+.welcomeContainer {
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 279px;
+    height: 44px;
+    left: 0px;
+    top: 0px;
+
+    background: #F3F3F3;
+    border: 5px solid #0E619C;
+    border-radius: 20px;
 }

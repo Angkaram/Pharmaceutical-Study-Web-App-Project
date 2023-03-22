@@ -8,8 +8,8 @@
 .font-roboto {
     font-family: roboto;
 }
-    body {
-        background-color: black;
+    body { /* THIS DETERMINES OVERALL BACKGROUND COLOR FOR ALL PAGES */
+        background-color: rgb(255, 255, 255);
        
     }
 

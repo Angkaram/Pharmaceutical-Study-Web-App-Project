@@ -3,33 +3,7 @@ import { useEffect, useState } from 'react';
 import { css } from "@emotion/react";
 import { ClipLoader } from "react-spinners";
 
-/*
-function DisplayPatientData({ patientId }) { // patient ID from Vendia can be passed in
-  const { entities } = useJaneHopkins();
-  const [patient, setPatient] = useState();
-
-  useEffect(() => {
-    const fetchPatientData = async () => { // fetch request based on ID
-      const patientData = await entities.patient.get(patientId);
-      setPatient(patientData);
-    };
-
-    fetchPatientData();
-  }, [entities.patient, patientId]);
-    
-  // display relevant info
-  return (
-    <div> 
-      <h3>Patient: {patient?.name}</h3>
-      <p>DOB: {patient?.dob}</p>
-      <p>Insurance Number: {patient?.insuranceNumber}</p>
-      <p>Weight: {patient?.weight}</p>
-    </div>
-  );
-}
-*/
-
-// the code below spams all the data into the page rather than based on the ID (singular patient)
+// the code below puts all the data into a table rather than based on the ID (singular patient)
 function DisplayPatientData() {
   const { entities } = useJaneHopkins();
   const [patients, setPatients] = useState([]);
@@ -83,3 +57,29 @@ function DisplayPatientData() {
 }
 
 export default DisplayPatientData;
+
+/*
+function DisplayPatientData({ patientId }) { // patient ID from Vendia can be passed in
+  const { entities } = useJaneHopkins();
+  const [patient, setPatient] = useState();
+
+  useEffect(() => {
+    const fetchPatientData = async () => { // fetch request based on ID
+      const patientData = await entities.patient.get(patientId);
+      setPatient(patientData);
+    };
+
+    fetchPatientData();
+  }, [entities.patient, patientId]);
+    
+  // display relevant info
+  return (
+    <div> 
+      <h3>Patient: {patient?.name}</h3>
+      <p>DOB: {patient?.dob}</p>
+      <p>Insurance Number: {patient?.insuranceNumber}</p>
+      <p>Weight: {patient?.weight}</p>
+    </div>
+  );
+}
+*/
