@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './loginprompt.css';
 import "./loginprompt.js";
+import './home.css';
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
 import { useNavigate } from "react-router-dom";
 import ValidateDomain from "./validation";
-import AddPatientButton from './addButton.js';
+import './addButton.js';
 import DisplayPatientData from './DisplayPatientData';
 import './DoctorView.css';
 
@@ -63,7 +64,7 @@ function View() {
 
   // styling
   return (
-    <div className='managePatient'>
+    <div>
       {view}
     </div>
   );
@@ -108,40 +109,45 @@ function PatientView({ user, handleBackButtonClick }) {
 }
 
 // what is shown on DoctorView
-function DoctorView({ user, handleBackButtonClick }) {
+function DoctorView({ user, handleBackButtonClick, addPatient }) {
   // can type in patient ID and it will display correct patient from Vendia
   const patientId = '01865363-2bec-5ef5-cbd3-bb917b33c37b';
   return (
-    <div className='managePatient'>
+    <div className='managePatient'> 
+
       <div className='doctorNavbar'>
+
         <div className='doctorViewTitle'>
           <div className='janeHopkinsTitleText'>Jane Hopkins</div>
           <div className='hospitalTitleText'>Hospital</div>
         </div>
         <div className='displayEmail'>{user?.email}</div>
-        <div className='doctorSignOut'>
+        <button className='signOutButton' onClick={handleBackButtonClick}>
           <div className='signOutIcon'></div>
-          <button className='signOutButton' onClick={handleBackButtonClick}></button>
           <div className='signOutText'>Sign Out</div>
-        </div>
+        </button>
       </div>
-      <div className='doctorNavButtons'>
-        <div className='welcomeButton'>
-          <div className='welcomeContainer'></div>
+      
+      <div className='doctorNavButtonLocations'>
+        <div className='welcomeContainer'>
           <div className='welcomeText'>Welcome Page</div>
         </div>
+        <div className='appointmentContainer'>
+          <div className='appointmentText'>Manage Appointments</div>
+        </div>
+        <button className='addPatientContainer' onClick={addPatient}>
+          <div className='addPatientText'>Add Patients</div>
+        </button>
+      </div>
+
+      <div className='patientSearchBox'>
 
       </div>
-      
-      
-      <div className='add-btn'>
-        {AddPatientButton }
-      </div>
 
-      <div>
-        <h2>Patient Data</h2>
+      <div className='patientTableLocation'>
         <DisplayPatientData patientId={patientId}/>
       </div>
+
     </div>
   );
 }

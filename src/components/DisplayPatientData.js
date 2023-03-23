@@ -2,6 +2,7 @@ import useJaneHopkins from '../hooks/useJaneHopkins';
 import { useEffect, useState } from 'react';
 import { css } from "@emotion/react";
 import { ClipLoader } from "react-spinners";
+import "./DoctorView.css";
 
 // the code below puts all the data into a table rather than based on the ID (singular patient)
 function DisplayPatientData() {

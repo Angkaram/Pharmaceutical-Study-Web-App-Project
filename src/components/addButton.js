@@ -12,11 +12,9 @@ function AddPatientButton() {
       console.log(addPatientResponse);
     }
     return (
-      <div>
-        <button className='add-btn' onClick = {() => {
-          addPatient();
-        }}>Add patient</button>
-      </div>
+      <button className='addPatientContainer'onClick={() => {
+         addPatient(); }}>
+      </button>
     );
   }
   export default AddPatientButton;
