@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './loginprompt.css';
 import "./loginprompt.js";
+import './home.css';
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
 import { useNavigate } from "react-router-dom";
 import ValidateDomain from "./validation";
 import AddPatientButton from './addButton.js';
 import DisplayPatientData from './DisplayPatientData';
+import './DoctorView.css';
 
 let view;
 
@@ -62,32 +64,79 @@ function View() {
 
   // styling
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+    <div>
       {view}
     </div>
   );
 };
 
 // what is shown on DoctorView
-function DoctorView({ user, LogOut }) {
+function DoctorView({ user, LogOut}) {
   // can type in patient ID and it will display correct patient from Vendia
   const patientId = '0186b496-32f6-9a7f-cdfe-1e37ab416338';
   return (
-    <div className='text'>
-      <h1>This is the doctor view.</h1>
-      <h4> User logged in: </h4>
-      {user?.email}
-      
-      <AddPatientButton />
- 
-      <div>
-        <h2>Patient Data</h2>
-        <DisplayPatientData patientId={patientId}/>
+    <div className='managePatient'> 
+
+    <div className='doctorNavbar'>
+
+      <div className='doctorViewTitle'>
+        <div className='janeHopkinsTitleText'>Jane Hopkins</div>
+        <div className='hospitalTitleText'>Hospital</div>
       </div>
-      
-      <p className='text'>More doctor text goes here</p>
-      <button className='back-btn' onClick={LogOut}>Sign Out</button>
+      <div className='displayEmail'>{user?.email}</div>
+      <button className='signOutButton' onClick={LogOut}>
+        <div className='signOutIcon'></div>
+        <div className='signOutText'>Sign Out</div>
+      </button>
     </div>
+    
+    <div className='doctorNavButtonLocations'>
+      <div className='welcomeContainer'>
+        <div className='welcomeText'>Welcome Page</div>
+      </div>
+      <div className='appointmentContainer'>
+        <div className='appointmentText'>Manage Appointments</div>
+      </div>
+      <AddPatientButton />
+    </div>
+
+    <div className='patientSearchBox'>
+      <div className='patientSearchBoxName'>Patient Search</div>
+      <div className='searchUndoLocations'>
+        <div className='undoButton'>
+          <div className='undoButtonText'>Undo</div>
+        </div>
+        <div className='searchButton'>
+          <div className='searchButtonText'>Search</div>
+        </div>
+      </div>
+      <div className='patientNameSearch'>
+        <div className='patientNameSearchBox'>
+          <div className='patientNameSearchLabel'>Name</div>
+        </div>
+      </div>
+      <div className='patientAgeSearch'>
+        <div className='patientAgeSearchBox'>
+          <div className='patientAgeSearchLabel'>Age</div>
+        </div>
+      </div>
+      <div className='patientICDSearch'>
+        <div className='patientICDSearchBox'>
+          <div className='patientICDSearchLabel'>ICD Healthcode</div>
+        </div>
+      </div>
+      <div className='patientInsuranceSearch'>
+        <div className='patientInsuranceSearchBox'>
+          <div className='patientInsuranceSearchLabel'>Insurance Number</div>
+        </div>
+      </div>
+    </div>
+
+    <div className='patientTableLocation'>
+      <DisplayPatientData patientId={patientId}/>
+    </div>
+
+  </div>
   );
 }
 
