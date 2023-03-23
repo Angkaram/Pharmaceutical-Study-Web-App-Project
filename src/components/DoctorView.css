@@ -1,0 +1,556 @@
+/* Table for Patient Data */
+.patientTable {
+    box-sizing: border-box;
+    position: absolute;
+    display: flexbox;
+    width: 1268px;
+    height: 588px;
+    top: 115px;
+    background: #FFFFFF;
+    border: 3px solid #747474;
+}
+
+/* Patient Table Location */
+/* Table for Patient Data */
+.patientTableLocation {
+    position: absolute;
+    display: flexbox;
+    width: 1268px;
+    height: 588px;
+    top: 422px;
+}
+  
+/* Table header styles */
+.patientTable th {
+    background-color: #0E619C;
+    color: white;
+}
+
+/* Table row styles */
+.patientTable tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Trying to alternate row colors */
+.patientTable tr.even {
+    background-color: #f2f2f2;
+}
+
+.patientTable tr.odd {
+    background-color: #FFFFFF;
+}
+
+/* Table cell styles */
+.patientTable td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+/* Table hover styles */
+.patientTable tr:hover {
+    background-color: #ddd;
+}
+
+/* Table responsive styles */
+.patientTable-responsive {
+    overflow-x: auto;
+}
+
+/* Manage Patient Page View */
+.managePatient {
+    position: relative;
+    width: 100vw;
+    height: 100vw;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Navbar */
+.doctorNavbar {
+    top: 0;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 140px;
+    background-color: #0E619C;
+}
+
+/* Title */
+.doctorViewTitle {
+    position: absolute;
+    width: 400px;
+    height: 139px;
+    left: 30px;
+    top: 1px;
+}
+
+/* Jane Hopkins Text*/
+.janeHopkinsTitleText {
+    position: absolute;
+    width: 400px;
+    height: 57px;
+    left: 30px;
+    top: 1px;
+
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 71px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding-top: 8px;
+    color: #FFFFFF;
+}
+
+/* Hospital Text*/
+.hospitalTitleText {
+    position: absolute;
+    width: 393px;
+    height: 121px;
+    left: 87px;
+    top: 19px;
+
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 71px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding-top: 8px;
+    color: #000000;
+}
+
+/* Email */
+.displayEmail {
+    width: fit-content;
+    height: 34px;
+    margin-left: auto;
+    margin-right: 16px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    color: #FFFFFF;
+    padding-right: 5px;
+}
+
+/* Sign out Icon */
+.signOutIcon {
+    position: relative;
+    width: 29px;
+    height: 27px;
+    left: -48px;
+    top: 0px;
+    background: url(signOutIcon.png) no-repeat center center;
+    border-radius: 107px;
+    background-size: cover;
+    filter: brightness(1000) contrast(10000);
+}
+
+/* Sign Out Text */
+.signOutText {
+    position: absolute;
+    width: 99px;
+    height: 30px;
+    top: 54px;
+    right: 22px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 22px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #0E619C;
+}
+
+/* Sign Out Button */
+.signOutButton {
+    box-sizing: border-box;
+    width: 150px;
+    height: 47px;
+    left: 0px;
+    background: #ffffff;
+    border: 1px solid #0E619C;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 16px;
+    cursor: pointer;
+}
+
+/* Nav Button Locations*/
+.doctorNavButtonLocations {
+    width: 980px;
+    height: 55px;
+    position: absolute;
+    top: 200px;
+    display: flex;
+
+}
+
+/* Welcome */
+.welcomeContainer {
+    position: absolute;
+    width: 279px;
+    height: 44px;
+    cursor: pointer;
+    background: #F3F3F3;
+    border: 5px solid #0E619C;
+    border-radius: 20px;
+    display: flex;
+}
+
+/* Welcome Page */
+.welcomeText {
+    position: absolute;
+    width: 221px;
+    height: 43px;
+    left: 70px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    color: #0E619C;
+}
+
+/* Appointments */
+.appointmentContainer {
+    position: absolute;
+    width: 279px;
+    height: 44px;
+    left: 350px;
+    cursor: pointer;
+    background: #F3F3F3;
+    border: 5px solid #0E619C;
+    border-radius: 20px;
+}
+
+/* appointment text */
+.appointmentText {
+    position: absolute;
+    width: 221px;
+    height: 43px;
+    left: 31px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    color: #0E619C;
+}
+
+/* add patient button */
+.addPatientContainer {
+    position: absolute;
+    width: 279px;
+    height: 54px;
+    left: 700px;
+    cursor: pointer;
+    background: #F3F3F3;
+    border: 5px solid #0E619C;
+    border-radius: 20px;
+}
+
+/* add patient text */
+.addPatientText {
+    position: absolute;
+    width: 221px;
+    height: 43px;
+    left: 75px;
+    top: 0px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    color: #0E619C;
+}
+
+/* Patient Search Box */
+.patientSearchBox {
+    box-sizing: border-box;
+    position: absolute;
+    width: 1177px;
+    height: 185px;
+    top: 300px;
+    display: flex;
+    background: #FFFFFF;
+    border: 3px solid #0E619C;
+    border-radius: 20px;
+}
+
+/* Patient Search */
+.patientSearchBoxName {
+    position: absolute;
+    width: 317.6px;
+    height: 35.48px;
+    left: 15px;
+    top: 1px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 21px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+
+/* Search/Undo Buttons */
+.searchUndoLocations {
+    position: absolute;
+    display: flex;
+    width: 400px;
+    height: 44px;
+    left: 390px;
+    top: 115px;
+}
+
+/* Undo button */
+.undoButton {
+    box-sizing: border-box;
+    display: flex;
+    position: absolute;
+    width: 137.78px;
+    height: 44px;
+    left: 262px;
+    top: 0px;
+    background: #FFFFFF;
+    border: 5px solid #000000;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* Undo Text */
+.undoButtonText {
+    position: absolute;
+    width: 67.84px;
+    height: 43px;
+    left: 39px;
+    top: -4px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+}
+
+/* Search button */
+.searchButton {
+    cursor: pointer;
+    box-sizing: border-box;
+    position: absolute;
+    width: 230.03px;
+    height: 44px;
+    left: 0px;
+    top: 0px;
+    cursor: pointer;
+    background: #FFFFFF;
+    border: 5px solid #000000;
+    border-radius: 20px;
+}
+
+/* Search Text */
+.searchButtonText {
+    position: absolute;
+    width: 67.84px;
+    height: 43px;
+    left: 78px;
+    top: -4px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+}
+
+/* Patient Name Search Container */
+.patientNameSearch {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    width: 294.25px;
+    height: 53.94px;
+    left: 20px;
+    top: 10px;
+}
+
+/* Input Box */
+.patientNameSearchBox {
+    position: absolute;
+    width: 280px;
+    height: 33.35px;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    top: 10px;
+    background: #FFFFFF;
+    border: 1.5px solid #000000;
+    cursor: text;
+}
+
+/* Box Text */
+.patientNameSearchLabel {
+    position: absolute;
+    font-size: 16px;
+    color: #000000;
+    margin-bottom: 10px;
+    font-weight: bold;
+    top: -20px;
+    left: 0px;
+}
+
+/* Patient Age Search Container */
+.patientAgeSearch {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    width: 90px;
+    height: 53.94px;
+    left: 375px;
+    top: 10px;
+}
+
+/* Input Box */
+.patientAgeSearchBox {
+    position: absolute;
+    width: 90px;
+    height: 33.35px;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    top: 10px;
+    background: #FFFFFF;
+    border: 1.5px solid #000000;
+    cursor: text;
+}
+
+/* Box Text */
+.patientAgeSearchLabel {
+    position: absolute;
+    font-size: 16px;
+    color: #000000;
+    margin-bottom: 10px;
+    font-weight: bold;
+    top: -20px;
+    left: 0px;
+}
+
+/* Patient ICD Search Container */
+.patientICDSearch {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    width: 294.25px;
+    height: 53.94px;
+    left: 520px;
+    top: 10px;
+}
+
+/* Input Box */
+.patientICDSearchBox {
+    position: absolute;
+    width: 280px;
+    height: 33.35px;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    top: 10px;
+    background: #FFFFFF;
+    border: 1.5px solid #000000;
+    cursor: text;
+}
+
+/* Box Text */
+.patientICDSearchLabel {
+    position: absolute;
+    font-size: 16px;
+    color: #000000;
+    margin-bottom: 10px;
+    font-weight: bold;
+    top: -20px;
+    left: 0px;
+}
+
+/* Patient Insurance Search Container */
+.patientInsuranceSearch {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    width: 294.25px;
+    height: 53.94px;
+    left: 850px;
+    top: 10px;
+}
+
+/* Input Box */
+.patientInsuranceSearchBox {
+    position: absolute;
+    width: 280px;
+    height: 33.35px;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    top: 10px;
+    background: #FFFFFF;
+    border: 1.5px solid #000000;
+    cursor: text;
+}
+
+/* Box Text */
+.patientInsuranceSearchLabel {
+    position: absolute;
+    font-size: 16px;
+    color: #000000;
+    margin-bottom: 10px;
+    font-weight: bold;
+    top: -20px;
+    left: 0px;
+}
