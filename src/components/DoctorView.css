@@ -5,7 +5,7 @@
     display: flexbox;
     width: 1268px;
     height: 588px;
-    top: 422px;
+    top: 115px;
     background: #FFFFFF;
     border: 3px solid #747474;
 }
@@ -146,15 +146,6 @@
     padding-right: 5px;
 }
 
-/* Sign Out */
-.doctorSignOut {
-    width: 150px;
-    height: 47px;
-    left: 1224px;
-    top: 20px;
-    padding-right: 20px;
-}
-
 /* Sign out Icon */
 .signOutIcon {
     position: relative;
@@ -186,12 +177,13 @@
     color: #0E619C;
 }
 
-/* Sign Out/Log In Button */
+/* Sign Out Button */
 .signOutButton {
     box-sizing: border-box;
     width: 150px;
     height: 47px;
-    background: #FFFFFF;
+    left: 0px;
+    background: #ffffff;
     border: 1px solid #0E619C;
     border-radius: 50px;
     display: flex;
@@ -208,9 +200,7 @@
     position: absolute;
     top: 200px;
     display: flex;
-    background: #FFFFFF;
-    border: 3px solid #0E619C;
-    border-radius: 20px;
+
 }
 
 /* Welcome */
@@ -275,7 +265,7 @@
 .addPatientContainer {
     position: absolute;
     width: 279px;
-    height: 44px;
+    height: 54px;
     left: 700px;
     cursor: pointer;
     background: #F3F3F3;
@@ -288,7 +278,8 @@
     position: absolute;
     width: 221px;
     height: 43px;
-    left: 20px;
+    left: 75px;
+    top: 0px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
@@ -311,4 +302,255 @@
     background: #FFFFFF;
     border: 3px solid #0E619C;
     border-radius: 20px;
+}
+
+/* Patient Search */
+.patientSearchBoxName {
+    position: absolute;
+    width: 317.6px;
+    height: 35.48px;
+    left: 15px;
+    top: 1px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 21px;
+    line-height: 25px;
+    display: flex;
+    align-items: center;
+
+    color: #000000;
+}
+
+/* Search/Undo Buttons */
+.searchUndoLocations {
+    position: absolute;
+    display: flex;
+    width: 400px;
+    height: 44px;
+    left: 390px;
+    top: 115px;
+}
+
+/* Undo button */
+.undoButton {
+    box-sizing: border-box;
+    display: flex;
+    position: absolute;
+    width: 137.78px;
+    height: 44px;
+    left: 262px;
+    top: 0px;
+    background: #FFFFFF;
+    border: 5px solid #000000;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+/* Undo Text */
+.undoButtonText {
+    position: absolute;
+    width: 67.84px;
+    height: 43px;
+    left: 39px;
+    top: -4px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+}
+
+/* Search button */
+.searchButton {
+    cursor: pointer;
+    box-sizing: border-box;
+    position: absolute;
+    width: 230.03px;
+    height: 44px;
+    left: 0px;
+    top: 0px;
+    cursor: pointer;
+    background: #FFFFFF;
+    border: 5px solid #000000;
+    border-radius: 20px;
+}
+
+/* Search Text */
+.searchButtonText {
+    position: absolute;
+    width: 67.84px;
+    height: 43px;
+    left: 78px;
+    top: -4px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #000000;
+}
+
+/* Patient Name Search Container */
+.patientNameSearch {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    width: 294.25px;
+    height: 53.94px;
+    left: 20px;
+    top: 10px;
+}
+
+/* Input Box */
+.patientNameSearchBox {
+    position: absolute;
+    width: 280px;
+    height: 33.35px;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    top: 10px;
+    background: #FFFFFF;
+    border: 1.5px solid #000000;
+    cursor: text;
+}
+
+/* Box Text */
+.patientNameSearchLabel {
+    position: absolute;
+    font-size: 16px;
+    color: #000000;
+    margin-bottom: 10px;
+    font-weight: bold;
+    top: -20px;
+    left: 0px;
+}
+
+/* Patient Age Search Container */
+.patientAgeSearch {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    width: 90px;
+    height: 53.94px;
+    left: 375px;
+    top: 10px;
+}
+
+/* Input Box */
+.patientAgeSearchBox {
+    position: absolute;
+    width: 90px;
+    height: 33.35px;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    top: 10px;
+    background: #FFFFFF;
+    border: 1.5px solid #000000;
+    cursor: text;
+}
+
+/* Box Text */
+.patientAgeSearchLabel {
+    position: absolute;
+    font-size: 16px;
+    color: #000000;
+    margin-bottom: 10px;
+    font-weight: bold;
+    top: -20px;
+    left: 0px;
+}
+
+/* Patient ICD Search Container */
+.patientICDSearch {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    width: 294.25px;
+    height: 53.94px;
+    left: 520px;
+    top: 10px;
+}
+
+/* Input Box */
+.patientICDSearchBox {
+    position: absolute;
+    width: 280px;
+    height: 33.35px;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    top: 10px;
+    background: #FFFFFF;
+    border: 1.5px solid #000000;
+    cursor: text;
+}
+
+/* Box Text */
+.patientICDSearchLabel {
+    position: absolute;
+    font-size: 16px;
+    color: #000000;
+    margin-bottom: 10px;
+    font-weight: bold;
+    top: -20px;
+    left: 0px;
+}
+
+/* Patient Insurance Search Container */
+.patientInsuranceSearch {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    width: 294.25px;
+    height: 53.94px;
+    left: 850px;
+    top: 10px;
+}
+
+/* Input Box */
+.patientInsuranceSearchBox {
+    position: absolute;
+    width: 280px;
+    height: 33.35px;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+    top: 10px;
+    background: #FFFFFF;
+    border: 1.5px solid #000000;
+    cursor: text;
+}
+
+/* Box Text */
+.patientInsuranceSearchLabel {
+    position: absolute;
+    font-size: 16px;
+    color: #000000;
+    margin-bottom: 10px;
+    font-weight: bold;
+    top: -20px;
+    left: 0px;
 }

@@ -6,7 +6,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
 import { useNavigate } from "react-router-dom";
 import ValidateDomain from "./validation";
-import './addButton.js';
+import {addPatient} from './addButton.js';
 import DisplayPatientData from './DisplayPatientData';
 import './DoctorView.css';
 
@@ -141,7 +141,35 @@ function DoctorView({ user, handleBackButtonClick, addPatient }) {
       </div>
 
       <div className='patientSearchBox'>
-
+        <div className='patientSearchBoxName'>Patient Search</div>
+        <div className='searchUndoLocations'>
+          <div className='undoButton'>
+            <div className='undoButtonText'>Undo</div>
+          </div>
+          <div className='searchButton'>
+            <div className='searchButtonText'>Search</div>
+          </div>
+        </div>
+        <div className='patientNameSearch'>
+          <div className='patientNameSearchBox'>
+            <div className='patientNameSearchLabel'>Name</div>
+          </div>
+        </div>
+        <div className='patientAgeSearch'>
+          <div className='patientAgeSearchBox'>
+            <div className='patientAgeSearchLabel'>Age</div>
+          </div>
+        </div>
+        <div className='patientICDSearch'>
+          <div className='patientICDSearchBox'>
+            <div className='patientICDSearchLabel'>ICD Healthcode</div>
+          </div>
+        </div>
+        <div className='patientInsuranceSearch'>
+          <div className='patientInsuranceSearchBox'>
+            <div className='patientInsuranceSearchLabel'>Insurance Number</div>
+          </div>
+        </div>
       </div>
 
       <div className='patientTableLocation'>
