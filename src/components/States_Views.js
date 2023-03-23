@@ -16,20 +16,21 @@ function View() {
   
   // the email for the user is displayed.
   // changes based on state, role, and view
+  // eslint-disable-next-line
   const [user, setUser] = useState(null);
 
   let navigate = useNavigate();
   
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged(userAuth => {
-      const userInfo = {
+      const user= {
         email: userAuth?.email,
         role: userAuth?.displayName,
         id: userAuth?.uid
       }
       if (userAuth) {
         console.log(userAuth)
-        setUser(userInfo)
+        setUser(user)
       } else {
         setUser(null)
       }
@@ -38,17 +39,17 @@ function View() {
         await signOut(auth);
         navigate("/");
       };
-
+    
       // Validates the user
-      let isValidated = ValidateDomain(userInfo.email, userInfo.role);
-
+      let isValidated = ValidateDomain(user.email, user.role);
+    
       // Checks their role and redirects them accordingly
       if (isValidated === true) {
-        if (userInfo.role === 'doctor') {
+        if (user.role === 'doctor') {
           view = <DoctorView user = {user} LogOut = {logout} />;
-        } else if (userInfo.role === "fda") {
+        } else if (user.role === "fda") {
           view = <FDAView user = {user} LogOut = {logout}/>;
-        } else if (userInfo.role === "bavaria") {
+        } else if (user.role === "bavaria") {
           view = <BavariaView user = {user} LogOut = {logout}/>;
         }
     // If everything fails, kicks unauthorized user to the login page
@@ -62,6 +63,7 @@ function View() {
 // eslint-disable-next-line
   }, []);
 
+
   // styling
   return (
     <div>
@@ -74,6 +76,7 @@ function View() {
 function DoctorView({ user, LogOut}) {
   // can type in patient ID and it will display correct patient from Vendia
   const patientId = '0186b496-32f6-9a7f-cdfe-1e37ab416338';
+  console.log(user?.email);
   return (
     <div className='managePatient'> 
 
