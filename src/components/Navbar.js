@@ -1,7 +1,7 @@
 import "./home.css";
 const Nav = () => {
     return (
-        <body>
+        
         <div className = "background-color">
             <nav className="navbar">
                 <h1>MDMS</h1>
@@ -16,7 +16,7 @@ const Nav = () => {
                 </div>
             </nav>
             
-        </div>
+        
         <div className="mission-head">
             <h1> Our Mission </h1>
         </div>
@@ -56,7 +56,7 @@ const Nav = () => {
         Dakshina  Waduge<br></br>
         
 </div> */}
-        </body>
+        </div>
 
     );
 }

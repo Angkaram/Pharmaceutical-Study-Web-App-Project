@@ -554,3 +554,10 @@
     top: -20px;
     left: 0px;
 }
+
+/* Moves spinner location */
+.spinner-wrapper {
+    position: absolute;
+    top: 115px;
+    right: 620px;
+}

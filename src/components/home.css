@@ -1,21 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 /* base styles */
 
+/* alters the main background page*/
+.background-color {
+  position: relative;
+  width: 100vw;
+  height: 100vw;
+  background: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 /* main header thats blue with stuff */
 .navbar {
-  background-color: #0E619C;
-  padding: 20px;
-  text-align: center;
-  position: fixed;
-  width: 100%;
-  /* z-index: -1; */
-  
-  /* padding: 20px; */
+  top: 0;
+  position: absolute;
   display: flex;
+  justify-content: center;
   align-items: center;
-  max-width: 1400px;
-  margin:  auto;
-  
+  width: 100vw;
+  height: 140px;
+  background-color: #0E619C;
 }
 
 /* MDMS title */
@@ -28,7 +34,7 @@
   
   font-style: normal;
   font-weight: 900;
-  font-size: 30px;
+  font-size: 50px;
   line-height: 61px;
   display: flex;
   align-items: center;
@@ -40,12 +46,12 @@
   position: absolute;
   width: 375px;
   height: 55px;
-  left: 80px;
-  top: 10px;
+  left: 84px;
+  top: 29px;
   
   font-style: normal;
   font-weight: 900;
-  font-size: 10px;
+  font-size: 20px;
   line-height: 61px;
   display: flex;
   align-items: center;
@@ -57,12 +63,12 @@
   position: absolute;
   width: 375px;
   height: 76px;
-  left: 60px;
-  top: 10px;
+  left: 45px;
+  top: 34px;
   
   font-style: normal;
   font-weight: 900;
-  font-size: 10px;
+  font-size: 20px;
   line-height: 61px;
   display: flex;
   align-items: center;
@@ -83,7 +89,7 @@
   line-height: 30px;
   width: 1015px;
   height: 250px;
-  left: 200px;
+  left: 250px;
   top: 140px;
 
   font-weight: 150px;
@@ -92,11 +98,10 @@
 }
 
 .mission-head {
-  
 position: absolute;
 width: 348px;
 height: 73px;
-left: 610px;
+left: 660px;
 top: 130px;
 
 font-size: 20px;
@@ -113,7 +118,7 @@ color: #000000;
 position: absolute;
 width: 348px;
 height: 73px;
-left: 645px;
+left: 710px;
 top: 350px;
 
 font-size: 17px;
@@ -159,7 +164,7 @@ color: #000000;
   display: inline-block;
   border-radius: 36px;
 
-  margin-right: 16px;
+  margin-right: 25px;
   text-decoration: none;
   padding: 6px; 
 }
@@ -180,16 +185,7 @@ color: #000000;
 }
 
 
-/* alters the main background page*/
-.background-color {
-  background-color: white;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  width: 100%;
-  height: 100%;
-  position: fixed;
-}
+
 
 .organizations {
   width: 10px;
@@ -227,7 +223,7 @@ color: #000000;
   text-align: center;
   color: #fff;
 
-  left: 580px;
+  left: 650px;
   top: 530px; 
 }
 .organizations .bavaria {
@@ -243,7 +239,7 @@ color: #000000;
   text-align: center;
   color: #fff;
 
-  left: 1100px;
+  left: 1162px;
   top: 530px; 
 }
 
@@ -251,7 +247,7 @@ color: #000000;
   position: absolute;
   width: 423px;
   height: 267px;
-  left: 40px;
+  left: 70px;
   top: 435px;
 
   background: #0E619C;
@@ -263,7 +259,7 @@ color: #000000;
   position: absolute;
   width: 423px;
   height: 267px;
-  left: 500px;
+  left: 565px;
   top: 435px;
 
   background: #0E619C;
@@ -275,7 +271,7 @@ color: #000000;
   position: absolute;
   width: 423px;
   height: 267px;
-  left: 980px;
+  left: 1040px;
   top: 435px;
 
   background: #0E619C;

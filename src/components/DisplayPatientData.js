@@ -28,7 +28,9 @@ function DisplayPatientData() {
 
   return (
     <div>
-      <ClipLoader color={"blue"} loading={isLoading} css={override} size={40} />
+      <div className="spinner-wrapper">
+      <ClipLoader color={"blue"} loading={isLoading} css={override} size={60} />
+      </div>
       {!isLoading && (
         <table className="patientTable">
           <thead>
