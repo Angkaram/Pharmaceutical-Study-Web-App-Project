@@ -9,7 +9,6 @@
     font-family: roboto;
 }
     body {
-        background-color: black;
        
     }
 
@@ -27,24 +26,57 @@
     max-width: fit-content;
     max-height: fit-content;
     padding: 70px;
-    border: thin solid rgba(255, 255, 255, 0.76);
+    border: thin solid rgba(254, 250, 250, 0.76);
     border-radius: 1em;
-    background-color: rgb(36, 36, 36);
-    color: aliceblue;
+    background-color: rgba(195, 220, 240, 0.533);
+    color: rgb(7, 7, 7);
+    border: 2px solid #063bfb62;
     position: relative; /* Add position relative for the shadow effect */
 }
+.logInNavbar {
+    top: 0;
+    display: flex;
+    align-items: center;
+    width: 97vw;
+    height: 40px;
+    background-color: #0E619C;
+    padding: 20px;
+    margin:  auto;
+    
+  }
+  .logInNavbar a {
+    margin-left: auto;
+    margin-right: 2vw;
+    text-decoration: none;
+    padding: 6px;
+    color: #ffffff;
+  }
+  .logInNavbar h1 {
+    width: 200px;
+    font-weight: 700;
+    line-height: 24px;
+    display: flex;
+    align-items: center;
+    color: #080808;
+    padding-right: 10px;
+  }
+  
+  .logInNavbar .links {
+    margin-left: auto;
+  }
 
-.background::after {
+/*.background::after {
     content: '';
     width: 100%;
     height: 100%;
-    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(255,94,247,1) 17.8%, rgba(2,245,255,1) 100.2% ); /* Set a semi-transparent black background */
-    filter: blur(20px); /* Add the blur effect to the semi-transparent black background */
+    background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgba(255,94,247,1) 17.8%, rgba(2,245,255,1) 100.2% );  Set a semi-transparent black background 
+    filter: blur(20px);  Add the blur effect to the semi-transparent black background 
     z-index: -1;
     position: absolute;
-    left: 0px; /* Adjust the left and top position to move the shadow */
+    left: 0px;  Adjust the left and top position to move the shadow 
     top: 0px;
 }
+*/
 .login-button,
 .add-btn,
 .user-type,
@@ -81,12 +113,12 @@
     position: relative;
     padding: 1em 1.8em;
     outline: none;
-    border: 3px solid #0a5ef0;
-    background: #212121;
-    color: #0a5ef0;
+    border: 3px solid #033a98bf;
+    background: #fefdfd;
+    color: #033a98bf;
     text-transform: uppercase;
     letter-spacing: 2px;
-    font-size: 15px;
+    font-size: 14px;
     overflow: hidden;
     transition: 0.2s;
     border-radius: 20px;
@@ -97,37 +129,35 @@ justify-content: center;
 align-items: center;
    }
    
-.login-button:hover {
+/*.login-button:hover {
     
     box-shadow: 0 0 10px #31d6cb, 0 0 25px #0047AB, 0 0 30px #ff5ef7;
     border: 1px solid white;
-   }
+   }*/
    
 
 .add-btn {
     position: relative;
     padding: 1em 1.8em;
     outline: none;
-    border: 3px solid #8e2cde;
-    background: #212121;
-    color: #8e2cde;
+    border: 3px solid #033a98bf;
+    color: #033a98bf;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 15px;
+    font-size: 10px;
     overflow: hidden;
     transition: 0.2s;
     border-radius: 20px;
     cursor: pointer;
     font-weight: bold;
     display: flex;
-justify-content: center;
-align-items: center;
+    justify-content: center;
+    align-items: center;
 }
 
-.add-btn:hover {
+/*.add-btn:hover {
     box-shadow: 0 0 10px #31d6cb, 0 0 25px #0047AB, 0 0 30px #ff5ef7;
     border: 1px solid white;
-}
+}*/
 
 
 .user-type {
@@ -156,11 +186,11 @@ align-items: center;
   }
   
   
-  .user-type:hover {
+ /* .user-type:hover {
     transform: scale(0.9) rotate(3deg);
     background: radial-gradient( circle farthest-corner at 10% 20%,  rgba(255,94,247,1) 17.8%, rgba(2,245,255,1) 100.2% );
     transition: 0.5s;
-  }
+  }*/
   
 
 
@@ -222,11 +252,13 @@ align-items: center;
 .header-org,
 .header-create {
     margin-top: 2em;
-    color: rgb(0, 148, 158);
+    color: rgb(2, 7, 7);
 }
 
 .prompt {
     margin-top: 2.5em;
+    font-weight: bold;
+    color: #08080879;
 }
 
 .text {
