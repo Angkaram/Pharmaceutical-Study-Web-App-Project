@@ -1,23 +1,34 @@
 /* Table for Patient Data */
 .patientTable {
     box-sizing: border-box;
-    position: absolute;
+    left:50%;
     display: flexbox;
-    width: 1268px;
-    height: 588px;
+    width: 1270px;
     top: 115px;
     background: #FFFFFF;
-    border: 3px solid #747474;
+    /*border: 3px solid #747474;*/
 }
 
 /* Patient Table Location */
 /* Table for Patient Data */
 .patientTableLocation {
+    margin: auto;
+    border: 3px solid #747474;
     position: absolute;
-    display: flexbox;
-    width: 1268px;
-    height: 588px;
-    top: 422px;
+    display:flexbox;
+    height: 683px;
+    top: 520px;
+    overflow-y:scroll;
+}
+
+th {
+    position: sticky;
+    top: 0px;
+}
+
+.table {
+    padding-left: 5px;
+    padding-right: 5px;
 }
   
 /* Table header styles */
@@ -67,75 +78,130 @@
     align-items: center;
 }
 
+/* Navbar */
 .doctorNavbar {
     top: 0;
     position: absolute;
     display: flex;
+    justify-content: center;
     align-items: center;
-    width: 96vw;
-    height: 40px;
+    width: 100vw;
+    height: 140px;
     background-color: #0E619C;
-    padding: 20px;
-    margin:  auto;
-  }
-  
-  .doctorNavbar h1 {
-    width: 200px;
+}
+
+/* Title */
+.doctorViewTitle {
+    position: absolute;
+    width: 400px;
+    height: 139px;
+    left: 30px;
+    top: 1px;
+}
+
+/* Jane Hopkins Text*/
+.janeHopkinsTitleText {
+    position: absolute;
+    width: 400px;
+    height: 57px;
+    left: 30px;
+    top: 1px;
+
+    font-family: 'Source Sans 3';
+    font-style: normal;
     font-weight: 700;
-    line-height: 24px;
+    font-size: 50px;
+    line-height: 71px;
     display: flex;
     align-items: center;
-    color: #080808;
-    padding-right: 10px;
+    text-align: center;
+    padding-top: 8px;
+    color: #FFFFFF;
+}
 
-  }
-  .doctorNavbar h2 {
-    width: fit;
-    font-weight: 70;
-    line-height: 24px;
+/* Hospital Text*/
+.hospitalTitleText {
+    position: absolute;
+    width: 393px;
+    height: 121px;
+    left: 87px;
+    top: 19px;
+
+    font-family: 'Source Sans 3';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 50px;
+    line-height: 71px;
     display: flex;
     align-items: center;
-    color: #faf7f7;
-    padding-right: 10px;
-
-  }
-  .links {
-    margin-left: auto;
-  }
-  .doctorNavbar a {
-    margin-left: auto;
-    margin-right: 2vw;
-    text-decoration: none;
-    padding: 6px;
-    color: #ffffff;
-  }
-  /*.doctorNavbar a:hover {
-    color: #ca0a43;
-  }*/
-  .doctorNavbar content {
-    max-width: auto;
-    max-lines: auto;
-    margin: 40px auto;
-    padding: 20px;
-    max-width: 600px;
-  }
-  .home {
-    margin-left: 250px;
-  }
+    text-align: center;
+    padding-top: 8px;
+    color: #000000;
+}
 
 /* Email */
 .displayEmail {
     width: fit-content;
     height: 34px;
     margin-left: auto;
-    margin-right: 6px;
+    margin-right: 16px;
     font-family: 'Inter';
+    font-style: normal;
     font-weight: 700;
+    font-size: 20px;
     line-height: 24px;
     display: flex;
     align-items: center;
+    text-align: right;
     color: #FFFFFF;
     padding-right: 5px;
+}
+
+/* Sign out Icon */
+.signOutIcon {
+    position: relative;
+    width: 29px;
+    height: 27px;
+    left: -48px;
+    top: 0px;
+    background: url(signOutIcon.png) no-repeat center center;
+    border-radius: 107px;
+    background-size: cover;
+    filter: brightness(1000) contrast(10000);
+}
+
+/* Sign Out Text */
+.signOutText {
+    position: absolute;
+    width: 99px;
+    height: 30px;
+    top: 54px;
+    right: 82px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 900;
+    font-size: 22px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #0E619C;
+}
+
+/* Sign Out Button */
+.signOutButton {
+    box-sizing: border-box;
+    width: 150px;
+    height: 47px;
+    left: 0px;
+    background: #ffffff;
+    border: 1px solid #0E619C;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 76px;
+    cursor: pointer;
 }
 
 /* Nav Button Locations*/
@@ -275,7 +341,7 @@
     width: 400px;
     height: 44px;
     left: 390px;
-    top: 115px;
+    top: 120px;
 }
 
 /* Undo button */
@@ -349,9 +415,9 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 50px;
     width: 294.25px;
     height: 53.94px;
     left: 20px;
@@ -388,9 +454,9 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 50px;
     width: 90px;
     height: 53.94px;
     left: 375px;
@@ -427,9 +493,9 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 50px;
     width: 294.25px;
     height: 53.94px;
     left: 520px;
@@ -466,9 +532,9 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: left;
     justify-content: center;
-    margin-top: 40px;
+    margin-top: 50px;
     width: 294.25px;
     height: 53.94px;
     left: 850px;
@@ -498,11 +564,4 @@
     font-weight: bold;
     top: -20px;
     left: 0px;
-}
-
-/* Moves spinner location */
-.spinner-wrapper {
-    position: absolute;
-    top: 115px;
-    right: 620px;
 }
