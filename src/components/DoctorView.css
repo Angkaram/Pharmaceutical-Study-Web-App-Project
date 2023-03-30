@@ -67,130 +67,75 @@
     align-items: center;
 }
 
-/* Navbar */
 .doctorNavbar {
     top: 0;
     position: absolute;
     display: flex;
-    justify-content: center;
     align-items: center;
-    width: 100vw;
-    height: 140px;
+    width: 96vw;
+    height: 40px;
     background-color: #0E619C;
-}
-
-/* Title */
-.doctorViewTitle {
-    position: absolute;
-    width: 400px;
-    height: 139px;
-    left: 30px;
-    top: 1px;
-}
-
-/* Jane Hopkins Text*/
-.janeHopkinsTitleText {
-    position: absolute;
-    width: 400px;
-    height: 57px;
-    left: 30px;
-    top: 1px;
-
-    font-family: 'Source Sans 3';
-    font-style: normal;
+    padding: 20px;
+    margin:  auto;
+  }
+  
+  .doctorNavbar h1 {
+    width: 200px;
     font-weight: 700;
-    font-size: 50px;
-    line-height: 71px;
+    line-height: 24px;
     display: flex;
     align-items: center;
-    text-align: center;
-    padding-top: 8px;
-    color: #FFFFFF;
-}
+    color: #080808;
+    padding-right: 10px;
 
-/* Hospital Text*/
-.hospitalTitleText {
-    position: absolute;
-    width: 393px;
-    height: 121px;
-    left: 87px;
-    top: 19px;
-
-    font-family: 'Source Sans 3';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 50px;
-    line-height: 71px;
+  }
+  .doctorNavbar h2 {
+    width: fit;
+    font-weight: 70;
+    line-height: 24px;
     display: flex;
     align-items: center;
-    text-align: center;
-    padding-top: 8px;
-    color: #000000;
-}
+    color: #faf7f7;
+    padding-right: 10px;
+
+  }
+  .links {
+    margin-left: auto;
+  }
+  .doctorNavbar a {
+    margin-left: auto;
+    margin-right: 2vw;
+    text-decoration: none;
+    padding: 6px;
+    color: #ffffff;
+  }
+  /*.doctorNavbar a:hover {
+    color: #ca0a43;
+  }*/
+  .doctorNavbar content {
+    max-width: auto;
+    max-lines: auto;
+    margin: 40px auto;
+    padding: 20px;
+    max-width: 600px;
+  }
+  .home {
+    margin-left: 250px;
+  }
 
 /* Email */
 .displayEmail {
     width: fit-content;
     height: 34px;
     margin-left: auto;
-    margin-right: 16px;
+    margin-right: 6px;
     font-family: 'Inter';
-    font-style: normal;
     font-weight: 700;
-    font-size: 20px;
     line-height: 24px;
     display: flex;
     align-items: center;
-    text-align: right;
     color: #FFFFFF;
     padding-right: 5px;
-}
-
-/* Sign out Icon */
-.signOutIcon {
-    position: relative;
-    width: 29px;
-    height: 27px;
-    left: -48px;
-    top: 0px;
-    background: url(signOutIcon.png) no-repeat center center;
-    border-radius: 107px;
-    background-size: cover;
-    filter: brightness(1000) contrast(10000);
-}
-
-/* Sign Out Text */
-.signOutText {
-    position: absolute;
-    width: 99px;
-    height: 30px;
-    top: 54px;
-    right: 22px;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 900;
-    font-size: 22px;
-    line-height: 27px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: #0E619C;
-}
-
-/* Sign Out Button */
-.signOutButton {
-    box-sizing: border-box;
-    width: 150px;
-    height: 47px;
-    left: 0px;
-    background: #ffffff;
-    border: 1px solid #0E619C;
-    border-radius: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 16px;
-    cursor: pointer;
 }
 
 /* Nav Button Locations*/

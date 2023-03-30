@@ -7,6 +7,9 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "./firebase-config";
 import ValidateDomain from "./validation";
 
+import './home.css';
+import './DoctorView.css';
+
 // Account Creation
 function SignUp() {
     let navigate = useNavigate();
@@ -53,7 +56,19 @@ function SignUp() {
     };
 
     return (
+    <body>
+    <nav className="logInNavbar">
+        <h1>MDMS</h1>
+        <div className="links">
+            <a href="/" style={{
+                color: "black",
+                backgroundColor: 'white',
+                borderRadius: '50px'
+            }}> Home </a>
+        </div>
+    </nav> 
     <section className="container">
+        
         <div className="background">
             <h1 className = "header-create">Create an Account</h1>
             <p className="prompt">Add Email Address</p>
@@ -78,12 +93,15 @@ function SignUp() {
             </div> 
 
             <div>
-                <p className="prompt">Have an account?</p>
-                <button onClick={() => {navigate("/Login");}} className="add-btn">Login Instead</button>    
+                <p className="prompt">Have an account?
+                <a href="/Login">Login Instead</a>
+                </p>
             </div> 
 
          </div>
     </section>
+    </body>
+
     );
 }
 

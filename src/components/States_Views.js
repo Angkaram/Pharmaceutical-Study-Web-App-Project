@@ -79,19 +79,20 @@ function DoctorView({ user, LogOut}) {
   console.log(user?.email);
   return (
     <div className='managePatient'> 
+    
+    <nav className='doctorNavbar'>
 
-    <div className='doctorNavbar'>
-
-      <div className='doctorViewTitle'>
-        <div className='janeHopkinsTitleText'>Jane Hopkins</div>
-        <div className='hospitalTitleText'>Hospital</div>
-      </div>
+      <h1> Jane Hopkins </h1>
       <div className='displayEmail'>{user?.email}</div>
-      <button className='signOutButton' onClick={LogOut}>
-        <div className='signOutIcon'></div>
-        <div className='signOutText'>Sign Out</div>
-      </button>
-    </div>
+      <div className = "doctorLinks">
+        
+        <a href="/"style={{
+            color: "black",
+            backgroundColor: 'white',
+            borderRadius: '50px'
+        }}>Sign out</a>
+      </div>  
+    </nav>
     
     <div className='doctorNavButtonLocations'>
       <div className='welcomeContainer'>
@@ -102,6 +103,7 @@ function DoctorView({ user, LogOut}) {
       </div>
       <AddPatientButton />
     </div>
+
 
     <div className='patientSearchBox'>
       <div className='patientSearchBoxName'>Patient Search</div>

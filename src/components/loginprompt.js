@@ -27,10 +27,21 @@ function LoginPrompt() {
     };
 
     return (
+    <body>
+    <nav className="logInNavbar">
+        <h1>Macrohard</h1>
+        <div className="links">
+            <a href="/" style={{
+                color: "black",
+                backgroundColor: 'white',
+                borderRadius: '50px'
+            }}> Home </a>
+        </div>
+    </nav>        
     <section className="container">
         
         <div className="background">
-            <h1 className = "header">Sign-In</h1>
+            <h1 className = "header">Sign In</h1>
             <p className="prompt">Email Address</p>
             <input className = "input" type = "text" onChange={(event => {setLoginEmail(event.target.value);
             })}/>
@@ -43,13 +54,12 @@ function LoginPrompt() {
                 <p></p>
                 <button onClick={login} className = "login-button">Login</button>    
             </div>
-            <p className="prompt">Don't have an account?</p>
-            <div>
-                <button onClick={() => {navigate("/SignUp");
-                }} className="add-btn">Create Account</button>    
-            </div>         
+            <p className="prompt">Don't have an account?
+            <a href="/SignUp">Create Account</a>
+            </p>       
          </div>
     </section>
+    </body>
     );
 }
 
