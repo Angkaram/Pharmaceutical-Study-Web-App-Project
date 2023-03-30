@@ -16,33 +16,38 @@ const Nav = () => {
                 </div>
             </nav>
             
-        
-        <div className="mission-head">
-            <h1> Our Mission </h1>
-        </div>
-        <div className="basic-info">
-            <p>
-            We have developed various programs, services, and initiatives in our hospitals that aim to enhance the health of the 
-            community and make healthcare more accessible. Through our collaborative partnerships, 
-            we strive to build connections to healthcare and community resources to promote better access and wellness.
-            </p>
-        </div>
-        
-        <div className="org-partners">
-            <h1>Partners</h1>
-        </div>
+        <body className="mission-container">
+            <div className="mission-head">
+                <h1> Our Mission </h1>
+            </div>
+           
+                <p className="basic-info">We have developed various programs, services, and initiatives in our hospitals that aim to enhance the health of the 
+                community and make healthcare more accessible. Through our collaborative partnerships, 
+                we strive to build connections to healthcare and community resources to promote better access and wellness.</p>
+       
+            <div className="org-partners">
+                <h1>Partners</h1>
+            </div>
 
-        <div className="organizations">
+            <body className="organizations">
             {/* could probably change these from p tags to a href tags to make it interactable */}
-            <div className="background-hospital"></div>
-            <p className="hospital">Jane Hopkins Hospital</p>
+            <div className="background-hospital">
+                <p className="hospital">Jane Hopkins Hospital</p>
+            </div>
 
-            <div className="background-fda"></div>
-            <p className="fda">U.S. Food and Drug Administration</p>
+            <div className="background-fda">
+                <p className="fda">U.S. Food and Drug Administration</p>
+            </div>
 
-            <div className="background-bavaria"></div>
-            <p className="bavaria">Bavaria Pharmaceutics</p>
-        </div>
+            <div className="background-bavaria">
+                <p className="bavaria">Bavaria Pharmaceutics</p>
+            </div>
+            </body>
+
+        </body>
+
+
+        
 
 
         {/* <div class="coder-name">
