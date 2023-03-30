@@ -74,25 +74,25 @@ function View() {
 
 // what is shown on DoctorView
 function DoctorView({ user, LogOut}) {
+  const [searchTerm, setSearchTerm] = useState("");
   // can type in patient ID and it will display correct patient from Vendia
   const patientId = '0186b496-32f6-9a7f-cdfe-1e37ab416338';
   console.log(user?.email);
   return (
     <div className='managePatient'> 
-    
-    <nav className='doctorNavbar'>
 
-      <h1> Jane Hopkins </h1>
+    <div className='doctorNavbar'>
+
+      <div className='doctorViewTitle'>
+        <div className='janeHopkinsTitleText'>Jane Hopkins</div>
+        <div className='hospitalTitleText'>Hospital</div>
+      </div>
       <div className='displayEmail'>{user?.email}</div>
-      <div className = "doctorLinks">
-        
-        <a href="/"style={{
-            color: "black",
-            backgroundColor: 'white',
-            borderRadius: '50px'
-        }}>Sign out</a>
-      </div>  
-    </nav>
+      <button className='signOutButton' onClick={LogOut}>
+        <div className='signOutIcon'></div>
+        <div className='signOutText'>Sign Out</div>
+      </button>
+    </div>
     
     <div className='doctorNavButtonLocations'>
       <div className='welcomeContainer'>
@@ -104,7 +104,6 @@ function DoctorView({ user, LogOut}) {
       <AddPatientButton />
     </div>
 
-
     <div className='patientSearchBox'>
       <div className='patientSearchBoxName'>Patient Search</div>
       <div className='searchUndoLocations'>
@@ -115,30 +114,26 @@ function DoctorView({ user, LogOut}) {
           <div className='searchButtonText'>Search</div>
         </div>
       </div>
-      <div className='patientNameSearch'>
-        <div className='patientNameSearchBox'>
+      <div className='patientNameSearch'>      
+          <input className='patientNameSearchBox' type="text" onChange = {(event) => {setSearchTerm(event.target.value)}}/>
           <div className='patientNameSearchLabel'>Name</div>
-        </div>
       </div>
       <div className='patientAgeSearch'>
-        <div className='patientAgeSearchBox'>
+          <input className='patientAgeSearchBox' type="text"/>
           <div className='patientAgeSearchLabel'>Age</div>
-        </div>
       </div>
       <div className='patientICDSearch'>
-        <div className='patientICDSearchBox'>
-          <div className='patientICDSearchLabel'>ICD Healthcode</div>
-        </div>
+        <input className='patientICDSearchBox' type="text"/>
+        <div className='patientICDSearchLabel'>ICD Healthcode</div>
       </div>
       <div className='patientInsuranceSearch'>
-        <div className='patientInsuranceSearchBox'>
+          <input className='patientInsuranceSearchBox' type="text"/>
           <div className='patientInsuranceSearchLabel'>Insurance Number</div>
-        </div>
       </div>
     </div>
 
     <div className='patientTableLocation'>
-      <DisplayPatientData patientId={patientId}/>
+      <DisplayPatientData searchTerm={searchTerm} patientId={patientId}/>
     </div>
 
   </div>
