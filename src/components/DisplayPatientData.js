@@ -5,7 +5,7 @@ import { ClipLoader } from "react-spinners";
 import "./DoctorView.css";
 
 // the code below puts all the data into a table rather than based on the ID (singular patient)
-function DisplayPatientData() {
+function DisplayPatientData({searchTerm}) {
   const { entities } = useJaneHopkins();
   const [patients, setPatients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -28,9 +28,7 @@ function DisplayPatientData() {
 
   return (
     <div>
-      <div className="spinner-wrapper">
-      <ClipLoader color={"blue"} loading={isLoading} css={override} size={60} />
-      </div>
+      <ClipLoader color={"blue"} loading={isLoading} css={override} size={40} />
       {!isLoading && (
         <table className="patientTable">
           <thead>
@@ -43,7 +41,15 @@ function DisplayPatientData() {
             </tr>
           </thead>
           <tbody>
-            {patients.map((patient) => (
+            
+          {patients.filter((patient)=> {
+            if (patient.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+              return patient
+            } else if (searchTerm === "") {
+              return patient;
+            }
+          }).map((patient) => {
+            return (
               <tr key={patient.id}>
                 <td>{patient.name}</td>
                 <td>{patient.age}</td>
@@ -51,7 +57,9 @@ function DisplayPatientData() {
                 <td>{patient.insuranceNumber}</td>
                 <td>{patient.address}</td>
               </tr>
-            ))}
+            )
+          })}
+            
           </tbody>
         </table>
       )}
