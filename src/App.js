@@ -7,6 +7,7 @@ import AddPatientButton from './components/addButton';
 import Nav from "./components/Navbar";
 import View from "./components/States_Views";
 
+
 function App() {
 
   return (
@@ -17,6 +18,8 @@ function App() {
           <Route path = "/SignUp" element = {<SignUp />} />
           <Route path = "/AddPatientButton" element = {<AddPatientButton />} />
           <Route path = "/View" element = {<View />} />
+
+          
         </Routes>
   </BrowserRouter>
   );

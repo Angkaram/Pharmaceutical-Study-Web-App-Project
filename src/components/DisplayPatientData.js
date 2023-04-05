@@ -4,11 +4,11 @@ import { css } from "@emotion/react";
 import { ClipLoader } from "react-spinners";
 import "./DoctorView.css";
 
-// the code below puts all the data into a table rather than based on the ID (singular patient)
 function DisplayPatientData({searchTerm}) {
   const { entities } = useJaneHopkins();
   const [patients, setPatients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [selectedPatient, setSelectedPatient] = useState(null);
 
   useEffect(() => {
     async function fetchPatients() {
@@ -25,6 +25,10 @@ function DisplayPatientData({searchTerm}) {
     margin: 0 auto;
     border-color: red;
   `;
+
+  const handlePatientClick = (patient) => {
+    setSelectedPatient(patient);
+  }
 
   return (
     <div>
@@ -44,14 +48,15 @@ function DisplayPatientData({searchTerm}) {
             
           {patients.filter((patient)=> {
             if (patient.name.toLowerCase().includes(searchTerm.toLowerCase())) {
-              return patient
-            } else if (searchTerm === "") {
+              return patient;
+            } 
+            else if (searchTerm === "") {
               return patient;
             }
           }).map((patient) => {
             return (
               <tr key={patient.id}>
-                <td>{patient.name}</td>
+                <td onClick={() => handlePatientClick(patient)}>{patient.name}</td>
                 <td>{patient.age}</td>
                 <td>{patient.dob}</td>
                 <td>{patient.insuranceNumber}</td>
@@ -63,34 +68,48 @@ function DisplayPatientData({searchTerm}) {
           </tbody>
         </table>
       )}
+      {selectedPatient && (
+       <div class="largeView">
+       <div class="popup-content">
+         <div class="popup-top">
+           <h3> Patient:<i> {selectedPatient.name}</i></h3> 
+           <button id="close" onClick={() => setSelectedPatient(null)}>X</button>
+         </div>
+         <div class="popup-middle">
+           <div class="popup-section">
+             <h3>General Information</h3>
+             <p><b>DOB: </b>{selectedPatient.dob}</p>
+             <p><b>Insurance Number: </b>{selectedPatient.insuranceNumber}</p>
+             <p><b>Weight:</b>{selectedPatient.weight}</p>
+             <p><b>Address: </b>{selectedPatient.address}</p>
+           </div>
+           <div class="popup-section">
+             <h3>Health Information</h3>
+             <p><strong>Patient ID:</strong> <input type="text"></input></p>
+             <p><strong>Blood Type:</strong> <input type="text"></input></p>
+           </div>
+           <div class="popup-section">
+             <h3>Vital Signs</h3>
+             <p><strong>Height:</strong> <input type="text"></input></p>
+             <p><strong>Blood Pressure:</strong> <input type="text"></input></p>
+             <p><strong>Temperature:</strong> <input type="text"></input></p>
+             <p><strong>Oxygen Saturation:</strong> <input type="text"></input></p>
+           </div>
+           <div class="popup-section">
+             <h3>Medical History</h3>
+             <p><strong>Current Medications:</strong> <input type="text"></input></p>
+             <p><strong>Family History:</strong> <input type="text"></input></p>
+             <p><strong>Allergies:</strong> <input type="text"></input></p>
+           </div>
+         </div>
+        
+       </div>
+     </div>
+     
+      
+      )}
     </div>
   );
 }
 
 export default DisplayPatientData;
-
-/*
-function DisplayPatientData({ patientId }) { // patient ID from Vendia can be passed in
-  const { entities } = useJaneHopkins();
-  const [patient, setPatient] = useState();
-
-  useEffect(() => {
-    const fetchPatientData = async () => { // fetch request based on ID
-      const patientData = await entities.patient.get(patientId);
-      setPatient(patientData);
-    };
-
-    fetchPatientData();
-  }, [entities.patient, patientId]);
-    
-  // display relevant info
-  return (
-    <div> 
-      <h3>Patient: {patient?.name}</h3>
-      <p>DOB: {patient?.dob}</p>
-      <p>Insurance Number: {patient?.insuranceNumber}</p>
-      <p>Weight: {patient?.weight}</p>
-    </div>
-  );
-}
-*/
