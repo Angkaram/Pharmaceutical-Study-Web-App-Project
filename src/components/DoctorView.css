@@ -623,3 +623,36 @@ th {
     top: -20px;
     left: 0px;
 }
+
+.add-patient {
+    width:fit-content;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin: auto;
+    border: 4px solid rgba(0, 204, 0, 0.726);
+    border-radius: 50px;
+    color: rgba(0, 204, 0, 0.726);
+    font-size: large;
+    font-weight: bold;
+    background-color: white;
+}
+
+.add-patient:hover{
+    background-color: #ececec;
+    cursor: pointer;
+}
+
+/* Get rid of up/down errors on number input*/
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox
+input[type=number] {
+  -moz-appearance: textfield;
+}
+*/
