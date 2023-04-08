@@ -1,6 +1,76 @@
 import useJaneHopkins from '../hooks/useJaneHopkins';
 import "./DoctorView.css";
 
+function AddPatientButton(togglePopup) {
+  const {entities} = useJaneHopkins();
+  
+  const addPatient = async() => {
+    const addPatientResponse = await entities.patient.add({
+      name: document.getElementById("name").value,
+      dob: document.getElementById("dob").value,
+      insuranceNumber: document.getElementById("insuranceNumber").value,
+      address: document.getElementById("address").value,
+      height: document.getElementById("height").value,
+      weight: document.getElementById("weight").value,
+      bloodPressure: document.getElementById("bloodPressure").value,
+      temperature: document.getElementById("temperature").value,
+      uuid: document.getElementById("uuid").value,
+      familyHistory: document.getElementById("familyHistory").value,
+      currentMedications: {"medication": document.getElementById("currentMedication").value },
+      allergies:  {"allergy": document.getElementById("allergies").value },
+      oxygenSaturation: document.getElementById("oxygenSaturation").value,
+    });
+    console.log(addPatientResponse);
+  }
+  return (
+    <div className="largeView">
+    <div className="popup-content">
+      
+      <div className="popup-top">
+        <h3>Add New Patient</h3>
+        <button id="close" onClick={togglePopup.handleClose}>X</button>
+        
+      </div>
+      <h3> Patient Name: <input type="text" id="name"></input></h3> 
+      
+      <div className="popup-middle">
+        <div className="popup-section">
+          <h3>General Information</h3>
+          <p><b>DOB: </b><input type="text" id = "dob"></input></p>
+          <p><b>Insurance Number: </b><input type="text" id = "insuranceNumber"></input></p>
+          <p><b>Weight:</b><input type="text" id = "weight"></input></p>
+          <p><b>Address: </b><input type="text" id = "address"></input></p>
+        </div>
+        <div className="popup-section">
+          <h3>Health Information</h3>
+          <p><strong>Patient ID:</strong> <input type="text" id = "uuid"></input></p>
+          <p><strong>Blood Type:</strong> <input type="text"></input></p>
+        </div>
+        <div className="popup-section">
+          <h3>Vital Signs</h3>
+          <p><strong>Height:</strong> <input type="text" id = "height"></input></p>
+          <p><strong>Blood Pressure:</strong> <input type="text" id = "bloodPressure"></input></p>
+          <p><strong>Temperature:</strong> <input type="text" id = "temperature"></input></p>
+          <p><strong>Oxygen Saturation:</strong> <input type="text" id = "oxygenSaturation"></input></p>
+        </div>
+        <div className="popup-section">
+          <h3>Medical History</h3>
+          <p><strong>Current Medications:</strong> <input type="text" id = "currentMedication"></input></p>
+          <p><strong>Family History:</strong> <input type="text" id = "familyHistory"></input></p>
+          <p><strong>Allergies:</strong> <input type="text" id = "allergies"></input></p>
+        </div>
+
+      </div>
+      <button className='add-patient'onClick = {() => {addPatient();}}>Add/Create Patient</button>
+    </div>
+  </div>
+  )
+
+}
+
+export default AddPatientButton;
+
+/* Original Code:
 function AddPatientButton() {
     const {entities} = useJaneHopkins();
   
@@ -23,3 +93,4 @@ function AddPatientButton() {
     );
   }
   export default AddPatientButton;
+  */
