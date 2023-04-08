@@ -75,6 +75,11 @@ function View() {
 // what is shown on DoctorView
 function DoctorView({ user, LogOut}) {
   const [searchTerm, setSearchTerm] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+  }
+
   // can type in patient ID and it will display correct patient from Vendia
   const patientId = '0186b496-32f6-9a7f-cdfe-1e37ab416338';
   console.log(user?.email);
@@ -101,7 +106,11 @@ function DoctorView({ user, LogOut}) {
       <div className='appointmentContainer'>
         <div className='appointmentText'>Manage Appointments</div>
       </div>
-      <AddPatientButton />
+      <div>
+        <button onClick={togglePopup} className='addPatientContainer'>
+          <div className='addPatientText'>Add Patients</div>
+        </button>
+      </div>
     </div>
 
     <div className='patientSearchBox'>
@@ -119,7 +128,7 @@ function DoctorView({ user, LogOut}) {
           <div className='patientNameSearchLabel'>Name</div>
       </div>
       <div className='patientAgeSearch'>
-          <input className='patientAgeSearchBox' type="text"/>
+          <input className='patientAgeSearchBox' type="number"/>
           <div className='patientAgeSearchLabel'>Age</div>
       </div>
       <div className='patientICDSearch'>
@@ -127,7 +136,7 @@ function DoctorView({ user, LogOut}) {
         <div className='patientICDSearchLabel'>ICD Healthcode</div>
       </div>
       <div className='patientInsuranceSearch'>
-          <input className='patientInsuranceSearchBox' type="text"/>
+          <input className='patientInsuranceSearchBox' type="number"/>
           <div className='patientInsuranceSearchLabel'>Insurance Number</div>
       </div>
     </div>
@@ -135,7 +144,8 @@ function DoctorView({ user, LogOut}) {
     <div className='patientTableLocation'>
       <DisplayPatientData searchTerm={searchTerm} patientId={patientId}/>
     </div>
-
+    {isOpen && <AddPatientButton handleClose={togglePopup}/>}
+    handleClose={togglePopup}
   </div>
   );
 }
