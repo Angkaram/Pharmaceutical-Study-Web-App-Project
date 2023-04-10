@@ -29,7 +29,10 @@ function LoginPrompt() {
     return (
     <body>
     <nav className="logInNavbar">
-        <h1>Macrohard</h1>
+        <h1>MD</h1>
+        <h4>MS</h4>
+        <h2>Medical Data</h2>
+        <h3>Management System</h3>
         <div className="links">
             <a href="/" style={{
                 color: "black",
@@ -54,7 +57,7 @@ function LoginPrompt() {
                 <p></p>
                 <button onClick={login} className = "login-button">Login</button>    
             </div>
-            <p className="prompt">Don't have an account?
+            <p className="prompt2">Don't have an account?
             <a href="/SignUp">Create Account</a>
             </p>       
          </div>
