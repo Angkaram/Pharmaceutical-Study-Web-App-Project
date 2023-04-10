@@ -26,6 +26,11 @@
     border-radius: 10px;
     font-size: 25px;
   }
+  #close:hover {
+    background-color: #bababa;
+    color: white;
+  }
+
   .popup-top {
     display: flex;
     justify-content: space-between;

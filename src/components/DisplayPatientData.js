@@ -6,7 +6,8 @@ import { css } from "@emotion/react";
 import { ClipLoader } from "react-spinners";
 import "./DoctorView.css";
 
-function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch}) {
+function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, isBavariaView}) {
+
   const { entities } = useJaneHopkins();
   const [patients, setPatients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -38,12 +39,20 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch}) {
       {!isLoading && (
         <table className="patientTable">
           <thead>
-            <tr>
-              <th>Name</th>
-              <th>Age</th>
-              <th>Date of Birth</th>
-              <th>Insurance Number</th>
-              <th>Address</th>
+          <tr>
+              {isFDAView ? (
+                <th style={{backgroundColor: '#08d3b4'}}>Insurance Number</th>
+              ) : isBavariaView ? (
+                <th style={{backgroundColor: '#f46f74'}}>Insurance Number</th>
+              ) : (
+                <>
+                  <th>Name</th>
+                  <th>Age</th>
+                  <th>Date of Birth</th>
+                  <th>Insurance Number</th>
+                  <th>Address</th>
+                </>
+              )}
             </tr>
           </thead>
           <tbody>
@@ -58,17 +67,25 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch}) {
             }
           }).map((patient) => {
             return (
-              // Changed the key to get rid of the error in the console
-              <tr key={patient.insuranceNumber}>
-                <td onClick={() => handlePatientClick(patient)}>{patient.name}</td>
-                <td>{patient.age}</td>
-                <td>{patient.dob}</td>
-                <td>{patient.insuranceNumber}</td>
-                <td>{patient.address}</td>
-              </tr>
-            )
-          })}
-            
+
+              <tr key={patient.id}>
+                {isFDAView || isBavariaView ? (
+                      <td>{patient.insuranceNumber}</td>
+                    ) : (
+                      <>
+                        <td onClick={() => handlePatientClick(patient)}>
+                          {patient.name}
+                        </td>
+                        <td>{patient.age}</td>
+                        <td>{patient.dob}</td>
+                        <td>{patient.insuranceNumber}</td>
+                        <td>{patient.address}</td>
+                      </>
+                    )}
+                  </tr>
+                );
+              })}
+
           </tbody>
         </table>
       )}
@@ -80,13 +97,38 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch}) {
            <button id="close" onClick={() => setSelectedPatient(null)}>X</button>
          </div>
          <div class="popup-middle">
-           <div class="popup-section">
-             <h3>General Information</h3>
-             <p><b>DOB: </b>{selectedPatient.dob}</p>
-             <p><b>Insurance Number: </b>{selectedPatient.insuranceNumber}</p>
-             <p><b>Weight:</b>{selectedPatient.weight}</p>
-             <p><b>Address: </b>{selectedPatient.address}</p>
-           </div>
+              {isFDAView || isBavariaView ? (
+                <div class="popup-section">
+                  <h3>General Information</h3>
+                  <p>
+                    <b>Weight:</b>
+                    {selectedPatient.weight}
+                  </p>
+                </div>
+              ) : (
+                <>
+                  <div class="popup-section">
+                    <h3>General Information</h3>
+                    <p>
+                      <b>DOB: </b>
+                      {selectedPatient.dob}
+                    </p>
+                    <p>
+                      <b>Insurance Number: </b>
+                      {selectedPatient.insuranceNumber}
+                    </p>
+                    <p>
+                      <b>Weight:</b>
+                      {selectedPatient.weight}
+                    </p>
+                    <p>
+                      <b>Address: </b>
+                      {selectedPatient.address}
+                    </p>
+                  </div>
+                </>
+              )}
+            </div>
            <div class="popup-section">
              <h3>Health Information</h3>
              <p><strong>Patient ID:</strong> <input type="text"></input></p>
@@ -106,11 +148,7 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch}) {
              <p><strong>Allergies:</strong> <input type="text"></input></p>
            </div>
          </div>
-        
        </div>
-     </div>
-     
-      
       )}
     </div>
   );
