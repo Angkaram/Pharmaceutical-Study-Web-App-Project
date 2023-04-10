@@ -1,10 +1,12 @@
+// Please Note: If there are any patients that lack any of the features that we search by, it creates multiple errors.
+// For example: If I made a patient with no insurance number and added that to vendia, it would cause the errors.
 import useJaneHopkins from '../hooks/useJaneHopkins';
 import { useEffect, useState } from 'react';
 import { css } from "@emotion/react";
 import { ClipLoader } from "react-spinners";
 import "./DoctorView.css";
 
-function DisplayPatientData({searchTerm}) {
+function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch}) {
   const { entities } = useJaneHopkins();
   const [patients, setPatients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -47,15 +49,17 @@ function DisplayPatientData({searchTerm}) {
           <tbody>
             
           {patients.filter((patient)=> {
-            if (patient.name.toLowerCase().includes(searchTerm.toLowerCase())) {
+            if (patient.name.toLowerCase().includes(nameSearch.toLowerCase()) && patient.insuranceNumber.includes(insuranceSearch) 
+            && patient.icdHealthCodes.some(code => code.code.toLowerCase().includes(ICDSearch.toLowerCase()))) { 
               return patient;
             } 
-            else if (searchTerm === "") {
+            else if (nameSearch === "" && insuranceSearch === "" && ICDSearch === "") {
               return patient;
             }
           }).map((patient) => {
             return (
-              <tr key={patient.id}>
+              // Changed the key to get rid of the error in the console
+              <tr key={patient.insuranceNumber}>
                 <td onClick={() => handlePatientClick(patient)}>{patient.name}</td>
                 <td>{patient.age}</td>
                 <td>{patient.dob}</td>
