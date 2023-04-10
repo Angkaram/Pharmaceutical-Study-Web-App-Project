@@ -73,11 +73,19 @@ function View() {
 };
 
 // what is shown on DoctorView
-function DoctorView({ user, LogOut}) {
-  const [searchTerm, setSearchTerm] = useState("");
+function DoctorView({user, LogOut}) {
+  const [nameSearch, setNameSearch] = useState("");
+  const [insuranceSearch, setInsuranceSearch] = useState("");
+  const [ICDSearch, setICDSearch] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const togglePopup = () => {
     setIsOpen(!isOpen);
+  }
+
+  const clearSearch = () => {
+    setInsuranceSearch("");
+    setNameSearch("");
+    setICDSearch("");
   }
 
   // can type in patient ID and it will display correct patient from Vendia
@@ -116,15 +124,14 @@ function DoctorView({ user, LogOut}) {
     <div className='patientSearchBox'>
       <div className='patientSearchBoxName'>Patient Search</div>
       <div className='searchUndoLocations'>
-        <div className='undoButton'>
-          <div className='undoButtonText'>Undo</div>
-        </div>
-        <div className='searchButton'>
-          <div className='searchButtonText'>Search</div>
-        </div>
+
+
+      <button onClick = {clearSearch} className='searchButton'> Clear Search </button>
+
+
       </div>
       <div className='patientNameSearch'>      
-          <input className='patientNameSearchBox' type="text" onChange = {(event) => {setSearchTerm(event.target.value)}}/>
+          <input className='patientNameSearchBox' type="text" onChange = {(event) => {setNameSearch(event.target.value)}} value={nameSearch}/>
           <div className='patientNameSearchLabel'>Name</div>
       </div>
       <div className='patientAgeSearch'>
@@ -132,20 +139,21 @@ function DoctorView({ user, LogOut}) {
           <div className='patientAgeSearchLabel'>Age</div>
       </div>
       <div className='patientICDSearch'>
-        <input className='patientICDSearchBox' type="text"/>
+        <input className='patientICDSearchBox' type="text" onChange = {(event) => {setICDSearch(event.target.value)}} value={ICDSearch}/>
         <div className='patientICDSearchLabel'>ICD Healthcode</div>
       </div>
-      <div className='patientInsuranceSearch'>
-          <input className='patientInsuranceSearchBox' type="number"/>
+      <div className='patientInsuranceSearch' >
+          <input className='patientInsuranceSearchBox' type="text" onChange = {(event) => {setInsuranceSearch(event.target.value)}} value={insuranceSearch}/>
           <div className='patientInsuranceSearchLabel'>Insurance Number</div>
       </div>
     </div>
 
     <div className='patientTableLocation'>
-      <DisplayPatientData searchTerm={searchTerm} patientId={patientId}/>
+      <DisplayPatientData nameSearch={nameSearch} insuranceSearch={insuranceSearch} ICDSearch={ICDSearch} patientId={patientId}/>
     </div>
+
     {isOpen && <AddPatientButton handleClose={togglePopup}/>}
-    handleClose={togglePopup}
+
   </div>
   );
 }
