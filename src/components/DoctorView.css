@@ -267,6 +267,11 @@ th {
     cursor: pointer;
 }
 
+.signOutButton:hover {
+    background-color: #9ea5aa;
+    color: white;
+}
+
 /* Nav Button Locations*/
 .doctorNavButtonLocations {
     width: 980px;
@@ -287,6 +292,11 @@ th {
     border: 5px solid #0E619C;
     border-radius: 20px;
     display: flex;
+}
+
+.welcomeContainer:hover {
+    background-color: #c2dbec;
+    color: white;
 }
 
 /* Welcome Page */
@@ -318,6 +328,11 @@ th {
     border-radius: 20px;
 }
 
+.appointmentContainer:hover {
+    background-color: #c2dbec;
+    color: white;
+}
+
 /* appointment text */
 .appointmentText {
     position: absolute;
@@ -345,6 +360,11 @@ th {
     background: #F3F3F3;
     border: 5px solid #0E619C;
     border-radius: 20px;
+}
+
+.addPatientContainer:hover {
+    background-color: #c2dbec;
+    color: white;
 }
 
 /* add patient text */
@@ -452,6 +472,11 @@ th {
     padding-left: 50px;
     padding-right: 50px;
     text-align: center;
+}
+
+.searchButton:hover {
+    background-color: #c2dbec;
+    color: black;
 }
 
 /* Search Text */

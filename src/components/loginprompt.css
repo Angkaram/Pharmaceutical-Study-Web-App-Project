@@ -209,6 +209,12 @@
   margin-top: 20px;
 }
 
+.login-button:hover {
+  background-color: #c2dbec;
+  color: white;
+}
+
+
 .patient-display {
     display:flexbox;
     min-width: fit-content;

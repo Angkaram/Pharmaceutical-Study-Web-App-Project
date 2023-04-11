@@ -13,7 +13,23 @@ const Nav = () => {
                     <a href="/Login" style={{
                         color: "#0E619C",
                         backgroundColor: '#fff',
-                    }}> Sign in </a>
+                        transition: 'all 0.2s',
+                        textDecoration: 'none',
+                        padding: '5px 10px',
+                        borderRadius: '36px',
+                        border: '1px solid #0E619C'
+                    }}
+                    onMouseOver={e => {
+                        e.target.style.backgroundColor = '#9ea5aa';
+                    }}
+                    onMouseOut={e => {
+                        e.target.style.color = '#0E619C';
+                        e.target.style.backgroundColor = '#fff';
+                    }}
+                    >
+                    Sign in
+                    </a>
+
                 </div>
             </nav>
             

@@ -176,8 +176,10 @@ color: #000000;
 
 /* when hovering over create account, this is the color */
 .navbar a:hover {
-  color:#160505;
+  background-color: #f0f9ff;
+  color: #0E619C;;
 }
+
 .content {
   max-width: auto;
   max-lines: auto;
