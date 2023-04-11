@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "./firebase-config";
 import ValidateDomain from "./validation";
+import homeIcon from "./Icons/homeIcon.png";
 
 import './home.css';
 import './DoctorView.css';
@@ -58,28 +59,31 @@ function SignUp() {
     return (
     <body>
     <nav className="logInNavbar">
-        <h1>MDMS</h1>
+        <h1>MD</h1>
+        <h4>MS</h4>
+        <h2>Medical Data</h2>
+        <h3>Management System</h3>
         <div className="links">
             <a href="/" style={{
                 color: "black",
                 backgroundColor: 'white',
                 borderRadius: '50px'
-            }}> Home </a>
+            }}><img src={homeIcon}/> Home </a>
         </div>
     </nav> 
     <section className="container">
         
         <div className="background">
-            <h1 className = "header-create">Create an Account</h1>
+            <h1 className = "header-create">Create Account</h1>
             <p className="prompt">Add Email Address</p>
             <input className = "input" type = "text" onChange={(event => {setRegisterEmail(event.target.value);
             })}/>
 
-            <p className="prompt">Create Password (Min 6 Characters)</p>
+            <p className="prompt">Create Password</p>
             <input className = "input" type = "password" onChange={(event => {setRegisterPassword(event.target.value);
             })}/>        
 
-            <h1 className = "header-org">Confirm Organization</h1>
+            <h2 className = "header-org">Confirm Organization</h2>
             
             <select value={value} onChange={handleChange} className = "drop-down" name = "select-organization">
                 <option value = "doctor">Jane Hopkins (Doctor)</option>
@@ -93,7 +97,7 @@ function SignUp() {
             </div> 
 
             <div>
-                <p className="prompt">Have an account?
+                <p className="prompt3">Have an account?
                 <a href="/Login">Login Instead</a>
                 </p>
             </div> 

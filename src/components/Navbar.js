@@ -4,7 +4,8 @@ const Nav = () => {
         
         <div className = "background-color">
             <nav className="navbar">
-                <h1>MDMS</h1>
+                <h1>MD</h1>
+                <h4>MS</h4>
                 <h2>Medical Data</h2>
                 <h3>Management System</h3>
                 <div className="links">
