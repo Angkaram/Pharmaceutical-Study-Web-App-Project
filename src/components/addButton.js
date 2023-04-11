@@ -3,8 +3,17 @@ import "./DoctorView.css";
 
 function AddPatientButton(togglePopup) {
   const {entities} = useJaneHopkins();
-  
+
   const addPatient = async() => {
+    const allergyInput = document.getElementById("allergies").value;
+    const allergyArray = allergyInput.split(" ").map(allergy => ({allergy: allergy}));
+
+    const icdInput = document.getElementById("ICD").value;
+    const icdArray = icdInput.split(" ").map(code => ({code: code }));
+
+    const medicationInput = document.getElementById("currentMedication").value;
+    const medicationArray = medicationInput.split(" ").map(medication => ({medication: medication}));
+
     const addPatientResponse = await entities.patient.add({
       name: document.getElementById("name").value,
       dob: document.getElementById("dob").value,
@@ -16,9 +25,10 @@ function AddPatientButton(togglePopup) {
       temperature: document.getElementById("temperature").value,
       uuid: document.getElementById("uuid").value,
       familyHistory: document.getElementById("familyHistory").value,
-      currentMedications: {"medication": document.getElementById("currentMedication").value },
-      allergies:  {"allergy": document.getElementById("allergies").value },
+      currentMedications: medicationArray,
+      allergies:  allergyArray,
       oxygenSaturation: document.getElementById("oxygenSaturation").value,
+      icdHealthCodes: icdArray
     });
     console.log(addPatientResponse);
   }
@@ -45,6 +55,7 @@ function AddPatientButton(togglePopup) {
           <h3>Health Information</h3>
           <p><strong>Patient ID:</strong> <input type="text" id = "uuid"></input></p>
           <p><strong>Blood Type:</strong> <input type="text"></input></p>
+          <p><strong>ICD Health Code:</strong> <input type="text" id = "ICD"></input></p>
         </div>
         <div className="popup-section">
           <h3>Vital Signs</h3>
