@@ -58,7 +58,10 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
           <tbody>
             
           {patients.filter((patient)=> {
-            if (patient.name.toLowerCase().includes(nameSearch.toLowerCase()) && patient.insuranceNumber.includes(insuranceSearch) 
+            if (isFDAView || isBavariaView) {
+              return patient;
+            }
+            else if (patient.name.toLowerCase().includes(nameSearch.toLowerCase()) && patient.insuranceNumber.includes(insuranceSearch) 
             && patient.icdHealthCodes.some(code => code.code.toLowerCase().includes(ICDSearch.toLowerCase()))) { 
               return patient;
             } 
