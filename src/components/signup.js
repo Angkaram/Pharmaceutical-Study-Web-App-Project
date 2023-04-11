@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "./firebase-config";
 import ValidateDomain from "./validation";
+import homeIcon from "./Icons/homeIcon.png";
 
 import './home.css';
 import './DoctorView.css';
@@ -67,7 +68,7 @@ function SignUp() {
                 color: "black",
                 backgroundColor: 'white',
                 borderRadius: '50px'
-            }}> Home </a>
+            }}><img src={homeIcon}/> Home </a>
         </div>
     </nav> 
     <section className="container">
@@ -96,7 +97,7 @@ function SignUp() {
             </div> 
 
             <div>
-                <p className="prompt2">Have an account?
+                <p className="prompt3">Have an account?
                 <a href="/Login">Login Instead</a>
                 </p>
             </div> 

@@ -37,6 +37,9 @@
   font-size: 14px;
   
 }
+.container a:hover {
+  color: black;
+}
 .container p {
   width: 200px;
   height: 10px;
@@ -48,8 +51,18 @@
   height: 10px;
   font-size: 14px;
   font-style: normal;
-  font-weight: 550;
+  font-weight: 600;
   margin-left: -19px;
+  
+}
+.container .prompt3 {
+  width: 250px;
+  margin-top: 30px;
+  height: 10px;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  margin-left: 10px;
   
 }
 
@@ -77,14 +90,19 @@
   }
   .logInNavbar a {
     color: white;
-    border: 2px solid white;
+    border: 1px solid white;
     padding: 6px 12px;
     display: inline-block;
     
-    margin-right: 25px;
+    margin-right: 50px;
     text-decoration: none;
     padding: 5px;
+    width: 65px;
   }
+
+  .logInNavbar img {
+    width: 13px;
+}
   
   
   /* MDMS title */

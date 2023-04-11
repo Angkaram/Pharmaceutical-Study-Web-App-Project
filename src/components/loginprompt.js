@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom";
 
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "./firebase-config";
+import homeIcon from "./Icons/homeIcon.png";
+
 
 function LoginPrompt() {
 
@@ -38,7 +40,7 @@ function LoginPrompt() {
                 color: "black",
                 backgroundColor: 'white',
                 borderRadius: '50px'
-            }}> Home </a>
+            }}> <img src={homeIcon}/> Home </a>
         </div>
     </nav>        
     <section className="container">

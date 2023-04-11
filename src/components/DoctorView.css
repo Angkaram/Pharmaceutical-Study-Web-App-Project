@@ -227,7 +227,7 @@ th {
     height: 27px;
     left: -48px;
     top: 0px;
-    background: url(signOutIcon.png) no-repeat center center;
+    background: url(Icons/signOutIcon.png) no-repeat center center;
     border-radius: 107px;
     background-size: cover;
     filter: brightness(1000) contrast(10000);
