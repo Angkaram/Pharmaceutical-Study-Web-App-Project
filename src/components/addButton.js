@@ -15,6 +15,7 @@ function AddPatientButton(togglePopup) {
     const medicationArray = medicationInput.split(" ").map(medication => ({medication: medication}));
 
     const addPatientResponse = await entities.patient.add({
+      
       name: document.getElementById("name").value,
       dob: document.getElementById("dob").value,
       insuranceNumber: document.getElementById("insuranceNumber").value,
