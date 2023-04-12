@@ -21,10 +21,16 @@
     border: 5px solid #0E619C;
     box-shadow: 0px 0px 10px;
   }
+  .pName{
+
+    margin-left: 10px;
+  }
   #close{
     border: 2px solid #0E619C;
     border-radius: 10px;
     font-size: 25px;
+    width: 50px;
+    margin-left: 10px;
   }
   #close:hover {
     background-color: #bababa;
@@ -61,6 +67,13 @@
     box-sizing: border-box;
   }
   
+
+  .profilePic{
+    border-radius: 10px;
+    width: 150px;
+    height: 150px;
+    margin-left: 0px;
+  }
 /* Table for Patient Data */
 .patientTable {
     box-sizing: border-box;

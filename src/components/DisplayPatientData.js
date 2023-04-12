@@ -94,10 +94,11 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
       )}{selectedPatient && (
         <div class="largeView">
         <div class="popup-content">
+        <button id="close" onClick={() => setSelectedPatient(null)}>X</button>
           <div class="popup-top">
-            <h3> Patient:<i> {selectedPatient.name}</i></h3> 
-            <image id = "ppp"> </image>
-            <button id="close" onClick={() => setSelectedPatient(null)}>X</button>
+            <h3 class = "pName"> Patient:<i> <br></br>&emsp; {selectedPatient.name}</i></h3> 
+           
+            <img class = "profilePic" src = "https://www.unitedway.ca/wp-content/uploads/2017/06/TempProfile.jpg"/> 
           </div>
           <div class="popup-middle">
             <div class="popup-section">
