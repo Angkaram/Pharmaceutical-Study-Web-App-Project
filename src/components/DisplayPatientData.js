@@ -124,7 +124,16 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
               <h3>Medical History</h3>
               <p><strong>Current Medications:</strong> {selectedPatient.medicationArray} </p>
               <p><strong>Family History:</strong> {selectedPatient.familyHistory} </p>
-              <p><strong>Allergies:</strong> {selectedPatient.allergies} </p>
+              <p>
+                <strong>Allergies:</strong>{" "}
+                {selectedPatient.allergies.map((allergy, index) => (
+                  <span key={index}>
+                    {allergy.allergy}
+                    {index < selectedPatient.allergies.length - 1 ? ", " : ""}
+                  </span>
+                ))}
+              </p>
+
             </div>
           </div>
          

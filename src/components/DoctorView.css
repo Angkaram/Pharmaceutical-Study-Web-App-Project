@@ -63,7 +63,7 @@
   }
   
   .popup-section input {
-    width: 100%;
+    width: fit-content;
     box-sizing: border-box;
   }
   
@@ -698,3 +698,11 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 */
+.checkbox {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.checkbox-test {
+    font-size: 97%;
+}

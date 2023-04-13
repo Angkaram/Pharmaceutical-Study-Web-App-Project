@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import useJaneHopkins from '../hooks/useJaneHopkins';
 import "./DoctorView.css";
 
 function AddPatientButton(togglePopup) {
   const {entities} = useJaneHopkins();
+  const [isInsured, setIsInsured] = useState(false);
+  const [isEmployed, setIsEmployed] = useState(false);
 
   const addPatient = async() => {
     const allergyInput = document.getElementById("allergies").value;
@@ -13,6 +16,9 @@ function AddPatientButton(togglePopup) {
 
     const medicationInput = document.getElementById("currentMedication").value;
     const medicationArray = medicationInput.split(" ").map(medication => ({medication: medication}));
+
+    const currentlyEmployed = document.getElementById("employed").checked ? "True" : "False";
+    const currentlyInsured = document.getElementById("insured").checked ? "True" : "False";
 
     const addPatientResponse = await entities.patient.add({
       
@@ -29,8 +35,13 @@ function AddPatientButton(togglePopup) {
       currentMedications: medicationArray,
       allergies:  allergyArray,
       oxygenSaturation: document.getElementById("oxygenSaturation").value,
-      icdHealthCodes: icdArray
+      icdHealthCodes: icdArray,
+      currentlyEmployed: currentlyEmployed,
+      currentlyInsured: currentlyInsured
     });
+    
+    console.log(currentlyEmployed);
+    console.log(currentlyInsured);
     console.log(addPatientResponse);
   }
   return (
@@ -56,7 +67,15 @@ function AddPatientButton(togglePopup) {
           <h3>Health Information</h3>
           <p><strong>Patient ID:</strong> <input type="text" id = "uuid"></input></p>
           <p><strong>Blood Type:</strong> <input type="text"></input></p>
-          <p><strong>ICD Health Code:</strong> <input type="text" id = "ICD"></input></p>
+
+          <p className='checkbox'><strong className='checkbox-test'>Currently Employed:
+            <input type="checkbox" checked = {isEmployed} onChange={()=> setIsEmployed(!isEmployed)} id = "employed"></input>
+          </strong></p>
+
+          <p className='checkbox'><strong>Currently Insured:
+            <input type="checkbox" checked = {isInsured} onChange={()=> setIsInsured(!isInsured)} id = "insured"></input>
+          </strong></p>
+
         </div>
         <div className="popup-section">
           <h3>Vital Signs</h3>
@@ -70,6 +89,7 @@ function AddPatientButton(togglePopup) {
           <p><strong>Current Medications:</strong> <input type="text" id = "currentMedication"></input></p>
           <p><strong>Family History:</strong> <input type="text" id = "familyHistory"></input></p>
           <p><strong>Allergies:</strong> <input type="text" id = "allergies"></input></p>
+          <p><strong>ICD Health Code:</strong> <input type="text" id = "ICD"></input></p>
         </div>
 
       </div>
