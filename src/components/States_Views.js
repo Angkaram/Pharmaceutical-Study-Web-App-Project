@@ -4,13 +4,14 @@ import "./loginprompt.js";
 import './home.css';
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import ValidateDomain from "./validation";
 import AddPatientButton from './addButton.js';
 import DisplayPatientData from './DisplayPatientData';
-import './DoctorView.css';
+import './DoctorHomePage.css';
 import ShipmentsButton from './ShipmentsButton';
 import ContractsButton from './ContractsButton';
+import DoctorView from './DoctorView';
 
 let view;
 
@@ -41,6 +42,8 @@ function View() {
         await signOut(auth);
         navigate("/");
       };
+
+      
     
       // Validates the user
       let isValidated = ValidateDomain(user.email, user.role);
@@ -48,7 +51,7 @@ function View() {
       // Checks their role and redirects them accordingly
       if (isValidated === true) {
         if (user.role === 'doctor') {
-          view = <DoctorView user = {user} LogOut = {logout} />;
+          view = <DoctorHomePage user = {user} LogOut = {logout} />;
         } else if (user.role === "fda") {
           view = <FDAView user = {user} LogOut = {logout}/>;
         } else if (user.role === "bavaria") {
@@ -75,88 +78,44 @@ function View() {
 };
 
 // what is shown on DoctorView
-function DoctorView({user, LogOut}) {
-  const [nameSearch, setNameSearch] = useState("");
-  const [insuranceSearch, setInsuranceSearch] = useState("");
-  const [ICDSearch, setICDSearch] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
-  const togglePopup = () => {
-    setIsOpen(!isOpen);
-  }
-
-  const clearSearch = () => {
-    setInsuranceSearch("");
-    setNameSearch("");
-    setICDSearch("");
-  }
-
-  // can type in patient ID and it will display correct patient from Vendia
-  const patientId = '0186b496-32f6-9a7f-cdfe-1e37ab416338';
+function DoctorHomePage({ user, LogOut}) {
+  const navigate = useNavigate();
+  const DoctorView = () => {
+    navigate("/DoctorView", { state: { user } });
+  };
+  
   console.log(user?.email);
   return (
-    <div className='managePatient'> 
+    <div className='fdabody'>
+      <div className='doctorNavbar'>
 
-    <div className='doctorNavbar'>
-
-      <div className='doctorViewTitle'>
-        <div className='janeHopkinsTitleText'>Jane Hopkins</div>
-        <div className='hospitalTitleText'>Hospital</div>
-      </div>
-      <div className='displayEmail'>{user?.email}</div>
-      <button className='signOutButton' onClick={LogOut}>
-        <div className='signOutIcon'></div>
-        <div className='signOutText'>Sign Out</div>
-      </button>
-    </div>
-    
-    <div className='doctorNavButtonLocations'>
-      <div className='welcomeContainer'>
-        <div className='welcomeText'>Welcome Page</div>
-      </div>
-      <div className='appointmentContainer'>
-        <div className='appointmentText'>Manage Appointments</div>
-      </div>
-      <div>
-        <button onClick={togglePopup} className='addPatientContainer'>
-          <div className='addPatientText'>Add Patients</div>
-        </button>
-      </div>
-    </div>
-
-    <div className='patientSearchBox'>
-      <div className='patientSearchBoxName'>Patient Search</div>
-      <div className='searchUndoLocations'>
-
-
-      <button onClick = {clearSearch} className='searchButton'> Clear Search </button>
-
-
-      </div>
-      <div className='patientNameSearch'>      
-          <input className='patientNameSearchBox' type="text" onChange = {(event) => {setNameSearch(event.target.value)}} value={nameSearch}/>
-          <div className='patientNameSearchLabel'>Name</div>
-      </div>
-      <div className='patientAgeSearch'>
-          <input className='patientAgeSearchBox' type="number"/>
-          <div className='patientAgeSearchLabel'>Age</div>
-      </div>
-      <div className='patientICDSearch'>
-        <input className='patientICDSearchBox' type="text" onChange = {(event) => {setICDSearch(event.target.value)}} value={ICDSearch}/>
-        <div className='patientICDSearchLabel'>ICD Healthcode</div>
-      </div>
-      <div className='patientInsuranceSearch' >
-          <input className='patientInsuranceSearchBox' type="text" onChange = {(event) => {setInsuranceSearch(event.target.value)}} value={insuranceSearch}/>
-          <div className='patientInsuranceSearchLabel'>Insurance Number</div>
-      </div>
-    </div>
-
-    <div className='patientTableLocation'>
-      <DisplayPatientData nameSearch={nameSearch} insuranceSearch={insuranceSearch} ICDSearch={ICDSearch} patientId={patientId}/>
-    </div>
-
-    {isOpen && <AddPatientButton handleClose={togglePopup}/>}
-
-  </div>
+<div className='doctorViewTitle'>
+<div className='janeHopkinsTitleText'>Jane Hopkins</div>
+<div className='hospitalTitleText'>Hospital</div>
+</div>
+<div className='displayEmail'>{user?.email}</div>
+<button className='signOutButton' onClick={LogOut}>
+<div className='signOutIcon'></div>
+<div className='signOutText'>Sign Out</div>
+</button>
+</div>
+<div className='container'>
+            <h1 className="title"> Welcome, Doctor</h1>
+            <div className="box-container">
+            <div className="box">
+        <div className="button-container">
+        <button className="buttons"><h3>Manage Appointments</h3></button>
+        </div>
+        </div>
+        <div className="box">
+          <div className="button-container">
+            <button className="buttons" onClick={() => DoctorView(user)}><h3>Manage Patients</h3></button>
+          </div>
+        </div>
+            </div>
+            
+        </div>
+        </div>
   );
 }
 
