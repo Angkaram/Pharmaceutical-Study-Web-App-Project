@@ -8,9 +8,9 @@ import { auth } from "./firebase-config";
 import { useNavigate, Link } from "react-router-dom";
 import DisplayPatientData from './DisplayPatientData';
 import './DoctorView.css';
-import ContractsButton from './ContractsButton';
+import ShipmentsButton from './ShipmentsButton';
 
-function FDAView() {
+function BavariaView() {
 
   const location = useLocation();
   const { user } = location.state;  //LogOut not working yet
@@ -29,39 +29,39 @@ function FDAView() {
   return (
     <div className='managePatient'> 
 
-      <div className='doctorNavbar'style={{backgroundColor: '#08d3b4'}}>
+      <div className='doctorNavbar'style={{backgroundColor: '#f46f74'}}>
 
         <div className='doctorViewTitle'>
-          <div className='janeHopkinsTitleText' style={{left: '138px', top: '14px', color: 'white', fontFamily: 'Georgia'}}>FDA</div>
-          <div className='hospitalTitleText' style={{fontSize: 25, textAlign: 'center', left: '0', top: '18px'}}>U.S. Food and Drug Administration</div>
+          <div className='janeHopkinsTitleText' style={{left: '78px', top: '8px', color: 'white', fontFamily: 'Georgia'}}>Bavaria</div>
+          <div className='hospitalTitleText' style={{textAlign: 'center', left: '0', top: '18px'}}>Pharmaceuticals</div>
         </div>
         <div className='displayEmail'>{user?.email}</div>
-        <button className='signOutButton' style={{border: '#069882' }} onClick={logout}>
+        <button className='signOutButton' style={{border: '#e7121a' }} onClick={logout}>
           <div className='signOutIcon'></div>
-          <div className='signOutText'style={{color: '#069882' }}>Sign Out</div>
+          <div className='signOutText'style={{color: '#e7121a' }}>Sign Out</div>
         </button>
       </div>
 
       <div className='doctorNavButtonLocations'>
         <div>
-        <Link to="/View">
-          <button className='welcomeContainer' style={{borderColor: '#08d3b4'}}>
-            <div className='welcomeText' style={{color: 'black'}}>Welcome Page</div>
-          </button>
-        </Link>
+          <Link to="/View">
+            <button className='welcomeContainer' style={{borderColor: '#f46f74'}}>
+              <div className='welcomeText' style={{color: 'black'}}>Welcome Page</div>
+            </button>
+          </Link>
         </div>
 
-        <button onClick={togglePopup} className='addPatientContainer' style={{top: '0px', left: '350px', borderColor: '#08d3b4'}}>
-          <div className='addPatientText' style={{left: '47px', color: 'black'}}>Manage Contracts</div>
+        <button onClick={togglePopup} className='addPatientContainer' style={{top: '0px', left: '350px', borderColor: '#f46f74'}}>
+          <div className='addPatientText' style={{left: '43px', color: 'black'}}>Manage Shipments</div>
         </button>
       </div>
 
       <div className='patientTableLocation' style={{top: '300px'}}>
-        <DisplayPatientData searchTerm={searchTerm} patientId={patientId} isFDAView={true} />
+        <DisplayPatientData searchTerm={searchTerm} patientId={patientId} isBavariaView={true} />
       </div>
-      {isOpen && <ContractsButton handleClose={togglePopup}/>}
+      {isOpen && <ShipmentsButton handleClose={togglePopup}/>}
     </div>
   );
 }
 
-export default FDAView;
+export default BavariaView;
