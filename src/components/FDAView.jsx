@@ -35,7 +35,7 @@ function FDAView() {
           <div className='janeHopkinsTitleText' style={{left: '138px', top: '14px', color: 'white', fontFamily: 'Georgia'}}>FDA</div>
           <div className='hospitalTitleText' style={{fontSize: 25, textAlign: 'center', left: '0', top: '18px'}}>U.S. Food and Drug Administration</div>
         </div>
-        <div className='displayEmail'>{user?.email}</div>
+        <div className='displayEmail' style={{color: 'black'}}>{user?.email}</div>
         <button className='signOutButton' style={{border: '#069882' }} onClick={logout}>
           <div className='signOutIcon'></div>
           <div className='signOutText'style={{color: '#069882' }}>Sign Out</div>

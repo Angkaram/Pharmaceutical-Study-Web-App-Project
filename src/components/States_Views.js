@@ -9,7 +9,6 @@ import ValidateDomain from "./validation";
 import DisplayPatientData from './DisplayPatientData';
 import './DoctorHomePage.css';
 import './FDAHomePage.css';
-import './BavariaHomePage.css';
 import ShipmentsButton from './ShipmentsButton';
 
 
@@ -55,7 +54,7 @@ function View() {
         } else if (user.role === "fda") {
           view = <FDAHomePage user = {user} LogOut = {logout}/>;
         } else if (user.role === "bavaria") {
-          view = <BavariaHomePage user = {user} LogOut = {logout}/>;
+          view = <BavariaView user = {user} LogOut = {logout}/>;
         }
     // If everything fails, kicks unauthorized user to the login page
     } else {
@@ -146,12 +145,12 @@ function FDAHomePage({ user, LogOut }) {
       <div className="box-container">
         <div className="box" style={{backgroundColor: '#069882'}}>
           <div className="button-container">
-            <button className="buttons" style={{backgroundColor: '#069882'}}><h3>Manage Studies</h3></button>
+            <button className="buttons" style={{backgroundColor: '#069882'}}><h3>Manage Shipments</h3></button>
           </div>
         </div>
         <div className="box" style={{backgroundColor: '#069882'}}>
           <div className="button-container">
-            <button className="buttons" style={{backgroundColor: '#069882'}} onClick={() => FDAView(user)}><h3>Manage Contracts</h3></button>
+            <button className="buttons" style={{backgroundColor: '#069882'}} onClick={() => FDAView(user)}><h3>Manage Studies</h3></button>
           </div>
         </div>
       </div>   
@@ -161,43 +160,40 @@ function FDAHomePage({ user, LogOut }) {
 }
 
 // bavaria view (work in progress)
-function BavariaHomePage({ user, LogOut }) {
-  const navigate = useNavigate();
-  const BavariaView = () => {
-    navigate("/BavariaView", { state: { user } });
-  };
-  
-  console.log(user?.email);
+function BavariaView({ user, LogOut }) {
+  const patientId = '0186b496-32f6-9a7f-cdfe-1e37ab416338';
+  const [searchTerm] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+  }
   return (
-    <div className='bavariabody'> 
-      <div className='doctorNavbar' style={{backgroundColor: '#f46f74'}}>
+    <div className='managePatient'> 
+
+      <div className='doctorNavbar'style={{backgroundColor: '#f46f74'}}>
 
         <div className='doctorViewTitle'>
-        <div className='janeHopkinsTitleText' style={{left: '78px', top: '8px', color: 'white', fontFamily: 'Georgia'}}>Bavaria</div>
-        <div className='hospitalTitleText' style={{textAlign: 'center', left: '0', top: '18px'}}>Pharmaceuticals</div>
+          <div className='janeHopkinsTitleText' style={{left: '78px', top: '8px', color: 'white', fontFamily: 'Georgia'}}>Bavaria</div>
+          <div className='hospitalTitleText' style={{textAlign: 'center', left: '0', top: '18px'}}>Pharmaceuticals</div>
+        </div>
+        <div className='displayEmail' style={{color: 'black'}}>{user?.email}</div>
+        <button className='signOutButton' onClick={LogOut}>
+          <div className='signOutIcon'></div>
+          <div className='signOutText'style={{color: '#e7121a' }}>Sign Out</div>
+        </button>
       </div>
-    <div className='displayEmail'>{user?.email}</div>
-      <button className='signOutButton' style={{border: '#f46f74' }} onClick={LogOut}>
-        <div className='signOutIcon'></div>
-        <div className='signOutText' style={{color: '#e7121a' }}>Sign Out</div>
-      </button>
+
+      <div className='doctorNavButtonLocations'>
+        <button onClick={togglePopup} className='addPatientContainer' style={{top: '0px', left: '350px', borderColor: '#f46f74'}}>
+          <div className='addPatientText' style={{left: '43px', color: 'black'}}>Manage Shipments</div>
+        </button>
+      </div>
+
+      <div className='patientTableLocation' style={{top: '300px'}}>
+        <DisplayPatientData searchTerm={searchTerm} patientId={patientId} isBavariaView={true} />
+      </div>
+      {isOpen && <ShipmentsButton handleClose={togglePopup}/>}
     </div>
-    <div className='container'>
-      <h1 className="title"> Welcome</h1>
-      <div className="box-container">
-        <div className="box" style={{backgroundColor: '#f46f74'}}>
-          <div className="button-container">
-            <button className="buttons" style={{backgroundColor: '#f46f74'}}><h3>Manage Something</h3></button>
-          </div>
-        </div>
-        <div className="box" style={{backgroundColor: '#f46f74'}}>
-          <div className="button-container">
-            <button className="buttons" style={{backgroundColor: '#f46f742'}} onClick={() => BavariaView(user)}><h3>Manage Shipments</h3></button>
-          </div>
-        </div>
-      </div>   
-    </div>
-  </div>
   );
 }
 
