@@ -6,12 +6,11 @@ import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
 import { useNavigate, Link } from "react-router-dom";
 import ValidateDomain from "./validation";
-import AddPatientButton from './addButton.js';
 import DisplayPatientData from './DisplayPatientData';
 import './DoctorHomePage.css';
+import './FDAHomePage.css';
 import ShipmentsButton from './ShipmentsButton';
-import ContractsButton from './ContractsButton';
-import DoctorView from './DoctorView';
+
 
 let view;
 
@@ -53,7 +52,7 @@ function View() {
         if (user.role === 'doctor') {
           view = <DoctorHomePage user = {user} LogOut = {logout} />;
         } else if (user.role === "fda") {
-          view = <FDAView user = {user} LogOut = {logout}/>;
+          view = <FDAHomePage user = {user} LogOut = {logout}/>;
         } else if (user.role === "bavaria") {
           view = <BavariaView user = {user} LogOut = {logout}/>;
         }
@@ -86,7 +85,7 @@ function DoctorHomePage({ user, LogOut}) {
   
   console.log(user?.email);
   return (
-    <div className='fdabody'>
+    <div className='doctorbody'>
       <div className='doctorNavbar'>
 
 <div className='doctorViewTitle'>
@@ -120,40 +119,43 @@ function DoctorHomePage({ user, LogOut}) {
 }
 
 // what is shown on FDAView. Line below h4 displays the user email logged in to FDA view
-function FDAView({ user, LogOut }) {
-  const patientId = '0186b496-32f6-9a7f-cdfe-1e37ab416338';
-  const [searchTerm] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
-  const togglePopup = () => {
-    setIsOpen(!isOpen);
-  }
+function FDAHomePage({ user, LogOut }) {
+  const navigate = useNavigate();
+  const FDAView = () => {
+    navigate("/FDAView", { state: { user } });
+  };
+  
+  console.log(user?.email);
   return (
-    <div className='managePatient'> 
-
-      <div className='doctorNavbar'style={{backgroundColor: '#08d3b4'}}>
+    <div className='fdabody'> 
+      <div className='doctorNavbar' style={{backgroundColor: '#08d3b4'}}>
 
         <div className='doctorViewTitle'>
-          <div className='janeHopkinsTitleText' style={{left: '138px', top: '14px', color: 'white', fontFamily: 'Georgia'}}>FDA</div>
-          <div className='hospitalTitleText' style={{fontSize: 25, textAlign: 'center', left: '0', top: '18px'}}>U.S. Food and Drug Administration</div>
-        </div>
-        <div className='displayEmail' style={{color: 'black'}}>{user?.email}</div>
-        <button className='signOutButton' onClick={LogOut}>
-          <div className='signOutIcon'></div>
-          <div className='signOutText'style={{color: '#069882' }}>Sign Out</div>
-        </button>
+        <div className='janeHopkinsTitleText'style={{left: '138px', top: '14px', color: 'white', fontFamily: 'Georgia'}}>FDA</div>
+        <div className='hospitalTitleText' style={{fontSize: 25, textAlign: 'center', left: '0', top: '18px'}}>U.S. Food and Drug Administration</div>
       </div>
-
-      <div className='doctorNavButtonLocations'>
-        <button onClick={togglePopup} className='addPatientContainer' style={{top: '0px', left: '350px', borderColor: '#08d3b4'}}>
-          <div className='addPatientText' style={{left: '47px', color: 'black'}}>Manage Contracts</div>
-        </button>
-      </div>
-
-      <div className='patientTableLocation' style={{top: '300px'}}>
-        <DisplayPatientData searchTerm={searchTerm} patientId={patientId} isFDAView={true} />
-      </div>
-      {isOpen && <ContractsButton handleClose={togglePopup}/>}
+    <div className='displayEmail'>{user?.email}</div>
+      <button className='signOutButton' style={{border: '#069882' }} onClick={LogOut}>
+        <div className='signOutIcon'></div>
+        <div className='signOutText' style={{color: '#069882' }}>Sign Out</div>
+      </button>
     </div>
+    <div className='container'>
+      <h1 className="title"> Welcome</h1>
+      <div className="box-container">
+        <div className="box" style={{backgroundColor: '#069882'}}>
+          <div className="button-container">
+            <button className="buttons" style={{backgroundColor: '#069882'}}><h3>Manage Shipments</h3></button>
+          </div>
+        </div>
+        <div className="box" style={{backgroundColor: '#069882'}}>
+          <div className="button-container">
+            <button className="buttons" style={{backgroundColor: '#069882'}} onClick={() => FDAView(user)}><h3>Manage Studies</h3></button>
+          </div>
+        </div>
+      </div>   
+    </div>
+  </div>
   );
 }
 
