@@ -194,8 +194,7 @@ color: #000000;
 
 .organizations .bavaria, .fda, .hospital {
   display:inline-block;
-  border: 2px solid white;
-  border-radius: 36px;
+  text-decoration: underline;
   font-weight: 900;
   font-size: 20px;
   line-height: 30px;
@@ -205,8 +204,6 @@ color: #000000;
   margin-top:25%;
 
 }
-
-
 
 .background-bavaria, .background-fda, .background-hospital {
   display: inline-block;
@@ -231,6 +228,7 @@ color: #000000;
 /* flip animation on hover */
 .background-bavaria:hover, .background-fda:hover, .background-hospital:hover {
   transform: rotateY(180deg);
+  transition-delay: 0.3s; /* add a 0.3s delay before flipping back */
 }
 
 /* backface of the tile */
