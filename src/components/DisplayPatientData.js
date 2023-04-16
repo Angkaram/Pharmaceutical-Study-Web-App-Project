@@ -4,6 +4,7 @@ import useJaneHopkins from '../hooks/useJaneHopkins';
 import { useEffect, useState } from 'react';
 import { css } from "@emotion/react";
 import { ClipLoader } from "react-spinners";
+import AddAppointment from './addAppointment';
 import "./DoctorView.css";
 
 function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, isBavariaView}) {
@@ -12,6 +13,11 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
   const [patients, setPatients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedPatient, setSelectedPatient] = useState(null);
+
+  const [isOpen, setIsOpen] = useState(false);
+  const togglePopup = () => {
+    setIsOpen(!isOpen);
+  }
 
   useEffect(() => {
     async function fetchPatients() {
@@ -135,13 +141,14 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
               </p>
 
             </div>
+            <button onClick={togglePopup}>Add Appointment</button>
           </div>
-         
         </div>
       </div>
       
        
        )}
+       {isOpen && <AddAppointment togglePopup={togglePopup} selectedPatient={selectedPatient}/>}
      </div>
    );
  }

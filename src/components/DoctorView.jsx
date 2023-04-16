@@ -64,9 +64,11 @@ function DoctorView() {
         </button>
       </Link>
       </div>
+      <Link to="/Appointments">
       <div className='appointmentContainer'>
         <div className='appointmentText'>Manage Appointments</div>
       </div>
+      </Link>
       <div>
         <button onClick={togglePopup} className='addPatientContainer'>
           <div className='addPatientText'>Add Patients</div>

@@ -11,6 +11,8 @@ import DoctorView from "./components/DoctorView";
 import FDAView from "./components/FDAView";
 import BavariaView from "./components/BavariaView";
 
+import DoctorAppointments from "./components/DoctorAppointments";
+
 function App() {
 
   return (
@@ -24,6 +26,7 @@ function App() {
           <Route path = "/DoctorView" element = {<DoctorView />} />
           <Route path = "/FDAView" element = {<FDAView />} />
           <Route path = "/BavariaView" element = {<BavariaView />} />
+          <Route path = "/Appointments" element = {<DoctorAppointments />} />
           
         </Routes>
   </BrowserRouter>
