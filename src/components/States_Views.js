@@ -86,10 +86,10 @@ function DoctorHomePage({ user, LogOut}) {
 
   const DoctorAppointments = () => {
     navigate("/Appointments", { state: { user } });
+  };
 
   const handleManageStudyView = () => {
     navigate("/ManageStudyView", { state: { user } });
-
   };
   
   console.log(user?.email);
