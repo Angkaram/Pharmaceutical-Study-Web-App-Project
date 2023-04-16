@@ -1,0 +1,68 @@
+/* Styles for the notification circle */
+.notification-circle {
+    background-color: #0E619C;
+    border-radius: 50%;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 14px;
+    font-weight: bold;
+    height: 50px;
+    width: 50px;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+  }
+  
+  /* Notification bell icon */
+  .notification-circle-icon {
+    position: relative;
+    width: 30px;
+    height: 27px;
+    left: 0px;
+    top: 0px;
+    background: url(Icons/NotificationBell2.png) no-repeat center center;
+    border-radius: 100px;
+    background-size: cover;
+  }
+  
+  /* Styles for the notification number */
+  .notification-number {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: rgb(255, 59, 59);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  /* Styles for the notification popup */
+  .notification-popup {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    width: 200px;
+    height: 50px;
+    background-color: white;
+    border: 1px solid grey;
+    border-radius: 5px;
+    padding: 10px;
+    display: none;
+  }
+  
+  /* Show the popup when the notification circle is clicked */
+  .notification-circle.clicked + .notification-popup {
+    display: block;
+  }
+  
