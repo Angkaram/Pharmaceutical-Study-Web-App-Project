@@ -47,18 +47,29 @@ const Nav = () => {
             </div>
 
             <body className="organizations">
-            {/* could probably change these from p tags to a href tags to make it interactable */}
-            <div className="background-hospital">
-                <p className="hospital">Jane Hopkins Hospital</p>
-            </div>
 
-            <div className="background-fda">
-                <p className="fda">U.S. Food and Drug Administration</p>
-            </div>
+                {/* could probably change these from p tags to a href tags to make it interactable */}
+                <div className="background-hospital">
+                    <p className="hospital">Jane Hopkins Hospital</p>
+                    <div className="back">
+                        <h1 style={{color: '#0E619C'}}>Compassionate care for all. Here is where the healing begins.</h1>
+                    </div>
+                </div>
 
-            <div className="background-bavaria">
-                <p className="bavaria">Bavaria Pharmaceutics</p>
-            </div>
+                <div className="background-fda">
+                    <p className="fda">U.S. Food and Drug Administration</p>
+                    <div className="back">
+                        <h1 style={{color: '#0E619C'}}>Ensuring our wellness for decades, the FDA holds all entities accountable at the highest of standards.</h1>
+                    </div>
+                </div>
+
+                <div className="background-bavaria">
+                    <p className="bavaria">Bavaria Pharmaceutics</p>
+                    <div className="back">
+                        <h1 style={{color: '#0E619C'}}>At the cutting edge of pharmaceutical research, Bavaria strives to give everyone a healthier tomorrow.</h1>
+                    </div>
+                </div>
+
             </body>
 
         </body>

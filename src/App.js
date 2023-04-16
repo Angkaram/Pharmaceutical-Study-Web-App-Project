@@ -10,6 +10,7 @@ import View from "./components/States_Views";
 import DoctorView from "./components/DoctorView";
 import FDAView from "./components/FDAView";
 import BavariaView from "./components/BavariaView";
+import ManageStudyView from "./components/ManageStudyView";
 
 import DoctorAppointments from "./components/DoctorAppointments";
 
@@ -27,6 +28,8 @@ function App() {
           <Route path = "/FDAView" element = {<FDAView />} />
           <Route path = "/BavariaView" element = {<BavariaView />} />
           <Route path = "/Appointments" element = {<DoctorAppointments />} />
+          <Route path = "/ManageStudyView" element = {<ManageStudyView />} />
+
           
         </Routes>
   </BrowserRouter>

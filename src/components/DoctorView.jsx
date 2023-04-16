@@ -20,8 +20,6 @@ function DoctorView() {
     await signOut(auth);
     navigate("/");
   };
-
-  
   
   const [nameSearch, setNameSearch] = useState("");
   const [insuranceSearch, setInsuranceSearch] = useState("");
@@ -80,9 +78,7 @@ function DoctorView() {
       <div className='patientSearchBoxName'>Patient Search</div>
       <div className='searchUndoLocations'>
 
-
       <button onClick = {clearSearch} className='searchButton'> Clear Search </button>
-
 
       </div>
       <div className='patientNameSearch'>      

@@ -11,7 +11,7 @@ import './DoctorHomePage.css';
 import './FDAHomePage.css';
 import './BavariaHomePage.css';
 import ShipmentsButton from './ShipmentsButton';
-
+import ManageStudyView from './ManageStudyView';
 
 let view;
 
@@ -77,14 +77,19 @@ function View() {
   );
 };
 
-// what is shown on DoctorView
+// what is shown on DoctorHomePage
 function DoctorHomePage({ user, LogOut}) {
   const navigate = useNavigate();
   const DoctorView = () => {
     navigate("/DoctorView", { state: { user } });
   };
+
   const DoctorAppointments = () => {
     navigate("/Appointments", { state: { user } });
+
+  const handleManageStudyView = () => {
+    navigate("/ManageStudyView", { state: { user } });
+
   };
   
   console.log(user?.email);
@@ -103,22 +108,28 @@ function DoctorHomePage({ user, LogOut}) {
 </button>
 </div>
 <div className='container'>
-            <h1 className="title"> Welcome, Doctor</h1>
-            <div className="box-container">
-            <div className="box">
+  <h1 className="title"> Welcome, Doctor</h1>
+  <div className="box-container">
+     <div className="box">
         <div className="button-container">
+
         <button className="buttons" onClick={() => DoctorAppointments(user)}><h3>Manage Appointments</h3></button>
+
         </div>
+      </div>
+      <div className="box">
+        <div className="button-container">
+          <button className="buttons" onClick={() => handleManageStudyView(user)}><h3>Manage Study</h3></button>
         </div>
+      </div>
         <div className="box">
           <div className="button-container">
             <button className="buttons" onClick={() => DoctorView(user)}><h3>Manage Patients</h3></button>
           </div>
         </div>
-            </div>
-            
-        </div>
-        </div>
+  </div>         
+</div>
+</div>
   );
 }
 
