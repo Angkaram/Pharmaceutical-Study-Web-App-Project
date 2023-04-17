@@ -83,6 +83,11 @@ function DoctorHomePage({ user, LogOut}) {
   const DoctorView = () => {
     navigate("/DoctorView", { state: { user } });
   };
+
+  const DoctorAppointments = () => {
+    navigate("/Appointments", { state: { user } });
+  };
+
   const handleManageStudyView = () => {
     navigate("/ManageStudyView", { state: { user } });
   };
@@ -107,7 +112,9 @@ function DoctorHomePage({ user, LogOut}) {
   <div className="box-container">
      <div className="box">
         <div className="button-container">
-          <button className="buttons"><h3>Manage Appointments</h3></button>
+
+        <button className="buttons" onClick={() => DoctorAppointments(user)}><h3>Manage Appointments</h3></button>
+
         </div>
       </div>
       <div className="box">

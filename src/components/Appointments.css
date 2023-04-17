@@ -1,0 +1,108 @@
+.buttonLocations {
+    width: 640px;
+    height: 55px;
+    position: absolute;
+    top: 200px;
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+
+.center {
+    position: relative;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calendar {
+    justify-content: center;
+    margin: auto;
+    box-sizing: border-box;
+    margin-top: 150px;
+    width: 1700px;
+    padding: 0;
+    overflow: 1400px;
+}
+
+/* Welcome */
+.patientContainer {
+    position: absolute;
+    width: 279px;
+    height: 53px;
+    cursor: pointer;
+    background: #F3F3F3;
+    border: 5px solid #0E619C;
+    border-radius: 20px;
+    display: flex;
+    margin-left: 350px;
+}
+
+.patientContainer:hover {
+    background-color: #c2dbec;
+    color: white;
+}
+
+/* Welcome Page */
+.patientText {
+    position: absolute;
+    width: 221px;
+    height: 43px;
+    left:57px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 27px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #0E619C;
+}
+
+.header {
+    margin: auto;
+    margin-top: 100px;
+}
+
+.add-appt-section {
+    width: 200px; /* changed from "calc(100% / 4 - 10px)" */
+    margin: 5px 5px 20px;
+    justify-content: center;
+  }
+  
+  .add-appt-section h3 {
+    margin-top: 0;
+  }
+  
+  .add-appt-section p {
+    margin: 30px;
+  }
+
+  .add-appt-content {
+    width: fit-content;
+    padding: 60px;
+    padding-top: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border: 5px solid #0E619C;
+    box-shadow: 0px 0px 10px;
+  }
+
+  #closeAppt{
+    border: 2px solid #0E619C;
+    border-radius: 10px;
+    font-size: 25px;
+    width: 50px;
+    margin-left: 0px;
+    margin-bottom: 30px;
+  }
+  #closeAppt:hover {
+    background-color: #bababa;
+    color: white;
+  }
