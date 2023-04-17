@@ -1,0 +1,70 @@
+.sidebar {
+    background-color: #fff;
+    width: 350px;
+    height: 200px;
+    position: absolute;
+    top: 1050px;
+    left: 0;
+    padding: 20px;
+    border: 5px solid #0088cc;
+}
+
+.category {
+display: flex;
+align-items: center;
+margin-bottom: px;
+}
+
+.active {
+color: #0088cc;
+font-size: 35px;
+}
+
+.pending {
+color: #f0ad4e;
+font-size: 35px;
+}
+
+.cancelled {
+color: #d9534f;
+font-size: 35px;
+}
+
+.completed {
+color: #5cb85c;
+font-size: 35px;
+}
+
+i {
+margin-right: 1px;
+}
+
+.count {
+background-color: #0088cc;
+color: #fff;
+border-radius: 50%;
+width: 35px;
+height: 35px;
+display: flex;
+align-items: center;
+justify-content: center;
+margin-left: auto;
+font-size: 20px;
+}
+
+
+.addStudyButton {
+background-color: #0088cc;
+color: #fff;
+border: none;
+padding: 10px 20px;
+border-radius: 5px;
+cursor: pointer;
+}
+
+.clicked {
+    background-color: blue;
+    color: white;
+    /* add other styles as needed */
+  }
+  
