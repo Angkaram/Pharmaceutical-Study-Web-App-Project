@@ -11,6 +11,7 @@
     "@vendia/client": "^0.8.4",
     "date-fns": "^2.29.3",
     "firebase": "^9.19.1",
+    "flatpickr": "^4.6.13",
     "node": "^19.6.1",
     "react": "^18.2.0",
     "react-big-calendar": "^1.6.9",

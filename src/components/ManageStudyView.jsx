@@ -12,6 +12,8 @@ import useJaneHopkins from '../hooks/useJaneHopkins';
 import { useEffect, useState } from 'react';
 import { css } from "@emotion/react";
 import { ClipLoader } from "react-spinners";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function ManageStudyView({studyName, studyStatus, studyStart, studyEnd, bavariaAgreed, fdaAgreed, maxPatients}) {
 
@@ -67,10 +69,6 @@ function ManageStudyView({studyName, studyStatus, studyStart, studyEnd, bavariaA
 
     notificationCircle.classList.remove('clicked');
   };
-
-
-
-
 
   return (
     <div className='managePatient'> 
@@ -167,15 +165,15 @@ function ManageStudyView({studyName, studyStatus, studyStart, studyEnd, bavariaA
         <td>Yes</td>
         <td>75</td>
       </tr>
-    </tbody>
-  </table>
-</div>
+        </tbody>
+        </table>
+    </div>
 
-<div>
-        <button onClick={togglePopup} className='addPatientContainer' style={{top: 200, left: 1000}}>
-          <div className='addPatientText'>Add Study</div>
-        </button>
-      </div>
+    <div>
+      <button onClick={togglePopup} className='addPatientContainer' style={{top: 200, left: 1000}}>
+        <div className='addPatientText'>Add Study</div>
+      </button>
+    </div>
 
       {isOpen && <AddStudyButton handleClose={togglePopup}/>}
             
@@ -185,7 +183,7 @@ function ManageStudyView({studyName, studyStatus, studyStart, studyEnd, bavariaA
 
 export default ManageStudyView;
 
-
+//new function
 function AddStudyButton(togglePopup) {
   const {entities} = useJaneHopkins();
   const [bavariaAgreed, setBavariaAgreed] = useState(false);
@@ -211,6 +209,23 @@ function AddStudyButton(togglePopup) {
     console.log(isFdaAgreed);
     console.log(addPatientResponse);
   }
+
+  // Initial state of the dropdown menu
+  const initialState = () => {
+    const value = "Active";
+    return value;
+  }
+
+  // Change value depending on dropdown menu
+  const [value, setValue] = useState(initialState);
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+  }
+
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+
   return (
     <div className="largeView">
     <div className="popup-content">
@@ -225,9 +240,29 @@ function AddStudyButton(togglePopup) {
       <div className="popup-middle">
         <div className="popup-section">
           <h3>General Information</h3>
-          <p><b>Study Status: </b><input type="text" id = "status"></input></p>
-          <p><b>Study Start:</b><input type="text" id = "start"></input></p>
-          <p><b>Study End: </b><input type="text" id = "end"></input></p>
+          <b>Study Status: </b>  {/* needs the id="status" */}
+          <select value={value} onChange={handleChange} className = "drop-down" name = "select-organization">
+                <option value = "Active">Active</option>
+                <option value = "Pending">Pending</option>
+                <option value = "Cancelled">Cancelled</option>
+                <option value = "Completed">Completed</option>
+            </select>
+          <p><b>Study Start:</b>
+            <DatePicker
+            selected={startDate}
+            onChange={(date) => setStartDate(date)}
+            id="start"
+            dateFormat="MMMM d, yyyy"
+            />
+          </p>
+          <p><b>Study End: </b>
+            <DatePicker
+            selected={endDate}
+            onChange={(date) => setEndDate(date)}
+            id="start"
+            dateFormat="MMMM d, yyyy"
+            />
+          </p>
           <p className='checkbox'><strong>Agreed By Bavaria?
             <input type="checkbox" checked = {bavariaAgreed} onChange={()=> setBavariaAgreed(!bavariaAgreed)} id = "bavariaAgreed"></input>
           </strong></p>

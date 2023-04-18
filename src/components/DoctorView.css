@@ -7,8 +7,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    
   }
   
   .popup-content {
@@ -21,8 +19,8 @@
     border: 5px solid #0E619C;
     box-shadow: 0px 0px 10px;
   }
-  .pName{
 
+  .pName{
     margin-left: 10px;
   }
   #close{
@@ -66,7 +64,6 @@
     width: fit-content;
     box-sizing: border-box;
   }
-  
 
   .profilePic{
     border-radius: 10px;
@@ -74,6 +71,7 @@
     height: 150px;
     margin-left: 0px;
   }
+  
 /* Table for Patient Data */
 .patientTable {
     box-sizing: border-box;
