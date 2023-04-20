@@ -23,6 +23,7 @@ function AddPatientButton(togglePopup) {
     const addPatientResponse = await entities.patient.add({
       
       name: document.getElementById("name").value,
+      age: document.getElementById("age").value,
       dob: document.getElementById("dob").value,
       insuranceNumber: document.getElementById("insuranceNumber").value,
       address: document.getElementById("address").value,

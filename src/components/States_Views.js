@@ -6,12 +6,9 @@ import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
 import { useNavigate, Link } from "react-router-dom";
 import ValidateDomain from "./validation";
-import DisplayPatientData from './DisplayPatientData';
 import './DoctorHomePage.css';
 import './FDAHomePage.css';
 import './BavariaHomePage.css';
-import ShipmentsButton from './ShipmentsButton';
-import ManageStudyView from './ManageStudyView';
 
 let view;
 

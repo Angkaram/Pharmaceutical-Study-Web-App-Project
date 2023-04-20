@@ -22,6 +22,7 @@ function DoctorView() {
   };
   
   const [nameSearch, setNameSearch] = useState("");
+  const [ageSearch, setAgeSearch] = useState("");
   const [insuranceSearch, setInsuranceSearch] = useState("");
   const [ICDSearch, setICDSearch] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -86,7 +87,7 @@ function DoctorView() {
           <div className='patientNameSearchLabel'>Name</div>
       </div>
       <div className='patientAgeSearch'>
-          <input className='patientAgeSearchBox' type="number"/>
+          <input className='patientAgeSearchBox' type="number" onChange = {(event) => {setAgeSearch(event.target.value)}} value={ageSearch}/>
           <div className='patientAgeSearchLabel'>Age</div>
       </div>
       <div className='patientICDSearch'>
