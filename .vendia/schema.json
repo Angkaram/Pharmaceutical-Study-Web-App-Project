@@ -7,6 +7,9 @@
     },
     "drugACL": {
       "type": "Drug"
+    },
+    "studyACL": {
+      "type": "Study"
     }
   },
   "type": "object",
@@ -18,6 +21,9 @@
         "properties": {
           "name": {
             "type": "string"
+          },
+          "age": {
+            "type": "integer"
           },
           "patientPicture": {
             "type": "string"
@@ -48,6 +54,9 @@
           },
           "address": {
             "type": "string"
+          },
+          "doses": {
+            "type": "integer"
           },
           "currentMedications": {
             "type": "array",
@@ -127,6 +136,35 @@
           },
           "id": {
             "type": "string"
+          }
+        }
+      }
+    },
+    "Study": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "start": {
+            "type": "string"
+          },
+          "end": {
+            "type": "string"
+          },
+          "isBavariaAgreed": {
+            "type": "boolean"
+          },
+          "isFdaAgreed": {
+            "type": "boolean"
+          },
+          "maxPatients": {
+            "type": "integer"
           }
         }
       }

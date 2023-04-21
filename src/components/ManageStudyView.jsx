@@ -295,11 +295,11 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
           {study.filter((study)=> {
             if (isFDAView || isBavariaView) {
               return study;
-            }
+            }/* NEEDS some tweaking to get working
             else if (study.name.toLowerCase().includes(nameSearch.toLowerCase()) && study.status.includes(statusSearch) 
             && study.startDate.includes(startSearch)) { 
               return study;
-            } 
+            } */
             else if (nameSearch === "" && statusSearch === "" && startSearch === "") {
               return study;
             }
