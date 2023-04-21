@@ -317,8 +317,8 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
                         <td>{study.status}</td>
                         <td>{study.startDate}</td>
                         <td>{study.endDate}</td>
-                        <td>{study.isBavariaAgreed}</td>
-                        <td>{study.isFdaAgreed}</td>
+                        <td>{study.isBavariaAgreed ? 'Yes' : 'No'}</td>
+                        <td>{study.isFdaAgreed ? 'Yes' : 'No'}</td>
                         <td>{study.maxPatients}</td>
                       </>
                     )}
