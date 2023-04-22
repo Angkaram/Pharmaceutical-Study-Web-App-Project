@@ -6,9 +6,12 @@ import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
 import { useNavigate, Link } from "react-router-dom";
 import ValidateDomain from "./validation";
+import DisplayPatientData from './DisplayPatientData';
 import './DoctorHomePage.css';
 import './FDAHomePage.css';
 import './BavariaHomePage.css';
+import ShipmentsButton from './ShipmentsButton';
+import ManageStudyView from './ManageStudyView';
 
 let view;
 
@@ -91,43 +94,42 @@ function DoctorHomePage({ user, LogOut}) {
   
   console.log(user?.email);
   return (
-    <div className='doctorbody'>
-      <div className='doctorNavbar'>
+    // doctorbody in DoctorHomePage.css
+    <div className='welcome-body'>
+  
 
-<div className='doctorViewTitle'>
-<div className='janeHopkinsTitleText'>Jane Hopkins</div>
-<div className='hospitalTitleText'>Hospital</div>
-</div>
-<div className='displayEmail'>{user?.email}</div>
-<button className='signOutButton' onClick={LogOut}>
-<div className='signOutIcon'></div>
-<div className='signOutText'>Sign Out</div>
-</button>
-</div>
-<div className='container'>
-  <h1 className="title"> Welcome, Doctor</h1>
-  <div className="box-container">
-     <div className="box">
-        <div className="button-container">
-
-        <button className="buttons" onClick={() => DoctorAppointments(user)}><h3>Manage Appointments</h3></button>
-
-        </div>
-      </div>
-      <div className="box">
-        <div className="button-container">
-          <button className="buttons" onClick={() => handleManageStudyView(user)}><h3>Manage Study</h3></button>
-        </div>
-      </div>
-        <div className="box">
-          <div className="button-container">
-            <button className="buttons" onClick={() => DoctorView(user)}><h3>Manage Patients</h3></button>
+      {/* classNames start: DoctorView.css */}
+        <div className = 'nav-bar'>
+          <div className='janeHopkinsTitleText'>Jane Hopkins
+            <div className='hospitalTitleText'>Hospital</div>
           </div>
-        </div>
-  </div>         
-</div>
-</div>
-  );
+          <div className='displayEmail'>{user?.email}</div>
+          <button className='signOutButton' onClick={LogOut}> SignOut
+            <div className='signOutIcon'></div>
+          </button>
+        {/* end: DoctorView.css */}
+      </div>
+      <div className='welcome-container'>
+        <h1 className="title"> Welcome, Doctor</h1>
+        <div className="box-container">
+
+          <div className="box">
+              <button onClick={() => DoctorAppointments(user)}>Manage Appointments</button>
+          </div>
+
+          <div className="box">
+              <button onClick={() => handleManageStudyView(user)}>Manage Study</button>
+          </div>
+
+          <div className="box">
+              <button onClick={() => DoctorView(user)}>Manage Patients</button>
+          </div>
+
+        </div>  
+
+      </div>
+    </div>
+        );
 }
 
 // what is shown on FDAView. Line below h4 displays the user email logged in to FDA view
@@ -213,4 +215,3 @@ function BavariaHomePage({ user, LogOut }) {
 }
 
 export default View;
-

@@ -1,73 +1,106 @@
-.doctorbody {
-    position: cover;
-    width: 100%;
-    height: 100vh;
-    background-image: url('../assets/images/bgimage.jpg');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-  }
-  
+html {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.welcome-body {
+  box-sizing: border-box;
+  display: grid;
+  min-width: 100vw;
+  min-height: 100vh;
+  grid-template-rows: 1fr 4fr;
+  grid-template-columns: 1fr;
+  /* background-image: url(../assets/images/bgimage.jpg);
+  background-repeat: no-repeat;
+  background-size: cover; */
+}
+
+.nav-bar,
 .container {
-    width: 1000px;
-    height: 500px;
-    
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+  padding: 25px;
 }
 
-.container .title {
-    margin-bottom: 50px;
+.nav-bar {
+  color: white;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  align-items: center;
+  height: 125px;
+  background-color: #0e619c;
 }
 
-.container .box-container {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+.nav-bar > div + button {
+  align-self: center;
+  justify-self: center;
+}
+
+.signOutButton{
+  padding: 10px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.hospital-name {
+  justify-self: start;
+  font-size: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-bar div + div {
+  align-self: center;
+  justify-self: end;
+}
+
+.nav-bar button {
+  height: 50px;
+  width: 100px;
+}
+
+.welcome-container {
+  height: 25%;
+  width: 100%;
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  align-self: center;
+  justify-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.box-container {
+  grid-column: 1 / 2;
+  display: flex;
+  flex: 0 1 auto;
+  justify-content: space-between;
+  gap: 40px;
+  margin-top: 10px;
 }
 
 .box {
-    width: 400px;
-    height: 250px;
-    margin: 0 80px;
-    background: #0E619C;
-    border-radius: 25px;
-    border: 2px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0e619c;
+  border: 2px solid;
+  border-radius: 25px;
 }
 
-.button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row;
-    margin-top: 10px;
-  }
-
-  .buttons {
-    margin: 0 5px;
-    padding: 20px 30px;
-    background-color: transparent;
-    color: #ffffff;
-    border-radius: 25px;
-    border: 5px solid #ffffff;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .buttons:hover {
-    transform: scale(1.2);
-  }
-
-  
+.box button {
+  color: white;
+  height: 40px;
+  width: 100px;
+  border: 3px solid white;
+  border-radius: 15px;
+  background-color: rgba(248, 248, 248, 0);
+}
