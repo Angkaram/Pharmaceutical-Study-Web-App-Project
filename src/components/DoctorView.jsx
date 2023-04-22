@@ -45,8 +45,9 @@ function DoctorView() {
     <div className='doctorNavbar'>
 
       <div className='doctorViewTitle'>
-        <div className='janeHopkinsTitleText'>Jane Hopkins</div>
-        <div className='hospitalTitleText'>Hospital</div>
+        <div className='janeHopkinsTitleText'>Jane Hopkins
+          <div className='hospitalTitleText'>Hospital</div>
+        </div>
       </div>
       <div className='displayEmail'>{user?.email}</div>
       <button className='signOutButton' onClick={logout}>
