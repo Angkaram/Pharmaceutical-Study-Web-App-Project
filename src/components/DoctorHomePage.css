@@ -13,14 +13,18 @@ html {
   min-height: 100vh;
   grid-template-rows: 1fr 4fr;
   grid-template-columns: 1fr;
-  /* background-image: url(../assets/images/bgimage.jpg);
+  background-image: url(../assets/images/bgimage.jpg);
   background-repeat: no-repeat;
-  background-size: cover; */
+  background-size: cover;
 }
 
 .nav-bar,
 .container {
   padding: 25px;
+}
+
+.title {
+  margin-bottom: 100px;
 }
 
 .nav-bar {
@@ -35,13 +39,6 @@ html {
 .nav-bar > div + button {
   align-self: center;
   justify-self: center;
-}
-
-.signOutButton{
-  padding: 10px;
-  display: flex;
-  flex-direction: row-reverse;
-  justify-content: space-between;
 }
 
 .hospital-name {
@@ -86,21 +83,28 @@ html {
 }
 
 .box {
-  width: 150px;
-  height: 150px;
+  width: 300px;
+  height: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: #0e619c;
   border: 2px solid;
   border-radius: 25px;
+  
 }
 
 .box button {
   color: white;
-  height: 40px;
-  width: 100px;
+  height: 80px;
+  width: 150px;
   border: 3px solid white;
-  border-radius: 15px;
+  border-radius: 25px;
   background-color: rgba(248, 248, 248, 0);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.box button:hover {
+  transform: scale(1.2);
 }

@@ -104,8 +104,9 @@ function DoctorHomePage({ user, LogOut}) {
             <div className='hospitalTitleText'>Hospital</div>
           </div>
           <div className='displayEmail'>{user?.email}</div>
-          <button className='signOutButton' onClick={LogOut}> SignOut
+          <button className='signOutButton' onClick={LogOut}>
             <div className='signOutIcon'></div>
+            <div className='signOutText'>Sign Out</div>
           </button>
         {/* end: DoctorView.css */}
       </div>
@@ -114,15 +115,15 @@ function DoctorHomePage({ user, LogOut}) {
         <div className="box-container">
 
           <div className="box">
-              <button onClick={() => DoctorAppointments(user)}>Manage Appointments</button>
+              <button onClick={() => DoctorAppointments(user)}><h3>Manage Appointments</h3></button>
           </div>
 
           <div className="box">
-              <button onClick={() => handleManageStudyView(user)}>Manage Study</button>
+              <button onClick={() => handleManageStudyView(user)}><h3>Manage Study</h3></button>
           </div>
 
           <div className="box">
-              <button onClick={() => DoctorView(user)}>Manage Patients</button>
+              <button onClick={() => DoctorView(user)}><h3>Manage Patients</h3></button>
           </div>
 
         </div>  
