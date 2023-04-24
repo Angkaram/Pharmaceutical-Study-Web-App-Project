@@ -160,7 +160,7 @@ th {
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 140px;
+    height: 130px;
     background-color: #0E619C;
 }
 
@@ -234,7 +234,7 @@ th {
     background: url(Icons/signOutIcon.png) no-repeat center center;
     border-radius: 107px;
     background-size: cover;
-    filter: brightness(1000) contrast(10000);
+    filter: brightness(10) contrast(100000);
 }
 
 /* Sign Out Text */
@@ -246,6 +246,8 @@ th {
     font-weight: 900;
     font-size: 22px;
     display: flex;
+    align-items: center;
+    justify-content: center;
     color: #0E619C;
 }
 

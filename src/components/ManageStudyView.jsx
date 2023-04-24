@@ -4,7 +4,7 @@ import "./loginprompt.js";
 import './home.css';
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import './DoctorView.css';
 import './Notifications.css';
 import './ManageStudyView.css';
@@ -81,17 +81,19 @@ function ManageStudyView() {
   return (
     <div className='managePatient'> 
 
-      <div className='doctorNavbar'>
-        <div className='doctorViewTitle'>
-          <div className='janeHopkinsTitleText'>Jane Hopkins</div>
-          <div className='hospitalTitleText'>Hospital</div>
-        </div>
-        <div className='displayEmail'>{user?.email}</div>
-        <button className='signOutButton' onClick={logout}>
-          <div className='signOutIcon'></div>
-          <div className='signOutText'>Sign Out</div>
-        </button>
-      </div>
+<div className='doctorNavbar'>
+
+<div className='doctorViewTitle'>
+  <div className='janeHopkinsTitleText'>Jane Hopkins
+    <div className='hospitalTitleText'>Hospital</div>
+  </div>
+</div>
+<div className='displayEmail'>{user?.email}</div>
+<button className='signOutButton' onClick={logout}>
+  <div className='signOutIcon'></div>
+  <div className='signOutText'>Sign Out</div>
+</button>
+</div>
       <div class="notification-circle" onClick={handleNotificationClick}>
         <div class="notification-circle-icon"></div>
         <div class="notification-number">1</div>
@@ -124,14 +126,23 @@ function ManageStudyView() {
       </div>
     </div>
 
-    <div className='patientTableLocation'>
+    <div className='patientTableLocation' style={{top: 320}}>
       <DisplayStudyData nameSearch={nameSearch} statusSearch={statusSearch} startSearch={startSearch} studyID={studyID}/>
     </div>
 
+    <div className='doctorNavButtonLocations'>
     <div>
-      <button onClick={togglePopup} className='addPatientContainer' style={{top: 200, left: 1000}}>
+      <button onClick={togglePopup} className='addPatientContainer' style={{left: 500}}>
         <div className='addPatientText'>Add Study</div>
       </button>
+    </div>
+    <div>
+      <Link to="/View">
+        <button className='welcomeContainer' style={{left: 200}}>
+          <div className='welcomeText'>Welcome Page</div>
+        </button>
+      </Link>
+    </div>
     </div>
 
     {isOpen && <AddStudyButton handleClose={togglePopup}/>}
