@@ -155,22 +155,23 @@ export default ManageStudyView;
 
 //new function for the AddStudyButton
 function AddStudyButton(togglePopup) {
+  console.log('AddStudyButton was successfully clicked');
   const {entities} = useJaneHopkins();
   const [bavariaAgreed, setBavariaAgreed] = useState(false);
   const [fdaAgreed, setFdaAgreed] = useState(false);
 
   const addStudy = async() => {
+    console.log('addStudy called with study data');
 
-    const isBavariaAgreed = document.getElementById("bavariaAgreed").checked ? "True" : "False";
-    const isFdaAgreed = document.getElementById("fdaAgreed").checked ? "True" : "False";
+    const isBavariaAgreed = document.getElementById("isBavariaAgreed").checked;
+    const isFdaAgreed = document.getElementById("isFdaAgreed").checked;
 
     const addStudyResponse = await entities.study.add({
-      
       name: document.getElementById("name").value,
       status: document.getElementById("status").value,
       start: document.getElementById("start").value,
       end: document.getElementById("end").value,
-      maxPatients: document.getElementById("maxPatients").value,
+      maxPatients: Number(document.getElementById("maxPatients").value),
       isBavariaAgreed: isBavariaAgreed,
       isFdaAgreed: isFdaAgreed
     });
@@ -195,6 +196,16 @@ function AddStudyButton(togglePopup) {
 
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+
+  // make the study start/end a string, not a Date Object from DatePicker
+  /*
+  const studyStart = {
+    start: startDate ? startDate.toISOString() : null
+  };
+  const studyEnd = {
+    end: endDate ? endDate.toISOString() : null
+  };
+  */
 
   return (
     <div className="largeView">
@@ -234,12 +245,12 @@ function AddStudyButton(togglePopup) {
             />
           </p>
           <p className='checkbox'><strong>Agreed By Bavaria?
-            <input type="checkbox" checked = {bavariaAgreed} onChange={()=> setBavariaAgreed(!bavariaAgreed)} id = "bavariaAgreed"></input>
+            <input type="checkbox" checked = {bavariaAgreed} onChange={()=> setBavariaAgreed(!bavariaAgreed)} id = "isBavariaAgreed"></input>
           </strong></p>
           <p className='checkbox'><strong>Agreed By FDA?
-            <input type="checkbox" checked = {fdaAgreed} onChange={()=> setFdaAgreed(!fdaAgreed)} id = "fdaAgreed"></input>
+            <input type="checkbox" checked = {fdaAgreed} onChange={()=> setFdaAgreed(!fdaAgreed)} id = "isFdaAgreed"></input>
           </strong></p>
-          <p><b>Max Participants: </b><input type="text" id = "maxPatients"></input></p>
+          <p><b>Max Participants: </b><input type="number" id = "maxPatients"></input></p>
 
         </div>
       </div>
@@ -326,8 +337,8 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
                           {study.name}
                         </td>
                         <td>{study.status}</td>
-                        <td>{study.startDate}</td>
-                        <td>{study.endDate}</td>
+                        <td>{study.start}</td>
+                        <td>{study.end}</td>
                         <td>{study.isBavariaAgreed ? 'Yes' : 'No'}</td>
                         <td>{study.isFdaAgreed ? 'Yes' : 'No'}</td>
                         <td>{study.maxPatients}</td>
