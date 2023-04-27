@@ -317,32 +317,39 @@ th {
 }
 
 /* Appointments */
-.appointmentContainer {
+.appointmentContainer button {
     position: absolute;
     width: 279px;
-    height: 44px;
+    height: 54px;
+    margin-top: 1vw;
     left: 350px;
     cursor: pointer;
     background: #F3F3F3;
     border: 5px solid #0E619C;
     border-radius: 20px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 27px;
+    color: #0E619C;
+    
 }
 
-.appointmentContainer:hover {
+.appointmentContainer button:hover {
     background-color: #c2dbec;
-    color: white;
 }
 
 /* appointment text */
-.appointmentText {
-    position: absolute;
+.appointmentContainer {
+    position: center;
     width: 221px;
     height: 43px;
     left: 31px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 600;
-    font-size: 22px;
+    font-size: 20px;
     line-height: 27px;
     display: flex;
     align-items: center;

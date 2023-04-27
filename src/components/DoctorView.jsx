@@ -36,6 +36,10 @@ function DoctorView() {
     setICDSearch("");
   }
 
+  const DoctorAppointments = () => {
+    navigate("/Appointments", { state: { user } });
+  };
+
   // can type in patient ID and it will display correct patient from Vendia
   const patientId = '0186b496-32f6-9a7f-cdfe-1e37ab416338';
   console.log(user?.email);
@@ -64,11 +68,9 @@ function DoctorView() {
         </button>
       </Link>
       </div>
-      <Link to="/Appointments">
       <div className='appointmentContainer'>
-        <div className='appointmentText'>Manage Appointments</div>
+        <button onClick={() => DoctorAppointments(user)}> Manage Appointments</button>
       </div>
-      </Link>
       <div>
         <button onClick={togglePopup} className='addPatientContainer'>
           <div className='addPatientText'>Add Patients</div>

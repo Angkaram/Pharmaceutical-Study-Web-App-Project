@@ -8,6 +8,16 @@
     margin: auto;
 }
 
+.manageAppointmentsButton {
+    width: 640px;
+    height: 55px;
+    position: absolute;
+    top: 200px;
+    display: flex;
+    align-items: center;
+    margin: auto;
+}
+
 .center {
     position: relative;
     background: #ffffff;
@@ -27,21 +37,26 @@
 }
 
 /* Welcome */
-.patientContainer {
-    position: absolute;
-    width: 279px;
-    height: 53px;
-    cursor: pointer;
-    background: #F3F3F3;
-    border: 5px solid #0E619C;
-    border-radius: 20px;
-    display: flex;
-    margin-left: 350px;
+.patientContainer button {
+  position: absolute;
+  width: 279px;
+  height: 54px;
+  margin-top: 0vw;
+  left: 350px;
+  cursor: pointer;
+  background: #F3F3F3;
+  border: 5px solid #0E619C;
+  border-radius: 20px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 27px;
+  color: #0E619C;
 }
 
-.patientContainer:hover {
+.patientContainer button:hover {
     background-color: #c2dbec;
-    color: white;
 }
 
 /* Welcome Page */
