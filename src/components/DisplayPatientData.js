@@ -7,7 +7,7 @@ import { ClipLoader } from "react-spinners";
 import AddAppointment from './addAppointment';
 import "./DoctorView.css";
 
-function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, isBavariaView}) {
+function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, isBavariaView, isAdminView}) {
 
   const { entities } = useJaneHopkins();
   const [patients, setPatients] = useState([]);
@@ -50,6 +50,14 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
                 <th style={{backgroundColor: '#08d3b4'}}>Insurance Number</th>
               ) : isBavariaView ? (
                 <th style={{backgroundColor: '#f46f74'}}>Insurance Number</th>
+              ) : isAdminView ? (
+                <>
+                  <th style={{backgroundColor: '#6fabd0'}}>Name</th>
+                  <th style={{backgroundColor: '#6fabd0'}}>Patient ID</th>
+                  <th style={{backgroundColor: '#6fabd0'}}>Eligibility</th>
+                  <th style={{backgroundColor: '#6fabd0'}}>Study Participant</th>
+                  <th style={{backgroundColor: '#6fabd0'}}>Doses</th>
+                </>
               ) : (
                 <>
                   <th>Name</th>
@@ -66,6 +74,8 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
           {patients.filter((patient)=> {
             if (isFDAView || isBavariaView) {
               return patient;
+            } else if (isAdminView && patient.name.toLowerCase().includes(nameSearch.toLowerCase()) && patient.insuranceNumber.includes(insuranceSearch)) {
+              return patient;
             }
             else if (patient.name.toLowerCase().includes(nameSearch.toLowerCase()) && patient.insuranceNumber.includes(insuranceSearch) 
             && patient.icdHealthCodes.some(code => code.code.toLowerCase().includes(ICDSearch.toLowerCase()))) { 
@@ -80,6 +90,15 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
               <tr key={patient.id}>
                 {isFDAView || isBavariaView ? (
                       <td>{patient.insuranceNumber}</td>
+                
+                ) : isAdminView ? (
+                  <>
+                  <td>{patient.name}</td>
+                  <td>{patient._id}</td>
+                  <td>{patient.isEligible.toString()}</td>
+                  <td>{patient.isStudy.toString()}</td>
+                  <td>{patient?.doses}</td>
+                  </>
                     ) : (
                       <>
                         <td onClick={() => handlePatientClick(patient)}>

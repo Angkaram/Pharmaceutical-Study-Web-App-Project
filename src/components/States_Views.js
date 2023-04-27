@@ -12,6 +12,7 @@ import './FDAHomePage.css';
 import './BavariaHomePage.css';
 import ShipmentsButton from './ShipmentsButton';
 import ManageStudyView from './ManageStudyView';
+import AdminPage from './AdminPage';
 
 let view;
 
@@ -56,6 +57,8 @@ function View() {
           view = <FDAHomePage user = {user} LogOut = {logout}/>;
         } else if (user.role === "bavaria") {
           view = <BavariaHomePage user = {user} LogOut = {logout}/>;
+        } else if (user.role === "admin") {
+          view = <AdminPage user = {user} LogOut = {logout}/>;
         }
     // If everything fails, kicks unauthorized user to the login page
     } else {
