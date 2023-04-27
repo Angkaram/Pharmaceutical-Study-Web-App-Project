@@ -55,6 +55,12 @@
           "address": {
             "type": "string"
           },
+          "isEligible": {
+            "type": "boolean"
+          },
+          "isStudy": {
+            "type": "boolean"
+          },
           "doses": {
             "type": "integer"
           },
@@ -165,6 +171,17 @@
           },
           "maxPatients": {
             "type": "integer"
+          },
+          "studyPatients": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       }

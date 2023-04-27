@@ -290,6 +290,8 @@ input Self_Patient_ConditionInput_ {
   height: Vendia_ModelStringInput_
   _icdHealthCodesItem: Self_Patient_icdHealthCodes_icdHealthCodesItem_ConditionInput_
   insuranceNumber: Vendia_ModelStringInput_
+  isEligible: Vendia_ModelBooleanInput_
+  isStudy: Vendia_ModelBooleanInput_
   name: Vendia_ModelStringInput_
   oxygenSaturation: Vendia_ModelStringInput_
   patientPicture: Vendia_ModelStringInput_
@@ -317,6 +319,8 @@ input Self_Patient_FilterInput_ {
   height: Vendia_ModelStringInput_
   _icdHealthCodesItem: Self_Patient_icdHealthCodes_icdHealthCodesItem_FilterInput_
   insuranceNumber: Vendia_ModelStringInput_
+  isEligible: Vendia_ModelBooleanInput_
+  isStudy: Vendia_ModelBooleanInput_
   name: Vendia_ModelStringInput_
   oxygenSaturation: Vendia_ModelStringInput_
   patientPicture: Vendia_ModelStringInput_
@@ -348,6 +352,8 @@ type Self_Patient {
   height: String
   icdHealthCodes: [Self_Patient_icdHealthCodes_icdHealthCodesItem]
   insuranceNumber: String
+  isEligible: Boolean
+  isStudy: Boolean
   name: String
   oxygenSaturation: String
   patientPicture: String
@@ -374,6 +380,8 @@ type Self_Patient_Partial_ {
   height: String
   icdHealthCodes: [Self_Patient_icdHealthCodes_icdHealthCodesItem_Partial_]
   insuranceNumber: String
+  isEligible: Boolean
+  isStudy: Boolean
   name: String
   oxygenSaturation: String
   patientPicture: String
@@ -420,6 +428,8 @@ input Self_Patient_Input_ {
   height: String
   icdHealthCodes: [Self_Patient_icdHealthCodes_icdHealthCodesItem_Input_]
   insuranceNumber: String
+  isEligible: Boolean
+  isStudy: Boolean
   name: String
   oxygenSaturation: String
   patientPicture: String
@@ -443,6 +453,8 @@ input Self_Patient_UpdateInput_ {
   height: String
   icdHealthCodes: [Self_Patient_icdHealthCodes_icdHealthCodesItem_UpdateInput_]
   insuranceNumber: String
+  isEligible: Boolean
+  isStudy: Boolean
   name: String
   oxygenSaturation: String
   patientPicture: String
@@ -466,6 +478,8 @@ input Self_Patient_PartialInput_ {
   height: String
   icdHealthCodes: [Self_Patient_icdHealthCodes_icdHealthCodesItem_PartialInput_]
   insuranceNumber: String
+  isEligible: Boolean
+  isStudy: Boolean
   name: String
   oxygenSaturation: String
   patientPicture: String
@@ -483,6 +497,7 @@ input Self_Study_ConditionInput_ {
   name: Vendia_ModelStringInput_
   start: Vendia_ModelStringInput_
   status: Vendia_ModelStringInput_
+  _studyPatientsItem: Self_Study_studyPatients_studyPatientsItem_ConditionInput_
   _and: [Self_Study_ConditionInput_]
   _or: [Self_Study_ConditionInput_]
   _not: Self_Study_ConditionInput_
@@ -497,6 +512,7 @@ input Self_Study_FilterInput_ {
   name: Vendia_ModelStringInput_
   start: Vendia_ModelStringInput_
   status: Vendia_ModelStringInput_
+  _studyPatientsItem: Self_Study_studyPatients_studyPatientsItem_FilterInput_
   _and: [Self_Study_FilterInput_]
   _or: [Self_Study_FilterInput_]
   _not: Self_Study_FilterInput_
@@ -515,6 +531,7 @@ type Self_Study {
   name: String
   start: String
   status: String
+  studyPatients: [Self_Study_studyPatients_studyPatientsItem]
   _acl: [Vendia_Acl!]
   _owner: String
 }
@@ -528,6 +545,7 @@ type Self_Study_Partial_ {
   name: String
   start: String
   status: String
+  studyPatients: [Self_Study_studyPatients_studyPatientsItem_Partial_]
   _acl: [Vendia_Acl!]
   _owner: String
 }
@@ -561,6 +579,7 @@ input Self_Study_Input_ {
   name: String
   start: String
   status: String
+  studyPatients: [Self_Study_studyPatients_studyPatientsItem_Input_]
 }
 
 input Self_Study_UpdateInput_ {
@@ -571,6 +590,7 @@ input Self_Study_UpdateInput_ {
   name: String
   start: String
   status: String
+  studyPatients: [Self_Study_studyPatients_studyPatientsItem_UpdateInput_]
 }
 
 input Self_Study_PartialInput_ {
@@ -581,6 +601,7 @@ input Self_Study_PartialInput_ {
   name: String
   start: String
   status: String
+  studyPatients: [Self_Study_studyPatients_studyPatientsItem_PartialInput_]
 }
 
 input Self_Patient_allergies_allergiesItem_ConditionInput_ {
@@ -736,6 +757,42 @@ type Self_Patient_visits_visitsItem_Transaction_Result_ {
 }
 
 type Self_Patient_visits_visitsItem_Delete_Transaction_Result_ {
+  transaction: Vendia_Transaction!
+}
+
+input Self_Study_studyPatients_studyPatientsItem_ConditionInput_ {
+  id: Vendia_ModelStringInput_
+  _and: [Self_Study_studyPatients_studyPatientsItem_ConditionInput_]
+  _or: [Self_Study_studyPatients_studyPatientsItem_ConditionInput_]
+  _not: Self_Study_studyPatients_studyPatientsItem_ConditionInput_
+}
+
+input Self_Study_studyPatients_studyPatientsItem_FilterInput_ {
+  id: Vendia_ModelStringInput_
+  _and: [Self_Study_studyPatients_studyPatientsItem_FilterInput_]
+  _or: [Self_Study_studyPatients_studyPatientsItem_FilterInput_]
+  _not: Self_Study_studyPatients_studyPatientsItem_FilterInput_
+}
+
+type Self_Study_studyPatients_studyPatientsItem {
+  id: String
+}
+
+type Self_Study_studyPatients_studyPatientsItem_Partial_ {
+  id: String
+}
+
+type Self_Study_studyPatients_studyPatientsItem_Result_ {
+  error: String
+  result: Self_Study_studyPatients_studyPatientsItem
+}
+
+type Self_Study_studyPatients_studyPatientsItem_Transaction_Result_ {
+  transaction: Vendia_Transaction!
+  result: Self_Study_studyPatients_studyPatientsItem
+}
+
+type Self_Study_studyPatients_studyPatientsItem_Delete_Transaction_Result_ {
   transaction: Vendia_Transaction!
 }
 
@@ -4032,6 +4089,18 @@ input Self_Patient_visits_visitsItem_PartialInput_ {
   hivViralLoad: String
   notes: String
   patient: String
+}
+
+input Self_Study_studyPatients_studyPatientsItem_Input_ {
+  id: String
+}
+
+input Self_Study_studyPatients_studyPatientsItem_UpdateInput_ {
+  id: String
+}
+
+input Self_Study_studyPatients_studyPatientsItem_PartialInput_ {
+  id: String
 }
 
 input Vendia_Block_transactions_transactionsItem_Input_ {
