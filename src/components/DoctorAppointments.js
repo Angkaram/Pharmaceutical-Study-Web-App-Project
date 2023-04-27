@@ -28,6 +28,10 @@ function DoctorAppointments() {
     const locales = {
         "en-US": require("date-fns/locale/en-US")
     };
+
+    const DoctorView = () => {
+        navigate("/DoctorView", { state: { user } });
+    };
     
     const localizer = dateFnsLocalizer({
         format,
@@ -82,14 +86,10 @@ function DoctorAppointments() {
                     <div className='welcomeText'>Welcome Page</div>
                 </button>
             </Link>
-
-            <Link to="/DoctorView">
-                <button className='patientContainer'>
-                    <div className='patientText'>Manage Patients</div>
-                </button>
-            </Link>
-
-                <h1 className = "header">Manage Appointments</h1>
+            
+            <div className="patientContainer">
+                <button onClick={() => DoctorView(user)}>Manage Patients</button>
+            </div>
             </div>
 
             <div className="calendar">
