@@ -57,17 +57,17 @@ function AddPatientButton(togglePopup) {
       <h3> Patient Name: <input type="text" id="name"></input></h3> 
       
       <div className="popup-middle">
-        <div className="popup-section">
+        <div className="popup-section" style={{dispaly: 'flex', flexDirection: 'column' }}>
           <h3>General Information</h3>
           <p><b>DOB: </b><input type="text" id = "dob"></input></p>
           <p><b>Insurance Number: </b><input type="text" id = "insuranceNumber"></input></p>
           <p><b>Weight:</b><input type="text" id = "weight"></input></p>
           <p><b>Address: </b><input type="text" id = "address"></input></p>
         </div>
-        <div className="popup-section">
+        <div className="popup-section" >
           <h3>Health Information</h3>
           <p><strong>Patient ID:</strong> <input type="text" id = "uuid"></input></p>
-          <p><strong>Blood Type:</strong> <input type="text"></input></p>
+          {/* <p><strong>Blood Type:</strong> <input type="text"></input></p> */}
 
           <p className='checkbox'><strong className='checkbox-test'>Currently Employed:
             <input type="checkbox" checked = {isEmployed} onChange={()=> setIsEmployed(!isEmployed)} id = "employed"></input>
