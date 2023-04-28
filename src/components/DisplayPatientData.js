@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { css } from "@emotion/react";
 import { ClipLoader } from "react-spinners";
 import AddAppointment from './addAppointment';
+import EditPatient from './editPatient';
 import "./DoctorView.css";
 
 function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, isBavariaView, isAdminView}) {
@@ -13,10 +14,27 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
   const [patients, setPatients] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedPatient, setSelectedPatient] = useState(null);
+  const [patientData, setPatientData] = useState(selectedPatient);
 
   const [isOpen, setIsOpen] = useState(false);
   const togglePopup = () => {
     setIsOpen(!isOpen);
+  }
+
+  const [isOpenNew, setIsOpenNew] = useState(false);
+  const togglePopupNew = () => {
+    setIsOpenNew(!isOpenNew);
+  }
+
+  const handlePatientDataUpdate = (updatedPatient) => {
+    // Find the index of the updated patient in the patientData array
+    const index = patientData.findIndex(patient => patient._id === updatedPatient._id);
+    // Create a copy of the patientData array
+    const updatedPatientData = [...patientData];
+    // Replace the updated patient with the new data
+    updatedPatientData[index] = updatedPatient;
+    // Update the state to trigger a re-render of the table with the updated data
+    setPatientData(updatedPatientData);
   }
 
   useEffect(() => {
@@ -122,7 +140,7 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
         <button id="close" onClick={() => setSelectedPatient(null)}>X</button>
           <div class="popup-top">
             <h3 class = "pName"> Patient:<i> <br></br>&emsp; {selectedPatient.name}</i></h3> 
-           
+          
             <img class = "profilePic" src = "https://www.unitedway.ca/wp-content/uploads/2017/06/TempProfile.jpg"/> 
           </div>
           <div class="popup-middle">
@@ -160,16 +178,18 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
               </p>
 
             </div>
-            <button onClick={togglePopup}>Add Appointment</button>
+            <button className='add-patient' onClick={togglePopup}>Add Appointment</button>
+            <button className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500'}} onClick={togglePopupNew}>Edit Patient</button>
           </div>
         </div>
       </div>
       
-       
-       )}
-       {isOpen && <AddAppointment togglePopup={togglePopup} selectedPatient={selectedPatient}/>}
-     </div>
-   );
- }
- 
- export default DisplayPatientData;
+      
+      )}
+      {isOpen && <AddAppointment togglePopup={togglePopup} selectedPatient={selectedPatient}/>}
+      {isOpenNew && <EditPatient togglePopup={togglePopupNew} selectedPatient={selectedPatient} onPatientDataUpdate={handlePatientDataUpdate}/>}
+    </div>
+  );
+}
+
+export default DisplayPatientData;

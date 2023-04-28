@@ -40,6 +40,9 @@
           "weight": {
             "type": "string"
           },
+          "bloodType": {
+            "type": "string"
+          },
           "bloodPressure": {
             "type": "string"
           },

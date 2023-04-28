@@ -156,6 +156,7 @@ enum Vendia_OperationType {
   DELETE
   INVOKE
   ALL
+  ERASE_GLOBAL
 }
 
 type Vendia_Version_Connection_ {
@@ -281,6 +282,7 @@ input Self_Patient_ConditionInput_ {
   age: Vendia_ModelIntInput_
   _allergiesItem: Self_Patient_allergies_allergiesItem_ConditionInput_
   bloodPressure: Vendia_ModelStringInput_
+  bloodType: Vendia_ModelStringInput_
   _currentMedicationsItem: Self_Patient_currentMedications_currentMedicationsItem_ConditionInput_
   currentlyEmployed: Vendia_ModelStringInput_
   currentlyInsured: Vendia_ModelStringInput_
@@ -310,6 +312,7 @@ input Self_Patient_FilterInput_ {
   age: Vendia_ModelIntInput_
   _allergiesItem: Self_Patient_allergies_allergiesItem_FilterInput_
   bloodPressure: Vendia_ModelStringInput_
+  bloodType: Vendia_ModelStringInput_
   _currentMedicationsItem: Self_Patient_currentMedications_currentMedicationsItem_FilterInput_
   currentlyEmployed: Vendia_ModelStringInput_
   currentlyInsured: Vendia_ModelStringInput_
@@ -343,6 +346,7 @@ type Self_Patient {
   age: Int
   allergies: [Self_Patient_allergies_allergiesItem]
   bloodPressure: String
+  bloodType: String
   currentMedications: [Self_Patient_currentMedications_currentMedicationsItem]
   currentlyEmployed: String
   currentlyInsured: String
@@ -371,6 +375,7 @@ type Self_Patient_Partial_ {
   age: Int
   allergies: [Self_Patient_allergies_allergiesItem_Partial_]
   bloodPressure: String
+  bloodType: String
   currentMedications: [Self_Patient_currentMedications_currentMedicationsItem_Partial_]
   currentlyEmployed: String
   currentlyInsured: String
@@ -419,6 +424,7 @@ input Self_Patient_Input_ {
   age: Int
   allergies: [Self_Patient_allergies_allergiesItem_Input_]
   bloodPressure: String
+  bloodType: String
   currentMedications: [Self_Patient_currentMedications_currentMedicationsItem_Input_]
   currentlyEmployed: String
   currentlyInsured: String
@@ -444,6 +450,7 @@ input Self_Patient_UpdateInput_ {
   age: Int
   allergies: [Self_Patient_allergies_allergiesItem_UpdateInput_]
   bloodPressure: String
+  bloodType: String
   currentMedications: [Self_Patient_currentMedications_currentMedicationsItem_UpdateInput_]
   currentlyEmployed: String
   currentlyInsured: String
@@ -469,6 +476,7 @@ input Self_Patient_PartialInput_ {
   age: Int
   allergies: [Self_Patient_allergies_allergiesItem_PartialInput_]
   bloodPressure: String
+  bloodType: String
   currentMedications: [Self_Patient_currentMedications_currentMedicationsItem_PartialInput_]
   currentlyEmployed: String
   currentlyInsured: String
