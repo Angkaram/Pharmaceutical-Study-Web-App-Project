@@ -680,6 +680,27 @@ th {
     cursor: pointer;
 }
 
+.add-patient::after {
+    content: attr(data-message);
+    position: absolute;
+    top: calc(100% + 10px);
+    left: 0;
+    width: 100%;
+    background-color: #f3f3f3;
+    border: 5px solid #0e619c;
+    border-radius: 20px;
+    padding: 10px;
+    box-sizing: border-box;
+    opacity: 0;
+    transition: all 0.3s ease-in-out;
+    visibility: hidden;
+  }
+
+  .add-patient:hover {
+    opacity: 1;
+    visibility: visible;
+  }
+
 /* Get rid of up/down errors on number input*/
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

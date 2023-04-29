@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import useJaneHopkins from '../hooks/useJaneHopkins';
 import "./DoctorView.css";
+import "./ManageStudyView.css";
 
 function AddPatientButton(togglePopup) {
   const {entities} = useJaneHopkins();
@@ -94,7 +95,16 @@ function AddPatientButton(togglePopup) {
         </div>
 
       </div>
-      <button className='add-patient'onClick = {() => {addPatient();}}>Add/Create Patient</button>
+      <button className='add-patient' onClick={() => {
+        addPatient();
+        const messageElem = document.createElement('div');
+        messageElem.innerText = 'New Patient Added Successfully';
+        messageElem.classList.add('message'); // Add CSS class to the message element
+        document.body.appendChild(messageElem);
+        setTimeout(() => {
+            messageElem.remove();
+        }, 1000); // Delay message display for 1 second (1000 milliseconds)
+        }}>Add/Create Patient</button>
     </div>
   </div>
   )

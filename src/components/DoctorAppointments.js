@@ -71,11 +71,12 @@ function DoctorAppointments() {
         <div className='center'> 
             <div className='doctorNavbar'>
                 <div className='doctorViewTitle'>
-                    <div className='janeHopkinsTitleText'>Jane Hopkins</div>
+                    <div className='janeHopkinsTitleText'>Jane Hopkins
                     <div className='hospitalTitleText'>Hospital</div>
+                    </div>
                 </div>
-                <div className='displayEmail'>{user.email}</div>
-                <button className='signOutButton' onClick = {logout}>
+                <div className='displayEmail'>{user?.email}</div>
+                <button className='signOutButton' onClick={logout}>
                     <div className='signOutIcon'></div>
                     <div className='signOutText'>Sign Out</div>
                 </button>

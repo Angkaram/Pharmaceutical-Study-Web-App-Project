@@ -145,36 +145,32 @@ function FDAHomePage({ user, LogOut }) {
   
   console.log(user?.email);
   return (
-    <div className='fdabody'> 
-      <div className='doctorNavbar' style={{backgroundColor: '#08d3b4'}}>
+    <div className='fdabody'>
 
-        <div className='doctorViewTitle'>
-        <div className='janeHopkinsTitleText'style={{left: '138px', top: '14px', color: 'white', fontFamily: 'Georgia'}}>FDA</div>
-        <div className='hospitalTitleText' style={{fontSize: 25, textAlign: 'center', left: '0', top: '18px'}}>U.S. Food and Drug Administration</div>
+          <div className = 'nav-bar' style={{backgroundColor: '#08d3b4'}}>
+            <div className='janeHopkinsTitleText'>FDA
+              <div className='hospitalTitleText' style={{fontSize: 25, textAlign: 'center'}}>U.S. Food and Drug Administration</div>
+            </div>
+            <div className='displayEmail'>{user?.email}</div>
+            <button className='signOutButton' onClick={LogOut}>
+              <div className='signOutIcon'></div>
+              <div className='signOutText' style={{color: '#069882'}}>Sign Out</div>
+            </button>
+          
+        </div>
+        <div className='welcome-container'>
+          <h1 className="title"> Welcome</h1>
+          <div className="box-container" >
+  
+            <div className="box" style={{backgroundColor: '#08d3b4'}}>
+                <button onClick={() => FDAView(user)}><h3>Manage Contracts</h3></button>
+            </div>
+  
+          </div>  
+  
+        </div>
       </div>
-    <div className='displayEmail'>{user?.email}</div>
-      <button className='signOutButton' style={{border: '#069882' }} onClick={LogOut}>
-        <div className='signOutIcon'></div>
-        <div className='signOutText' style={{color: '#069882' }}>Sign Out</div>
-      </button>
-    </div>
-    <div className='container'>
-      <h1 className="title"> Welcome</h1>
-      <div className="box-container">
-        <div className="box" style={{backgroundColor: '#069882'}}>
-          <div className="button-container">
-            <button className="buttons" style={{backgroundColor: '#069882'}}><h3>Manage Studies</h3></button>
-          </div>
-        </div>
-        <div className="box" style={{backgroundColor: '#069882'}}>
-          <div className="button-container">
-            <button className="buttons" style={{backgroundColor: '#069882'}} onClick={() => FDAView(user)}><h3>Manage Contracts</h3></button>
-          </div>
-        </div>
-      </div>   
-    </div>
-  </div>
-  );
+          );
 }
 
 // bavaria view (work in progress)
@@ -186,36 +182,32 @@ function BavariaHomePage({ user, LogOut }) {
   
   console.log(user?.email);
   return (
-    <div className='bavariabody'> 
-      <div className='doctorNavbar' style={{backgroundColor: '#f46f74'}}>
+        <div className='bavariabody'>
 
-        <div className='doctorViewTitle'>
-        <div className='janeHopkinsTitleText' style={{left: '78px', top: '8px', color: 'white', fontFamily: 'Georgia'}}>Bavaria</div>
-        <div className='hospitalTitleText' style={{textAlign: 'center', left: '0', top: '18px'}}>Pharmaceuticals</div>
+          <div className = 'nav-bar' style={{backgroundColor: '#f46f74'}}>
+            <div className='janeHopkinsTitleText'>Bavaria
+              <div className='hospitalTitleText'>Pharmaceuticals</div>
+            </div>
+            <div className='displayEmail'>{user?.email}</div>
+            <button className='signOutButton' onClick={LogOut}>
+              <div className='signOutIcon'></div>
+              <div className='signOutText' style={{color: '#e7121a' }}>Sign Out</div>
+            </button>
+          
+        </div>
+        <div className='welcome-container'>
+          <h1 className="title"> Welcome</h1>
+          <div className="box-container" >
+  
+            <div className="box" style={{backgroundColor: '#f46f74'}}>
+                <button onClick={() => BavariaView(user)}><h3>Manage Shipments</h3></button>
+            </div>
+  
+          </div>  
+  
+        </div>
       </div>
-    <div className='displayEmail'>{user?.email}</div>
-      <button className='signOutButton' style={{border: '#f46f74' }} onClick={LogOut}>
-        <div className='signOutIcon'></div>
-        <div className='signOutText' style={{color: '#e7121a' }}>Sign Out</div>
-      </button>
-    </div>
-    <div className='container'>
-      <h1 className="title"> Welcome</h1>
-      <div className="box-container">
-        <div className="box" style={{backgroundColor: '#f46f74'}}>
-          <div className="button-container">
-            <button className="buttons" style={{backgroundColor: '#f46f74'}}><h3>Manage Something</h3></button>
-          </div>
-        </div>
-        <div className="box" style={{backgroundColor: '#f46f74'}}>
-          <div className="button-container">
-            <button className="buttons" style={{backgroundColor: '#f46f742'}} onClick={() => BavariaView(user)}><h3>Manage Shipments</h3></button>
-          </div>
-        </div>
-      </div>   
-    </div>
-  </div>
-  );
+          );
 }
 
 export default View;

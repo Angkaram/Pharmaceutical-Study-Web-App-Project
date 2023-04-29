@@ -18,7 +18,6 @@ import { ToastContainer, toast } from 'react-toastify';
 
 function ManageStudyView() {
 
-  /* EDIT BELOW TO MATCH STUDY LOGIC, NOT PATIENT LOGIC */
   const { entities } = useJaneHopkins();
   const [study, setStudy] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -37,17 +36,6 @@ function ManageStudyView() {
     fetchStudy();
   
   }, [entities.study]);
-  
-  const override = css`
-    display: block;
-    margin: 0 auto;
-    border-color: red;
-  `;
-
-  //const [studyName, setStudySearch] = useState("");
-
-  //////////END OF PART TO BE EDITED////////
-  
   
   const location = useLocation();
   const { user } = location.state;
@@ -102,29 +90,6 @@ function ManageStudyView() {
         <p>The study was approved</p>
         <button onClick={handleButtonClick}>Show Notification</button>
       </div>
-
-    <div className="sidebar">
-      <div className="category active">
-        <i className="fas fa-circle"></i>
-        <span>Active Studies</span>
-        <span className="count">5</span>
-      </div>
-      <div className="category pending">
-        <i className="fas fa-circle"></i>
-        <span>Pending Studies</span>
-        <span className="count">3</span>
-      </div>
-      <div className="category cancelled">
-        <i className="fas fa-circle"></i>
-        <span>Cancelled Studies</span>
-        <span className="count">1</span>
-      </div>
-      <div className="category completed">
-        <i className="fas fa-circle"></i>
-        <span>Completed Studies</span>
-        <span className="count">10</span>
-      </div>
-    </div>
 
     <div className='patientTableLocation' style={{top: 320}}>
       <DisplayStudyData nameSearch={nameSearch} statusSearch={statusSearch} startSearch={startSearch} studyID={studyID}/>
@@ -183,7 +148,7 @@ function AddStudyButton(togglePopup) {
 
   // Initial state of the dropdown menu
   const initialState = () => {
-    const value = "Active";
+    const value = "Approved";
     return value;
   }
 
@@ -196,16 +161,6 @@ function AddStudyButton(togglePopup) {
 
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
-
-  // make the study start/end a string, not a Date Object from DatePicker
-  /*
-  const studyStart = {
-    start: startDate ? startDate.toISOString() : null
-  };
-  const studyEnd = {
-    end: endDate ? endDate.toISOString() : null
-  };
-  */
 
   return (
     <div className="largeView">
@@ -223,7 +178,7 @@ function AddStudyButton(togglePopup) {
           <h3>General Information</h3>
           <b>Study Status: </b>
           <select value={value} onChange={handleChange} className = "drop-down" name = "select-organization" id="status">
-                <option value = "Active">Active</option>
+                <option value = "Approved">Approved</option>
                 <option value = "Pending">Pending</option>
                 <option value = "Cancelled">Cancelled</option>
                 <option value = "Completed">Completed</option>
@@ -254,7 +209,17 @@ function AddStudyButton(togglePopup) {
 
         </div>
       </div>
-      <button className='add-patient'onClick = {() => {addStudy();}}>Add/Create Study</button>
+      <button className='add-patient' onClick={() => {
+    addStudy();
+    const messageElem = document.createElement('div');
+    messageElem.innerText = 'New Study Added Successfully';
+    messageElem.classList.add('message'); // Add CSS class to the message element
+    document.body.appendChild(messageElem);
+    setTimeout(() => {
+        messageElem.remove();
+    }, 1000); // Delay message display for 1 second (1000 milliseconds)
+    }}>Add/Create Study</button>
+
     </div>
   </div>
   )
@@ -268,6 +233,10 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
   const [study, setStudy] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [selectedStudy, setSelectedStudy] = useState(null);
+  const [approvedCount, setApprovedCount] = useState(0);
+  const [pendingCount, setPendingCount] = useState(0);
+  const [cancelledCount, setCancelledCount] = useState(0);
+  const [completedCount, setCompletedCount] = useState(0);
 
   useEffect(() => {
     async function fetchStudy() {
@@ -278,6 +247,32 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
 
     fetchStudy();
   }, [entities.study]);
+
+  // Count the number of studies with a special status
+  useEffect(() => {
+    let myApprovedCount = 0;
+    let myPendingCount = 0;
+    let myCancelledCount = 0;
+    let myCompletedCount = 0;
+    for (const s of study) {
+      if (s.status === "Approved") {
+        myApprovedCount++;
+      }
+      else if (s.status === "Pending") {
+        myPendingCount++;
+      }
+      else if (s.status === "Cancelled") {
+        myCancelledCount++;
+      }
+      else {
+        myCompletedCount++;
+      }
+    }
+    setApprovedCount(myApprovedCount);
+    setPendingCount(myPendingCount);
+    setCancelledCount(myCancelledCount);
+    setCompletedCount(myCompletedCount);
+  }, [study]);
 
   const override = css`
     display: block;
@@ -291,7 +286,8 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
 
   return (
     <div>
-      
+      <ClipLoader color={"blue"} loading={isLoading} css={override} size={40} />
+      {!isLoading && (
         <table className="patientTable">
           <thead>
           <tr>
@@ -350,6 +346,30 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
 
           </tbody>
         </table>
+      )}       
+      <div className="sidebar">
+      <div className="category approved">
+        <i className="fas fa-circle"></i>
+        <span>-Approved Studies:</span>
+        <span className="count">{approvedCount}</span>
       </div>
+      <div className="category pending">
+        <i className="fas fa-circle"></i>
+        <span>-Pending Studies:</span>
+        <span className="count">{pendingCount}</span>
+      </div>
+      <div className="category cancelled">
+        <i className="fas fa-circle"></i>
+        <span>-Cancelled Studies:</span>
+        <span className="count">{cancelledCount}</span>
+      </div>
+      <div className="category completed">
+        <i className="fas fa-circle"></i>
+        <span>-Completed Studies:</span>
+        <span className="count">{completedCount}</span>
+      </div>
+    </div>   
+        </div>
+    
     )
 };

@@ -1,9 +1,11 @@
 .fdabody {
-  position: cover;
-  width: 100%;
-  height: 100vh;
+  box-sizing: border-box;
+  display: grid;
+  min-width: 100vw;
+  min-height: 100vh;
+  grid-template-rows: 1fr 4fr;
+  grid-template-columns: 1fr;
   background-image: url('../assets/images/fdaimage.jpg');
   background-repeat: no-repeat;
-  background-position: center;
   background-size: cover;
 }

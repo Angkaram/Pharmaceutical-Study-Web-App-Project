@@ -27,20 +27,19 @@ function BavariaView() {
     setIsOpen(!isOpen);
   }
   return (
-    <div className='managePatient'> 
+    <div className='bavariabody'>
 
-      <div className='doctorNavbar'style={{backgroundColor: '#f46f74'}}>
-
-        <div className='doctorViewTitle'>
-          <div className='janeHopkinsTitleText' style={{left: '78px', top: '8px', color: 'white', fontFamily: 'Georgia'}}>Bavaria</div>
-          <div className='hospitalTitleText' style={{textAlign: 'center', left: '0', top: '18px'}}>Pharmaceuticals</div>
+          <div className = 'nav-bar' style={{backgroundColor: '#f46f74'}}>
+            <div className='janeHopkinsTitleText'>Bavaria
+              <div className='hospitalTitleText'>Pharmaceuticals</div>
+            </div>
+            <div className='displayEmail'>{user?.email}</div>
+            <button className='signOutButton' onClick={logout}>
+              <div className='signOutIcon'></div>
+              <div className='signOutText' style={{color: '#e7121a' }}>Sign Out</div>
+            </button>
+          
         </div>
-        <div className='displayEmail'>{user?.email}</div>
-        <button className='signOutButton' style={{border: '#e7121a' }} onClick={logout}>
-          <div className='signOutIcon'></div>
-          <div className='signOutText'style={{color: '#e7121a' }}>Sign Out</div>
-        </button>
-      </div>
 
       <div className='doctorNavButtonLocations'>
         <div>

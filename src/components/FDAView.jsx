@@ -27,20 +27,19 @@ function FDAView() {
     setIsOpen(!isOpen);
   }
   return (
-    <div className='managePatient'> 
+    <div className='fdaview'> 
 
-      <div className='doctorNavbar'style={{backgroundColor: '#08d3b4'}}>
-
-        <div className='doctorViewTitle'>
-          <div className='janeHopkinsTitleText' style={{left: '138px', top: '14px', color: 'white', fontFamily: 'Georgia'}}>FDA</div>
-          <div className='hospitalTitleText' style={{fontSize: 25, textAlign: 'center', left: '0', top: '18px'}}>U.S. Food and Drug Administration</div>
+        <div className = 'nav-bar' style={{backgroundColor: '#08d3b4'}}>
+            <div className='janeHopkinsTitleText'>FDA
+              <div className='hospitalTitleText' style={{fontSize: 25, textAlign: 'center'}}>U.S. Food and Drug Administration</div>
+            </div>
+            <div className='displayEmail'>{user?.email}</div>
+            <button className='signOutButton' onClick={logout}>
+              <div className='signOutIcon'></div>
+              <div className='signOutText' style={{color: '#069882'}}>Sign Out</div>
+            </button>
+          
         </div>
-        <div className='displayEmail'>{user?.email}</div>
-        <button className='signOutButton' style={{border: '#069882' }} onClick={logout}>
-          <div className='signOutIcon'></div>
-          <div className='signOutText'style={{color: '#069882' }}>Sign Out</div>
-        </button>
-      </div>
 
       <div className='doctorNavButtonLocations'>
         <div>

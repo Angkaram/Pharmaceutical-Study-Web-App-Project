@@ -1,12 +1,12 @@
 .sidebar {
     background-color: #fff;
-    width: 350px;
+    width: 360px;
     height: 200px;
     position: absolute;
     bottom: 20px; /* Adjust the distance from the bottom of the screen */
     left: 20px; /* Adjust the distance from the left of the screen */
     padding: 20px;
-    border: 5px solid #0088cc;
+    border: 5px solid #000000;
 }
 
 .category {
@@ -15,8 +15,8 @@ align-items: center;
 margin-bottom: px;
 }
 
-.active {
-color: #0088cc;
+.approved {
+color: #0074ae;
 font-size: 35px;
 }
 
@@ -33,14 +33,15 @@ font-size: 35px;
 .completed {
 color: #5cb85c;
 font-size: 35px;
+margin-right: auto;
 }
 
 i {
-margin-right: 1px;
+margin-right: 0px;
 }
 
 .count {
-background-color: #0088cc;
+background-color: #464646;
 color: #fff;
 border-radius: 50%;
 width: 35px;
@@ -52,7 +53,6 @@ margin-left: auto;
 font-size: 20px;
 }
 
-
 .addStudyButton {
 background-color: #0088cc;
 color: #fff;
@@ -63,8 +63,21 @@ cursor: pointer;
 }
 
 .clicked {
-    background-color: blue;
+    background-color: #0088cca0;
     color: white;
-    /* add other styles as needed */
-  }
+}
   
+.message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #0088cc;
+    color: white;
+    padding: 10px;
+    border: 2px solid white;
+    border-radius: 15px;
+    font-weight: bold;
+    text-shadow: 1px 1px 0 black;
+    font: RobotoCondensed;
+}
