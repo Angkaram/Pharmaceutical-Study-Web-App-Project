@@ -8,7 +8,7 @@ import AddAppointment from './addAppointment';
 import EditPatient from './editPatient';
 import "./DoctorView.css";
 
-function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, isBavariaView, isAdminView}) {
+function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, isBavariaView, isAdminView, filterEligible, idSearch}) {
 
   const { entities } = useJaneHopkins();
   const [patients, setPatients] = useState([]);
@@ -92,7 +92,8 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
           {patients.filter((patient)=> {
             if (isFDAView || isBavariaView) {
               return patient;
-            } else if (isAdminView && patient.name.toLowerCase().includes(nameSearch.toLowerCase()) && patient.insuranceNumber.includes(insuranceSearch)) {
+            } else if (isAdminView && patient.name.toLowerCase().includes(nameSearch.toLowerCase()) && patient._id.includes(idSearch) 
+            && (filterEligible === false ||filterEligible === patient.isEligible)) {
               return patient;
             }
             else if (patient.name.toLowerCase().includes(nameSearch.toLowerCase()) && patient.insuranceNumber.includes(insuranceSearch) 

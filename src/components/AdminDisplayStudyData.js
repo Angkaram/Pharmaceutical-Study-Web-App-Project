@@ -9,8 +9,9 @@ import { useEffect, useState } from 'react';
 import { css } from "@emotion/react";
 import "react-datepicker/dist/react-datepicker.css";
 import AdminPopup from './AdminPopup';
+import "./Admin.css";
 
-function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isBavariaView, isAdmin}) {
+function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isBavariaView, isAdminView}) {
 
     const { entities } = useJaneHopkins();
     const [study, setStudy] = useState([]);
@@ -55,6 +56,17 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
                   <th style={{backgroundColor: '#08d3b4'}}>Insurance Number</th>
                 ) : isBavariaView ? (
                   <th style={{backgroundColor: '#f46f74'}}>Insurance Number</th>
+                ) : isAdminView ? (
+                  <>
+                    <th style={{backgroundColor: '#6fabd0'}}>Study Name</th>
+                    <th style={{backgroundColor: '#6fabd0'}}>Study Status</th>
+                    <th style={{backgroundColor: '#6fabd0'}}>Study Start</th>
+                    <th style={{backgroundColor: '#6fabd0'}}>Study End</th>
+                    <th style={{backgroundColor: '#6fabd0'}}>Agreed by Bavaria</th>
+                    <th style={{backgroundColor: '#6fabd0'}}>Agreed by FDA</th>
+                    <th style={{backgroundColor: '#6fabd0'}}>Max Participants</th>
+                    <th style={{backgroundColor: '#6fabd0'}}>Need Patients</th>
+                  </>
                 ) : (
                   <>
                     <th>Study Name</th>
@@ -101,6 +113,7 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
                           <td>{study.isBavariaAgreed ? 'Yes' : 'No'}</td>
                           <td>{study.isFdaAgreed ? 'Yes' : 'No'}</td>
                           <td>{study.maxPatients}</td>
+                          <td>{study.studyPatients ? 'No' : 'Yes'}</td>
                         </>
                       )}
                     </tr>

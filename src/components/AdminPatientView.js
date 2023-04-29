@@ -1,13 +1,18 @@
 import DisplayPatientData from "./DisplayPatientData";
 import { useState } from "react";
 import "./DoctorView.css";
+import "./Admin.css";
 
-function AdminPatientView({user, logout, gotoHomePage}) {
+function AdminPatientView({user, logout, gotoHomePage, gotoStudy}) {
   const [nameSearch, setNameSearch] = useState("");
-  const [insuranceSearch, setInsuranceSearch] = useState("");
+  const [idSearch, setIDSearch] = useState("");
+
+  const [isChecked, setIsChecked] = useState(false);
+
+  const filterEligible = isChecked;
 
   const clearSearch = () => {
-    setInsuranceSearch("");
+    setIDSearch("");
     setNameSearch("");
   }
     
@@ -31,19 +36,15 @@ function AdminPatientView({user, logout, gotoHomePage}) {
       <div className='doctorNavButtonLocations'>
         <div>
 
-          <button onClick = {gotoHomePage} className='welcomeContainer' style={{borderColor: '#6fabd0'}}>
+          <button onClick = {gotoHomePage} className='welcomeContainer' style={{borderColor: '#6fabd0', marginLeft:"170px"}}>
             <div className='welcomeText' style={{color: '#6fabd0' }}>Welcome Page</div>
           </button>
 
         </div>
 
-        <div className='appointmentContainer' style={{borderColor: '#6fabd0'}}>
-          <div className='appointmentText' style={{color: '#6fabd0' }}>Manage Appointments</div>
-        </div>
-
         <div>
-          <button className='addPatientContainer' style={{borderColor: '#6fabd0'}}>
-            <div className='addPatientText' style={{color: '#6fabd0' }}>Add Patients</div>
+          <button onClick = {gotoStudy} className='addPatientContainer' style={{borderColor: '#6fabd0', marginLeft:"-170px"}}>
+            <div className='addPatientText' style={{color: '#6fabd0' }}>Manage Study</div>
           </button>
         </div>
       </div>
@@ -62,15 +63,20 @@ function AdminPatientView({user, logout, gotoHomePage}) {
       </div>
 
       <div className='patientNameSearch' style={{marginLeft: '300px'}} >
-          <input className='patientInsuranceSearchBox' type="text" onChange = {(event) => {setInsuranceSearch(event.target.value)}} value={insuranceSearch}/>
+          <input className='patientInsuranceSearchBox' type="text" onChange = {(event) => {setIDSearch(event.target.value)}} value={idSearch}/>
           <div className='patientInsuranceSearchLabel'>Patient ID</div>
       </div>
 
+      <div className='patientNameSearch' style={{marginLeft: '590px'}} >
+        <input type="checkbox" checked = {isChecked} onChange={()=> setIsChecked(!isChecked)} className="admin-checkbox" style={{marginLeft: '30px'}}></input>
+        <div className='patientNameSearchLabel'>Show Eligible</div>
+      </div>
+      
 
     </div>
 
       <div className='patientTableLocation'>
-        <DisplayPatientData nameSearch={nameSearch} insuranceSearch={insuranceSearch} isAdminView={true}/>
+        <DisplayPatientData nameSearch={nameSearch} idSearch={idSearch} isAdminView={true} filterEligible={filterEligible}/>
       </div>
   
     </div>
