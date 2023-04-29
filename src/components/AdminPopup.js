@@ -14,7 +14,12 @@ function AdminPopup({selectedStudy, togglePopup}) {
         fetchPatients();
         }, [entities.patient]);
 
-
+    let hasPatient;
+    if (selectedStudy.studyPatients === null) {
+        hasPatient = false;
+    } else {
+        hasPatient = true;
+    }
     
     const addRandomPatients = async() => {
         const study = await entities.study.get(selectedStudy._id);
@@ -94,7 +99,13 @@ function AdminPopup({selectedStudy, togglePopup}) {
 
 
                 </div>
-                <button onClick={addRandomPatients}>Add {selectedStudy.maxPatients.toString()} Random Eligible Patients</button>
+
+                {hasPatient ? (
+                    <div className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500', backgroundColor: '#ececec'}}>Patients Already Added</div>
+                ): 
+                    <button className='add-patient' onClick={addRandomPatients}>Add {selectedStudy.maxPatients.toString()} Random Eligible Patients</button>
+                }             
+
             </div>
         </div>
 

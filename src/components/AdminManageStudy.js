@@ -1,7 +1,7 @@
 import DisplayStudyData from "./AdminDisplayStudyData";
 import './ManageStudyView.css';
 
-function AdminManageStudy({user, logout, gotoHomePage}) {
+function AdminManageStudy({user, logout, gotoHomePage, gotoPatientPage}) {
 
     return (
         <div className='managePatient'> 
@@ -22,11 +22,21 @@ function AdminManageStudy({user, logout, gotoHomePage}) {
             </div>
 
             <div className='doctorNavButtonLocations'>
-                <button onClick={gotoHomePage}>Return Home</button>
+                <div>
+                    <button onClick = {gotoHomePage} className='welcomeContainer' style={{borderColor: '#6fabd0', marginLeft:"170px"}}>
+                        <div className='welcomeText' style={{color: '#6fabd0' }}>Welcome Page</div>
+                    </button>
+                </div>
+
+                <div>
+                    <button onClick = {gotoPatientPage} className='addPatientContainer' style={{borderColor: '#6fabd0', marginLeft:"-170px"}}>
+                        <div className='addPatientText' style={{color: '#6fabd0' }}>Manage Patient</div>
+                    </button>
+                </div>
             </div>
 
             <div className='patientTableLocation' style={{top: 320}}>
-                <DisplayStudyData nameSearch={""} statusSearch={""} startSearch={""}/>
+                <DisplayStudyData nameSearch={""} statusSearch={""} startSearch={""} isAdminView={true}/>
             </div>
 
         </div>

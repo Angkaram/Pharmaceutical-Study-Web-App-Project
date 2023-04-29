@@ -23,9 +23,9 @@ function AdminPage({user, LogOut}) {
     if (adminView === 'Home') {
         display = <AdminHomePage user = {user} LogOut = {LogOut} gotoStudy={gotoStudy} gotoPatientPage = {gotoPatientPage}/>;
     } else if (adminView === 'Study') {
-        display = <AdminManageStudy user = {user} logout = {LogOut} gotoHomePage = {gotoHomePage}/>;
+        display = <AdminManageStudy user = {user} logout = {LogOut} gotoHomePage = {gotoHomePage} gotoPatientPage = {gotoPatientPage}/>;
     } else if (adminView === 'Patient') {
-        display = <AdminPatientView user = {user} logout = {LogOut} gotoHomePage = {gotoHomePage}/>
+        display = <AdminPatientView user = {user} logout = {LogOut} gotoHomePage = {gotoHomePage} gotoStudy = {gotoStudy}/>
     }
 
     return (
