@@ -14,7 +14,8 @@ import { css } from "@emotion/react";
 import { ClipLoader } from "react-spinners"; // need to implement again in DisplayStudyData
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { ToastContainer, toast } from 'react-toastify';
+import { useContext } from 'react';
+import NotificationContext from './NotificationContext';
 
 function ManageStudyView() {
 
@@ -45,26 +46,29 @@ function ManageStudyView() {
     navigate("/");
   };
 
-  const handleNotificationClick = () => {
-    const notificationCircle = document.querySelector('.notification-circle');
+  // for notification system
+  const { notifications } = useContext(NotificationContext);
+  const [showNotifications, setShowNotifications] = useState(false);
 
-    notificationCircle.classList.toggle('clicked');
+  const handleNotificationClick = () => {
+    setShowNotifications(!showNotifications);
+    const notificationCircle = document.querySelector('.notification-circle');
+    if (showNotifications) {
+      notificationCircle.classList.remove('clicked');
+    } else {
+      notificationCircle.classList.add('clicked');
+    }
   };
+  
 
   const handlePopupClick = () => {
-    const notificationCircle = document.querySelector('.notification-circle');
-
-    notificationCircle.classList.remove('clicked');
+    setShowNotifications(false);
   };
 
   const [nameSearch, setNameSearch] = useState("");
   const [statusSearch, setStatusSearch] = useState("");
   const [startSearch, setStartSearch] = useState("");
   const studyID = '0187a035-03e5-4828-43fc-269e5c9c0961'
-
-  const handleButtonClick = () => {
-    toast.success('Notification message');
-  };
 
   return (
     <div className='managePatient'> 
@@ -82,14 +86,22 @@ function ManageStudyView() {
   <div className='signOutText'>Sign Out</div>
 </button>
 </div>
-      <div class="notification-circle" onClick={handleNotificationClick}>
+    <div>
+      <button className='notification-circle' onClick={handleNotificationClick}>
         <div class="notification-circle-icon"></div>
-        <div class="notification-number">1</div>
-      </div>
-      <div class="notification-popup" onClick={handlePopupClick}>
-        <p>The study was approved</p>
-        <button onClick={handleButtonClick}>Show Notification</button>
-      </div>
+        <div class="notification-number">{notifications.length}</div>
+      </button>
+        
+      {showNotifications && (
+        <div className="notification-popup" onClick={handlePopupClick}>
+          {notifications.map((notification) => (
+            <div key={notification.id} className="notification-item">
+              {notification.message}
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
 
     <div className='patientTableLocation' style={{top: 320}}>
       <DisplayStudyData nameSearch={nameSearch} statusSearch={statusSearch} startSearch={startSearch} studyID={studyID}/>
@@ -144,7 +156,18 @@ function AddStudyButton(togglePopup) {
     console.log(isBavariaAgreed);
     console.log(isFdaAgreed);
     console.log(addStudyResponse);
+
+    dispatch({
+      type: 'ADD_NOTIFICATION',
+      payload: {
+        id: Date.now(),
+        message: 'New Study Created',
+      },
+    });
   }
+
+  // for the notification system
+  const { dispatch } = useContext(NotificationContext);
 
   // Initial state of the dropdown menu
   const initialState = () => {

@@ -11,28 +11,30 @@ import DoctorView from "./components/DoctorView";
 import FDAView from "./components/FDAView";
 import BavariaView from "./components/BavariaView";
 import ManageStudyView from "./components/ManageStudyView";
-
+import NotificationProvider from "./components/NotificationProvider";
 import DoctorAppointments from "./components/DoctorAppointments";
 
 function App() {
 
   return (
-    <BrowserRouter>
-        <Routes>
-          <Route path = "/" element = {<Nav />} />
-          <Route path = "/Login" element = {<LoginPrompt />} />
-          <Route path = "/SignUp" element = {<SignUp />} />
-          <Route path = "/AddPatientButton" element = {<AddPatientButton />} />
-          <Route path = "/View" element = {<View />} />
-          <Route path = "/DoctorView" element = {<DoctorView />} />
-          <Route path = "/FDAView" element = {<FDAView />} />
-          <Route path = "/BavariaView" element = {<BavariaView />} />
-          <Route path = "/Appointments" element = {<DoctorAppointments />} />
-          <Route path = "/ManageStudyView" element = {<ManageStudyView />} />
+    <NotificationProvider>
+      <BrowserRouter>
+          <Routes>
+            <Route path = "/" element = {<Nav />} />
+            <Route path = "/Login" element = {<LoginPrompt />} />
+            <Route path = "/SignUp" element = {<SignUp />} />
+            <Route path = "/AddPatientButton" element = {<AddPatientButton />} />
+            <Route path = "/View" element = {<View />} />
+            <Route path = "/DoctorView" element = {<DoctorView />} />
+            <Route path = "/FDAView" element = {<FDAView />} />
+            <Route path = "/BavariaView" element = {<BavariaView />} />
+            <Route path = "/Appointments" element = {<DoctorAppointments />} />
+            <Route path = "/ManageStudyView" element = {<ManageStudyView />} />
 
-          
-        </Routes>
-  </BrowserRouter>
+            
+          </Routes>
+    </BrowserRouter>
+  </NotificationProvider>
   );
 }
 
