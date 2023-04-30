@@ -33,43 +33,38 @@ function AdminPatientView({user, logout, gotoHomePage, gotoStudy}) {
         </button>
       </div>
       
-      <div className='doctorNavButtonLocations'>
-        <div>
+      <div className='doctorNavButtonLocations' >
+          <div className="welcomeBro" style={{borderColor: '#6fabd0'}}>
+              <button onClick = {gotoHomePage} className='welcomeContainer' style={{color: '#6fabd0'}}>Welcome Page</button>
+          </div>
 
-          <button onClick = {gotoHomePage} className='welcomeContainer' style={{borderColor: '#6fabd0', marginLeft:"170px"}}>
-            <div className='welcomeText' style={{color: '#6fabd0' }}>Welcome Page</div>
-          </button>
-
+          <div className='addPatientBro' style={{borderColor: '#6fabd0'}}>
+              <button onClick = {gotoStudy} style={{color: '#6fabd0'}}>Manage Study</button>
+          </div>
         </div>
-
-        <div>
-          <button onClick = {gotoStudy} className='addPatientContainer' style={{borderColor: '#6fabd0', marginLeft:"-170px"}}>
-            <div className='addPatientText' style={{color: '#6fabd0' }}>Manage Study</div>
-          </button>
-        </div>
-      </div>
   
       <div className='patientSearchBox' style={{borderColor: '#6fabd0', width: '730px'}}>
 
         <div className='patientSearchBoxName'>Patient Search</div>
 
-        <div className='searchUndoLocations'>
-          <button onClick = {clearSearch} className='searchButton'> Clear Search </button>
-        </div>
-
       <div className='patientNameSearch'>      
+        <div className='patientNameSearchLabel'>Name</div>
           <input className='patientNameSearchBox' type="text" onChange = {(event) => {setNameSearch(event.target.value)}} value={nameSearch}/>
-          <div className='patientNameSearchLabel'>Name</div>
       </div>
 
       <div className='patientNameSearch' style={{marginLeft: '300px'}} >
+        <div className='patientInsuranceSearchLabel'>Patient ID</div>
           <input className='patientInsuranceSearchBox' type="text" onChange = {(event) => {setIDSearch(event.target.value)}} value={idSearch}/>
-          <div className='patientInsuranceSearchLabel'>Patient ID</div>
       </div>
 
       <div className='patientNameSearch' style={{marginLeft: '590px'}} >
-        <input type="checkbox" checked = {isChecked} onChange={()=> setIsChecked(!isChecked)} className="admin-checkbox" style={{marginLeft: '30px'}}></input>
         <div className='patientNameSearchLabel'>Show Eligible</div>
+        <input type="checkbox" checked = {isChecked} onChange={()=> setIsChecked(!isChecked)} className="admin-checkbox" style={{marginLeft: '30px'}}></input>
+      </div>
+  
+
+      <div className='searchUndoLocations'>
+          <button onClick = {clearSearch} className='searchButton'> Clear Search </button>
       </div>
       
 

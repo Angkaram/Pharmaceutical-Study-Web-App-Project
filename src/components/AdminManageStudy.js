@@ -21,21 +21,17 @@ function AdminManageStudy({user, logout, gotoHomePage, gotoPatientPage}) {
                 </button>
             </div>
 
-            <div className='doctorNavButtonLocations'>
-                <div>
-                    <button onClick = {gotoHomePage} className='welcomeContainer' style={{borderColor: '#6fabd0', marginLeft:"170px"}}>
-                        <div className='welcomeText' style={{color: '#6fabd0' }}>Welcome Page</div>
-                    </button>
+            <div className='doctorNavButtonLocations' >
+                <div className="welcomeBro" style={{borderColor: '#6fabd0'}}>
+                    <button onClick = {gotoHomePage} className='welcomeContainer' style={{color: '#6fabd0'}}>Welcome Page</button>
                 </div>
 
-                <div>
-                    <button onClick = {gotoPatientPage} className='addPatientContainer' style={{borderColor: '#6fabd0', marginLeft:"-170px"}}>
-                        <div className='addPatientText' style={{color: '#6fabd0' }}>Manage Patient</div>
-                    </button>
+                <div className='addPatientBro' style={{borderColor: '#6fabd0'}}>
+                    <button onClick = {gotoPatientPage} style={{color: '#6fabd0'}}>Manage Patient</button>
                 </div>
             </div>
 
-            <div className='patientTableLocation' style={{top: 320}}>
+            <div className='patientTableLocation' >
                 <DisplayStudyData nameSearch={""} statusSearch={""} startSearch={""} isAdminView={true}/>
             </div>
 
