@@ -6,7 +6,7 @@ import './home.css';
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
 import { useNavigate, Link } from "react-router-dom";
-import DisplayPatientData from './DisplayPatientData';
+import DisplayStudyData from './DisplayStudyData';
 import './DoctorView.css';
 import ShipmentsButton from './ShipmentsButton';
 import { useContext } from 'react';
@@ -22,7 +22,10 @@ function BavariaView() {
     navigate("/");
   };
 
-  const patientId = '0186b496-32f6-9a7f-cdfe-1e37ab416338';
+  const studyID = '0187a035-03e5-4828-43fc-269e5c9c0961'
+  const [nameSearch, setNameSearch] = useState("");
+  const [statusSearch, setStatusSearch] = useState("");
+  const [startSearch, setStartSearch] = useState("");
   const [searchTerm] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const togglePopup = () => {
@@ -50,7 +53,7 @@ function BavariaView() {
   const DoctorHomePage = () => {
     navigate("/View", { state: { user } });
   };
-  
+
   return (
     <div className='bavariabody'>
 
@@ -92,9 +95,11 @@ function BavariaView() {
               <button onClick={togglePopup} style={{color: 'black'}}>Add Shipments</button>
             </div>
       </div>
-      <div className='patientTableLocation' style={{top: '300px'}}>
-        <DisplayPatientData searchTerm={searchTerm} patientId={patientId} isBavariaView={true} />
+      
+      <div className='patientTableLocation'>
+        <DisplayStudyData nameSearch={nameSearch} statusSearch={statusSearch} startSearch={startSearch} studyID={studyID} isBavariaView={true}/>
       </div>
+
       {isOpen && <ShipmentsButton handleClose={togglePopup}/>}
     </div>
   );
