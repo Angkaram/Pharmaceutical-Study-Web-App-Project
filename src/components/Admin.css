@@ -2,3 +2,11 @@
     height:35px;
     width: 35px;
 }
+
+.popup-table {
+    border: 3px solid #747474;
+    height: 150px;
+    overflow-y: scroll;
+    width:800px;
+    margin:auto;
+}

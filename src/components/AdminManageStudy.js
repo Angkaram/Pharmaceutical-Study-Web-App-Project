@@ -15,9 +15,9 @@ function AdminManageStudy({user, logout, gotoHomePage, gotoPatientPage}) {
 
                 <div className='displayEmail'>{user?.email}</div>
 
-                <button className='signOutButton' onClick={logout}>
+                <button className='signOutButton' style={{border: 'black' }} onClick={logout}>
                     <div className='signOutIcon'></div>
-                    <div className='signOutText'>Sign Out</div>
+                    <div className='signOutText' style={{color: 'black' }}>Sign Out</div>
                 </button>
             </div>
 
