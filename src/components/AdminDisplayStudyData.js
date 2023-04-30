@@ -99,7 +99,7 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
             }).map((study) => {
               return (
   
-                <tr key={study.id}>
+                <tr key={study._id}>
                   {isFDAView || isBavariaView  ? (
                         <td>{study.name}</td>
                       ) : (
