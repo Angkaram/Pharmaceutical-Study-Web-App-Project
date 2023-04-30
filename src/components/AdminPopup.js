@@ -1,6 +1,5 @@
 import useJaneHopkins from '../hooks/useJaneHopkins';
 import { useEffect, useState } from 'react';
-import DisplayStudyPatients from './DisplayStudyPatient';
 
 function AdminPopup({selectedStudy, togglePopup}) {
     const { entities } = useJaneHopkins();
@@ -41,7 +40,7 @@ function AdminPopup({selectedStudy, togglePopup}) {
                 isEligible: false
             })
             console.log(updatePatient);
-        }   
+        }    
 
         const studyPatientIds = studyPatients.map(patient => patient._id);
         const studyArray = studyPatientIds.map(id => ({id: id }));
@@ -54,12 +53,12 @@ function AdminPopup({selectedStudy, togglePopup}) {
         });
 
         console.log(updated);
-    }
+    }   
 
     return (
         <div className="largeView">
 
-            <div className="popup-content" style={{borderColor:'#6fabd0'}}>
+            <div className="popup-content">
 
                 <div className="popup-top">
                     <h3>{selectedStudy.name}</h3>
@@ -68,9 +67,10 @@ function AdminPopup({selectedStudy, togglePopup}) {
 
                 <div className="popup-middle">
                     <div className="popup-section" >
-                        <h3>General Info.</h3>
+                        <h3>General Information</h3>
                         <p><b>DOB: </b>{selectedStudy.name}</p>
-                        <p><b>Study Status: </b>{selectedStudy.status}</p>   
+                        <p><b>Study Status: </b>{selectedStudy.status}</p>
+                        <p><b>Maximum Patients: </b>{selectedStudy.maxPatients.toString()}</p>    
                     </div>
 
                     <div className="popup-section">
@@ -85,22 +85,23 @@ function AdminPopup({selectedStudy, togglePopup}) {
                         <p><b>End Date: </b>{selectedStudy.end}</p>
                     </div>
 
-                    <div className='popup-section'>
-                        <h3>Patients</h3>
-                        <p> <b>Needed:</b> {hasPatient ? "No" : "Yes"}</p>
-                        <p><b>Maximum Patients: </b>{selectedStudy.maxPatients.toString()}</p> 
+                    
+                        <p>
+                        <strong>Patients in Study:</strong>{" "}
+                            {selectedStudy.studyPatients?.map((id, index) => (
+                            <span key={index}>
+                                {id.id}
+                                {index < selectedStudy.studyPatients.length - 1 ? ", " : ""}
+                            </span>
+                            ))}
+                        </p>
+                    
 
-                    </div>
 
                 </div>
-                {selectedStudy.status === "Cancelled" ? (
-                    <div className='add-patient' style={{border: '4px solid #EE6C4D', color: '#EE6C4D', backgroundColor: '#ececec'}}>Study Cancelled</div>
-                ) : selectedStudy.status === "Completed" ? (
-                    <div className='add-patient' style={{border: '4px solid #0E619C', color: '#0E619C', backgroundColor: '#ececec'}}>Study Completed</div>
-                ) : selectedStudy.status === "Pending" ? (
-                    <div className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500', backgroundColor: '#ececec'}}>Study Pending</div>
-                ): hasPatient ? (
-                    <DisplayStudyPatients studyPatients = {selectedStudy.studyPatients} />
+
+                {hasPatient ? (
+                    <div className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500', backgroundColor: '#ececec'}}>Patients Already Added</div>
                 ): 
                     <button className='add-patient' onClick={addRandomPatients}>Add {selectedStudy.maxPatients.toString()} Random Eligible Patients</button>
                 }             
