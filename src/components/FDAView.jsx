@@ -26,6 +26,11 @@ function FDAView() {
   const togglePopup = () => {
     setIsOpen(!isOpen);
   }
+
+  const DoctorHomePage = () => {
+    navigate("/View", { state: { user } });
+  };
+
   return (
     <div className='fdaview'> 
 
@@ -42,17 +47,13 @@ function FDAView() {
         </div>
 
       <div className='doctorNavButtonLocations'>
-        <div>
-        <Link to="/View">
-          <button className='welcomeContainer' style={{borderColor: '#08d3b4'}}>
-            <div className='welcomeText' style={{color: 'black'}}>Welcome Page</div>
-          </button>
-        </Link>
-        </div>
+          <div className="welcomeBro" style={{borderColor: '#08d3b4'}}>
+            <button onClick={() => DoctorHomePage(user)} style={{color: 'black'}}>Welcome Page</button>
+          </div>
 
-        <button onClick={togglePopup} className='addPatientContainer' style={{top: '0px', left: '350px', borderColor: '#08d3b4'}}>
-          <div className='addPatientText' style={{left: '47px', color: 'black'}}>Manage Contracts</div>
-        </button>
+          <div className='addPatientBro' style={{borderColor: '#08d3b4'}}>
+            <button onClick={togglePopup} style={{color: 'black'}}>Manage Contracts</button>
+          </div>
       </div>
 
       <div className='patientTableLocation' style={{top: '300px'}}>

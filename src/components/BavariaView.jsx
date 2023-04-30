@@ -47,6 +47,10 @@ function BavariaView() {
     setShowNotifications(false);
   };
 
+  const DoctorHomePage = () => {
+    navigate("/View", { state: { user } });
+  };
+  
   return (
     <div className='bavariabody'>
 
@@ -80,19 +84,14 @@ function BavariaView() {
     </div>
 
       <div className='doctorNavButtonLocations'>
-        <div>
-          <Link to="/View">
-            <button className='welcomeContainer' style={{borderColor: '#f46f74'}}>
-              <div className='welcomeText' style={{color: 'black'}}>Welcome Page</div>
-            </button>
-          </Link>
-        </div>
+            <div className="welcomeBro" style={{borderColor: '#f46f74'}}>
+              <button onClick={() => DoctorHomePage(user)} style={{color: 'black'}}>Welcome Page</button>
+            </div>
 
-        <button onClick={togglePopup} className='addPatientContainer' style={{top: '0px', left: '350px', borderColor: '#f46f74'}}>
-          <div className='addPatientText' style={{left: '43px', color: 'black'}}>Manage Shipments</div>
-        </button>
+            <div className='addPatientBro' style={{borderColor: '#f46f74'}}>
+              <button onClick={togglePopup} style={{color: 'black'}}>Add Shipments</button>
+            </div>
       </div>
-
       <div className='patientTableLocation' style={{top: '300px'}}>
         <DisplayPatientData searchTerm={searchTerm} patientId={patientId} isBavariaView={true} />
       </div>

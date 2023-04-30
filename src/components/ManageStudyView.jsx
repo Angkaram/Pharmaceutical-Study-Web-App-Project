@@ -19,6 +19,10 @@ import NotificationContext from './NotificationContext';
 
 function ManageStudyView() {
 
+  const DoctorHomePage = () => {
+    navigate("/View", { state: { user } });
+  };
+
   const { entities } = useJaneHopkins();
   const [study, setStudy] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -60,7 +64,6 @@ function ManageStudyView() {
     }
   };
   
-
   const handlePopupClick = () => {
     setShowNotifications(false);
   };
@@ -108,18 +111,12 @@ function ManageStudyView() {
     </div>
 
     <div className='doctorNavButtonLocations'>
-    <div>
-      <button onClick={togglePopup} className='addPatientContainer' style={{left: 500}}>
-        <div className='addPatientText'>Add Study</div>
-      </button>
-    </div>
-    <div>
-      <Link to="/View">
-        <button className='welcomeContainer' style={{left: 200}}>
-          <div className='welcomeText'>Welcome Page</div>
-        </button>
-      </Link>
-    </div>
+        <div className='addPatientBro'>
+          <button onClick={togglePopup} >Add Study</button>
+        </div>
+        <div className="welcomeBro">
+          <button onClick={() => DoctorHomePage(user)}>Welcome Page</button>
+        </div>
     </div>
 
     {isOpen && <AddStudyButton handleClose={togglePopup}/>}
