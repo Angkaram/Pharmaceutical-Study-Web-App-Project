@@ -1,10 +1,16 @@
 import useJaneHopkins from '../hooks/useJaneHopkins';
 import { useEffect, useState } from 'react';
 import DisplayStudyPatients from './DisplayStudyPatient';
+import AssignDrug from './ChooseStudyDrug';
 
-function AdminPopup({selectedStudy, togglePopup}) {
+function AdminPopup({selectedStudy, togglePopup, isFDAView}) {
     const { entities } = useJaneHopkins();
     const [patients, setPatients] = useState([]);
+
+    const [isDrugOpen, setIsDrugOpen] = useState(false);
+    const toggleDrugSelect = () => {
+      setIsDrugOpen(!isDrugOpen);
+    }
 
     useEffect(() => {
         async function fetchPatients() {
@@ -56,14 +62,21 @@ function AdminPopup({selectedStudy, togglePopup}) {
         console.log(updated);
     }
 
+    let color;
+    if (isFDAView) {
+        color = '#08d3b4';
+    } else {
+        color = '#6fabd0';
+    }
+
     return (
         <div className="largeView">
 
-            <div className="popup-content" style={{borderColor:'#6fabd0'}}>
+            <div className="popup-content" style={{borderColor:color}}>
 
                 <div className="popup-top">
                     <h3>{selectedStudy.name}</h3>
-                    <button id="close" onClick={togglePopup}>X</button>
+                    <button style={{borderColor:color}} id="close" onClick={togglePopup}>X</button>
                 </div>
 
                 <div className="popup-middle">
@@ -89,10 +102,15 @@ function AdminPopup({selectedStudy, togglePopup}) {
                         <h3>Patients</h3>
                         <p> <b>Needed:</b> {hasPatient ? "No" : "Yes"}</p>
                         <p><b>Maximum Patients: </b>{selectedStudy.maxPatients.toString()}</p> 
-
-                    </div>
-
+                    </div>       
                 </div>
+
+                {isFDAView && selectedStudy.studyPatients !== null ? (
+                    <button onClick={toggleDrugSelect}className='add-patient' style={{marginBottom:'25px'}}>Assign Drugs to {selectedStudy.maxPatients.toString()} Patients</button>
+                ):
+                    <></>
+                }
+
                 {selectedStudy.status === "Cancelled" ? (
                     <div className='add-patient' style={{border: '4px solid #EE6C4D', color: '#EE6C4D', backgroundColor: '#ececec'}}>Study Cancelled</div>
                 ) : selectedStudy.status === "Completed" ? (
@@ -100,12 +118,15 @@ function AdminPopup({selectedStudy, togglePopup}) {
                 ) : selectedStudy.status === "Pending" ? (
                     <div className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500', backgroundColor: '#ececec'}}>Study Pending</div>
                 ): hasPatient ? (
-                    <DisplayStudyPatients studyPatients = {selectedStudy.studyPatients} />
-                ): 
+                    <DisplayStudyPatients studyPatients = {selectedStudy.studyPatients} isFDAView={isFDAView} />
+                ): isFDAView ? (
+                    <div className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500', backgroundColor: '#ececec'}}>Need Patients</div>
+                ):
                     <button className='add-patient' onClick={addRandomPatients}>Add {selectedStudy.maxPatients.toString()} Random Eligible Patients</button>
                 }             
 
             </div>
+            {isDrugOpen && <AssignDrug toggleDrugSelect = {toggleDrugSelect} selectedStudy={selectedStudy}/>}
         </div>
 
     )

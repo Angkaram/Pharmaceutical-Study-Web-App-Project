@@ -64,6 +64,9 @@
           "isStudy": {
             "type": "boolean"
           },
+          "assignedDrug": {
+            "type": "string"
+          },
           "doses": {
             "type": "integer"
           },
@@ -140,6 +143,9 @@
           "placebo": {
             "type": "boolean"
           },
+          "sendFDA": {
+            "type": "boolean"
+          },
           "batchNumber": {
             "type": "string"
           },
@@ -171,6 +177,12 @@
           },
           "isFdaAgreed": {
             "type": "boolean"
+          },
+          "placeboDrug": {
+            "type": "string"
+          },
+          "realDrug": {
+            "type": "string"
           },
           "maxPatients": {
             "type": "integer"

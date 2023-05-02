@@ -10,3 +10,26 @@
     width:800px;
     margin:auto;
 }
+
+.drug-selection {
+    display: flex;
+    margin: 0;
+    margin-bottom: 50px;
+    margin-top: 25px;
+    margin-left:50px;
+    margin-left: 50px;
+}
+
+.drug-dropdown {
+    width: 200px;
+    margin-right: 50px;
+    font-size: 16px;
+    overflow:auto;
+    /*margin-top: 25px;*/
+}
+
+.drug-label {
+    font-weight: 600;
+    margin-bottom: 100px;
+}
+

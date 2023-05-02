@@ -8,7 +8,7 @@ import "./Admin.css";
 import useJaneHopkins from '../hooks/useJaneHopkins';
 import { useState, useEffect } from 'react';
 
-function DisplayStudyPatients({studyPatients}) {
+function DisplayStudyPatients({studyPatients, isFDAView}) {
     const { entities } = useJaneHopkins();
     const patientIDs = studyPatients.map(patient => patient.id);
     const [patientsInStudy, setpatientsInStudy] = useState([]);
@@ -27,14 +27,21 @@ function DisplayStudyPatients({studyPatients}) {
     // eslint-disable-next-line
     }, []);
 
+    let color;
+    if (isFDAView) {
+        color = '#08d3b4';
+    } else {
+        color = '#6fabd0';
+    }
+
     return (
         <div className='popup-table'>
             <table className="patientTable" style={{maxWidth:'800px'}}>
                 <thead>
                     <tr>
-                        <th style={{backgroundColor: '#6fabd0'}}>Patient ID</th>
-                        <th style={{backgroundColor: '#6fabd0'}}>Doses</th>
-                        <th style={{backgroundColor: '#6fabd0'}}>Drug ID</th>
+                        <th style={{backgroundColor: color}}>Patient ID</th>
+                        <th style={{backgroundColor: color}}>Doses</th>
+                        <th style={{backgroundColor: color}}>Drug ID</th>
                     </tr>
                 </thead>
                 <tbody>      
@@ -43,7 +50,7 @@ function DisplayStudyPatients({studyPatients}) {
                         <tr key={patient._id}>              
                             <td>{patient._id}</td>
                             <td>{patient.doses}</td>
-                            <td>Drug ID</td>
+                            <td>{patient.assignedDrug}</td>
                         </tr>
                         )
                     })}

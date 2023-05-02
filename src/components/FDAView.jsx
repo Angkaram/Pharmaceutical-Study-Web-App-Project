@@ -6,7 +6,8 @@ import './home.css';
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
 import { useNavigate, Link } from "react-router-dom";
-import DisplayPatientData from './DisplayPatientData';
+//import DisplayPatientData from './DisplayPatientData';
+import DisplayStudyData from './AdminDisplayStudyData';
 import './DoctorView.css';
 import ContractsButton from './ContractsButton';
 
@@ -57,7 +58,7 @@ function FDAView() {
       </div>
 
       <div className='patientTableLocation' style={{top: '300px'}}>
-        <DisplayPatientData searchTerm={searchTerm} patientId={patientId} isFDAView={true} />
+        <DisplayStudyData nameSearch={""} statusSearch={""} startSearch={""} isFDAView={true}/>
       </div>
       {isOpen && <ContractsButton handleClose={togglePopup}/>}
     </div>

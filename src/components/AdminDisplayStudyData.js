@@ -53,7 +53,15 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
             <thead>
             <tr>
                 {isFDAView ? (
-                  <th style={{backgroundColor: '#08d3b4'}}>Insurance Number</th>
+                  <>
+                    <th style={{backgroundColor: '#08d3b4'}}>Study Name</th>
+                    <th style={{backgroundColor: '#08d3b4'}}>Study Status</th>
+                    <th style={{backgroundColor: '#08d3b4'}}>Study Start</th>
+                    <th style={{backgroundColor: '#08d3b4'}}>Study End</th>
+                    <th style={{backgroundColor: '#08d3b4'}}>Agreed by Bavaria</th>
+                    <th style={{backgroundColor: '#08d3b4'}}>Agreed by FDA</th>
+                    <th style={{backgroundColor: '#08d3b4'}}>Max Participants</th>
+                  </>
                 ) : isBavariaView ? (
                   <th style={{backgroundColor: '#f46f74'}}>Insurance Number</th>
                 ) : isAdminView ? (
@@ -82,15 +90,13 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
             </thead>
             <tbody>
               
-            {study.filter((study)=> {
-              if (isFDAView || isBavariaView) {
+            {study.filter((study)=> {     
+              // filtering still not working  
+              if (study.status.includes("Approved")) {
+                //console.log(study);
                 return study;
-              }
-
-              // Tried filtering the list, but it is not working right now
-              else if (Boolean(study.isFdaAgreed) && Boolean(study.isBavariaAgreed)) {
-                //console.log(study.isFdaAgreed);
-                //console.log(study.isBavariaAgreed);
+              } 
+              else if (isBavariaView) {
                 return study;
               }
               else if (nameSearch === "" && statusSearch === "" && startSearch === "") {
@@ -100,8 +106,27 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
               return (
   
                 <tr key={study._id}>
-                  {isFDAView || isBavariaView  ? (
-                        <td>{study.name}</td>
+                  {isFDAView ? (
+                      <>
+                        <td onClick={() => handleStudyClick(study)}>{study.name}</td>
+                        <td>{study.status}</td>
+                        <td>{study.start}</td>
+                        <td>{study.end}</td>
+                        <td>{study.isBavariaAgreed ? 'Yes' : 'No'}</td>
+                        <td>{study.isFdaAgreed ? 'Yes' : 'No'}</td>
+                        <td>{study.maxPatients}</td>
+                      </>
+
+                      ) : isBavariaView ? (
+                        <>
+                          <td>{study.name}</td>
+                          <td>{study.status}</td>
+                          <td>{study.start}</td>
+                          <td>{study.end}</td>
+                          <td>{study.isBavariaAgreed ? 'Yes' : 'No'}</td>
+                          <td>{study.isFdaAgreed ? 'Yes' : 'No'}</td>
+                          <td>{study.maxPatients}</td>
+                        </>
                       ) : (
                         <>
                           <td onClick={() => handleStudyClick(study)}>
@@ -122,8 +147,13 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
   
             </tbody>
           </table>
-
-         {isOpen && <AdminPopup selectedStudy={selectedStudy} togglePopup={togglePopup}/>}
+         {isFDAView && isOpen ? (
+            <AdminPopup selectedStudy={selectedStudy} togglePopup={togglePopup} isFDAView={true}/>
+         ): isOpen ? (
+            <AdminPopup selectedStudy={selectedStudy} togglePopup={togglePopup}/>
+         ):
+          <></>
+         }
         </div>
       )
   };
