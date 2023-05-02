@@ -4,7 +4,7 @@ import "./loginprompt.js";
 import './home.css';
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link, Outlet } from "react-router-dom";
 import ValidateDomain from "./validation";
 import DisplayPatientData from './DisplayPatientData';
 import './DoctorHomePage.css';
@@ -87,7 +87,7 @@ function DoctorHomePage({ user, LogOut}) {
     navigate("/DoctorView", { state: { user } });
   };
 
-  const DoctorAppointments = () => {
+  const Appointments = () => {
     navigate("/Appointments", { state: { user } });
   };
 
@@ -99,7 +99,7 @@ function DoctorHomePage({ user, LogOut}) {
   return (
     // doctorbody in DoctorHomePage.css
     <div className='welcome-body'>
-  
+      
 
       {/* classNames start: DoctorView.css */}
         <div className = 'nav-bar'>
@@ -118,7 +118,7 @@ function DoctorHomePage({ user, LogOut}) {
         <div className="box-container">
 
           <div className="box">
-              <button onClick={() => DoctorAppointments(user)}><h3>Manage Appointments</h3></button>
+              <button onClick={() => Appointments(user)}><h3>Manage Appointments</h3></button>
           </div>
 
           <div className="box">
@@ -128,10 +128,10 @@ function DoctorHomePage({ user, LogOut}) {
           <div className="box">
               <button onClick={() => DoctorView(user)}><h3>Manage Patients</h3></button>
           </div>
-
         </div>  
 
       </div>
+      
     </div>
         );
 }
