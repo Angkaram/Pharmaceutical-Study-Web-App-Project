@@ -56,6 +56,7 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
                   <>
                     <th style={{backgroundColor: '#08d3b4'}}>Study Name</th>
                     <th style={{backgroundColor: '#08d3b4'}}>Study Status</th>
+                    <th style={{backgroundColor: '#08d3b4'}}>Has Patients</th>
                     <th style={{backgroundColor: '#08d3b4'}}>Study Start</th>
                     <th style={{backgroundColor: '#08d3b4'}}>Study End</th>
                     <th style={{backgroundColor: '#08d3b4'}}>Agreed by Bavaria</th>
@@ -110,6 +111,7 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
                       <>
                         <td onClick={() => handleStudyClick(study)}>{study.name}</td>
                         <td>{study.status}</td>
+                        <td>{study.studyPatients ? 'Yes' : 'No'}</td>
                         <td>{study.start}</td>
                         <td>{study.end}</td>
                         <td>{study.isBavariaAgreed ? 'Yes' : 'No'}</td>
