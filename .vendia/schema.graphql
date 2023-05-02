@@ -201,6 +201,7 @@ input Self_Drug_ConditionInput_ {
   batchNumber: Vendia_ModelStringInput_
   id: Vendia_ModelStringInput_
   placebo: Vendia_ModelBooleanInput_
+  sendFDA: Vendia_ModelBooleanInput_
   _and: [Self_Drug_ConditionInput_]
   _or: [Self_Drug_ConditionInput_]
   _not: Self_Drug_ConditionInput_
@@ -211,6 +212,7 @@ input Self_Drug_FilterInput_ {
   batchNumber: Vendia_ModelStringInput_
   id: Vendia_ModelStringInput_
   placebo: Vendia_ModelBooleanInput_
+  sendFDA: Vendia_ModelBooleanInput_
   _and: [Self_Drug_FilterInput_]
   _or: [Self_Drug_FilterInput_]
   _not: Self_Drug_FilterInput_
@@ -225,6 +227,7 @@ type Self_Drug {
   batchNumber: String
   id: String
   placebo: Boolean
+  sendFDA: Boolean
   _acl: [Vendia_Acl!]
   _owner: String
 }
@@ -234,6 +237,7 @@ type Self_Drug_Partial_ {
   batchNumber: String
   id: String
   placebo: Boolean
+  sendFDA: Boolean
   _acl: [Vendia_Acl!]
   _owner: String
 }
@@ -263,24 +267,28 @@ input Self_Drug_Input_ {
   batchNumber: String
   id: String
   placebo: Boolean
+  sendFDA: Boolean
 }
 
 input Self_Drug_UpdateInput_ {
   batchNumber: String
   id: String
   placebo: Boolean
+  sendFDA: Boolean
 }
 
 input Self_Drug_PartialInput_ {
   batchNumber: String
   id: String
   placebo: Boolean
+  sendFDA: Boolean
 }
 
 input Self_Patient_ConditionInput_ {
   address: Vendia_ModelStringInput_
   age: Vendia_ModelIntInput_
   _allergiesItem: Self_Patient_allergies_allergiesItem_ConditionInput_
+  assignedDrug: Vendia_ModelStringInput_
   bloodPressure: Vendia_ModelStringInput_
   bloodType: Vendia_ModelStringInput_
   _currentMedicationsItem: Self_Patient_currentMedications_currentMedicationsItem_ConditionInput_
@@ -311,6 +319,7 @@ input Self_Patient_FilterInput_ {
   address: Vendia_ModelStringInput_
   age: Vendia_ModelIntInput_
   _allergiesItem: Self_Patient_allergies_allergiesItem_FilterInput_
+  assignedDrug: Vendia_ModelStringInput_
   bloodPressure: Vendia_ModelStringInput_
   bloodType: Vendia_ModelStringInput_
   _currentMedicationsItem: Self_Patient_currentMedications_currentMedicationsItem_FilterInput_
@@ -345,6 +354,7 @@ type Self_Patient {
   address: String
   age: Int
   allergies: [Self_Patient_allergies_allergiesItem]
+  assignedDrug: String
   bloodPressure: String
   bloodType: String
   currentMedications: [Self_Patient_currentMedications_currentMedicationsItem]
@@ -374,6 +384,7 @@ type Self_Patient_Partial_ {
   address: String
   age: Int
   allergies: [Self_Patient_allergies_allergiesItem_Partial_]
+  assignedDrug: String
   bloodPressure: String
   bloodType: String
   currentMedications: [Self_Patient_currentMedications_currentMedicationsItem_Partial_]
@@ -423,6 +434,7 @@ input Self_Patient_Input_ {
   address: String
   age: Int
   allergies: [Self_Patient_allergies_allergiesItem_Input_]
+  assignedDrug: String
   bloodPressure: String
   bloodType: String
   currentMedications: [Self_Patient_currentMedications_currentMedicationsItem_Input_]
@@ -449,6 +461,7 @@ input Self_Patient_UpdateInput_ {
   address: String
   age: Int
   allergies: [Self_Patient_allergies_allergiesItem_UpdateInput_]
+  assignedDrug: String
   bloodPressure: String
   bloodType: String
   currentMedications: [Self_Patient_currentMedications_currentMedicationsItem_UpdateInput_]
@@ -475,6 +488,7 @@ input Self_Patient_PartialInput_ {
   address: String
   age: Int
   allergies: [Self_Patient_allergies_allergiesItem_PartialInput_]
+  assignedDrug: String
   bloodPressure: String
   bloodType: String
   currentMedications: [Self_Patient_currentMedications_currentMedicationsItem_PartialInput_]
@@ -503,6 +517,8 @@ input Self_Study_ConditionInput_ {
   isFdaAgreed: Vendia_ModelBooleanInput_
   maxPatients: Vendia_ModelIntInput_
   name: Vendia_ModelStringInput_
+  placeboDrug: Vendia_ModelStringInput_
+  realDrug: Vendia_ModelStringInput_
   start: Vendia_ModelStringInput_
   status: Vendia_ModelStringInput_
   _studyPatientsItem: Self_Study_studyPatients_studyPatientsItem_ConditionInput_
@@ -518,6 +534,8 @@ input Self_Study_FilterInput_ {
   isFdaAgreed: Vendia_ModelBooleanInput_
   maxPatients: Vendia_ModelIntInput_
   name: Vendia_ModelStringInput_
+  placeboDrug: Vendia_ModelStringInput_
+  realDrug: Vendia_ModelStringInput_
   start: Vendia_ModelStringInput_
   status: Vendia_ModelStringInput_
   _studyPatientsItem: Self_Study_studyPatients_studyPatientsItem_FilterInput_
@@ -537,6 +555,8 @@ type Self_Study {
   isFdaAgreed: Boolean
   maxPatients: Int
   name: String
+  placeboDrug: String
+  realDrug: String
   start: String
   status: String
   studyPatients: [Self_Study_studyPatients_studyPatientsItem]
@@ -551,6 +571,8 @@ type Self_Study_Partial_ {
   isFdaAgreed: Boolean
   maxPatients: Int
   name: String
+  placeboDrug: String
+  realDrug: String
   start: String
   status: String
   studyPatients: [Self_Study_studyPatients_studyPatientsItem_Partial_]
@@ -585,6 +607,8 @@ input Self_Study_Input_ {
   isFdaAgreed: Boolean
   maxPatients: Int
   name: String
+  placeboDrug: String
+  realDrug: String
   start: String
   status: String
   studyPatients: [Self_Study_studyPatients_studyPatientsItem_Input_]
@@ -596,6 +620,8 @@ input Self_Study_UpdateInput_ {
   isFdaAgreed: Boolean
   maxPatients: Int
   name: String
+  placeboDrug: String
+  realDrug: String
   start: String
   status: String
   studyPatients: [Self_Study_studyPatients_studyPatientsItem_UpdateInput_]
@@ -607,6 +633,8 @@ input Self_Study_PartialInput_ {
   isFdaAgreed: Boolean
   maxPatients: Int
   name: String
+  placeboDrug: String
+  realDrug: String
   start: String
   status: String
   studyPatients: [Self_Study_studyPatients_studyPatientsItem_PartialInput_]
