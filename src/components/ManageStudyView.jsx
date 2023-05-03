@@ -15,6 +15,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useContext } from 'react';
 import NotificationContext from './NotificationContext';
 import DisplayStudyData from './DisplayStudyData';
+import Sidebar from './Sidebar';
 
 function ManageStudyView() {
 
@@ -108,7 +109,7 @@ function ManageStudyView() {
     <div className='patientTableLocation'>
       <DisplayStudyData nameSearch={nameSearch} statusSearch={statusSearch} startSearch={startSearch} studyID={studyID}/>
     </div>
-
+    
     <div className='doctorNavButtonLocations'>
         <div className='addPatientBro'>
           <button onClick={togglePopup} >Add Study</button>
@@ -119,7 +120,9 @@ function ManageStudyView() {
     </div>  
 
     {isOpen && <AddStudyButton handleClose={togglePopup}/>}
-            
+    
+    <Sidebar></Sidebar>
+
     </div>
   );
 }

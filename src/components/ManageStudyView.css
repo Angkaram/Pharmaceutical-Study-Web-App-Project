@@ -1,55 +1,61 @@
 .sidebar {
     background-color: #fff;
-    width: 360px;
-    height: 200px;
-    position: absolute;
-    bottom: 20px; /* Adjust the distance from the bottom of the screen */
-    left: 20px; /* Adjust the distance from the left of the screen */
+    width: auto;
+    height: 80px;
+    position: relative;
+    top: auto;
+    display: flex;
     padding: 20px;
+    justify-content: center;
+    justify-self: center;
+    align-self: center;
+    gap: 20px;
     border: 5px solid #000000;
 }
 
 .category {
-display: flex;
-align-items: center;
-margin-bottom: px;
+    display: flex;
+    align-items: center;
+    margin-bottom: px;
+    display: flex;
+    flex-direction: column;
 }
 
 .approved {
 color: #0074ae;
-font-size: 35px;
+font-size: 25px;
 }
 
 .pending {
 color: #f0ad4e;
-font-size: 35px;
+font-size: 25px;
 }
 
 .cancelled {
 color: #d9534f;
-font-size: 35px;
+font-size: 25px;
 }
 
 .completed {
 color: #5cb85c;
-font-size: 35px;
+font-size: 25px;
 margin-right: auto;
 }
 
 i {
-margin-right: 0px;
+margin-right: 5px;
 }
 
 .count {
 background-color: #464646;
 color: #fff;
 border-radius: 50%;
-width: 35px;
-height: 35px;
+width: 25px;
+height: 25px;
 display: flex;
 align-items: center;
 justify-content: center;
-margin-left: auto;
+margin-top: 15px;
 font-size: 20px;
 }
 

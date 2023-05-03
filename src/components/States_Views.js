@@ -13,6 +13,7 @@ import './BavariaHomePage.css';
 import ShipmentsButton from './ShipmentsButton';
 import ManageStudyView from './ManageStudyView';
 import AdminPage from './AdminPage';
+import ManageShipmentsView from './ManageShipmentsView';
 
 let view;
 
@@ -179,6 +180,10 @@ function BavariaHomePage({ user, LogOut }) {
   const BavariaView = () => {
     navigate("/BavariaView", { state: { user } });
   };
+
+  const handleManageShipmentsView = () => {
+    navigate("/ManageShipmentsView", { state: { user } });
+  };
   
   console.log(user?.email);
   return (
@@ -200,7 +205,10 @@ function BavariaHomePage({ user, LogOut }) {
           <div className="box-container" >
   
             <div className="box" style={{backgroundColor: '#f46f74'}}>
-                <button onClick={() => BavariaView(user)}><h3>Manage Shipments</h3></button>
+                <button onClick={() => BavariaView(user)}><h3>Manage Study</h3></button>
+            </div>
+            <div className="box" style={{backgroundColor: '#f46f74'}}>
+                <button onClick={() => handleManageShipmentsView(user)}><h3>Manage Shipments</h3></button>
             </div>
   
           </div>  

@@ -8,9 +8,10 @@ import { auth } from "./firebase-config";
 import { useNavigate, Link } from "react-router-dom";
 import DisplayStudyData from './DisplayStudyData';
 import './DoctorView.css';
-import ShipmentsButton from './ShipmentsButton';
 import { useContext } from 'react';
 import NotificationContext from './NotificationContext';
+import Sidebar from './Sidebar';
+import ManageShipmentsView from './ManageShipmentsView';
 
 function BavariaView() {
 
@@ -46,6 +47,8 @@ function BavariaView() {
     }
   };
 
+  // end of notification stuff
+
   const handlePopupClick = () => {
     setShowNotifications(false);
   };
@@ -67,7 +70,7 @@ function BavariaView() {
               <div className='signOutText' style={{color: '#e7121a' }}>Sign Out</div>
             </button>
           
-        </div>
+         </div>
 
       <div>
       <button className='notification-circle' onClick={handleNotificationClick}>
@@ -86,21 +89,21 @@ function BavariaView() {
       )}
     </div>
 
-      <div className='doctorNavButtonLocations'>
-            <div className="welcomeBro" style={{borderColor: '#f46f74'}}>
-              <button onClick={() => DoctorHomePage(user)} style={{color: 'black'}}>Welcome Page</button>
-            </div>
+    <Sidebar></Sidebar>
 
-            <div className='addPatientBro' style={{borderColor: '#f46f74'}}>
-              <button onClick={togglePopup} style={{color: 'black'}}>Add Shipments</button>
-            </div>
+      <div className='doctorNavButtonLocations'>
+        <div className="welcomeBro" style={{borderColor: '#f46f74'}}>
+          <button onClick={() => DoctorHomePage(user)} style={{color: 'black'}}>Welcome Page</button>
+        </div>
+        <div className="welcomeBro" style={{borderColor: '#f46f74'}}>
+          <button onClick={() => ManageShipmentsView(user)} style={{color: 'black'}}>Manage Shipments</button>
+        </div>
       </div>
       
       <div className='patientTableLocation'>
         <DisplayStudyData nameSearch={nameSearch} statusSearch={statusSearch} startSearch={startSearch} studyID={studyID} isBavariaView={true}/>
       </div>
 
-      {isOpen && <ShipmentsButton handleClose={togglePopup}/>}
     </div>
   );
 }
