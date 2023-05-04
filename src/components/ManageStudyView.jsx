@@ -76,19 +76,22 @@ function ManageStudyView() {
   return (
     <div className='managePatient'> 
 
-<div className='doctorNavbar'>
+<div className='nav-bar'>
 
-<div className='doctorViewTitle'>
-  <div className='janeHopkinsTitleText'>Jane Hopkins
-    <div className='hospitalTitleText'>Hospital</div>
-  </div>
-</div>
-<div className='displayEmail'>{user?.email}</div>
-<button className='signOutButton' onClick={logout}>
-  <div className='signOutIcon'></div>
-  <div className='signOutText'>Sign Out</div>
-</button>
-</div>
+    <div className='doctorViewTitle'>
+      <div className='janeHopkinsTitleText'>Jane Hopkins
+        <div className='hospitalTitleText'>Hospital</div>
+      </div>
+    </div>
+    <div className='displayEmail'>{user?.email}</div>
+    <button className='signOutButton' onClick={logout}>
+      <div className='signOutIcon'></div>
+      <div className='signOutText'>Sign Out</div>
+    </button>
+    </div>
+
+    <Sidebar></Sidebar>
+
     <div>
       <button className='notification-circle' onClick={handleNotificationClick}>
         <div class="notification-circle-icon"></div>
@@ -121,8 +124,6 @@ function ManageStudyView() {
 
     {isOpen && <AddStudyButton handleClose={togglePopup}/>}
     
-    <Sidebar></Sidebar>
-
     </div>
   );
 }
