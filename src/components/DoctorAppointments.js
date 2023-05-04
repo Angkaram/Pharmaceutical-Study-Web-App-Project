@@ -32,6 +32,10 @@ function DoctorAppointments() {
     const DoctorView = () => {
         navigate("/DoctorView", { state: { user } });
     };
+
+    const DoctorHomePage = () => {
+        navigate("/View", { state: { user } });
+      };
     
     const localizer = dateFnsLocalizer({
         format,
@@ -69,7 +73,7 @@ function DoctorAppointments() {
 
     return (
         <div className='center'> 
-            <div className='doctorNavbar'>
+            <div className='nav-bar'>
                 <div className='doctorViewTitle'>
                     <div className='janeHopkinsTitleText'>Jane Hopkins
                     <div className='hospitalTitleText'>Hospital</div>
@@ -81,21 +85,19 @@ function DoctorAppointments() {
                     <div className='signOutText'>Sign Out</div>
                 </button>
             </div>
-            <div className="buttonLocations">
-            <Link to="/View">
-                <button className='welcomeContainer'>
-                    <div className='welcomeText'>Welcome Page</div>
-                </button>
-            </Link>
-            
-            <div className="patientContainer">
-                <button onClick={() => DoctorView(user)}>Manage Patients</button>
-            </div>
+            <div className="doctorNavButtonLocations">
+                <div className="welcomeBro">
+                    <button onClick={() => DoctorHomePage(user)}>Welcome Page</button>
+                </div>
+                
+                <div className="appointmentBro">
+                    <button onClick={() => DoctorView(user)}>Manage Patients</button>
+                </div>
             </div>
 
             <div className="calendar">
                 <Calendar localizer={localizer} events={eventList}
-                startAccessor="start" endAccessor="end" style={{height: 600, margin: "250px"}} />
+                startAccessor="start" endAccessor="end" style={{backgroundColor: "white"}} />
             </div>
         </div>
     );
