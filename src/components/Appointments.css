@@ -19,21 +19,23 @@
 }
 
 .center {
-    position: relative;
-    background: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    box-sizing: border-box;
+    display: grid;
+    width: 100vw;
+    min-height: 100vh;
+    grid-template-rows: 1fr 1fr;
 }
 
 .calendar {
-    justify-content: center;
-    margin: auto;
-    box-sizing: border-box;
-    margin-top: 150px;
-    width: 1700px;
-    padding: 0;
-    overflow: 1400px;
+  border: 3px solid #747474;
+  display: flexbox;
+  height: 683px;
+  width: 75%;
+  top: 550px;
+  grid-row: 4 / 5;
+  align-self: center;
+  justify-self: center;
+  margin: 20px;
 }
 
 /* Welcome */
