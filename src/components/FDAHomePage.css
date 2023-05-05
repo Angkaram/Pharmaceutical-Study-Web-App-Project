@@ -5,7 +5,7 @@
   min-height: 100vh;
   grid-template-rows: 1fr 4fr;
   grid-template-columns: 1fr;
-  background-image: url('../assets/images/fdaimage.jpg');
+  /* background-image: url('../assets/images/fdaimage.jpg');
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: cover; */
 }
