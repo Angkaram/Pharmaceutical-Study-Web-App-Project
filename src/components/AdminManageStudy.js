@@ -4,8 +4,8 @@ import './ManageStudyView.css';
 function AdminManageStudy({user, logout, gotoHomePage, gotoPatientPage}) {
 
     return (
-        <div className='managePatient'> 
-            <div className='doctorNavbar'style={{backgroundColor: '#6fabd0'}}>
+        <div className='adminViewMg'> 
+            <div className='nav-bar'style={{backgroundColor: '#6fabd0'}}>
 
                 <div className='doctorViewTitle'>
                     <div className='janeHopkinsTitleText'>Jane Hopkins

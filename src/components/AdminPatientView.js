@@ -17,9 +17,9 @@ function AdminPatientView({user, logout, gotoHomePage, gotoStudy}) {
   }
     
     return (
-      <div className='managePatient'> 
+      <div className='adminView'> 
 
-      <div className='doctorNavbar' style={{backgroundColor: '#6fabd0'}}>
+      <div className='nav-bar' style={{backgroundColor: '#6fabd0'}}>
   
         <div className='doctorViewTitle'>
           <div className='janeHopkinsTitleText'>Jane Hopkins
@@ -43,31 +43,32 @@ function AdminPatientView({user, logout, gotoHomePage, gotoStudy}) {
           </div>
         </div>
   
-      <div className='patientSearchBox' style={{borderColor: '#6fabd0', width: '730px'}}>
-
+      <div className='patientSearchBox' style={{borderColor: '#6fabd0'}}>
         <div className='patientSearchBoxName'>Patient Search</div>
 
-      <div className='patientNameSearch'>      
-        <div className='patientNameSearchLabel'>Name</div>
-          <input className='patientNameSearchBox' type="text" onChange = {(event) => {setNameSearch(event.target.value)}} value={nameSearch}/>
-      </div>
+        <div className='patientSearchBars'>
 
-      <div className='patientNameSearch' style={{marginLeft: '300px'}} >
-        <div className='patientInsuranceSearchLabel'>Patient ID</div>
-          <input className='patientInsuranceSearchBox' type="text" onChange = {(event) => {setIDSearch(event.target.value)}} value={idSearch}/>
-      </div>
+          <div className='patientNameSearch'>      
+            <div className='patientNameSearchLabel'>Name</div>
+            <input className='patientNameSearchBox' type="text" onChange = {(event) => {setNameSearch(event.target.value)}} value={nameSearch}/>
+          </div>
 
-      <div className='patientNameSearch' style={{marginLeft: '590px'}} >
-        <div className='patientNameSearchLabel'>Show Eligible</div>
-        <input type="checkbox" checked = {isChecked} onChange={()=> setIsChecked(!isChecked)} className="admin-checkbox" style={{marginLeft: '30px'}}></input>
-      </div>
+          <div className='patientICDSearch'>
+            <div className='patientICDSearchLabel'>Patient ID</div>
+            <input className='patientICDSearchBox' type="text" onChange = {(event) => {setIDSearch(event.target.value)}} value={idSearch}/>
+          </div>
+
+          <div className='patientNameSearch'>
+            <div className='patientNameSearchLabel'>Show Eligible</div>
+            <input type="checkbox" checked = {isChecked} onChange={()=> setIsChecked(!isChecked)} className="admin-checkbox" style={{marginLeft: '30px'}}></input>
+          </div>
+        </div>
   
 
-      <div className='searchUndoLocations'>
-          <button onClick = {clearSearch} className='searchButton'> Clear Search </button>
-      </div>
+          <div className='searchUndoLocations'>
+              <button onClick = {clearSearch} className='searchButton'> Clear Search </button>
+          </div>
       
-
     </div>
 
       <div className='patientTableLocation'>

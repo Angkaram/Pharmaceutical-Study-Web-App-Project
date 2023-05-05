@@ -1,3 +1,11 @@
+.adminView {
+    box-sizing: border-box;
+    display: grid;
+    width: 100vw;
+    min-height: 100vh;
+    grid-template-rows: .5fr 1fr 1fr 4.5fr;
+}
+
 .admin-checkbox {
     height:35px;
     width: 35px;

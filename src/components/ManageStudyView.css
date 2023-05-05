@@ -1,3 +1,11 @@
+.adminViewMg {
+    box-sizing: border-box;
+    display: grid;
+    width: 100vw;
+    min-height: 100vh;
+    grid-template-rows: 1fr 1fr;
+}
+
 .sidebar {
     background-color: #fff;
     width: auto;
