@@ -3,6 +3,18 @@
   display: grid;
   min-width: 100vw;
   min-height: 100vh;
+  grid-template-rows: 1fr 1fr 0fr 5fr;
+  grid-template-columns: 1fr;
+  background-image: url('../assets/images/bavariaimage.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bavariabodyWelcome {
+  box-sizing: border-box;
+  display: grid;
+  min-width: 100vw;
+  min-height: 100vh;
   grid-template-rows: 1fr 4fr;
   grid-template-columns: 1fr;
   background-image: url('../assets/images/bavariaimage.jpg');

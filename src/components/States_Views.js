@@ -187,7 +187,7 @@ function BavariaHomePage({ user, LogOut }) {
   
   console.log(user?.email);
   return (
-        <div className='bavariabody'>
+        <div className='bavariabodyWelcome'>
 
           <div className = 'nav-bar' style={{backgroundColor: '#f46f74'}}>
             <div className='janeHopkinsTitleText'>Bavaria
