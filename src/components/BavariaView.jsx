@@ -57,6 +57,10 @@ function BavariaView() {
     navigate("/View", { state: { user } });
   };
 
+  const ManageShipmentsView = () => {
+    navigate("/ManageShipmentsView", { state: { user } });
+  };
+
   return (
     <div className='bavariabody'>
 
