@@ -67,6 +67,9 @@
           "assignedDrug": {
             "type": "string"
           },
+          "assignedStudy": {
+            "type": "string"
+          },
           "doses": {
             "type": "integer"
           },
@@ -184,6 +187,22 @@
           "realDrug": {
             "type": "string"
           },
+          "isFDANotified": {
+            "type": "boolean",
+            "default": false
+          },
+          "isAssignmentSent": {
+            "type": "boolean",
+            "default": false
+          },
+          "isReportSent": {
+            "type": "boolean",
+            "default": false
+          },
+          "isResultsReleased": {
+            "type": "boolean",
+            "default": false
+          },
           "maxPatients": {
             "type": "integer"
           },
@@ -197,6 +216,12 @@
                 }
               }
             }
+          },
+          "fdaNotified": {
+            "type": "string"
+          },
+          "assignmentSent": {
+            "type": "string"
           }
         }
       }
