@@ -2,11 +2,14 @@ import { useState } from 'react';
 import useJaneHopkins from '../hooks/useJaneHopkins';
 import "./DoctorView.css";
 import "./ManageStudyView.css";
+import DatePicker from 'react-datepicker';
 
 function AddPatientButton(togglePopup) {
   const {entities} = useJaneHopkins();
   const [isInsured, setIsInsured] = useState(false);
   const [isEmployed, setIsEmployed] = useState(false);
+  const [date, setDate] = useState(null);
+  //const [isEligible, setIsEligible] = useState(false);
 
   const addPatient = async() => {
     const allergyInput = document.getElementById("allergies").value;
@@ -21,10 +24,18 @@ function AddPatientButton(togglePopup) {
     const currentlyEmployed = document.getElementById("employed").checked ? "True" : "False";
     const currentlyInsured = document.getElementById("insured").checked ? "True" : "False";
 
+    // Check if the patient is eligible or not
+    let bool;
+    if (document.getElementById("dob").value === "January 1, 2005" || Number(document.getElementById("dob").value.slice(-4)) < 2005) {
+      bool = !icdInput.includes("O00–O99");
+    } else {
+      bool = false;
+    }
+
     const addPatientResponse = await entities.patient.add({
       
       name: document.getElementById("name").value,
-      age: document.getElementById("age").value,
+      //age: document.getElementById("age").value,
       dob: document.getElementById("dob").value,
       insuranceNumber: document.getElementById("insuranceNumber").value,
       address: document.getElementById("address").value,
@@ -39,11 +50,12 @@ function AddPatientButton(togglePopup) {
       oxygenSaturation: document.getElementById("oxygenSaturation").value,
       icdHealthCodes: icdArray,
       currentlyEmployed: currentlyEmployed,
-      currentlyInsured: currentlyInsured
+      currentlyInsured: currentlyInsured,
+      isEligible: bool
     });
     
-    console.log(currentlyEmployed);
-    console.log(currentlyInsured);
+    //console.log(currentlyEmployed);
+    //console.log(currentlyInsured);
     console.log(addPatientResponse);
   }
   return (
@@ -60,7 +72,16 @@ function AddPatientButton(togglePopup) {
       <div className="popup-middle">
         <div className="popup-section" >
           <h3>General Information</h3>
-          <p><b>DOB: </b><input type="text" id = "dob"></input></p>
+
+          <p><b>DOB: </b>
+          <DatePicker
+            selected = {date}
+            onChange={(date => setDate(date))}
+            id = "dob"
+            dateFormat="MMMM d, yyyy"
+          />
+          </p>
+
           <p><b>Insurance Number: </b><input type="text" id = "insuranceNumber"></input></p>
           <p><b>Weight:</b><input type="text" id = "weight"></input></p>
           <p><b>Address: </b><input type="text" id = "address"></input></p>

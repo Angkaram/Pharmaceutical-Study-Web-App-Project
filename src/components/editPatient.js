@@ -50,6 +50,16 @@ function EditPatient({togglePopup, selectedPatient}) {
 
   const editPatientData = async() => {
 
+    // Check if the patient is eligible or not
+    let bool;
+    if (document.getElementById("dob").value === "January 1, 2005" || Number(document.getElementById("dob").value.slice(-4)) < 2005) {
+      bool = !icdInput.includes("O00–O99");
+    } else {
+      bool = false;
+    }
+
+    // TODO: If a patient's ICD healthcodes are deleted using the edit button, they will not appear in searches due to the array being empty
+
     const updated = await entities.patient.update({
       _id: selectedPatient._id,
       name: document.getElementById("name").value,
@@ -68,7 +78,8 @@ function EditPatient({togglePopup, selectedPatient}) {
       allergies:  allergyArray,
       icdHealthCodes: icdArray,
       currentlyEmployed: currentlyEmployed,
-      currentlyInsured: currentlyInsured
+      currentlyInsured: currentlyInsured,
+      isEligible: bool
     });
 
     console.log(currentlyEmployed);
