@@ -11,19 +11,64 @@ import { useNavigate, Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { useLocation } from "react-router-dom";
 import { auth } from "./firebase-config";
+import ValidateDomain from "./validation";
+
 
 
 function DoctorAppointments() {
 
     const location = useLocation();
-    const { user } = location.state;
 
     const navigate = useNavigate();
-
+    const [user, setUser] = useState(null);
     const logout = async () => {
-        await signOut(auth);
-        navigate("/");
+    await signOut(auth);
+    navigate("/");
     };
+    const { entities } = useJaneHopkins();
+    const [patients, setPatients] = useState([]);
+
+    useEffect(() => {
+        async function fetchPatients() {
+          const patientList = await entities.patient.list();
+          setPatients(patientList.items);
+        }
+    
+        fetchPatients();
+      }, [entities.patient]);
+
+    if (user?.email == null) {
+    
+        let view;
+        const unsubscribe = auth.onAuthStateChanged(userAuth => {
+        const user= {
+          email: userAuth?.email,
+          role: userAuth?.displayName,
+          id: userAuth?.uid
+        }
+        if (userAuth) {
+          console.log(userAuth)
+          setUser(user)
+        } else {
+          setUser(null)
+        }
+      
+        // Validates the user
+        let isValidated = ValidateDomain(user.email, user.role);
+      
+        // Checks their role and redirects them accordingly
+        if (isValidated === true) {
+          if (user.role === 'doctor') {
+            view = <DoctorHomePage user = {user} LogOut = {logout} />;
+          }
+        // If everything fails, kicks unauthorized user to the login page
+        } else {
+          navigate("/Login");
+        }
+    
+      })
+      return unsubscribe
+      };
 
     const locales = {
         "en-US": require("date-fns/locale/en-US")
@@ -44,18 +89,6 @@ function DoctorAppointments() {
         getDay,
         locales
     });
-
-    const { entities } = useJaneHopkins();
-    const [patients, setPatients] = useState([]);
-  
-    useEffect(() => {
-      async function fetchPatients() {
-        const patientList = await entities.patient.list();
-        setPatients(patientList.items);
-      }
-  
-      fetchPatients();
-    }, [entities.patient]);
 
 
     const eventList =[];
