@@ -4,20 +4,17 @@ const Nav = () => {
         
         <div className = "background-color">
             <nav className="navbar">
-                <h1>MD</h1>
-                <h4>MS</h4>
-                <h2>Medical Data</h2>
-                <h3>Management System</h3>
-                <div className="links">
+            <div className="medTitle">
+                <div className="abbrvMD">MDMS</div>
+                    Medical Data
+                <div className="manageTitle">Management System</div>
+            </div>
+                
+                <div className="linkCreate">
                     <a href="/SignUp">Create Account</a>
+                </div>
+                <div className="linkLogin">
                     <a href="/Login" style={{
-                        color: "#0E619C",
-                        backgroundColor: '#fff',
-                        transition: 'all 0.2s',
-                        textDecoration: 'none',
-                        padding: '5px 10px',
-                        borderRadius: '36px',
-                        border: '1px solid #0E619C'
                     }}
                     onMouseOver={e => {
                         e.target.style.backgroundColor = '#9ea5aa';
@@ -46,7 +43,7 @@ const Nav = () => {
                 <h1>Partners</h1>
             </div>
 
-            <body className="organizations">
+            <div className="organizations">
 
                 {/* could probably change these from p tags to a href tags to make it interactable */}
                 <div className="background-hospital">
@@ -70,7 +67,7 @@ const Nav = () => {
                     </div>
                 </div>
 
-            </body>
+            </div>
 
         </body>
 
