@@ -149,13 +149,13 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
   
             </tbody>
           </table>
-         {isFDAView && isOpen ? (
+        {isFDAView && isOpen ? (
             <AdminPopup selectedStudy={selectedStudy} togglePopup={togglePopup} isFDAView={true}/>
-         ): isOpen ? (
+        ): isOpen ? (
             <AdminPopup selectedStudy={selectedStudy} togglePopup={togglePopup}/>
-         ):
+        ):
           <></>
-         }
+        }
         </div>
       )
   };

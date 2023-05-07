@@ -1,5 +1,6 @@
 import useJaneHopkins from '../hooks/useJaneHopkins';
 import { useEffect, useState } from 'react';
+import StudyResultsPopup from './StudyResults';
 
 function BavariaPopup({selectedStudy, togglePopup}) {
 
@@ -7,15 +8,26 @@ function BavariaPopup({selectedStudy, togglePopup}) {
     const { entities } = useJaneHopkins();
     const [study, setStudy] = useState([]);
     const [isBavariaAgreed, setIsBavariaAgreed] = useState(false);
+    const [patients, setPatients] = useState([]);
 
     useEffect(() => {
         async function fetchStudy() {
-          const studyList = await entities.study.list();
-          setStudy(studyList.items);
+            const patientList = await entities.patient.list();
+            setPatients(patientList.items);
+
+            const studyList = await entities.study.list();
+            setStudy(studyList.items);
         }
     
         fetchStudy();
     }, [entities.study]);
+
+    const [studyID, setStudyID] = useState([]);
+    const patientsInStudy = patients.filter(patient => patient.assignedStudy === studyID);
+    const [isOpenResults, setIsOpenResults] = useState(false);
+    const togglePopupResults = () => {
+        setIsOpenResults(!isOpenResults);
+    }
 
     let hasStudy;
     if (selectedStudy.studyPatients === null) {
@@ -95,12 +107,17 @@ function BavariaPopup({selectedStudy, togglePopup}) {
                             </span>
                             ))}
                         </p>
-                    
-                        <button className='add-patient' onClick={() => {approveStudy(); handleButtonClick();}}>Approve Study</button>
-                        <button className='add-patient' style={{color: "red", borderColor: "red"}}onClick={() => {denyStudy(); handleButtonClick();}}>Deny Study</button>
                 </div>            
-
+                {!selectedStudy.isResultsReleased ? (
+                    <div style={{ display: "flex", flexDirection: "row" }}>
+                        <button className='add-patient' onClick={() => {approveStudy(); handleButtonClick();}}>Approve Study</button>
+                        <button className='add-patient' style={{color: "red", borderColor: "red", marginLeft: "2px"}}onClick={() => {denyStudy(); handleButtonClick();}}>Deny Study</button>
+                    </div>
+                ):
+                    <button className='add-patient' style={{border: '4px solid #0E619C', color: '#0E619C'}} onClick={togglePopupResults}>Study Ended - See Report</button>
+                }
             </div>
+            {isOpenResults && <StudyResultsPopup togglePopup={togglePopupResults} selectedStudy={selectedStudy} patientsInStudy={patientsInStudy} isFDAView={true}/>}
         </div>
 
     )
