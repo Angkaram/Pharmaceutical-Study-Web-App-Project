@@ -1,7 +1,28 @@
+import { useNavigate } from "react-router-dom";
 import DisplayStudyData from "./AdminDisplayStudyData";
+import { signOut } from "firebase/auth";
+import { auth } from "./firebase-config";
+import { useState } from "react";
 import './ManageStudyView.css';
 
-function AdminManageStudy({user, logout, gotoHomePage, gotoPatientPage}) {
+function AdminManageStudy() {
+
+    const navigate = useNavigate();
+
+    const [user, setUser] = useState(null);
+
+    const logout = async () => {
+      await signOut(auth);
+      navigate("/");
+    };
+
+    const gotoHomePage = () => {
+        navigate("/View", { state: { user } });
+    };
+    
+    const gotoPatientPage = () => {
+        navigate("/AdminManagePatient", { state: { user } });
+    };
 
     return (
         <div className='adminViewMg'> 

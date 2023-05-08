@@ -2,8 +2,21 @@ import { useNavigate } from "react-router-dom";
 import "./DoctorHomePage.css";
 import "./DoctorView.css";
 
-function AdminHomePage ({ user, LogOut, gotoStudy, gotoPatientPage}) { 
+function AdminHomePage ({ user, LogOut}) { 
+
+  const navigate = useNavigate();
+
+  const gotoStudy = () => {
+    navigate("/AdminManageStudy", { state: { user } });
+  };
+
+  const gotoPatientPage = () => {
+    navigate("/AdminManagePatient", { state: { user } });
+  };
+
+
     console.log(user?.email);
+
     return (
       <div className='welcome-body'>
 

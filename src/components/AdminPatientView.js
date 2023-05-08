@@ -2,8 +2,30 @@ import DisplayPatientData from "./DisplayPatientData";
 import { useState } from "react";
 import "./DoctorView.css";
 import "./Admin.css";
+import { signOut } from "firebase/auth";
+import { auth } from "./firebase-config";
+import { useNavigate } from "react-router-dom";
 
-function AdminPatientView({user, logout, gotoHomePage, gotoStudy}) {
+function AdminPatientView() {
+
+  const navigate = useNavigate();
+
+  const [user, setUser] = useState(null);
+
+  const logout = async () => {
+    await signOut(auth);
+    navigate("/");
+  };
+
+  const gotoStudy = () => {
+    navigate("/AdminManageStudy", { state: { user } });
+  };
+
+  const gotoHomePage = () => {
+    navigate("/View", { state: { user } });
+  };
+
+
   const [nameSearch, setNameSearch] = useState("");
   const [idSearch, setIDSearch] = useState("");
 
