@@ -16,6 +16,8 @@ import { useContext } from 'react';
 import NotificationContext from './NotificationContext';
 import DisplayStudyData from './DisplayStudyData';
 import Sidebar from './Sidebar';
+import ValidateDomain from "./validation";
+
 
 function ManageStudyView() {
 
@@ -43,8 +45,8 @@ function ManageStudyView() {
   }, [entities.study]);
   
   const location = useLocation();
-  const { user } = location.state;
   const navigate = useNavigate();
+  const [user, setUser] = useState(null);
   const logout = async () => {
     await signOut(auth);
     navigate("/");
@@ -53,6 +55,43 @@ function ManageStudyView() {
   // for notification system
   const { notifications } = useContext(NotificationContext);
   const [showNotifications, setShowNotifications] = useState(false);
+
+  const [nameSearch, setNameSearch] = useState("");
+  const [statusSearch, setStatusSearch] = useState("");
+  const [startSearch, setStartSearch] = useState("");
+
+  if (user?.email == null) {
+    
+    let view;
+    const unsubscribe = auth.onAuthStateChanged(userAuth => {
+    const user= {
+      email: userAuth?.email,
+      role: userAuth?.displayName,
+      id: userAuth?.uid
+    }
+    if (userAuth) {
+      console.log(userAuth)
+      setUser(user)
+    } else {
+      setUser(null)
+    }
+  
+    // Validates the user
+    let isValidated = ValidateDomain(user.email, user.role);
+  
+    // Checks their role and redirects them accordingly
+    if (isValidated === true) {
+      if (user.role === 'doctor') {
+        view = <DoctorHomePage user = {user} LogOut = {logout} />;
+      }
+    // If everything fails, kicks unauthorized user to the login page
+    } else {
+      navigate("/Login");
+    }
+
+  })
+  return unsubscribe
+  };
 
   const handleNotificationClick = () => {
     setShowNotifications(!showNotifications);
@@ -68,9 +107,7 @@ function ManageStudyView() {
     setShowNotifications(false);
   };
 
-  const [nameSearch, setNameSearch] = useState("");
-  const [statusSearch, setStatusSearch] = useState("");
-  const [startSearch, setStartSearch] = useState("");
+  
   const studyID = '0187a035-03e5-4828-43fc-269e5c9c0961'
 
   return (
