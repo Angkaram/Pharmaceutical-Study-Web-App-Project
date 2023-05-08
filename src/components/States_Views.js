@@ -6,14 +6,17 @@ import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
 import { useNavigate, Link, Outlet } from "react-router-dom";
 import ValidateDomain from "./validation";
-import DisplayPatientData from './DisplayPatientData';
+//import DisplayPatientData from './DisplayPatientData';
 import './DoctorHomePage.css';
 import './FDAHomePage.css';
 import './BavariaHomePage.css';
+import AdminHomePage from "./AdminHomePage";
+/*
 import ShipmentsButton from './ShipmentsButton';
 import ManageStudyView from './ManageStudyView';
 import AdminPage from './AdminPage';
 import ManageShipmentsView from './ManageShipmentsView';
+*/
 
 let view;
 
@@ -59,7 +62,7 @@ function View() {
         } else if (user.role === "bavaria") {
           view = <BavariaHomePage user = {user} LogOut = {logout}/>;
         } else if (user.role === "admin") {
-          view = <AdminPage user = {user} LogOut = {logout}/>;
+          view = <AdminHomePage user = {user} LogOut = {logout}/>;
         }
     // If everything fails, kicks unauthorized user to the login page
     } else {
