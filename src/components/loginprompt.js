@@ -29,12 +29,14 @@ function LoginPrompt() {
     };
 
     return (
-    <body>
+    <div className="loginPage">
     <nav className="logInNavbar">
-        <h1>MD</h1>
-        <h4>MS</h4>
-        <h2>Medical Data</h2>
-        <h3>Management System</h3>
+        <div className="medTitle">
+            <div className="abbrvMD">MDMS</div>
+                Medical Data
+            <div className="manageTitle">Management System</div>
+        </div>
+            
         <div className="links">
             <a href="/" style={{
                         color: "#0E619C",
@@ -52,9 +54,9 @@ function LoginPrompt() {
                         e.target.style.color = '#0E619C';
                         e.target.style.backgroundColor = '#fff';
                     }}
-                    > <img src={homeIcon}/> Home </a>
+            > <img src={homeIcon}/> Home </a>
         </div>
-    </nav>        
+    </nav>       
     <section className="container">
         
         <div className="background">
@@ -76,7 +78,7 @@ function LoginPrompt() {
             </p>       
          </div>
     </section>
-    </body>
+    </div>
     );
 }
 
