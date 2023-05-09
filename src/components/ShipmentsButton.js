@@ -9,12 +9,11 @@ function ShipmentsButton(togglePopup) {
   const [isPlacebo, setIsPlacebo] = useState(false);
   
   const addShipment = async() => {
-    const Placebo = document.getElementById("Placebo").checked;
+    const placebo = document.getElementById("placebo").checked;
 
     const addShipmentResponse = await entities.drug.add({
-      Dosage: document.getElementById("Dosage").value,
       batchNumber: document.getElementById("batchNumber").value,
-      Placebo: Placebo
+      placebo: placebo
       
     });
     console.log(addShipmentResponse);
@@ -43,12 +42,11 @@ function ShipmentsButton(togglePopup) {
       <div className="popup-middle">
         <div className="popup-section">
           <h3>General Information</h3>
-          <p><b>Dosage: </b><input type="text" id = "Dosage"></input></p>
           <p><b>Batch Number: </b><input type="text" id = "batchNumber"></input></p>
           
 
           <p className='checkbox'><strong>Placebo?
-            <input type="checkbox" checked = {isPlacebo} onChange={()=> setIsPlacebo(!isPlacebo)} id = "Placebo"></input>
+            <input type="checkbox" checked = {isPlacebo} onChange={()=> setIsPlacebo(!isPlacebo)} id = "placebo"></input>
           </strong></p>
         </div>
       </div>

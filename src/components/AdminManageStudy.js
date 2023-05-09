@@ -4,6 +4,7 @@ import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
 import { useState } from "react";
 import './ManageStudyView.css';
+import Sidebar from './Sidebar';
 
 function AdminManageStudy() {
 
@@ -51,6 +52,8 @@ function AdminManageStudy() {
                     <button onClick = {gotoPatientPage} style={{color: '#6fabd0'}}>Manage Patient</button>
                 </div>
             </div>
+
+            <Sidebar></Sidebar>
 
             <div className='patientTableLocation' >
                 <DisplayStudyData nameSearch={""} statusSearch={""} startSearch={""} isAdminView={true}/>
