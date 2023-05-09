@@ -57,18 +57,32 @@ function SignUp() {
     };
 
     return (
-    <body>
+    <div className="loginPage">
     <nav className="logInNavbar">
-        <h1>MD</h1>
-        <h4>MS</h4>
-        <h2>Medical Data</h2>
-        <h3>Management System</h3>
+        <div className="medTitle">
+            <div className="abbrvMD">MDMS</div>
+                Medical Data
+            <div className="manageTitle">Management System</div>
+        </div>
+            
         <div className="links">
             <a href="/" style={{
-                color: "black",
-                backgroundColor: 'white',
-                borderRadius: '50px'
-            }}><img src={homeIcon}/> Home </a>
+                        color: "#0E619C",
+                        backgroundColor: '#fff',
+                        transition: 'all 0.2s',
+                        textDecoration: 'none',
+                        padding: '5px 10px',
+                        borderRadius: '36px',
+                        border: '1px solid #0E619C'
+                    }}
+                    onMouseOver={e => {
+                        e.target.style.backgroundColor = '#9ea5aa';
+                    }}
+                    onMouseOut={e => {
+                        e.target.style.color = '#0E619C';
+                        e.target.style.backgroundColor = '#fff';
+                    }}
+            > <img src={homeIcon}/> Home </a>
         </div>
     </nav> 
     <section className="container">
@@ -104,7 +118,7 @@ function SignUp() {
 
          </div>
     </section>
-    </body>
+    </div>
 
     );
 }

@@ -11,13 +11,15 @@ import { useNavigate } from "react-router-dom";
 import NotificationContext from './NotificationContext';
 import { useContext } from 'react';
 import ShipmentsButton from "./ShipmentsButton";
+import ValidateDomain from "./validation";
+
 
 function ManageShipmentsView () {
 
     const drugID = `0187d449-b778-acbd-27c6-94b2a9be0287`
 
     const location = useLocation();
-    const { user } = location.state;  //LogOut not working yet
+    const [user, setUser] = useState(null);
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -32,6 +34,39 @@ function ManageShipmentsView () {
     // for notification system
     const { notifications } = useContext(NotificationContext);
     const [showNotifications, setShowNotifications] = useState(false);
+
+    if (user?.email == null) {
+    
+        let view;
+        const unsubscribe = auth.onAuthStateChanged(userAuth => {
+        const user= {
+          email: userAuth?.email,
+          role: userAuth?.displayName,
+          id: userAuth?.uid
+        }
+        if (userAuth) {
+          console.log(userAuth)
+          setUser(user)
+        } else {
+          setUser(null)
+        }
+      
+        // Validates the user
+        let isValidated = ValidateDomain(user.email, user.role);
+      
+        // Checks their role and redirects them accordingly
+        if (isValidated === true) {
+          if (user.role === "bavaria") {
+            view = <BavariaHomePage user = {user} LogOut = {logout}/>;
+          }
+        // If everything fails, kicks unauthorized user to the login page
+        } else {
+          navigate("/Login");
+        }
+    
+        })
+        return unsubscribe
+    };
 
     const handleNotificationClick = () => {
         setShowNotifications(!showNotifications);
@@ -49,7 +84,7 @@ function ManageShipmentsView () {
         setShowNotifications(false);
       };
     
-      const DoctorHomePage = () => {
+      const BavariaHomePage = () => {
         navigate("/View", { state: { user } });
       };
 
@@ -86,7 +121,7 @@ function ManageShipmentsView () {
 
             <div className='doctorNavButtonLocations'>
                 <div className="welcomeBro" style={{borderColor: '#f46f74'}}>
-                    <button onClick={() => DoctorHomePage(user)} style={{color: 'black'}}>Welcome Page</button>
+                    <button onClick={() => BavariaHomePage(user)} style={{color: 'black'}}>Welcome Page</button>
                 </div>
 
                 <div className='addPatientBro' style={{borderColor: '#f46f74'}}>
