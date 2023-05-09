@@ -169,14 +169,9 @@ function ManageStudyView() {
 function AddStudyButton(togglePopup) {
   console.log('AddStudyButton was successfully clicked');
   const {entities} = useJaneHopkins();
-  const [bavariaAgreed, setBavariaAgreed] = useState(false);
-  const [fdaAgreed, setFdaAgreed] = useState(false);
 
   const addStudy = async() => {
     console.log('addStudy called with study data');
-
-    const isBavariaAgreed = document.getElementById("isBavariaAgreed").checked;
-    const isFdaAgreed = document.getElementById("isFdaAgreed").checked;
 
     const addStudyResponse = await entities.study.add({
       name: document.getElementById("name").value,
@@ -184,12 +179,8 @@ function AddStudyButton(togglePopup) {
       start: document.getElementById("start").value,
       end: document.getElementById("end").value,
       maxPatients: Number(document.getElementById("maxPatients").value),
-      isBavariaAgreed: isBavariaAgreed,
-      isFdaAgreed: isFdaAgreed
     });
     
-    console.log(isBavariaAgreed);
-    console.log(isFdaAgreed);
     console.log(addStudyResponse);
 
     dispatch({
