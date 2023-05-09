@@ -215,7 +215,7 @@ type Vendia_Meta_Erased {
 
 input Self_Drug_ConditionInput_ {
   batchNumber: Vendia_ModelStringInput_
-  id: Vendia_ModelStringInput_
+  _idItem: Self_Drug_id_idItem_ConditionInput_
   placebo: Vendia_ModelBooleanInput_
   sendFDA: Vendia_ModelBooleanInput_
   _and: [Self_Drug_ConditionInput_]
@@ -226,7 +226,7 @@ input Self_Drug_ConditionInput_ {
 input Self_Drug_FilterInput_ {
   _owner: Vendia_ModelStringInput_
   batchNumber: Vendia_ModelStringInput_
-  id: Vendia_ModelStringInput_
+  _idItem: Self_Drug_id_idItem_FilterInput_
   placebo: Vendia_ModelBooleanInput_
   sendFDA: Vendia_ModelBooleanInput_
   _and: [Self_Drug_FilterInput_]
@@ -241,7 +241,7 @@ input Self_Drug_OrderInput_ {
 type Self_Drug {
   _id: ID!
   batchNumber: String
-  id: String
+  id: [Self_Drug_id_idItem]
   placebo: Boolean
   sendFDA: Boolean
   _acl: [Vendia_Acl!]
@@ -251,7 +251,7 @@ type Self_Drug {
 type Self_Drug_Partial_ {
   _id: ID!
   batchNumber: String
-  id: String
+  id: [Self_Drug_id_idItem_Partial_]
   placebo: Boolean
   sendFDA: Boolean
   _acl: [Vendia_Acl!]
@@ -281,21 +281,21 @@ type Self_Drug_Connection_ {
 
 input Self_Drug_Input_ {
   batchNumber: String
-  id: String
+  id: [Self_Drug_id_idItem_Input_]
   placebo: Boolean
   sendFDA: Boolean
 }
 
 input Self_Drug_UpdateInput_ {
   batchNumber: String
-  id: String
+  id: [Self_Drug_id_idItem_UpdateInput_]
   placebo: Boolean
   sendFDA: Boolean
 }
 
 input Self_Drug_PartialInput_ {
   batchNumber: String
-  id: String
+  id: [Self_Drug_id_idItem_PartialInput_]
   placebo: Boolean
   sendFDA: Boolean
 }
@@ -703,6 +703,42 @@ input Self_Study_PartialInput_ {
   start: String
   status: String
   studyPatients: [Self_Study_studyPatients_studyPatientsItem_PartialInput_]
+}
+
+input Self_Drug_id_idItem_ConditionInput_ {
+  id: Vendia_ModelStringInput_
+  _and: [Self_Drug_id_idItem_ConditionInput_]
+  _or: [Self_Drug_id_idItem_ConditionInput_]
+  _not: Self_Drug_id_idItem_ConditionInput_
+}
+
+input Self_Drug_id_idItem_FilterInput_ {
+  id: Vendia_ModelStringInput_
+  _and: [Self_Drug_id_idItem_FilterInput_]
+  _or: [Self_Drug_id_idItem_FilterInput_]
+  _not: Self_Drug_id_idItem_FilterInput_
+}
+
+type Self_Drug_id_idItem {
+  id: String
+}
+
+type Self_Drug_id_idItem_Partial_ {
+  id: String
+}
+
+type Self_Drug_id_idItem_Result_ {
+  error: String
+  result: Self_Drug_id_idItem
+}
+
+type Self_Drug_id_idItem_Transaction_Result_ {
+  transaction: Vendia_Transaction!
+  result: Self_Drug_id_idItem
+}
+
+type Self_Drug_id_idItem_Delete_Transaction_Result_ {
+  transaction: Vendia_Transaction!
 }
 
 input Self_Patient_allergies_allergiesItem_ConditionInput_ {
@@ -4135,6 +4171,18 @@ type Schema {
   query: Query
   mutation: Mutation
   subscription: Subscription
+}
+
+input Self_Drug_id_idItem_Input_ {
+  id: String
+}
+
+input Self_Drug_id_idItem_UpdateInput_ {
+  id: String
+}
+
+input Self_Drug_id_idItem_PartialInput_ {
+  id: String
 }
 
 input Self_Patient_allergies_allergiesItem_Input_ {
