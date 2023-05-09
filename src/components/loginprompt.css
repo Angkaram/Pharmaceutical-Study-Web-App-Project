@@ -5,6 +5,14 @@
     font-style: normal;
 }
 
+.loginPage {
+  position: relative;
+  /* background: #ffffff; */
+  display: grid;
+  min-width: 65vh;
+  min-height: 60vh
+}
+
 .font-roboto {
     font-family: roboto;
 }
@@ -78,14 +86,14 @@
     position: relative; /* Add position relative for the shadow effect */
 }
 .logInNavbar {
-    top: 0;
-    display: flex;
-    align-items: center;
-    width: 100vw;
-    height: 40px;
-    background-color: #0E619C;
-    padding: 20px;
-    margin:  auto;
+  grid-row: 1 / 2;
+  color: white;
+  display: flex;
+  grid-template-columns: 2fr 1fr 1fr;
+  
+  align-items: center;
+  height: 90%;
+  background-color: #0e619c;
     
   }
   .logInNavbar a {
@@ -105,76 +113,45 @@
 }
   
   
-  /* MDMS title */
-  .logInNavbar h1 {
-    position: absolute;
-    width: 35px;
-    height: 0px;
-    left: 138px;
-    top: -10px;
-    
-    font-style: normal;
-    font-weight: 800;
-    font-size: 38px;
-    line-height: 61px;
-    display: flex;
-    align-items: center;
-    text-align: center;
+/* main header thats blue with stuff */
+.logInNavbar {
+  grid-row: 1 / 2;
+  color: white;
+  display: flex;
+  grid-template-columns: 2fr 1fr 1fr;
   
-    color: #000;
-  }
-  
-  .logInNavbar h4 {
-    position: absolute;
-    width: 35px;
-    height: 0px;
-    left: 205px;
-    top: -29px;
-    
-    font-style: normal;
-    font-weight: 800;
-    font-size: 38px;
-    line-height: 61px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-  
-    color: #f9f7f7;
-  }
-  .logInNavbar h2 {
-    position: absolute;
-    width: 300px;
-    height: 35px;
-    left: 154px;
-    top: 18px;
-    
-    font-style: normal;
-    font-weight: 630;
-    font-size: 16px;
-    line-height: 61px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-  
-    color: #fff;
-  }
-  .logInNavbar h3 {
-    position: absolute;
-    width: 375px;
-    height: 54px;
-    left: 118px;
-    top: 20px;
-    
-    font-style: normal;
-    font-weight: 700;
-    font-size: 17px;
-    line-height: 61px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-  
-    color: #000;
-  }
+  align-items: center;
+  height: 90%;
+  background-color: #0e619c;
+}
+
+/* MDMS title */
+.logInNavbar .medTitle .abbrvMD {
+  background: #FFFFFF;
+  background: linear-gradient(to left, #FFFFFF 40%, #000000 60%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 60px;
+  font-weight: bolder;
+}
+
+/* MDMS subtitle */
+.logInNavbar .medTitle {
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding: 10px;
+margin: 20px;
+
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+color: #FFFFFF;
+}
+.logInNavbar .manageTitle {
+color: #000000;
+}
   
   .logInNavbar .links {
     margin-left: auto;
