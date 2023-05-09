@@ -10,11 +10,13 @@ import { useNavigate, Link } from "react-router-dom";
 import DisplayStudyData from './AdminDisplayStudyData';
 import './DoctorView.css';
 import ContractsButton from './ContractsButton';
+import ValidateDomain from "./validation";
+
 
 function FDAView() {
 
   const location = useLocation();
-  const { user } = location.state;  //LogOut not working yet
+  const [user, setUser] = useState(null);
   const navigate = useNavigate();
   const logout = async () => {
     await signOut(auth);
@@ -28,7 +30,40 @@ function FDAView() {
     setIsOpen(!isOpen);
   }
 
-  const DoctorHomePage = () => {
+  if (user?.email == null) {
+    
+    let view;
+    const unsubscribe = auth.onAuthStateChanged(userAuth => {
+    const user= {
+      email: userAuth?.email,
+      role: userAuth?.displayName,
+      id: userAuth?.uid
+    }
+    if (userAuth) {
+      console.log(userAuth)
+      setUser(user)
+    } else {
+      setUser(null)
+    }
+  
+    // Validates the user
+    let isValidated = ValidateDomain(user.email, user.role);
+  
+    // Checks their role and redirects them accordingly
+    if (isValidated === true) {
+      if (user.role === "bavaria") {
+        view = <FDAHomePage user = {user} LogOut = {logout}/>;
+      }
+    // If everything fails, kicks unauthorized user to the login page
+    } else {
+      navigate("/Login");
+    }
+
+    })
+    return unsubscribe
+  };
+
+  const FDAHomePage = () => {
     navigate("/View", { state: { user } });
   };
 
@@ -49,7 +84,7 @@ function FDAView() {
 
       <div className='doctorNavButtonLocations'>
           <div className="welcomeBro" style={{borderColor: '#08d3b4'}}>
-            <button onClick={() => DoctorHomePage(user)} style={{color: 'black'}}>Welcome Page</button>
+            <button onClick={() => FDAHomePage(user)} style={{color: 'black'}}>Welcome Page</button>
           </div>
 
           <div className='addPatientBro' style={{borderColor: '#08d3b4'}}>
