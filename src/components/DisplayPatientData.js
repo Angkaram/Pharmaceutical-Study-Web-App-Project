@@ -72,7 +72,7 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
                 <>
                   <th style={{backgroundColor: '#6fabd0'}}>Name</th>
                   <th style={{backgroundColor: '#6fabd0'}}>Patient ID</th>
-                  <th style={{backgroundColor: '#6fabd0'}}>Eligibility</th>
+                  <th style={{backgroundColor: '#6fabd0'}}>Eligible</th>
                   <th style={{backgroundColor: '#6fabd0'}}>Study Participant</th>
                   <th style={{backgroundColor: '#6fabd0'}}>Doses</th>
                 </>
@@ -114,8 +114,8 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
                   <>
                   <td>{patient.name}</td>
                   <td>{patient._id}</td>
-                  <td>{patient.isEligible.toString()}</td>
-                  <td>{patient.isStudy.toString()}</td>
+                  <td>{patient.isEligible ? 'Yes' : 'No'}</td>
+                  <td>{patient.isStudy ? 'Yes' : 'No'}</td>
                   <td>{patient?.doses}</td>
                   </>
                     ) : (

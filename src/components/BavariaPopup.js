@@ -62,9 +62,10 @@ function BavariaPopup({selectedStudy, togglePopup}) {
         setIsBavariaAgreed(selectedStudy.isBavariaAgreed === "True");
     }, [selectedStudy]);
 
+    // to make the page reload once data is input into the system
     async function handleButtonClick() {
-    await approveStudy();
-    window.location.reload();
+        await approveStudy();
+        window.location.reload();
     };
 
     return (
@@ -87,8 +88,8 @@ function BavariaPopup({selectedStudy, togglePopup}) {
 
                     <div className="popup-section">
                         <h3>Agreements</h3> 
-                        <p><b>Bavaria Agrees: </b>{selectedStudy.isBavariaAgreed.toString()}</p>
-                        <p><b>FDA Agrees: </b>{selectedStudy.isFdaAgreed.toString()}</p>
+                        <p><b>Bavaria Agrees: </b>{selectedStudy.isBavariaAgreed ? 'Yes' : 'No'}</p>
+                        <p><b>FDA Agrees: </b>{selectedStudy.isFdaAgreed ? 'Yes' : 'No'}</p>
                     </div>
 
                     <div className="popup-section" >

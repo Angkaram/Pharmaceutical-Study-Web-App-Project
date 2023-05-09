@@ -172,7 +172,6 @@ function AddStudyButton(togglePopup) {
 
   const addStudy = async() => {
     console.log('addStudy called with study data');
-
     const addStudyResponse = await entities.study.add({
       name: document.getElementById("name").value,
       status: "Pending",
@@ -211,6 +210,11 @@ function AddStudyButton(togglePopup) {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
 
+  async function handleButtonClick() {
+    await addStudy();
+    window.location.reload();
+    };
+
   return (
     <div className="largeView">
     <div className="popup-content">
@@ -245,16 +249,15 @@ function AddStudyButton(togglePopup) {
 
         </div>
       </div>
-      <button className='add-patient' onClick={() => {
-    addStudy();
-    const messageElem = document.createElement('div');
-    messageElem.innerText = 'New Study Added Successfully';
-    messageElem.classList.add('message'); // Add CSS class to the message element
-    document.body.appendChild(messageElem);
-    setTimeout(() => {
-        messageElem.remove();
-    }, 1000); // Delay message display for 1 second (1000 milliseconds)
-    }}>Add/Create Study</button>
+      <button className='add-patient' onClick={() => {handleButtonClick();
+          const messageElem = document.createElement('div');
+          messageElem.innerText = 'New Study Added Successfully';
+          messageElem.classList.add('message'); // Add CSS class to the message element
+          document.body.appendChild(messageElem);
+          setTimeout(() => {
+              messageElem.remove();
+          }, 1000); // Delay message display for 1 second (1000 milliseconds)
+      }}>Add/Create Study</button>
 
     </div>
   </div>

@@ -31,11 +31,11 @@ const handleNotificationClick = () => {
   }
 };
 
-// end of notification stuff
-
 const handlePopupClick = () => {
   setShowNotifications(false);
 };
+
+// end of notification stuff
 
   const location = useLocation();
   const [user, setUser] = useState(null);
