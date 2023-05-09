@@ -12,12 +12,14 @@ import { useContext } from 'react';
 import NotificationContext from './NotificationContext';
 import Sidebar from './Sidebar';
 import ManageShipmentsView from './ManageShipmentsView';
+import ValidateDomain from "./validation";
+
 
 function BavariaView() {
 
   const location = useLocation();
-  const { user } = location.state;  //LogOut not working yet
   const navigate = useNavigate();
+  const [user, setUser] = useState(null);
   const logout = async () => {
     await signOut(auth);
     navigate("/");
@@ -37,6 +39,39 @@ function BavariaView() {
   const { notifications } = useContext(NotificationContext);
   const [showNotifications, setShowNotifications] = useState(false);
 
+  if (user?.email == null) {
+    
+    let view;
+    const unsubscribe = auth.onAuthStateChanged(userAuth => {
+    const user= {
+      email: userAuth?.email,
+      role: userAuth?.displayName,
+      id: userAuth?.uid
+    }
+    if (userAuth) {
+      console.log(userAuth)
+      setUser(user)
+    } else {
+      setUser(null)
+    }
+  
+    // Validates the user
+    let isValidated = ValidateDomain(user.email, user.role);
+  
+    // Checks their role and redirects them accordingly
+    if (isValidated === true) {
+      if (user.role === "bavaria") {
+        view = <BavariaHomePage user = {user} LogOut = {logout}/>;
+      }
+    // If everything fails, kicks unauthorized user to the login page
+    } else {
+      navigate("/Login");
+    }
+
+    })
+    return unsubscribe
+  };
+
   const handleNotificationClick = () => {
     setShowNotifications(!showNotifications);
     const notificationCircle = document.querySelector('.notification-circle');
@@ -52,8 +87,8 @@ function BavariaView() {
   const handlePopupClick = () => {
     setShowNotifications(false);
   };
-
-  const DoctorHomePage = () => {
+  
+  const BavariaHomePage = () => {
     navigate("/View", { state: { user } });
   };
 
@@ -97,7 +132,7 @@ function BavariaView() {
 
       <div className='doctorNavButtonLocations'>
         <div className="welcomeBro" style={{borderColor: '#f46f74'}}>
-          <button onClick={() => DoctorHomePage(user)} style={{color: 'black'}}>Welcome Page</button>
+          <button onClick={() => BavariaHomePage(user)} style={{color: 'black'}}>Welcome Page</button>
         </div>
         <div className="welcomeBro" style={{borderColor: '#f46f74'}}>
           <button onClick={() => ManageShipmentsView(user)} style={{color: 'black'}}>Manage Shipments</button>
