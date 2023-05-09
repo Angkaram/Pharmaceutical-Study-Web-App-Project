@@ -31,7 +31,7 @@ function AddPatientButton(togglePopup) {
     } else {
       bool = false;
     }
-
+    
     const addPatientResponse = await entities.patient.add({
       
       name: document.getElementById("name").value,
@@ -52,12 +52,30 @@ function AddPatientButton(togglePopup) {
       currentlyEmployed: currentlyEmployed,
       currentlyInsured: currentlyInsured,
       isEligible: bool
-    });
-    
-    //console.log(currentlyEmployed);
-    //console.log(currentlyInsured);
-    console.log(addPatientResponse);
+    },
+    {
+    aclInput:{
+      acl:[
+        {
+          principal:{
+            nodes: ["Bavaria", "FDA"]
+          },
+          operations:["READ"],
+          path: ["dob", "height", "weight", "bloodPressure", 
+          "bloodType", "temperature", "oxygenSaturation",
+          "uuid", "familyHistory", "currentMedications",
+           "allergies", "currentMedications", "currentlyEmployed",
+            "currentlyInsured", "icdHealthCodes" ]
+        }      
+      ]
+    }
   }
+    );
+}
+   //console.log(currentlyEmployed);
+    //console.log(currentlyInsured);
+   //console.log(addPatientResponse);
+  
   return (
     <div className="largeView">
     <div className="popup-content">
