@@ -258,8 +258,8 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView}) {
 
             </div>
             {isDrugOpen && <AssignDrug toggleDrugSelect = {toggleDrugSelect} selectedStudy={selectedStudy}/>}
-            {isOpen && <AssignmentPopup togglePopup = {togglePopupNew} selectedStudy={selectedStudy} isFDAView={!isFDAView}/>}
-            {isOpenResults && <StudyResultsPopup togglePopup={togglePopupResults} selectedStudy={selectedStudy} patientsInStudy={patientsInStudy} isFDAView={isFDAView}/>}
+            {isOpen && <AssignmentPopup togglePopup = {togglePopupNew} selectedStudy={selectedStudy} isFDAView={!isFDAView} isBavariaView={false}/>}
+            {isOpenResults && <StudyResultsPopup togglePopup={togglePopupResults} selectedStudy={selectedStudy} patientsInStudy={patientsInStudy} isFDAView={isFDAView} isBavariaView={false}/>}
         </div>
 
     )

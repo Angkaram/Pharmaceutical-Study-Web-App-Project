@@ -118,7 +118,7 @@ function BavariaPopup({selectedStudy, togglePopup}) {
                     <button className='add-patient' style={{border: '4px solid #0E619C', color: '#0E619C'}} onClick={togglePopupResults}>Study Ended - See Report</button>
                 }
             </div>
-            {isOpenResults && <StudyResultsPopup togglePopup={togglePopupResults} selectedStudy={selectedStudy} patientsInStudy={patientsInStudy} isFDAView={true}/>}
+            {isOpenResults && <StudyResultsPopup togglePopup={togglePopupResults} selectedStudy={selectedStudy} patientsInStudy={patientsInStudy} isFDAView={false} isBavariaView={true}/>}
         </div>
 
     )
