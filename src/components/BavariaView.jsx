@@ -62,7 +62,7 @@ function BavariaView() {
   };
 
   return (
-    <div className='bavariabody'>
+    <div className='fdaview'>
 
           <div className = 'nav-bar' style={{backgroundColor: '#f46f74'}}>
             <div className='janeHopkinsTitleText'>Bavaria
@@ -76,25 +76,6 @@ function BavariaView() {
           
          </div>
 
-      <div>
-      <button className='notification-circle' onClick={handleNotificationClick}>
-        <div class="notification-circle-icon"></div>
-        <div class="notification-number">{notifications.length}</div>
-      </button>
-        
-      {showNotifications && (
-        <div className="notification-popup" onClick={handlePopupClick}>
-          {notifications.map((notification) => (
-            <div key={notification.id} className="notification-item">
-              {notification.message}
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-
-    <Sidebar></Sidebar>
-
       <div className='doctorNavButtonLocations'>
         <div className="welcomeBro" style={{borderColor: '#f46f74'}}>
           <button onClick={() => DoctorHomePage(user)} style={{color: 'black'}}>Welcome Page</button>
@@ -104,6 +85,25 @@ function BavariaView() {
         </div>
       </div>
       
+      <Sidebar></Sidebar>
+
+      <div>
+        <button className='notification-circle' onClick={handleNotificationClick}>
+          <div class="notification-circle-icon"></div>
+          <div class="notification-number">{notifications.length}</div>
+        </button>
+          
+        {showNotifications && (
+          <div className="notification-popup" onClick={handlePopupClick}>
+            {notifications.map((notification) => (
+              <div key={notification.id} className="notification-item">
+                {notification.message}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
       <div className='patientTableLocation'>
         <DisplayStudyData nameSearch={nameSearch} statusSearch={statusSearch} startSearch={startSearch} studyID={studyID} isBavariaView={true}/>
       </div>

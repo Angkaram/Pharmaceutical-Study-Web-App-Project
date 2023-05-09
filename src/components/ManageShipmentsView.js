@@ -69,8 +69,8 @@ function ManageShipmentsView () {
 
             <div>
                 <button className='notification-circle' onClick={handleNotificationClick}>
-                    <div class="notification-circle-icon"></div>
-                    <div class="notification-number">{notifications.length}</div>
+                    <div className="notification-circle-icon"></div>
+                    <div className="notification-number">{notifications.length}</div>
                 </button>
         
                 {showNotifications && (

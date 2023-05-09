@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import './loginprompt.css';
 import "./loginprompt.js";
@@ -10,8 +10,30 @@ import { useNavigate, Link } from "react-router-dom";
 import DisplayStudyData from './AdminDisplayStudyData';
 import './DoctorView.css';
 import ContractsButton from './ContractsButton';
+import Sidebar from './Sidebar';
+import NotificationContext from './NotificationContext';
 
 function FDAView() {
+
+// for notification system
+const { notifications } = useContext(NotificationContext);
+const [showNotifications, setShowNotifications] = useState(false);
+
+const handleNotificationClick = () => {
+  setShowNotifications(!showNotifications);
+  const notificationCircle = document.querySelector('.notification-circle');
+  if (showNotifications) {
+    notificationCircle.classList.remove('clicked');
+  } else {
+    notificationCircle.classList.add('clicked');
+  }
+};
+
+// end of notification stuff
+
+const handlePopupClick = () => {
+  setShowNotifications(false);
+};
 
   const location = useLocation();
   const { user } = location.state;  //LogOut not working yet
@@ -56,6 +78,25 @@ function FDAView() {
             <button onClick={togglePopup} style={{color: 'black'}}>Manage Contracts</button>
           </div>
       </div>
+
+      <Sidebar></Sidebar>
+
+      <div>
+          <button className='notification-circle' onClick={handleNotificationClick}>
+            <div class="notification-circle-icon"></div>
+            <div class="notification-number">{notifications.length}</div>
+          </button>
+            
+          {showNotifications && (
+            <div className="notification-popup" onClick={handlePopupClick}>
+              {notifications.map((notification) => (
+                <div key={notification.id} className="notification-item">
+                  {notification.message}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
 
       <div className='patientTableLocation' style={{top: '300px'}}>
         <DisplayStudyData nameSearch={""} statusSearch={""} startSearch={""} isFDAView={true}/>

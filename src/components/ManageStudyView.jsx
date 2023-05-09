@@ -180,7 +180,7 @@ function AddStudyButton(togglePopup) {
 
     const addStudyResponse = await entities.study.add({
       name: document.getElementById("name").value,
-      status: document.getElementById("status").value,
+      status: "Pending",
       start: document.getElementById("start").value,
       end: document.getElementById("end").value,
       maxPatients: Number(document.getElementById("maxPatients").value),
@@ -206,7 +206,7 @@ function AddStudyButton(togglePopup) {
 
   // Initial state of the dropdown menu
   const initialState = () => {
-    const value = "Approved";
+    const value = "Pending";
     return value;
   }
 
@@ -234,13 +234,6 @@ function AddStudyButton(togglePopup) {
       <div className="popup-middle">
         <div className="popup-section">
           <h3>General Information</h3>
-          <b>Study Status: </b>
-          <select value={value} onChange={handleChange} className = "drop-down" name = "select-organization" id="status">
-                <option value = "Approved">Approved</option>
-                <option value = "Pending">Pending</option>
-                <option value = "Cancelled">Cancelled</option>
-                <option value = "Completed">Completed</option>
-            </select>
           <p><b>Study Start:</b>
             <DatePicker
             selected={startDate}
@@ -257,12 +250,6 @@ function AddStudyButton(togglePopup) {
             dateFormat="MMMM d, yyyy"
             />
           </p>
-          <p className='checkbox'><strong>Agreed By Bavaria?
-            <input type="checkbox" checked = {bavariaAgreed} onChange={()=> setBavariaAgreed(!bavariaAgreed)} id = "isBavariaAgreed"></input>
-          </strong></p>
-          <p className='checkbox'><strong>Agreed By FDA?
-            <input type="checkbox" checked = {fdaAgreed} onChange={()=> setFdaAgreed(!fdaAgreed)} id = "isFdaAgreed"></input>
-          </strong></p>
           <p><b>Max Participants: </b><input type="number" id = "maxPatients"></input></p>
 
         </div>
