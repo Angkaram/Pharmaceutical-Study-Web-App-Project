@@ -32,7 +32,7 @@ function AssignmentPopup({selectedStudy, togglePopup, isFDAView}) {
   const patientsInStudy = patients.filter(patient => patient.assignedStudy === studyID);
   const getPatientListByDrug = (assignedDrug) => {
     if (assignedDrug === "Treatment") {
-      const filteredPatients = patientsInStudy.filter(patient => patient.assignedDrug === "0187d449-fb67-cdea-1dfc-28ab89f0aeaf");
+      const filteredPatients = patientsInStudy.filter(patient => patient.assignedDrug === "0188019c-e166-7fc1-dfc8-6e4d5461b5b6");
       const listPatients = filteredPatients.map(patient => <li key={patient._id}>{patient.name}</li>);
 
       return (
@@ -45,7 +45,7 @@ function AssignmentPopup({selectedStudy, togglePopup, isFDAView}) {
       );
 
     } else {
-      const filteredPatients = patientsInStudy.filter(patient => patient.assignedDrug === "0187d449-b778-acbd-27c6-94b2a9be0287");
+      const filteredPatients = patientsInStudy.filter(patient => patient.assignedDrug === "0188019c-d349-f3bc-d935-91bd80ece6c2");
       const listPatients = filteredPatients.map(patient => <li key={patient._id}>{patient.name}</li>);
 
       return (
@@ -86,7 +86,7 @@ function AssignmentPopup({selectedStudy, togglePopup, isFDAView}) {
               Create Result Report
             </button>
         </div>
-        {isOpen && <StudyResultsPopup togglePopup={togglePopupResults} selectedStudy={selectedStudy} patientsInStudy={patientsInStudy} isFDAView={!isFDAView} />}
+        {isOpen && <StudyResultsPopup togglePopup={togglePopupResults} selectedStudy={selectedStudy} patientsInStudy={patientsInStudy} isFDAView={!isFDAView} isBavariaView={false}/>}
     </div>
   )
 }
