@@ -31,51 +31,117 @@ function AddPatientButton(togglePopup) {
     } else {
       bool = false;
     }
-    
-    const addPatientResponse = await entities.patient.add({
-      
-      name: document.getElementById("name").value,
-      //age: document.getElementById("age").value,
-      dob: document.getElementById("dob").value,
-      insuranceNumber: document.getElementById("insuranceNumber").value,
-      address: document.getElementById("address").value,
-      height: document.getElementById("height").value,
-      weight: document.getElementById("weight").value,
-      bloodPressure: document.getElementById("bloodPressure").value,
-      temperature: document.getElementById("temperature").value,
-      uuid: document.getElementById("uuid").value,
-      familyHistory: document.getElementById("familyHistory").value,
-      currentMedications: medicationArray,
-      allergies:  allergyArray,
-      oxygenSaturation: document.getElementById("oxygenSaturation").value,
-      icdHealthCodes: icdArray,
-      currentlyEmployed: currentlyEmployed,
-      currentlyInsured: currentlyInsured,
-      isEligible: bool
-    },
-    {
-    aclInput:{
-      acl:[
-        {
-          principal:{
-            nodes: ["Bavaria", "FDA"]
+    const addPatientResponse = await entities.patient.add(
+      {
+        name: document.getElementById("name").value,
+        //age: document.getElementById("age").value,
+        dob: document.getElementById("dob").value,
+        insuranceNumber: document.getElementById("insuranceNumber").value,
+        address: document.getElementById("address").value,
+        height: document.getElementById("height").value,
+        weight: document.getElementById("weight").value,
+        bloodPressure: document.getElementById("bloodPressure").value,
+        temperature: document.getElementById("temperature").value,
+        uuid: document.getElementById("uuid").value,
+        familyHistory: document.getElementById("familyHistory").value,
+        currentMedications: medicationArray,
+        allergies: allergyArray,
+        oxygenSaturation: document.getElementById("oxygenSaturation").value,
+        icdHealthCodes: icdArray,
+        currentlyEmployed: currentlyEmployed,
+        currentlyInsured: currentlyInsured,
+        isEligible: bool,
+      },
+      {
+        aclInput: {
+          acl: [
+            {
+              principal: {
+                nodes: ["Bavaria", "FDA"],
+              },
+              operations: ["READ"],
+              path: "dob",
+            },
+
+            {principal: {
+              nodes: ["Bavaria", "FDA"],
+            },
+            operations: ["READ"],
+            path: "height",
           },
-          operations:["READ"],
-          path: ["dob", "height", "weight", "bloodPressure", 
-          "bloodType", "temperature", "oxygenSaturation",
-          "uuid", "familyHistory", "currentMedications",
-           "allergies", "currentMedications", "currentlyEmployed",
-            "currentlyInsured", "icdHealthCodes" ]
-        }      
-      ]
-    }
-  }
+          {principal: {
+            nodes: ["Bavaria", "FDA"],
+          },
+          operations: ["READ"],
+          path: "weight",
+        },
+          {
+            principal: {
+            nodes: ["Bavaria", "FDA"],
+          },
+          operations: ["READ"],
+          path: "bloodPressure",},
+          {principal: {
+            nodes: ["Bavaria", "FDA"],
+          },
+          operations: ["READ"],
+          path: "temperature",},
+          {principal: {
+            nodes: ["Bavaria", "FDA"],
+          },
+          operations: ["READ"],
+          path: "oxygenSaturation",},
+          {principal: {
+            nodes: ["Bavaria", "FDA"],
+          },
+          operations: ["READ"],
+          path: "uuid",},
+          {principal: {
+            nodes: ["Bavaria", "FDA"],
+          },
+          operations: ["READ"],
+          path: "currentlyEmployed",},
+          
+          {principal: {
+            nodes: ["Bavaria", "FDA"],
+          },
+          operations: ["READ"],
+          path: "currentlyInsured",},
+          
+          {principal: {
+            nodes: ["Bavaria", "FDA"],
+          },
+          operations: ["READ"],
+          path: "icdHealthCodes",},/*
+          {principal: {
+            nodes: ["Bavaria", "FDA"],
+          },
+          operations: ["READ"],
+          path: "currentMedications",},
+          {principal: {
+            nodes: ["Bavaria", "FDA"],
+          },
+          operations: ["READ"],
+          path: "familyHistory",},
+         
+          {principal: {
+            nodes: ["Bavaria", "FDA"],
+          },
+          operations: ["READ"],
+          path: "Allergies",}*/
+          ],
+        },
+
+
+
+
+      },
     );
-}
+  }
    //console.log(currentlyEmployed);
     //console.log(currentlyInsured);
    //console.log(addPatientResponse);
-  
+
   return (
     <div className="largeView">
     <div className="popup-content">
@@ -148,7 +214,7 @@ function AddPatientButton(togglePopup) {
   </div>
   )
 
-}
+      }
 
 export default AddPatientButton;
 
@@ -174,5 +240,4 @@ function AddPatientButton() {
       </div>
     );
   }
-  export default AddPatientButton;
-  */
+export default AddPatientButton;*/ 
