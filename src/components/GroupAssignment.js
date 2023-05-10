@@ -82,7 +82,7 @@ function AssignmentPopup({selectedStudy, togglePopup, isFDAView}) {
                 </div>
               </div>
             </div>
-            <button className='add-patient' style={{border: '4px solid #0E619C', color: '#0E619C'}} onClick={togglePopupResults}>
+            <button className='add-patient' style={{border: '4px solid #007bff', color: '#007bff'}} onClick={togglePopupResults}>
               Create Result Report
             </button>
         </div>
