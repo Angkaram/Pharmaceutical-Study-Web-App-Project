@@ -29,6 +29,18 @@ function ShipmentsButton(togglePopup) {
     // for the notification system
     const { dispatch } = useContext(NotificationContext);
 
+    // to make the page reload once data is input into the system
+    async function handleButtonClick() {
+      await addShipment();
+      setTimeout(() => {
+        window.location.reload();
+        setTimeout(() => {
+          window.location.reload();
+        }, 500);
+      }, 500);
+    }
+
+
   return (
     <div className="largeView">
     <div className="popup-content" style={{borderColor: '#f46f74'}}>
@@ -50,7 +62,7 @@ function ShipmentsButton(togglePopup) {
           </strong></p>
         </div>
       </div>
-      <button className='add-patient' style={{color: 'black', borderColor: 'black'}} onClick = {() => {addShipment();}}>Add/Create Shipment</button>
+      <button className='add-patient' style={{color: 'black', borderColor: 'black'}} onClick = {() => {handleButtonClick();}}>Add/Create Shipment</button>
     </div>
   </div>
   )

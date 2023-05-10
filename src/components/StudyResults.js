@@ -1,8 +1,10 @@
 import useJaneHopkins from '../hooks/useJaneHopkins';
 import "./DoctorView.css";
 import { useState, useEffect } from 'react';
+import { PDFDownloadLink, Document } from '@react-pdf/renderer';
+import PDFDocument from './PDFDocument';
 
-function StudyResultsPopup({selectedStudy, togglePopup, isFDAView}) {
+function StudyResultsPopup({selectedStudy, togglePopup, isFDAView, isBavariaView}) {
   const { entities } = useJaneHopkins();
   const [patients, setPatients] = useState([]);
   const [studyID, setStudyID] = useState([]);
@@ -35,14 +37,17 @@ function StudyResultsPopup({selectedStudy, togglePopup, isFDAView}) {
   }
 
   const patientsInStudy = patients.filter(patient => patient.assignedStudy === studyID);
+  const treatmentPatients = patientsInStudy.filter(patient => patient.assignedDrug === "0188019c-e166-7fc1-dfc8-6e4d5461b5b6");
+  const controlPatients = patientsInStudy.filter(patient => patient.assignedDrug === "0188019c-d349-f3bc-d935-91bd80ece6c2");
   const getPatientListByDrug = (assignedDrug) => {
     if (assignedDrug === "Treatment") {
-      const filteredPatients = patientsInStudy.filter(patient => patient.assignedDrug === "0187d449-fb67-cdea-1dfc-28ab89f0aeaf");
+      const filteredPatients = patientsInStudy.filter(patient => patient.assignedDrug === "0188019c-e166-7fc1-dfc8-6e4d5461b5b6");
       const listPatients = filteredPatients.map(patient =>
         <div>
           <h3 key = {patient._id} > Patient ID: {patient._id} </h3>
-          <p><strong>Weight: </strong>{patient.weight}</p>
+          <p><strong>DOB: </strong>{patient.dob}</p>
           <p><strong>Height: </strong>{patient.height}</p>
+          <p><strong>Weight: </strong>{patient.weight}</p>
           <p><strong>BloodType: </strong>{patient.bloodType}</p>
           <p><strong>Blood Pressure: </strong>{patient.bloodPressure}</p>
           <p><strong>Temperature: </strong>{patient.temperature}</p>
@@ -91,12 +96,13 @@ function StudyResultsPopup({selectedStudy, togglePopup, isFDAView}) {
       );
 
     } else {
-      const filteredPatients = patientsInStudy.filter(patient => patient.assignedDrug === "0187d449-b778-acbd-27c6-94b2a9be0287");
+      const filteredPatients = patientsInStudy.filter(patient => patient.assignedDrug === "0188019c-d349-f3bc-d935-91bd80ece6c2");
       const listPatients = filteredPatients.map(patient => 
         <div>
           <h3 key = {patient._id} > Patient ID: {patient._id} </h3>
-          <p><strong>Weight: </strong>{patient.weight}</p>
+          <p><strong>DOB: </strong>{patient.dob}</p>
           <p><strong>Height: </strong>{patient.height}</p>
+          <p><strong>Weight: </strong>{patient.weight}</p>
           <p><strong>BloodType: </strong>{patient.bloodType}</p>
           <p><strong>Blood Pressure: </strong>{patient.bloodPressure}</p>
           <p><strong>Temperature: </strong>{patient.temperature}</p>
@@ -156,30 +162,47 @@ function StudyResultsPopup({selectedStudy, togglePopup, isFDAView}) {
   
   
   return (
-    <div className="largeView">
+    <div className='studyResultsPopup'>
+      <div className="largeView">
 
-        <div className="popup-content">
+          <div className="popup-content">
 
-            <div className="popup-top">
-                <h2>{selectedStudy.name} Study Results</h2>
-                <button id="close" onClick={togglePopup}>X</button>
-            </div>
-            <div className="popup-middle" style={{ display: "flex", justifyContent: "space-between"}}>
-              <div className="popup-section-container" style={{ width: "50%"}}>
-                <div className="popup-section" style={{ width: "100%"}}>
-                  {getPatientListByDrug('Treatment')}
+              <div className="popup-top">
+                  <h2>{selectedStudy.name} Study Results</h2>
+                  <button id="close" onClick={togglePopup}>X</button>
+              </div>
+              <div className="popup-middle" style={{ display: "flex", justifyContent: "space-between"}}>
+                <div className="popup-section-container" style={{ width: "50%"}}>
+                  <div className="popup-section" style={{ width: "100%"}}>
+                    {getPatientListByDrug('Treatment')}
+                  </div>
+                </div>
+                <div className="popup-section-container" style={{ width: "50%"}}>
+                  <div className="popup-section" style={{ width: "100%"}}>
+                    {getPatientListByDrug('Control')}
+                  </div>
                 </div>
               </div>
-              <div className="popup-section-container" style={{ width: "50%"}}>
-                <div className="popup-section" style={{ width: "100%"}}>
-                  {getPatientListByDrug('Control')}
+              <div style={{ display: "flex", justifyContent: 'center' }}>
+              {!isFDAView && !isBavariaView && (
+                <button className='add-patient' style={{border: '4px solid #00FF00', color: '#00FF00'}} onClick={() => {sendReport();}}>Send Report To FDA</button>
+              )}       
+              {isBavariaView && (
+                <div style={{display: 'flex', justifyContent: 'center'}}>
+                  <button className='add-patient' style={{border: '4px solid #00FF00', color: '#00FF00'}} onClick={handleReportClick}>Generate Report</button>
+                  {isOpen && (
+                    <div className="studyResultsPopupInner">
+                      <PDFDownloadLink document={<PDFDocument treatment={treatmentPatients} control={controlPatients} />} fileName="study-report.pdf">
+                        {({ blob, url, loading, error }) => (loading ? 'Generating report...' : 'Download PDF')}
+                      </PDFDownloadLink>
+                    </div>
+                  )}
                 </div>
+              )}
               </div>
-            </div>
-            {!isFDAView && (
-              <button className='add-patient' style={{border: '4px solid #00FF00', color: '#00FF00'}} onClick={() => {sendReport();}}>Send Report To FDA</button>
-            )}       
-        </div>
+          </div>
+      </div>
+    
     </div>
   )
 }

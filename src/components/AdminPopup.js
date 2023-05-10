@@ -111,6 +111,61 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView}) {
         color = '#6fabd0';
     }
 
+    // for the Approve and Cancel Button on FDA Popup
+    const [isFdaAgreed, setIsFdaAgreed] = useState(false);
+    const [studyData, setStudyData] = useState(selectedStudy); 
+    const approveStudy = async() => {
+        const study = await entities.study.get(selectedStudy._id);
+      
+        let updated = null;
+      
+        if (study.isBavariaAgreed) {
+          updated = await entities.study.update({
+            _id: study._id,
+            isFdaAgreed: true,
+            status: "Approved"
+          });
+        } else {
+          updated = await entities.study.update({
+            _id: study._id,
+            isFdaAgreed: true
+          });
+        }
+      
+        setStudyData(updated);
+        console.log("Approve Study Button from the FDA was clicked");
+      }      
+    useEffect(() => {
+        setIsFdaAgreed(selectedStudy.isBavariaAgreed === "True");
+    }, [selectedStudy]);
+    // to make the page reload once data is input into the system
+    async function handleButtonClick() {
+        await approveStudy();
+        window.location.reload();
+    };
+
+    const cancelStudy = async() => {
+        const study = await entities.study.get(selectedStudy._id);
+      
+        const updated = await entities.study.update({
+        _id: study._id,
+        isFdaAgreed: false,
+        isBavariaAgreed: false,
+        start: "Cancelled",
+        end: "Cancelled",
+        maxPatients: 0,
+        status: "Cancelled"
+        });
+      
+        setStudyData(updated);
+    }
+    // to make the page reload once data is input into the system
+    async function handleCancelButtonClick() {
+        await cancelStudy();
+        window.location.reload();
+    };
+    // end of FDA approval and cancel button
+
     return (
         <div className="largeView">
 
@@ -130,8 +185,8 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView}) {
 
                     <div className="popup-section">
                         <h3>Agreements</h3> 
-                        <p><b>Bavaria Agrees: </b>{selectedStudy.isBavariaAgreed.toString()}</p>
-                        <p><b>FDA Agrees: </b>{selectedStudy.isFdaAgreed.toString()}</p>
+                        <p><b>Bavaria Agrees: </b>{selectedStudy.isBavariaAgreed ? 'Yes' : 'No'}</p>
+                        <p><b>FDA Agrees: </b>{selectedStudy.isFdaAgreed ? 'Yes' : 'No'}</p>
                     </div>
 
                     <div className="popup-section" >
@@ -144,10 +199,10 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView}) {
                         <h3>Patients</h3>
                         <p> <b>Needed:</b> {hasPatient ? "No" : "Yes"}</p>
                         <p><b>Maximum Patients: </b>{selectedStudy.maxPatients.toString()}</p> 
-                    </div>       
-                </div>
+                    </div>     
+                </div> 
 
-                {isFDAView && selectedStudy.studyPatients !== null && selectedStudy.status === "Active" ? (
+                {isFDAView && selectedStudy.studyPatients !== null && selectedStudy.status === "Approved" && selectedStudy.placeboDrug === null && selectedStudy.realDrug === null ? (
                     <button onClick={toggleDrugSelect}className='add-patient' style={{marginBottom:'25px'}}>Assign Drugs to {selectedStudy.maxPatients.toString()} Patients</button>
                 ):
                     <></>
@@ -156,7 +211,12 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView}) {
                 {selectedStudy.status === "Cancelled" ? (
                     <div className='add-patient' style={{border: '4px solid #EE6C4D', color: '#EE6C4D', backgroundColor: '#ececec'}}>Study Cancelled</div>
                     ) : selectedStudy.status === "Pending" ? (
-                        <div className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500', backgroundColor: '#ececec'}}>Study Pending</div>
+                        <>
+                            <div style={{ display: "flex", flexDirection: "row" }}>
+                                <button className='add-patient' onClick={() => { approveStudy(); handleButtonClick(); } }>Approve Study</button>
+                                <button className='add-patient' style={{color: "red", borderColor: "red", marginLeft: "2px"}}onClick={() => { cancelStudy(); handleCancelButtonClick(); } }>Cancel Study</button>
+                            </div>
+                        </> 
                     ) : selectedStudy.status === "Completed" && !selectedStudy.isFDANotified && !isFDAView ? (
                         <div style={{ display: "flex", flexDirection: "row" }}>
                             <div className='add-patient' style={{border: '4px solid #0E619C', color: '#0E619C', backgroundColor: '#ececec'}}>Study Completed</div>
@@ -198,8 +258,8 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView}) {
 
             </div>
             {isDrugOpen && <AssignDrug toggleDrugSelect = {toggleDrugSelect} selectedStudy={selectedStudy}/>}
-            {isOpen && <AssignmentPopup togglePopup = {togglePopupNew} selectedStudy={selectedStudy} isFDAView={!isFDAView}/>}
-            {isOpenResults && <StudyResultsPopup togglePopup={togglePopupResults} selectedStudy={selectedStudy} patientsInStudy={patientsInStudy} isFDAView={isFDAView}/>}
+            {isOpen && <AssignmentPopup togglePopup = {togglePopupNew} selectedStudy={selectedStudy} isFDAView={!isFDAView} isBavariaView={false}/>}
+            {isOpenResults && <StudyResultsPopup togglePopup={togglePopupResults} selectedStudy={selectedStudy} patientsInStudy={patientsInStudy} isFDAView={isFDAView} isBavariaView={false}/>}
         </div>
 
     )

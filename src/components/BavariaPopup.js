@@ -39,10 +39,20 @@ function BavariaPopup({selectedStudy, togglePopup}) {
     const approveStudy = async() => {
         const study = await entities.study.get(selectedStudy._id);
 
+        let updated = null;
+      
+        if (study.isFdaAgreed) {
         const updated = await entities.study.update({
+            _id: study._id,
+            isBavariaAgreed: true,
+            status: "Approved"
+        });
+        } else {
+        updated = await entities.study.update({
             _id: study._id,
             isBavariaAgreed: true
         });
+        }
         setStudyData(updated);
         console.log("Approve Study Button was clicked");
     }
@@ -62,9 +72,10 @@ function BavariaPopup({selectedStudy, togglePopup}) {
         setIsBavariaAgreed(selectedStudy.isBavariaAgreed === "True");
     }, [selectedStudy]);
 
+    // to make the page reload once data is input into the system
     async function handleButtonClick() {
-    await approveStudy();
-    window.location.reload();
+        await approveStudy();
+        window.location.reload();
     };
 
     return (
@@ -87,8 +98,8 @@ function BavariaPopup({selectedStudy, togglePopup}) {
 
                     <div className="popup-section">
                         <h3>Agreements</h3> 
-                        <p><b>Bavaria Agrees: </b>{selectedStudy.isBavariaAgreed.toString()}</p>
-                        <p><b>FDA Agrees: </b>{selectedStudy.isFdaAgreed.toString()}</p>
+                        <p><b>Bavaria Agrees: </b>{selectedStudy.isBavariaAgreed ? 'Yes' : 'No'}</p>
+                        <p><b>FDA Agrees: </b>{selectedStudy.isFdaAgreed ? 'Yes' : 'No'}</p>
                     </div>
 
                     <div className="popup-section" >
@@ -117,7 +128,7 @@ function BavariaPopup({selectedStudy, togglePopup}) {
                     <button className='add-patient' style={{border: '4px solid #0E619C', color: '#0E619C'}} onClick={togglePopupResults}>Study Ended - See Report</button>
                 }
             </div>
-            {isOpenResults && <StudyResultsPopup togglePopup={togglePopupResults} selectedStudy={selectedStudy} patientsInStudy={patientsInStudy} isFDAView={true}/>}
+            {isOpenResults && <StudyResultsPopup togglePopup={togglePopupResults} selectedStudy={selectedStudy} patientsInStudy={patientsInStudy} isFDAView={false} isBavariaView={true}/>}
         </div>
 
     )
