@@ -57,6 +57,32 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
     setSelectedPatient(patient);
   }
 
+  // for giving doses to the patients:
+  // initialize state for current dose number
+  const [currentDose, setCurrentDose] = useState(1);
+
+  // for giving doses to the patients:
+  const applyDose = async() => {
+    const patient = await entities.patient.get(selectedPatient._id);
+
+    const updated = await entities.patient.update({
+      _id: patient._id,
+      doses: currentDose // use current dose number instead of 1
+    });
+    setPatientData(updated);
+    console.log(`Dose ${currentDose} applied`);
+
+    // increment dose number if it's less than 5
+    if (currentDose < 5) {
+      setCurrentDose(currentDose + 1);
+    }
+  }
+  // to make the page reload once data is input into the system
+  async function handleButtonClick() {
+    await applyDose();
+    //window.location.reload();
+  };
+
   return (
     <div>
       <ClipLoader color={"blue"} loading={isLoading} css={override} size={40} />
@@ -181,10 +207,10 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
             </div>
             <button className='add-patient' onClick={togglePopup}>Add Appointment</button>
             <button className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500'}} onClick={togglePopupNew}>Edit Patient</button>
+            <button className='add-patient' style={{border: '4px solid blue', color: 'blue'}} onClick={handleButtonClick}>{selectedPatient.doses === null ? 'Apply Dose 1' : `Apply Dose ${selectedPatient.doses}`}</button>          
           </div>
         </div>
       </div>
-      
       
       )}
       {isOpen && <AddAppointment togglePopup={togglePopup} selectedPatient={selectedPatient}/>}

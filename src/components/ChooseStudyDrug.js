@@ -72,9 +72,6 @@ function AssignDrug({toggleDrugSelect, selectedStudy}) {
 
   };
 
-
-
-
   return (
     <div className="largeView">
       <div className="popup-content" style={{borderColor:'#08d3b4', paddingRight:'40px', paddingLeft:'40px'}}>

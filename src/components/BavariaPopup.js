@@ -39,10 +39,20 @@ function BavariaPopup({selectedStudy, togglePopup}) {
     const approveStudy = async() => {
         const study = await entities.study.get(selectedStudy._id);
 
+        let updated = null;
+      
+        if (study.isFdaAgreed) {
         const updated = await entities.study.update({
+            _id: study._id,
+            isBavariaAgreed: true,
+            status: "Approved"
+        });
+        } else {
+        updated = await entities.study.update({
             _id: study._id,
             isBavariaAgreed: true
         });
+        }
         setStudyData(updated);
         console.log("Approve Study Button was clicked");
     }
