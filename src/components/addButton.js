@@ -101,7 +101,7 @@ function AddPatientButton(togglePopup) {
     );
 }
    //console.log(currentlyEmployed);
-    //console.log(currentlyInsured);
+   //console.log(currentlyInsured);
    //console.log(addPatientResponse);
   
   return (
