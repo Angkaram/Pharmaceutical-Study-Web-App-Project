@@ -58,12 +58,33 @@ function EditPatient({togglePopup, selectedPatient}) {
       bool = false;
     }
 
+    // Function calculates a user's age
+    function calculateAge(dob) {
+      
+      // Convert string to a date object
+      const birthday = new Date(dob);
+      // Get current date as date object
+      const currentDate = new Date();
+
+      // "Subtract" 2 dates, get the age in milliseconds
+      const ageInMilliseconds = currentDate - birthday;
+
+      // Convert age in milliseconds to years 
+      const ageInYears = Math.floor(ageInMilliseconds / (365.25 * 24 * 60 * 60 * 1000));
+
+      // Return age in years
+      return ageInYears;
+    }
+
+    let age = calculateAge(document.getElementById("dob").value);
+
     // TODO: If a patient's ICD healthcodes are deleted using the edit button, they will not appear in searches due to the array being empty
 
     const updated = await entities.patient.update({
       _id: selectedPatient._id,
       name: document.getElementById("name").value,
       dob: document.getElementById("dob").value,
+      age: Number(age),
       insuranceNumber: document.getElementById("insuranceNumber").value,
       weight: document.getElementById("weight").value,
       address: document.getElementById("address").value,

@@ -202,7 +202,7 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView}) {
                     </div>     
                 </div> 
 
-                {isFDAView && selectedStudy.studyPatients !== null && selectedStudy.status === "Active" ? (
+                {isFDAView && selectedStudy.studyPatients !== null && selectedStudy.status === "Approved" && selectedStudy.placeboDrug === null && selectedStudy.realDrug === null ? (
                     <button onClick={toggleDrugSelect}className='add-patient' style={{marginBottom:'25px'}}>Assign Drugs to {selectedStudy.maxPatients.toString()} Patients</button>
                 ):
                     <></>
