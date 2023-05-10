@@ -4,6 +4,24 @@ import "./DoctorView.css";
 import "./ManageStudyView.css";
 import DatePicker from 'react-datepicker';
 
+// Function calculates a user's age
+function calculateAge(dob) {
+  
+  // Convert string to a date object
+  const birthday = new Date(dob);
+  // Get current date as date object
+  const currentDate = new Date();
+
+  // "Subtract" 2 dates, get the age in milliseconds
+  const ageInMilliseconds = currentDate - birthday;
+
+  // Convert age in milliseconds to years 
+  const ageInYears = Math.floor(ageInMilliseconds / (365.25 * 24 * 60 * 60 * 1000));
+
+  // Return age in years
+  return ageInYears;
+}
+
 function AddPatientButton(togglePopup) {
   const {entities} = useJaneHopkins();
   const [isInsured, setIsInsured] = useState(false);
@@ -12,21 +30,30 @@ function AddPatientButton(togglePopup) {
   //const [isEligible, setIsEligible] = useState(false);
 
   const addPatient = async() => {
+
+    // Take allergy input and convert to array
     const allergyInput = document.getElementById("allergies").value;
     const allergyArray = allergyInput.split(" ").map(allergy => ({allergy: allergy}));
 
+    // Take ICD Healthcode input and convert to array
     const icdInput = document.getElementById("ICD").value;
     const icdArray = icdInput.split(" ").map(code => ({code: code }));
 
+    // Take medication input and convert to array
     const medicationInput = document.getElementById("currentMedication").value;
     const medicationArray = medicationInput.split(" ").map(medication => ({medication: medication}));
 
+    // Take boolean input and convert to string
     const currentlyEmployed = document.getElementById("employed").checked ? "True" : "False";
     const currentlyInsured = document.getElementById("insured").checked ? "True" : "False";
+
+    let age = calculateAge(document.getElementById("dob").value);
+    console.log(age);
 
     // Check if the patient is eligible or not
     let bool;
     if (document.getElementById("dob").value === "January 1, 2005" || Number(document.getElementById("dob").value.slice(-4)) < 2005) {
+      // Check pregnancy code
       bool = !icdInput.includes("O00–O99");
     } else {
       bool = false;
@@ -34,8 +61,9 @@ function AddPatientButton(togglePopup) {
     
     const addPatientResponse = await entities.patient.add({
       
+      // Adds all of this information when creating a patient
       name: document.getElementById("name").value,
-      //age: document.getElementById("age").value,
+      age: Number(age),
       dob: document.getElementById("dob").value,
       insuranceNumber: document.getElementById("insuranceNumber").value,
       address: document.getElementById("address").value,
