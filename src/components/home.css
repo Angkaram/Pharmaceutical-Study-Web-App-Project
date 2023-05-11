@@ -190,10 +190,10 @@ color: #000000;
 }
 
 .background-bavaria{
-  background: linear-gradient(180deg, rgba(14,97,156,1) 87%, rgba(244,111,116,1) 100%);
+  background: linear-gradient(180deg, rgba(14,97,156,1) 87%, rgba(111,171,208,1) 100%);
 }
 .background-fda{
-  background: linear-gradient(180deg, rgba(14,97,156,1) 87%, rgba(8,211,180,1) 100%);
+  background: linear-gradient(180deg, rgba(14,97,156,1) 87%, rgba(111,171,208,1) 100%);
 }
 .background-hospital{
   background: linear-gradient(180deg, rgba(14,97,156,1) 87%, rgba(111,171,208,1) 100%);

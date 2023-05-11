@@ -1,9 +1,12 @@
 import useJaneHopkins from '../hooks/useJaneHopkins';
 import "./DoctorView.css";
+import { useState } from 'react';
 
 function AddAppointment({togglePopup, selectedPatient}) {
 
   const {entities} = useJaneHopkins();
+  const [currentDose, setCurrentDose] = useState(1);
+  const [patientData, setPatientData] = useState(selectedPatient);
 
   const updatePatient = async() => {
     const patient = await entities.patient.get(selectedPatient._id);
@@ -19,9 +22,18 @@ function AddAppointment({togglePopup, selectedPatient}) {
 
     const updated = await entities.patient.update({
       _id: selectedPatient._id,
-      visits: newVisit
+      visits: newVisit,
+      doses: currentDose // use current dose number instead of 1
     });
 
+    // increment dose number if it's less than 5
+    if (currentDose < 5) {
+      setCurrentDose(currentDose + 1);
+    }
+
+    setPatientData(updated);
+    
+    console.log(`Dose ${currentDose} applied`);
     console.log(updated);
   }
 
@@ -41,7 +53,9 @@ function AddAppointment({togglePopup, selectedPatient}) {
           <p><strong>HIV Viral Load:</strong> <input type="text" id="hivViralLoad"></input></p>
         </div>
 
-        <button className='add-patient'onClick = {() => {updatePatient();}}>Create Appointment</button>
+        <button className='add-patient'onClick = {() => {updatePatient();}}>
+          {selectedPatient.isStudy === true ? `Apply Dose ${selectedPatient.doses + 1}` : 'Create Appointment'}
+        </button>
       </div>
     </div>
   )
