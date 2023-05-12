@@ -61,6 +61,9 @@ function DoctorAppointments() {
           if (user.role === 'doctor') {
             view = <DoctorHomePage user = {user} LogOut = {logout} />;
           }
+          else {
+            navigate("/Login");
+          }
         // If everything fails, kicks unauthorized user to the login page
         } else {
           navigate("/Login");
