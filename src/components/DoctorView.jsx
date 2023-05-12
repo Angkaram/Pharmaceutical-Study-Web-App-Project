@@ -15,8 +15,9 @@ import ValidateDomain from "./validation";
 
 function DoctorView() {
 
+  const location = useLocation();
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(location.state);
   const logout = async () => {
     await signOut(auth);
     navigate("/");
@@ -51,6 +52,9 @@ function DoctorView() {
     if (isValidated === true) {
       if (user.role === 'doctor') {
         view = <DoctorHomePage user = {user} LogOut = {logout} />;
+      }
+      else {
+        navigate("/Login");
       }
     // If everything fails, kicks unauthorized user to the login page
     } else {

@@ -63,6 +63,9 @@ function BavariaView() {
       if (user.role === "bavaria") {
         view = <BavariaHomePage user = {user} LogOut = {logout}/>;
       }
+      else {
+        navigate("/Login");
+      }
     // If everything fails, kicks unauthorized user to the login page
     } else {
       navigate("/Login");

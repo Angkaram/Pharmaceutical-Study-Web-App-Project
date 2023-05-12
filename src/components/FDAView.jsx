@@ -51,8 +51,11 @@ function FDAView() {
   
     // Checks their role and redirects them accordingly
     if (isValidated === true) {
-      if (user.role === "bavaria") {
+      if (user.role === "fda") {
         view = <FDAHomePage user = {user} LogOut = {logout}/>;
+      }
+      else {
+        navigate("/Login");
       }
     // If everything fails, kicks unauthorized user to the login page
     } else {
