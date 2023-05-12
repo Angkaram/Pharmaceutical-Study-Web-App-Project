@@ -104,7 +104,7 @@ function AssignDrug({toggleDrugSelect, selectedStudy}) {
         assignedDrug: randomId,
         doses: 0
       });
-
+      
       console.log(updatePatient);
     }
 

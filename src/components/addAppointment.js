@@ -43,6 +43,60 @@ function AddAppointment({togglePopup, selectedPatient}) {
       ? { doses: givenDose }
       : {})
     });
+
+    // get id
+    const studyID = selectedPatient.assignedStudy;
+
+    // Get study object 
+    const study = await entities.study.get(studyID);
+
+    // the patients assigned to the study (array)
+    const studyPatients = study.studyPatients.map(patient => patient.id);
+    const length = studyPatients.length;
+    let allPatientsCompleted;
+
+    // Loop through all of the patients in study
+    for (let i = 0; i < length; i++) {
+
+      // Get a patient ID from the study
+      const id = studyPatients[i];
+
+      // Get the patient object from vendia by using their ID
+      const currentPatient = await entities.patient.get(id);
+
+      // if all patients have 5 doses, true for completed
+      if (currentPatient.doses === 5)
+      {
+        allPatientsCompleted = true;
+      }
+      else {
+        allPatientsCompleted = false;
+        break;
+      }
+    };
+    
+    // If all patients have completed, update study and patient statuses
+    if (allPatientsCompleted) {
+      // Mark all patients in the study as no longer in a study, and thus Eligible again
+      const updatePatients = studyPatients.map(patient => {
+        return entities.patient.update({
+          _id: patient._id,
+          isStudy: false,
+          isEligible: true,
+        });
+      });
+      //await Promise.all(updatePatients);
+      console.log("Study patients now eligible again");
+    
+      const study = await entities.study.get(patient.assignedStudy);
+
+      // Update the study status to "Completed"
+      const updatedStudy = await entities.study.update({
+        _id: study._id,
+        status: "Completed",
+      });
+      console.log("Study completed:", updatedStudy);
+    }
     
     console.log(`Dose ${currentDose} applied`);
     console.log(updated);
