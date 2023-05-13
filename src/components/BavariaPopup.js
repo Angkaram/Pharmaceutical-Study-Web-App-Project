@@ -119,13 +119,17 @@ function BavariaPopup({selectedStudy, togglePopup}) {
                             ))}
                         </p>
                 </div>            
-                {!selectedStudy.isResultsReleased ? (
+                {!selectedStudy.isResultsReleased && selectedStudy.isBavariaAgreed === null? (
                     <div style={{ display: "flex", flexDirection: "row" }}>
                         <button className='add-patient' onClick={() => {approveStudy(); handleButtonClick();}}>Approve Study</button>
                         <button className='add-patient' style={{color: "red", borderColor: "red", marginLeft: "2px"}}onClick={() => {denyStudy(); handleButtonClick();}}>Deny Study</button>
                     </div>
-                ):
+                ): selectedStudy.isResultsReleased ? (
                     <button className='add-patient' style={{border: '4px solid #0E619C', color: '#0E619C'}} onClick={togglePopupResults}>Study Ended - See Report</button>
+
+                ): selectedStudy.isBavariaAgreed ? (    
+                    <div className='add-patient' style={{backgroundColor: '#ececec'}}>Study Approved</div>
+                ): <div className='add-patient' style={{border: '4px solid red', color: "red", backgroundColor: '#ececec'}}>Study Denied</div>
                 }
             </div>
             {isOpenResults && <StudyResultsPopup togglePopup={togglePopupResults} selectedStudy={selectedStudy} patientsInStudy={patientsInStudy} isFDAView={false} isBavariaView={true}/>}
