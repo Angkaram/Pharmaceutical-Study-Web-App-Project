@@ -46,7 +46,7 @@ function ManageStudyView() {
   
   const location = useLocation();
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(location.state);
   const logout = async () => {
     await signOut(auth);
     navigate("/");
@@ -62,7 +62,6 @@ function ManageStudyView() {
 
   if (user?.email == null) {
     
-    let view;
     const unsubscribe = auth.onAuthStateChanged(userAuth => {
     const user= {
       email: userAuth?.email,
@@ -75,25 +74,13 @@ function ManageStudyView() {
     } else {
       setUser(null)
     }
-  
-    // Validates the user
-    let isValidated = ValidateDomain(user.email, user.role);
-  
-    // Checks their role and redirects them accordingly
-    if (isValidated === true) {
-      if (user.role === 'doctor') {
-        view = <DoctorHomePage user = {user} LogOut = {logout} />;
-      }
-      else {
-        navigate("/Login");
-      }
-    // If everything fails, kicks unauthorized user to the login page
-    } else {
+    
+    if (user.role != 'doctor') {
       navigate("/Login");
     }
 
-  })
-  return unsubscribe
+    })
+    return unsubscribe
   };
 
   const handleNotificationClick = () => {
@@ -154,13 +141,13 @@ function ManageStudyView() {
     </div>
     
     <div className='doctorNavButtonLocations'>
-        <div className='addPatientBro'>
-          <button className='welcomeContainer' onClick={togglePopup} >Add Study</button>
-        </div>
         <div className="welcomeBro">
-          <button className='welcomeContainer' onClick={() => DoctorHomePage(user)}>Welcome Page</button>
+          <button onClick={() => DoctorHomePage(user)}>Welcome Page</button>
         </div>
-    </div>  
+        <div className='addPatientBro'>
+          <button onClick={togglePopup} >Add Study</button>
+        </div>
+    </div> 
 
     {isOpen && <AddStudyButton handleClose={togglePopup}/>}
     

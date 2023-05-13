@@ -5,12 +5,42 @@ import "./Admin.css";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
+import ValidateDomain from "./validation";
+
 
 function AdminPatientView() {
 
+  const location = useLocation();
   const navigate = useNavigate();
+  const [user, setUser] = useState(location.state);
+  const [nameSearch, setNameSearch] = useState("");
+  const [idSearch, setIDSearch] = useState("");
 
-  const [user, setUser] = useState(null);
+  const [isChecked, setIsChecked] = useState(false);
+
+  if (user?.email == null) {
+    
+    const unsubscribe = auth.onAuthStateChanged(userAuth => {
+    const user= {
+      email: userAuth?.email,
+      role: userAuth?.displayName,
+      id: userAuth?.uid
+    }
+    if (userAuth) {
+      console.log(userAuth)
+      setUser(user)
+    } else {
+      setUser(null)
+    }
+  
+    if (user.role != "admin") {
+      navigate("/Login");
+    }
+
+    })
+    return unsubscribe
+  };
 
   const logout = async () => {
     await signOut(auth);
@@ -25,11 +55,6 @@ function AdminPatientView() {
     navigate("/View", { state: { user } });
   };
 
-
-  const [nameSearch, setNameSearch] = useState("");
-  const [idSearch, setIDSearch] = useState("");
-
-  const [isChecked, setIsChecked] = useState(false);
 
   const filterEligible = isChecked;
 
