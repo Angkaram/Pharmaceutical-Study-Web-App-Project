@@ -155,10 +155,10 @@ function ManageStudyView() {
     
     <div className='doctorNavButtonLocations'>
         <div className='addPatientBro'>
-          <button onClick={togglePopup} >Add Study</button>
+          <button className='welcomeContainer' onClick={togglePopup} >Add Study</button>
         </div>
         <div className="welcomeBro">
-          <button onClick={() => DoctorHomePage(user)}>Welcome Page</button>
+          <button className='welcomeContainer' onClick={() => DoctorHomePage(user)}>Welcome Page</button>
         </div>
     </div>  
 

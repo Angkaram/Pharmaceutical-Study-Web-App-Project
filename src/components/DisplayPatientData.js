@@ -180,7 +180,7 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
 
             </div>
             <button className='add-patient' onClick={togglePopup}>
-            {selectedPatient.doses < 5 && selectedPatient.isStudy === true ? 'Add Appointment and Dose' : 'Add Appointment'}</button>
+            {selectedPatient.doses < 5 && selectedPatient.isStudy === true ? 'Add Appointment and Dose' : 'Create Appointment'}</button>
             <button className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500'}} onClick={togglePopupNew}>Edit Patient</button>
           </div>
         </div>

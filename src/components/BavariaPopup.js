@@ -81,11 +81,11 @@ function BavariaPopup({selectedStudy, togglePopup}) {
     return (
         <div className="largeView">
 
-            <div className="popup-content">
+            <div className="popup-content" style={{borderColor:'#f46f74'}}>
 
                 <div className="popup-top">
                     <h3>{selectedStudy.name}</h3>
-                    <button id="close" onClick={togglePopup}>X</button>
+                    <button id="close" style={{borderColor:'#f46f74'}} onClick={togglePopup}>X</button>
                 </div>
 
                 <div className="popup-middle">
@@ -125,11 +125,14 @@ function BavariaPopup({selectedStudy, togglePopup}) {
                         <button className='add-patient' style={{color: "red", borderColor: "red", marginLeft: "2px"}}onClick={() => {denyStudy(); handleButtonClick();}}>Deny Study</button>
                     </div>
                 ): selectedStudy.isResultsReleased ? (
-                    <button className='add-patient' style={{border: '4px solid #0E619C', color: '#0E619C'}} onClick={togglePopupResults}>Study Ended - See Report</button>
-
-                ): selectedStudy.isBavariaAgreed ? (    
-                    <div className='add-patient' style={{backgroundColor: '#ececec'}}>Study Approved</div>
-                ): <div className='add-patient' style={{border: '4px solid red', color: "red", backgroundColor: '#ececec'}}>Study Denied</div>
+                    <button className='add-patient' onClick={togglePopupResults}>Study Completed - See Report</button>
+                ): !selectedStudy.isResultsReleased && selectedStudy.status === 'Completed' ? (
+                    <div className='add-patient' style={{backgroundColor: '#ececec', cursor: 'auto'}}> Study Completed, Awaiting Release</div>
+                ): selectedStudy.status === 'Approved' ? (    
+                    <div className='add-patient' style={{color: '#0074ae', border: '4px solid #0074ae', backgroundColor: '#ececec', cursor: 'auto'}}>Study Approved</div>
+                ): selectedStudy.status === 'Pending' ? (
+                    <div className='add-patient' style={{color: '#f0ad4e', border: '4px solid #f0ad4e', backgroundColor: '#ececec', cursor: 'auto'}}>Study Pending</div>
+                ): <div className='add-patient' style={{border: '4px solid red', color: "red", backgroundColor: '#ececec', cursor: 'auto'}}>Study Cancelled</div>
                 }
             </div>
             {isOpenResults && <StudyResultsPopup togglePopup={togglePopupResults} selectedStudy={selectedStudy} patientsInStudy={patientsInStudy} isFDAView={false} isBavariaView={true}/>}
