@@ -5,9 +5,10 @@ import AssignDrug from './ChooseStudyDrug';
 import AssignmentPopup from './GroupAssignment';
 import StudyResultsPopup from './StudyResults';
 
-function AdminPopup({selectedStudy, togglePopup, isFDAView}) {
+function AdminPopup({selectedStudy, togglePopup, isFDAView, isBavariaView}) {
     const { entities } = useJaneHopkins();
     const [patients, setPatients] = useState([]);
+    let canAdd; // Boolean will determine if we can add the patient or not
 
     const [isDrugOpen, setIsDrugOpen] = useState(false);
     const toggleDrugSelect = () => {
@@ -37,12 +38,19 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView}) {
     } else {
         hasPatient = true;
     }
+
+    const eligiblePatients = patients.filter(patient => patient.isEligible);
+    if (selectedStudy.maxPatients > eligiblePatients.length) {
+        canAdd = false;
+    } else {
+        canAdd = true;
+    }
     
     const addRandomPatients = async() => {
         const study = await entities.study.get(selectedStudy._id);
         const studyID = study._id;
 
-        const eligiblePatients = patients.filter(patient => patient.isEligible);
+        //const eligiblePatients = patients.filter(patient => patient.isEligible);
         //console.log(eligiblePatients);
         const x = study.maxPatients;
 
@@ -217,13 +225,15 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView}) {
 
                 {selectedStudy.status === "Cancelled" ? (
                     <div className='add-patient' style={{border: '4px solid #EE6C4D', color: '#EE6C4D', backgroundColor: '#ececec'}}>Study Cancelled</div>
-                    ) : selectedStudy.status === "Pending" ? (
+                    ) : selectedStudy.status === "Pending" && isFDAView && isBavariaView? (
                         <>
                             <div style={{ display: "flex", flexDirection: "row" }}>
                                 <button className='add-patient' onClick={() => { approveStudy(); handleButtonClick(); } }>Approve Study</button>
                                 <button className='add-patient' style={{color: "red", borderColor: "red", marginLeft: "2px"}}onClick={() => { cancelStudy(); handleCancelButtonClick(); } }>Cancel Study</button>
                             </div>
                         </> 
+                    ) : selectedStudy.status === "Pending" && !isFDAView && !isBavariaView? (
+                        <div className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500', backgroundColor: '#ececec'}}>Study Approval Pending</div>
                     ) : selectedStudy.status === "Completed" && !selectedStudy.isFDANotified && !isFDAView ? (
                         <div style={{ display: "flex", flexDirection: "row" }}>
                             <div className='add-patient' style={{border: '4px solid #0E619C', color: '#0E619C', backgroundColor: '#ececec'}}>Study Completed</div>
@@ -256,8 +266,11 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView}) {
                         <DisplayStudyPatients studyPatients = {selectedStudy.studyPatients} isFDAView={isFDAView} />
                     ): isFDAView ? (
                         <div className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500', backgroundColor: '#ececec'}}>Need Patients</div>
-                    ):
+                    ): canAdd && selectedStudy.studyPatients === null && !isFDAView && !isBavariaView? (
                         <button className='add-patient' onClick={addRandomPatients}>Add {selectedStudy.maxPatients.toString()} Random Eligible Patients</button>
+                    ):
+                        <div className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500', backgroundColor: '#ececec'}}>Not Enough Eligible Patients</div>
+                    
                 }             
 
             </div>
