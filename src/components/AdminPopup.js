@@ -225,7 +225,7 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView, isBavariaView}) {
 
                 {selectedStudy.status === "Cancelled" ? (
                     <div className='add-patient' style={{border: '4px solid #EE6C4D', color: '#EE6C4D', backgroundColor: '#ececec'}}>Study Cancelled</div>
-                    ) : selectedStudy.status === "Pending" && isFDAView && isBavariaView? (
+                    ) : selectedStudy.status === "Pending" && isFDAView || isBavariaView? (
                         <>
                             <div style={{ display: "flex", flexDirection: "row" }}>
                                 <button className='add-patient' onClick={() => { approveStudy(); handleButtonClick(); } }>Approve Study</button>
