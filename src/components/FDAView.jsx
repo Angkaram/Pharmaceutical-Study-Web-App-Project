@@ -95,11 +95,11 @@ const handlePopupClick = () => {
 
       <div className='doctorNavButtonLocations'>
           <div className="welcomeBro" style={{borderColor: '#08d3b4'}}>
-            <button onClick={() => FDAHomePage(user)} style={{color: 'black'}}>Welcome Page</button>
+            <button className='welcomeContainer' onClick={() => FDAHomePage(user)} style={{color: 'black'}}>Welcome Page</button>
           </div>
 
           <div className='addPatientBro' style={{borderColor: '#08d3b4'}}>
-            <button onClick={togglePopup} style={{color: 'black'}}>Manage Contracts</button>
+            <button className='welcomeContainer' onClick={togglePopup} style={{color: 'black'}}>Manage Contracts</button>
           </div>
       </div>
 

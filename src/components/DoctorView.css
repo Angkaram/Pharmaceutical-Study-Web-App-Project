@@ -49,11 +49,19 @@ body {
     font-size: 25px;
     width: 50px;
     margin-left: 10px;
+    transition: box-shadow 0.5s ease-in-out; /* Added transition for smooth effect */
 }
 
 #close:hover {
     background-color: #bababa;
     color: white;
+    cursor: pointer;
+}
+
+#close:active {
+    background-color: rgba(186, 186, 186, 0.726); /* Change the background color on active state */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3); /* Add an inset box shadow for the pressed effect */
+    transform: translateY(2px); /* Move the button down by 2px to create the pressed effect */
 }
 
 .popup-top {
@@ -302,12 +310,19 @@ th {
     align-items: center;
     margin-right: 76px;
     cursor: pointer;
+    transition: box-shadow 0.5s ease-in-out; /* Added transition for smooth effect */
 }
 
 .signOutButton:hover {
     background-color: #9ea5aa;
     color: white;
 }
+
+.signOutButton:active {
+    background-color: rgba(186, 186, 186, 0.726); /* Change the background color on active state */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3); /* Add an inset box shadow for the pressed effect */
+    transform: translateY(1.5px); /* Move the button down by 2px to create the pressed effect */
+  }
 
 /* TODO MUST FIX NAVBUTTON LOCATIONS BELOW---------------------------------------------- */
 
@@ -381,13 +396,13 @@ th {
     cursor: pointer;
     background: #F3F3F3;
     border: 5px solid #0E619C;
-    border-radius: 20px;
+    border-radius: 15px;
     display: flex;
 }
 
 .welcomeContainer:hover {
-    background-color: #c2dbec;
-    color: white;
+    background-color: #cacaca;
+    color: rgb(0, 0, 0);
 }
 
 /* Welcome Page */
@@ -559,7 +574,8 @@ th {
     font-size: 19px;
     width: clamp(125px, 30%, 280px);
     padding: 5px ;
-    margin: 5px
+    margin: 5px;
+    transition: box-shadow 0.5s ease-in-out; /* Added transition for smooth effect */
     
     /* padding-top: 6px;
     padding-bottom: 6px;
@@ -571,12 +587,16 @@ th {
     margin-right: 40%; */
 }
 
-
-
 .searchButton:hover {
     background-color: #c2dbec;
     color: black;
 }
+
+.searchButton:active {
+    background-color: rgba(186, 186, 186, 0.726); /* Change the background color on active state */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3); /* Add an inset box shadow for the pressed effect */
+    transform: translateY(1px); /* Move the button down by 2px to create the pressed effect */
+  }
 
 /* Search Text */
 .searchButtonText {
@@ -657,12 +677,19 @@ th {
     font-size: large;
     font-weight: bold;
     background-color: white;
+    transition: box-shadow 0.5s ease-in-out; /* Added transition for smooth effect */
 }
 
 .add-patient:hover {
     background-color: #ececec;
     cursor: pointer;
 }
+
+.add-patient:active {
+    background-color: rgba(161, 161, 161, 0.726); /* Change the background color on active state */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3); /* Add an inset box shadow for the pressed effect */
+    transform: translateY(2px); /* Move the button down by 2px to create the pressed effect */
+  }
 
 .add-patient::after {
     content: attr(data-message);

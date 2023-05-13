@@ -1,7 +1,12 @@
 import useJaneHopkins from '../hooks/useJaneHopkins';
 import "./DoctorView.css";
+import { css } from "@emotion/react";
+import { ClipLoader } from "react-spinners";
+import { useState } from 'react';
 
 function AddAppointment({togglePopup, selectedPatient}) {
+
+  const [isLoading, setIsLoading] = useState(true);
 
   const {entities} = useJaneHopkins();
 
@@ -20,6 +25,11 @@ function AddAppointment({togglePopup, selectedPatient}) {
   } else {
     canGiveDoses = false;
   }
+
+  async function handleButtonClick() {
+    await updatePatient();
+    window.location.reload();
+  };
 
   const updatePatient = async() => {
     const patient = await entities.patient.get(selectedPatient._id);
@@ -119,9 +129,25 @@ function AddAppointment({togglePopup, selectedPatient}) {
         </div>
 
         {canGiveDoses === true ? (
-          <button className='add-patient'onClick = {() => {updatePatient();}}>Apply Dose {givenDose}</button>
+          <button className='add-patient'onClick = {() => {updatePatient(); handleButtonClick();
+            const messageElem = document.createElement('div');
+            messageElem.innerText = `Dose ${givenDose} Added, page reloading...`;
+            messageElem.classList.add('message'); // Add CSS class to the message element
+            document.body.appendChild(messageElem);
+            setTimeout(() => {
+                messageElem.remove();
+            }, 1000); // Delay message display for 1 second (1000 milliseconds)
+        }}>Apply Dose {givenDose}</button>
         ):
-          <button className='add-patient'onClick = {() => {updatePatient();}}>Create Appointment</button>
+          <button className='add-patient'onClick = {() => {updatePatient();
+            const messageElem = document.createElement('div');
+            messageElem.innerText = `New Appointment Created`;
+            messageElem.classList.add('message'); // Add CSS class to the message element
+            document.body.appendChild(messageElem);
+            setTimeout(() => {
+                messageElem.remove();
+            }, 1000); // Delay message display for 1 second (1000 milliseconds)
+          }}>Create Appointment</button>
         }
       </div>
     </div>

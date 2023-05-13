@@ -89,7 +89,7 @@ function DoctorView() {
 
       <div className='doctorNavButtonLocations'>
         <div className="welcomeBro">
-          <button onClick={() => DoctorHomePage(user)}>Welcome Page</button>
+          <button className='welcomeContainer' onClick={() => DoctorHomePage(user)}>Welcome Page</button>
         </div>
 
         {/* <div className='welcomeBro'>
@@ -97,11 +97,11 @@ function DoctorView() {
         </div> */}
 
         <div className='appointmentBro'>
-          <button onClick={() => DoctorAppointments(user)}>Manage Appointments</button>
+          <button className='welcomeContainer' onClick={() => DoctorAppointments(user)}>Manage Appointments</button>
         </div>
 
         <div className='addPatientBro'>
-          <button onClick={togglePopup} >Add Patients</button>
+          <button className='welcomeContainer' onClick={togglePopup} >Add Patients</button>
         </div>
         
       </div>

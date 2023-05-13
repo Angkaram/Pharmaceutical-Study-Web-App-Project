@@ -147,7 +147,7 @@ function ManageStudyView() {
         <div className='addPatientBro'>
           <button onClick={togglePopup} >Add Study</button>
         </div>
-    </div>  
+    </div> 
 
     {isOpen && <AddStudyButton handleClose={togglePopup}/>}
     

@@ -39,16 +39,16 @@ function BavariaShipmentsPopup({selectedDrug, togglePopup}) {
     return (
         <div className="largeView">
 
-            <div className="popup-content">
+            <div className="popup-content" style={{borderColor:'#f46f74'}}>
 
                 <div className="popup-top">
                     <h3>{selectedDrug.name}</h3>
-                    <button id="close" onClick={togglePopup}>X</button>
+                    <button id="close" style={{borderColor:'#f46f74'}} onClick={togglePopup}>X</button>
                 </div>
 
                 <div className="popup-middle">
                     <div className="popup-section" >
-                        <h3>General Information</h3>
+                        <h3 style={{ textDecoration: 'underline', textDecorationThickness: '2px'}}>General Information</h3>
                         <p><b>ID: </b>{selectedDrug._id}</p>
                         <p><b>Placebo: </b>{selectedDrug.placebo ? 'Yes' : 'No'}</p>
                         <p><b>Batch Number: </b>{selectedDrug.batchNumber}</p>

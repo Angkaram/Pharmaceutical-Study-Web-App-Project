@@ -109,11 +109,11 @@ function DoctorAppointments() {
             </div>
             <div className="doctorNavButtonLocations">
                 <div className="welcomeBro">
-                    <button onClick={() => DoctorHomePage(user)}>Welcome Page</button>
+                    <button className='welcomeContainer' onClick={() => DoctorHomePage(user)}>Welcome Page</button>
                 </div>
                 
                 <div className="appointmentBro">
-                    <button onClick={() => DoctorView(user)}>Manage Patients</button>
+                    <button className='welcomeContainer' onClick={() => DoctorView(user)}>Manage Patients</button>
                 </div>
             </div>
 

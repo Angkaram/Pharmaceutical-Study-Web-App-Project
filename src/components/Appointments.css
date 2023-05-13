@@ -118,8 +118,15 @@
     width: 50px;
     margin-left: 0px;
     margin-bottom: 30px;
+    transition: box-shadow 0.5s ease-in-out; /* Added transition for smooth effect */
   }
   #closeAppt:hover {
     background-color: #bababa;
     color: white;
+    cursor: pointer;
+  }
+  #closeAppt:active {
+    background-color: rgba(186, 186, 186, 0.726); /* Change the background color on active state */
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3); /* Add an inset box shadow for the pressed effect */
+    transform: translateY(2px); /* Move the button down by 2px to create the pressed effect */
   }

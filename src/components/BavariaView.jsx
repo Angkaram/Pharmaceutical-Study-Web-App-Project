@@ -103,10 +103,10 @@ function BavariaView() {
 
       <div className='doctorNavButtonLocations'>
         <div className="welcomeBro" style={{borderColor: '#f46f74'}}>
-          <button onClick={() => BavariaHomePage(user)} style={{color: 'black'}}>Welcome Page</button>
+          <button className='welcomeContainer' onClick={() => BavariaHomePage(user)} style={{color: 'black'}}>Welcome Page</button>
         </div>
         <div className="welcomeBro" style={{borderColor: '#f46f74'}}>
-          <button onClick={() => ManageShipmentsView(user)} style={{color: 'black'}}>Manage Shipments</button>
+          <button className='welcomeContainer' onClick={() => ManageShipmentsView(user)} style={{color: 'black'}}>Manage Shipments</button>
         </div>
       </div>
       

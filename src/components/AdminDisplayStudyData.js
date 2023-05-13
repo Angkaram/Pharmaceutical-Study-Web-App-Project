@@ -10,6 +10,7 @@ import { css } from "@emotion/react";
 import "react-datepicker/dist/react-datepicker.css";
 import AdminPopup from './AdminPopup';
 import "./Admin.css";
+import { ClipLoader } from "react-spinners";
 
 function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isBavariaView, isAdminView}) {
 
@@ -35,10 +36,12 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
 
   
     const override = css`
-      display: block;
-      margin: 0 auto;
-      border-color: red;
-    `;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  `;
   
     const handleStudyClick = (study) => {
       setSelectedStudy(study);
@@ -48,7 +51,8 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
   
     return (
       <div>
-        
+        <ClipLoader color={"#08d3b4"} loading={isLoading} css={override} size={40} />
+        {!isLoading && (
           <table className="patientTable">
             <thead>
             <tr>
@@ -149,6 +153,7 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
   
             </tbody>
           </table>
+        )}
         {isFDAView && isOpen ? (
             <AdminPopup selectedStudy={selectedStudy} togglePopup={togglePopup} isFDAView={true}/>
         ): isAdminView && isOpen ? (
@@ -157,7 +162,7 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
           <></>
         }
         </div>
-      )
+    )
   };
 
   export default DisplayStudyData;

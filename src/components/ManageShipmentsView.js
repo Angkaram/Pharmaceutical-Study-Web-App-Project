@@ -111,11 +111,11 @@ function ManageShipmentsView () {
 
             <div className='doctorNavButtonLocations'>
                 <div className="welcomeBro" style={{borderColor: '#f46f74'}}>
-                    <button onClick={() => BavariaHomePage(user)} style={{color: 'black'}}>Welcome Page</button>
+                    <button className='welcomeContainer' onClick={() => BavariaHomePage(user)} style={{color: 'black'}}>Welcome Page</button>
                 </div>
 
                 <div className='addPatientBro' style={{borderColor: '#f46f74'}}>
-                    <button onClick={togglePopup} style={{color: 'black'}}>Add Shipments</button>
+                    <button className='welcomeContainer' onClick={togglePopup} style={{color: 'black'}}>Add Shipments</button>
                 </div>
             </div>
 
