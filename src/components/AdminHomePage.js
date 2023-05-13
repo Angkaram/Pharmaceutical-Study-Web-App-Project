@@ -37,11 +37,11 @@ function AdminHomePage ({ user, LogOut}) {
           <div className="box-container">
 
             <div className="box" style={{backgroundColor: '#6fabd0'}}>
-                <button onClick={gotoStudy}><h3>Manage Study</h3></button>
+                <button onClick={() => gotoStudy(user)}><h3>Manage Study</h3></button>
             </div>
   
             <div className="box" style={{backgroundColor: '#6fabd0'}}>
-                <button onClick={gotoPatientPage}><h3>Manage Patients</h3></button>
+                <button onClick={() => gotoPatientPage(user)}><h3>Manage Patients</h3></button>
             </div>
   
           </div>  

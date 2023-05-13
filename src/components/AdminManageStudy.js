@@ -5,12 +5,38 @@ import { auth } from "./firebase-config";
 import { useState } from "react";
 import './ManageStudyView.css';
 import Sidebar from './Sidebar';
+import { useLocation } from 'react-router-dom';
+import ValidateDomain from "./validation";
+
 
 function AdminManageStudy() {
 
+    const location = useLocation();
     const navigate = useNavigate();
+    const [user, setUser] = useState(location.state);
 
-    const [user, setUser] = useState(null);
+    if (user?.email == null) {
+    
+        const unsubscribe = auth.onAuthStateChanged(userAuth => {
+        const user= {
+            email: userAuth?.email,
+            role: userAuth?.displayName,
+            id: userAuth?.uid
+        }
+        if (userAuth) {
+            console.log(userAuth)
+            setUser(user)
+        } else {
+            setUser(null)
+        }
+                
+        if (user.role != "admin") {
+            navigate("/Login");
+        }
+
+        })
+        return unsubscribe
+    };
 
     const logout = async () => {
       await signOut(auth);
