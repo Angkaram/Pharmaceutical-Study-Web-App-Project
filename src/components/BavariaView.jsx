@@ -19,7 +19,7 @@ function BavariaView() {
 
   const location = useLocation();
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(location.state);
   const logout = async () => {
     await signOut(auth);
     navigate("/");
@@ -41,7 +41,6 @@ function BavariaView() {
 
   if (user?.email == null) {
     
-    let view;
     const unsubscribe = auth.onAuthStateChanged(userAuth => {
     const user= {
       email: userAuth?.email,
@@ -54,20 +53,8 @@ function BavariaView() {
     } else {
       setUser(null)
     }
-  
-    // Validates the user
-    let isValidated = ValidateDomain(user.email, user.role);
-  
-    // Checks their role and redirects them accordingly
-    if (isValidated === true) {
-      if (user.role === "bavaria") {
-        view = <BavariaHomePage user = {user} LogOut = {logout}/>;
-      }
-      else {
-        navigate("/Login");
-      }
-    // If everything fails, kicks unauthorized user to the login page
-    } else {
+      
+    if (user.role != "bavaria") {
       navigate("/Login");
     }
 

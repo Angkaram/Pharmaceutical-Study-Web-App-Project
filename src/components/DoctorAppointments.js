@@ -18,9 +18,8 @@ import ValidateDomain from "./validation";
 function DoctorAppointments() {
 
     const location = useLocation();
-
     const navigate = useNavigate();
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(location.state);
     const logout = async () => {
     await signOut(auth);
     navigate("/");
@@ -29,17 +28,16 @@ function DoctorAppointments() {
     const [patients, setPatients] = useState([]);
 
     useEffect(() => {
-        async function fetchPatients() {
-          const patientList = await entities.patient.list();
-          setPatients(patientList.items);
-        }
-    
-        fetchPatients();
-      }, [entities.patient]);
+      async function fetchPatients() {
+        const patientList = await entities.patient.list();
+        setPatients(patientList.items);
+      }
+  
+      fetchPatients();
+    }, [entities.patient]);
 
-    if (user?.email == null) {
+      if (user?.email == null) {
     
-        let view;
         const unsubscribe = auth.onAuthStateChanged(userAuth => {
         const user= {
           email: userAuth?.email,
@@ -52,25 +50,13 @@ function DoctorAppointments() {
         } else {
           setUser(null)
         }
-      
-        // Validates the user
-        let isValidated = ValidateDomain(user.email, user.role);
-      
-        // Checks their role and redirects them accordingly
-        if (isValidated === true) {
-          if (user.role === 'doctor') {
-            view = <DoctorHomePage user = {user} LogOut = {logout} />;
-          }
-          else {
-            navigate("/Login");
-          }
-        // If everything fails, kicks unauthorized user to the login page
-        } else {
+              
+        if (user.role != 'doctor') {
           navigate("/Login");
         }
     
-      })
-      return unsubscribe
+        })
+        return unsubscribe
       };
 
     const locales = {
