@@ -31,7 +31,6 @@ function DoctorView() {
   
   if (user?.email == null) {
     
-    let view;
     const unsubscribe = auth.onAuthStateChanged(userAuth => {
     const user= {
       email: userAuth?.email,
@@ -44,29 +43,15 @@ function DoctorView() {
     } else {
       setUser(null)
     }
-  
-    // Validates the user
-    let isValidated = ValidateDomain(user.email, user.role);
-  
-    // Checks their role and redirects them accordingly
-    if (isValidated === true) {
-      if (user.role === 'doctor') {
-        view = <DoctorHomePage user = {user} LogOut = {logout} />;
-      }
-      else {
-        navigate("/Login");
-      }
-    // If everything fails, kicks unauthorized user to the login page
-    } else {
+      
+    if (user.role != 'doctor') {
       navigate("/Login");
     }
 
-  })
-  return unsubscribe
+    })
+    return unsubscribe
   };
 
-
- 
   const togglePopup = () => {
     setIsOpen(!isOpen);
   }

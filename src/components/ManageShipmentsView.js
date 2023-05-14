@@ -19,7 +19,7 @@ function ManageShipmentsView () {
     const drugID = `0187d449-b778-acbd-27c6-94b2a9be0287`
 
     const location = useLocation();
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(location.state);
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -37,38 +37,25 @@ function ManageShipmentsView () {
 
     if (user?.email == null) {
     
-        let view;
-        const unsubscribe = auth.onAuthStateChanged(userAuth => {
-        const user= {
-          email: userAuth?.email,
-          role: userAuth?.displayName,
-          id: userAuth?.uid
-        }
-        if (userAuth) {
-          console.log(userAuth)
-          setUser(user)
-        } else {
-          setUser(null)
-        }
-      
-        // Validates the user
-        let isValidated = ValidateDomain(user.email, user.role);
-      
-        // Checks their role and redirects them accordingly
-        if (isValidated === true) {
-          if (user.role === "bavaria") {
-            view = <BavariaHomePage user = {user} LogOut = {logout}/>;
-          }
-          else {
-            navigate("/Login");
-          }
-        // If everything fails, kicks unauthorized user to the login page
-        } else {
-          navigate("/Login");
-        }
-    
-        })
-        return unsubscribe
+      const unsubscribe = auth.onAuthStateChanged(userAuth => {
+      const user= {
+        email: userAuth?.email,
+        role: userAuth?.displayName,
+        id: userAuth?.uid
+      }
+      if (userAuth) {
+        console.log(userAuth)
+        setUser(user)
+      } else {
+        setUser(null)
+      }
+          
+      if (user.role != "bavaria") {
+        navigate("/Login");
+      }
+  
+      })
+      return unsubscribe
     };
 
     const handleNotificationClick = () => {

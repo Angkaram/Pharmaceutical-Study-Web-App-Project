@@ -38,7 +38,7 @@ const handlePopupClick = () => {
 // end of notification stuff
 
   const location = useLocation();
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(location.state);
   const navigate = useNavigate();
   const logout = async () => {
     await signOut(auth);
@@ -54,7 +54,6 @@ const handlePopupClick = () => {
 
   if (user?.email == null) {
     
-    let view;
     const unsubscribe = auth.onAuthStateChanged(userAuth => {
     const user= {
       email: userAuth?.email,
@@ -67,27 +66,14 @@ const handlePopupClick = () => {
     } else {
       setUser(null)
     }
-  
-    // Validates the user
-    let isValidated = ValidateDomain(user.email, user.role);
-  
-    // Checks their role and redirects them accordingly
-    if (isValidated === true) {
-      if (user.role === "fda") {
-        view = <FDAHomePage user = {user} LogOut = {logout}/>;
-      }
-      else {
-        navigate("/Login");
-      }
-    // If everything fails, kicks unauthorized user to the login page
-    } else {
+      
+    if (user.role != "fda") {
       navigate("/Login");
     }
 
     })
     return unsubscribe
   };
-
   const FDAHomePage = () => {
     navigate("/View", { state: { user } });
   };
