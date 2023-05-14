@@ -7,25 +7,27 @@ import './ManageStudyView.css';
 import "./Admin.css";
 import useJaneHopkins from '../hooks/useJaneHopkins';
 import { useState, useEffect } from 'react';
+import { css } from "@emotion/react";
+import { ClipLoader } from "react-spinners";
 
 function DisplayStudyPatients({studyPatients, isFDAView}) {
     const { entities } = useJaneHopkins();
     const patientIDs = studyPatients.map(patient => patient.id);
     const [patientsInStudy, setpatientsInStudy] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    const getPatient = async() => {
-        const patientArray = [];
-        for (const id of patientIDs) {
-            const patient = await entities.patient.get(id);
-            patientArray.push(patient);
-        }
+    useEffect(() => {
+        async function getPatient() {
+            const patientArray = [];
+            for (const id of patientIDs) {
+                const patient = await entities.patient.get(id);
+                patientArray.push(patient);
+            }   
         setpatientsInStudy(patientArray);
-    }
-
-    useEffect(()=> {
+        setIsLoading(false);
+        }
         getPatient();
-    // eslint-disable-next-line
-    }, []);
+      },[entities.patient]);
 
     let color;
     if (isFDAView) {
@@ -34,29 +36,38 @@ function DisplayStudyPatients({studyPatients, isFDAView}) {
         color = '#6fabd0';
     }
 
+    const override = css`
+    display: block;
+    margin: 0 auto;
+    border-color: red;
+  `;
+
     return (
         <div className='popup-table'>
-            <table className="patientTable" style={{maxWidth:'800px'}}>
-                <thead>
-                    <tr>
-                        <th style={{backgroundColor: color}}>Patient ID</th>
-                        <th style={{backgroundColor: color}}>Doses</th>
-                        <th style={{backgroundColor: color}}>Drug ID</th>
-                    </tr>
-                </thead>
-                <tbody>      
-                    {patientsInStudy.map((patient) => {
-                    return (
-                        <tr key={patient._id}>              
-                            <td>{patient._id}</td>
-                            <td>{patient.doses}</td>
-                            <td>{patient.assignedDrug}</td>
+            <ClipLoader color={"blue"} loading={isLoading} css={override} size={40} />
+            {!isLoading && (
+                <table className="patientTable" style={{maxWidth:'800px'}}>
+                    <thead>
+                        <tr>
+                            <th style={{backgroundColor: color}}>Patient ID</th>
+                            <th style={{backgroundColor: color}}>Doses</th>
+                            <th style={{backgroundColor: color}}>Drug ID</th>
                         </tr>
-                        )
-                    })}
-                </tbody>
-            </table>
-            </div>
+                    </thead>
+                    <tbody>      
+                        {patientsInStudy.map((patient) => {
+                        return (
+                            <tr key={patient._id}>              
+                                <td>{patient._id}</td>
+                                <td>{patient.doses}</td>
+                                <td>{patient.assignedDrug}</td>
+                            </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
+            )}
+        </div>
     )
   };
 

@@ -216,7 +216,7 @@ function AddStudyButton(togglePopup) {
   async function handleButtonClick() {
     await addStudy();
     window.location.reload();
-    };
+  };
 
   return (
     <div className="largeView">
