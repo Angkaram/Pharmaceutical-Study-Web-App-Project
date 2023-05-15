@@ -24,17 +24,41 @@ function AddPatientButton(togglePopup) {
     const currentlyEmployed = document.getElementById("employed").checked ? "True" : "False";
     const currentlyInsured = document.getElementById("insured").checked ? "True" : "False";
 
+    // Function calculates a user's age
+    function calculateAge(dob) {
+
+      // Convert string to a date object
+      const birthday = new Date(dob);
+      // Get current date as date object
+      const currentDate = new Date();
+
+      // "Subtract" 2 dates, get the age in milliseconds
+      const ageInMilliseconds = currentDate - birthday;
+
+      // Convert age in milliseconds to years 
+      const ageInYears = Math.floor(ageInMilliseconds / (365.25 * 24 * 60 * 60 * 1000));
+
+      // Return age in years
+      return ageInYears;
+    }
+
     // Check if the patient is eligible or not
     let bool;
-    if (document.getElementById("dob").value === "January 1, 2005" || Number(document.getElementById("dob").value.slice(-4)) < 2005) {
+    let age = 0;
+    if (document.getElementById("dob").value === "") {
+      bool = false;
+    } else if (document.getElementById("dob").value === "January 1, 2005" || Number(document.getElementById("dob").value.slice(-4)) < 2005) {
       bool = !icdInput.includes("O00–O99");
+      age = calculateAge(document.getElementById("dob").value);
     } else {
       bool = false;
+      age = calculateAge(document.getElementById("dob").value);
     }
+
     const addPatientResponse = await entities.patient.add(
       {
         name: document.getElementById("name").value,
-        //age: document.getElementById("age").value,
+        age: age,
         dob: document.getElementById("dob").value,
         insuranceNumber: document.getElementById("insuranceNumber").value,
         address: document.getElementById("address").value,
@@ -51,6 +75,7 @@ function AddPatientButton(togglePopup) {
         currentlyEmployed: currentlyEmployed,
         currentlyInsured: currentlyInsured,
         isEligible: bool,
+        bloodType: document.getElementById("bloodType").value
       },
       {
         aclInput: {
@@ -173,7 +198,7 @@ function AddPatientButton(togglePopup) {
         <div className="popup-section" >
           <h3>Health Information</h3>
           <p><strong>Patient ID:</strong> <input type="text" id = "uuid"></input></p>
-          <p><strong>Blood Type:</strong> <input type="text"></input></p>
+          <p><strong>Blood Type:</strong> <input type="text" id = "bloodType"></input></p>
 
           <p className='checkbox'><strong className='checkbox-test'>Currently Employed:
             <input type="checkbox" checked = {isEmployed} onChange={()=> setIsEmployed(!isEmployed)} id = "employed"></input>
