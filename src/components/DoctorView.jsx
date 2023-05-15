@@ -11,7 +11,7 @@ import DisplayPatientData from './DisplayPatientData';
 import './DoctorView.css';
 import View from "./States_Views";
 import ValidateDomain from "./validation";
-
+import NavigationBar from './NavigationBar';
 
 function DoctorView() {
 
@@ -77,16 +77,7 @@ function DoctorView() {
   return (
     <div className='managePatient'>
       {/* NTS: REVERT BACK IF FAILS + DoctorView.css */}
-      <div className = 'nav-bar'>
-        <div className='janeHopkinsTitleText'>Jane Hopkins
-          <div className='hospitalTitleText'>Hospital</div>
-        </div>
-        <div className='displayEmail'>{user?.email}</div>
-        <button className='signOutButton' onClick={logout}>
-          <div className='signOutIcon'></div>
-          <div className='signOutText'>Sign Out</div>
-        </button>
-      </div>
+      <NavigationBar isDoctorView={true} user={user}/>
 
       <div className='doctorNavButtonLocations'>
         <div className="welcomeBro">

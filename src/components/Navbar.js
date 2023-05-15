@@ -1,34 +1,10 @@
 import "./home.css";
+import NavigationBar from "./NavigationBar";
 const Nav = () => {
     return (
         
         <div className = "background-color">
-            <nav className="navbar">
-            <div className="medTitle">
-                <div className="abbrvMD">MDMS</div>
-                    Medical Data
-                <div className="manageTitle">Management System</div>
-            </div>
-                
-                <div className="linkCreate">
-                    <a href="/SignUp">Create Account</a>
-                </div>
-                <div className="linkLogin">
-                    <a href="/Login" style={{
-                    }}
-                    onMouseOver={e => {
-                        e.target.style.backgroundColor = '#9ea5aa';
-                    }}
-                    onMouseOut={e => {
-                        e.target.style.color = '#0E619C';
-                        e.target.style.backgroundColor = '#fff';
-                    }}
-                    >
-                    Sign in
-                    </a>
-
-                </div>
-            </nav>
+            <NavigationBar />
             
         <body className="mission-container">
             <div className="mission-head">

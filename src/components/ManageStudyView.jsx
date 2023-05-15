@@ -17,7 +17,7 @@ import NotificationContext from './NotificationContext';
 import DisplayStudyData from './DisplayStudyData';
 import Sidebar from './Sidebar';
 import ValidateDomain from "./validation";
-
+import NavigationBar from './NavigationBar';
 
 function ManageStudyView() {
 
@@ -103,19 +103,7 @@ function ManageStudyView() {
   return (
     <div className='managePatient'> 
 
-<div className='nav-bar'>
-
-    <div className='doctorViewTitle'>
-      <div className='janeHopkinsTitleText'>Jane Hopkins
-        <div className='hospitalTitleText'>Hospital</div>
-      </div>
-    </div>
-    <div className='displayEmail'>{user?.email}</div>
-    <button className='signOutButton' onClick={logout}>
-      <div className='signOutIcon'></div>
-      <div className='signOutText'>Sign Out</div>
-    </button>
-    </div>
+      <NavigationBar isDoctorView={true} user={user}/>
 
     <Sidebar></Sidebar>
 
