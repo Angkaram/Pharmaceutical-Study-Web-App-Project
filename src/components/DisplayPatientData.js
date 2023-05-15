@@ -8,7 +8,7 @@ import AddAppointment from './addAppointment';
 import EditPatient from './editPatient';
 import "./DoctorView.css";
 
-function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, isBavariaView, isAdminView, filterEligible, idSearch}) {
+function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, isBavariaView, isAdminView, filterEligible, idSearch, ageSearch}) {
 
   const { entities } = useJaneHopkins();
   const [patients, setPatients] = useState([]);
@@ -82,7 +82,7 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
                   <th>Age</th>
                   <th>Date of Birth</th>
                   <th>Insurance Number</th>
-                  <th>Address</th>
+                  <th>Assigned Study</th>
                 </>
               )}
             </tr>
@@ -97,10 +97,10 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
               return patient;
             }
             else if (patient.name.toLowerCase().includes(nameSearch.toLowerCase()) && patient.insuranceNumber.includes(insuranceSearch) 
-            && patient.icdHealthCodes.some(code => code.code.toLowerCase().includes(ICDSearch.toLowerCase()))) { 
+            && patient.icdHealthCodes.some(code => code.code.toLowerCase().includes(ICDSearch.toLowerCase())) && patient.age.toString().includes(ageSearch.toString())) { 
               return patient;
             } 
-            else if (nameSearch === "" && insuranceSearch === "" && ICDSearch === "") {
+            else if (nameSearch === "" && insuranceSearch === "" && ICDSearch === "" && ageSearch.toString() === "") {
               return patient;
             }
           }).map((patient) => {
@@ -126,7 +126,11 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
                         <td>{patient.age}</td>
                         <td>{patient.dob}</td>
                         <td>{patient.insuranceNumber}</td>
-                        <td>{patient.address}</td>
+                        {patient.assignedStudy !== null ? (
+                          <td>{patient.assignedStudy}</td>
+                        ):
+                        <td>N/A</td>
+                        }
                       </>
                     )}
                   </tr>
