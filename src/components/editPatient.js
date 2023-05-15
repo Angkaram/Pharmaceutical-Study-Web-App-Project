@@ -54,7 +54,7 @@ function EditPatient({togglePopup, selectedPatient}) {
     // Check if the patient is eligible or not
     let bool;
     if (document.getElementById("dob").value === "January 1, 2005" || Number(document.getElementById("dob").value.slice(-4)) < 2005) {
-      bool = !icdInput.includes("O00–O99");
+      bool = !icdInput.includes("O");
     } else {
       bool = false;
     }
