@@ -3,6 +3,7 @@ import { ClipLoader } from "react-spinners";
 import useJaneHopkins from '../hooks/useJaneHopkins';
 import { useEffect, useState } from 'react';
 import BavariaPopup from './BavariaPopup';
+import AdminPopup from "./AdminPopup";
 import "./Admin.css";
 
 // new function to display Study data:
@@ -69,6 +70,7 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
                   <th>Agreed by Bavaria</th>
                   <th>Agreed by FDA</th>
                   <th>Max Participants</th>
+                  {isOpen && <AdminPopup selectedStudy={selectedStudy} togglePopup={togglePopup} isDoctorView/>}
                   </>
                 )}
               </tr>
