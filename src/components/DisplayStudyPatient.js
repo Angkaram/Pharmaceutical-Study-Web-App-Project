@@ -9,12 +9,29 @@ import useJaneHopkins from '../hooks/useJaneHopkins';
 import { useState, useEffect } from 'react';
 import { css } from "@emotion/react";
 import { ClipLoader } from "react-spinners";
+import AddAppointment from './addAppointment';
 
-function DisplayStudyPatients({studyPatients, isFDAView}) {
+function DisplayStudyPatients({studyPatients, isFDAView, isDoctorView}) {
     const { entities } = useJaneHopkins();
     const patientIDs = studyPatients.map(patient => patient.id);
     const [patientsInStudy, setpatientsInStudy] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+
+    const [selectedPatient, setSelectedPatient] = useState(null);
+/*
+    const handlePatientClick = (patient) => {
+        if (isDoctorView) {
+            setSelectedPatient(patient);
+        }
+      }
+*/
+
+    const [isOpen, setIsOpen] = useState(false);
+    
+    const togglePopup = (patient) => {
+        setSelectedPatient(patient);
+        setIsOpen(!isOpen);
+    }
 
     useEffect(() => {
         async function getPatient() {
@@ -32,6 +49,8 @@ function DisplayStudyPatients({studyPatients, isFDAView}) {
     let color;
     if (isFDAView) {
         color = '#08d3b4';
+    } else if (isDoctorView) {
+        color = '#0e619c';
     } else {
         color = '#6fabd0';
     }
@@ -57,8 +76,14 @@ function DisplayStudyPatients({studyPatients, isFDAView}) {
                     <tbody>      
                         {patientsInStudy.map((patient) => {
                         return (
-                            <tr key={patient._id}>              
-                                <td>{patient._id}</td>
+                            <tr key={patient._id}>   
+                                {isDoctorView && patient.assignedDrug !== null? (
+                                    <td onClick={() => togglePopup(patient)}>
+                                        {patient._id}
+                                    </td>
+                                ) : 
+                                    <td>{patient._id}</td>
+                                }           
                                 <td>{patient.doses}</td>
                                 <td>{patient.assignedDrug}</td>
                             </tr>
@@ -67,6 +92,7 @@ function DisplayStudyPatients({studyPatients, isFDAView}) {
                     </tbody>
                 </table>
             )}
+        {isOpen && <AddAppointment togglePopup={togglePopup} selectedPatient={selectedPatient}/>}
         </div>
     )
   };

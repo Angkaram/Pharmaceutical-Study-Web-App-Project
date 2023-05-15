@@ -4,8 +4,9 @@ import DisplayStudyPatients from './DisplayStudyPatient';
 import AssignDrug from './ChooseStudyDrug';
 import AssignmentPopup from './GroupAssignment';
 import StudyResultsPopup from './StudyResults';
+import DoctorView from './DoctorView';
 
-function AdminPopup({selectedStudy, togglePopup, isFDAView, isBavariaView}) {
+function AdminPopup({selectedStudy, togglePopup, isFDAView, isBavariaView, isDoctorView}) {
     const { entities } = useJaneHopkins();
     const [patients, setPatients] = useState([]);
     let canAdd; // Boolean will determine if we can add the patient or not
@@ -125,6 +126,8 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView, isBavariaView}) {
     let color;
     if (isFDAView) {
         color = '#08d3b4';
+    } else if (isDoctorView){
+        color = '#0e619c';
     } else {
         color = '#6fabd0';
     }
@@ -227,7 +230,13 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView, isBavariaView}) {
                     <></>
                 }
 
-                {selectedStudy.status === "Cancelled" ? (
+                {!hasPatient && isDoctorView ? (
+                    <div className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500', backgroundColor: '#ececec'}}>Awaiting Patients</div>
+                ) : hasPatient && isDoctorView ? (
+                    <DisplayStudyPatients studyPatients = {selectedStudy.studyPatients} isDoctorView={isDoctorView} />
+                ) :
+                
+                selectedStudy.status === "Cancelled" ? (
                     <div className='add-patient' style={{border: '4px solid #EE6C4D', color: '#EE6C4D', backgroundColor: '#ececec'}}>Study Cancelled</div>
                     ) : selectedStudy.status === "Pending" && isFDAView || isBavariaView? (
                         <>

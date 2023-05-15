@@ -60,6 +60,7 @@ function DoctorView() {
     setInsuranceSearch("");
     setNameSearch("");
     setICDSearch("");
+    setAgeSearch("");
   }
 
   const DoctorAppointments = () => {
@@ -141,7 +142,7 @@ function DoctorView() {
       </div>
 
       <div className='patientTableLocation'>
-        <DisplayPatientData nameSearch={nameSearch} insuranceSearch={insuranceSearch} ICDSearch={ICDSearch} patientId={patientId} />
+        <DisplayPatientData nameSearch={nameSearch} insuranceSearch={insuranceSearch} ICDSearch={ICDSearch} patientId={patientId} ageSearch={ageSearch}/>
       </div>
 
       {isOpen && <AddPatientButton handleClose={togglePopup} />}
