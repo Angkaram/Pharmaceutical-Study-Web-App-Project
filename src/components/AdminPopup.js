@@ -82,6 +82,11 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView, isBavariaView}) {
         console.log(updated);
     };
 
+    async function handleButtonClick() {
+        await addRandomPatients();
+        window.location.reload();
+    };
+
     const notifyFDA = async () => {
         try {
             const update = await entities.study.update({
@@ -94,9 +99,7 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView, isBavariaView}) {
         } catch (error) {
             console.log("Error updating data:", error);
         }
-    };
-        
-        
+    };   
 
     const sendAssignment = async() => {
         try {
@@ -153,8 +156,9 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView, isBavariaView}) {
     useEffect(() => {
         setIsFdaAgreed(selectedStudy.isBavariaAgreed === "True");
     }, [selectedStudy]);
+
     // to make the page reload once data is input into the system
-    async function handleButtonClick() {
+    async function handleApproveClick() {
         await approveStudy();
         window.location.reload();
     };
@@ -228,7 +232,7 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView, isBavariaView}) {
                     ) : selectedStudy.status === "Pending" && isFDAView || isBavariaView? (
                         <>
                             <div style={{ display: "flex", flexDirection: "row" }}>
-                                <button className='add-patient' onClick={() => { approveStudy(); handleButtonClick(); } }>Approve Study</button>
+                                <button className='add-patient' onClick={() => { approveStudy(); handleApproveClick(); } }>Approve Study</button>
                                 <button className='add-patient' style={{color: "red", borderColor: "red", marginLeft: "2px"}}onClick={() => { cancelStudy(); handleCancelButtonClick(); } }>Cancel Study</button>
                             </div>
                         </> 
@@ -240,7 +244,7 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView, isBavariaView}) {
                             <button className='add-patient' style={{border: '4px solid #00FF00', color: '#00FF00'}} onClick={() => {notifyFDA();}}>Notify FDA</button>
                         </div>
                     ) : selectedStudy.status === "Completed" && !selectedStudy.isFDANotified ? (
-                        <div className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500', backgroundColor: '#ececec'}}>Awaiting Study Status</div>
+                        <div className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500', backgroundColor: '#ececec'}}>Awaiting Admin Notification</div>
                     ) : selectedStudy.status === "Completed" && selectedStudy.isFDANotified && !selectedStudy.isAssignmentSent && isFDAView ? (
                         <div style={{ display: "flex", flexDirection: "row" }}>
                             <div className='add-patient' style={{border: '4px solid #0E619C', color: '#0E619C', backgroundColor: '#ececec'}}>Study Completed</div>
@@ -267,7 +271,16 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView, isBavariaView}) {
                     ): isFDAView ? (
                         <div className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500', backgroundColor: '#ececec'}}>Need Patients</div>
                     ): canAdd && selectedStudy.studyPatients === null && !isFDAView && !isBavariaView? (
-                        <button className='add-patient' onClick={addRandomPatients}>Add {selectedStudy.maxPatients.toString()} Random Eligible Patients</button>
+                        <button className='add-patient' onClick={() => { handleButtonClick();
+                            const messageElem = document.createElement('div');
+                            messageElem.innerText = 'Patients Added to Study. Refreshing page...';
+                            messageElem.classList.add('message'); // Add CSS class to the message element
+                            document.body.appendChild(messageElem);
+                            setTimeout(() => {
+                                messageElem.remove();
+                            }, 1000); // Delay message display for 1 second (1000 milliseconds)
+                            }}
+                        >Add {selectedStudy.maxPatients.toString()} Random Eligible Patients</button>
                     ):
                         <div className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500', backgroundColor: '#ececec'}}>Not Enough Eligible Patients</div>
                     

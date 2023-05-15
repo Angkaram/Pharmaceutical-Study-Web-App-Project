@@ -1,3 +1,4 @@
+import { useSubmit } from "react-router-dom";
 import useJaneHopkins from "../hooks/useJaneHopkins";
 import { useState, useEffect } from "react";
 
@@ -104,7 +105,6 @@ function AssignDrug({toggleDrugSelect, selectedStudy}) {
         assignedDrug: randomId,
         doses: 0
       });
-      
       console.log(updatePatient);
     }
 
@@ -145,8 +145,7 @@ function AssignDrug({toggleDrugSelect, selectedStudy}) {
       _id: currentReal._id,
       id: realArray
     })
-    
-
+    window.location.reload(); 
   };
 
   return (
@@ -187,6 +186,7 @@ function AssignDrug({toggleDrugSelect, selectedStudy}) {
         </div>
 
         <button className='add-patient' style={{marginTop:'30px'}} onClick={handleSubmit}>Confirm/Assign Drug Selection</button>
+
       </div>
     </div>
   );

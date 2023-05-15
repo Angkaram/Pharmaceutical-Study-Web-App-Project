@@ -163,10 +163,15 @@ function AddPatientButton(togglePopup) {
       },
     );
   }
-   //console.log(currentlyEmployed);
-    //console.log(currentlyInsured);
-   //console.log(addPatientResponse);
+  //console.log(currentlyEmployed);
+  //console.log(currentlyInsured);
+  //console.log(addPatientResponse);
 
+   async function handleButtonClick() {
+    await addPatient();
+    window.location.reload();
+  };
+  
   return (
     <div className="largeView">
     <div className="popup-content">
@@ -225,8 +230,7 @@ function AddPatientButton(togglePopup) {
         </div>
 
       </div>
-      <button className='add-patient' onClick={() => {
-        addPatient();
+      <button className='add-patient' onClick={() => {handleButtonClick();
         const messageElem = document.createElement('div');
         messageElem.innerText = 'New Patient Added Successfully';
         messageElem.classList.add('message'); // Add CSS class to the message element
