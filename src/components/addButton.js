@@ -34,6 +34,7 @@ function AddPatientButton(togglePopup) {
     const addPatientResponse = await entities.patient.add(
       {
         name: document.getElementById("name").value,
+        patientPicture: document.getElementById("patientPicture").value,
         //age: document.getElementById("age").value,
         dob: document.getElementById("dob").value,
         insuranceNumber: document.getElementById("insuranceNumber").value,
@@ -62,6 +63,13 @@ function AddPatientButton(togglePopup) {
               operations: ["READ"],
               path: "dob",
             },
+
+            {principal: {
+              nodes: ["Bavaria", "FDA"],
+            },
+            operations: ["READ"],
+            path: "patientPicture",
+          },
 
             {principal: {
               nodes: ["Bavaria", "FDA"],
@@ -157,6 +165,8 @@ function AddPatientButton(togglePopup) {
         
       </div>
       <h3> Patient Name: <input type="text" id="name"></input></h3> 
+
+      <h3> Patient Picture URL: <input type="text" id="patientPicture"></input></h3>
       
       <div className="popup-middle">
         <div className="popup-section" >

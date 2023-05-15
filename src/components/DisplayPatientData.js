@@ -136,35 +136,40 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
           </tbody>
         </table>
       )}{selectedPatient && (
-        <div class="largeView">
-        <div class="popup-content">
+        <div className="largeView">
+        <div className="popup-content">
         <button id="close" onClick={() => setSelectedPatient(null)}>X</button>
-          <div class="popup-top">
-            <h3 class = "pName"> Patient:<i> <br></br>&emsp; {selectedPatient.name}</i></h3> 
+          <div className="popup-top">
+            <h3 className = "pName"> Patient:<i> <br></br>&emsp; {selectedPatient.name}</i></h3> 
           
-            <img class = "profilePic" src = "https://www.unitedway.ca/wp-content/uploads/2017/06/TempProfile.jpg"/> 
+            {selectedPatient.patientPicture ? (
+              <img className="profilePic" src={selectedPatient.patientPicture} />
+            ) : (
+              <img className="profilePic" src="https://www.unitedway.ca/wp-content/uploads/2017/06/TempProfile.jpg" alt="Default Profile Picture" />
+            )}
+            
           </div>
-          <div class="popup-middle">
-            <div class="popup-section">
+          <div className="popup-middle">
+            <div className="popup-section">
               <h3>General Information</h3>
               <p><b>DOB: </b>{selectedPatient.dob}</p>
               <p><b>Insurance Number: </b>{selectedPatient.insuranceNumber}</p>
               <p><b>Weight:</b>{selectedPatient.weight}</p>
               <p><b>Address: </b>{selectedPatient.address}</p>
             </div>
-            <div class="popup-section">
+            <div className="popup-section">
               <h3>Health Information</h3>
               <p><strong>Patient ID:</strong> {selectedPatient.uuid}</p>
               <p><strong>Blood Type:</strong> {selectedPatient.bloodType}</p>
             </div>
-            <div class="popup-section">
+            <div className="popup-section">
               <h3>Vital Signs</h3>
               <p><strong>Height:</strong> {selectedPatient.height}</p>
               <p><strong>Blood Pressure:</strong> {selectedPatient.bloodPressure}</p>
               <p><strong>Temperature:</strong> {selectedPatient.temperature}</p>
               <p><strong>Oxygen Saturation:</strong> {selectedPatient.oxygenSaturation}</p>
             </div>
-            <div class="popup-section">
+            <div className="popup-section">
               <h3>Medical History</h3>
               <p><strong>Current Medications:</strong> {selectedPatient.medicationArray} </p>
               <p><strong>Family History:</strong> {selectedPatient.familyHistory} </p>

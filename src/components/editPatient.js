@@ -8,6 +8,7 @@ function EditPatient({togglePopup, selectedPatient}) {
   const [patientData, setPatientData] = useState(selectedPatient);
 
   const [name, setName] = useState(selectedPatient.name);
+  const [patientPicture, setPatientPicture] = useState(selectedPatient.patientPicture);
   const [dob, setDob] = useState(selectedPatient.dob);
   const [insuranceNumber, setInsuranceNumber] = useState(selectedPatient.insuranceNumber);
   const [weight, setWeight] = useState(selectedPatient.weight);
@@ -83,6 +84,7 @@ function EditPatient({togglePopup, selectedPatient}) {
     const updated = await entities.patient.update({
       _id: selectedPatient._id,
       name: document.getElementById("name").value,
+      patientPicture: document.getElementById("patientPicture").value,
       dob: document.getElementById("dob").value,
       age: Number(age),
       insuranceNumber: document.getElementById("insuranceNumber").value,
@@ -120,6 +122,8 @@ function EditPatient({togglePopup, selectedPatient}) {
 
         <div className="popup-top">
           <h3> Patient Name: <input type="text" id="name" value={name} onChange={e => setName(e.target.value)} style={{width: '100%'}}></input></h3>
+          <h3> Patient Picture URL: <input type="text" id="patientPicture" value={patientPicture} onChange={e => setPatientPicture(e.target.value)} style={{width: '100%'}}></input></h3>
+
         </div>
         <div class="popup-middle">
           <div class="popup-section">
