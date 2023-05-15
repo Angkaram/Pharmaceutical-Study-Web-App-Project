@@ -48,7 +48,7 @@ function AddPatientButton(togglePopup) {
     if (document.getElementById("dob").value === "") {
       bool = false;
     } else if (document.getElementById("dob").value === "January 1, 2005" || Number(document.getElementById("dob").value.slice(-4)) < 2005) {
-      bool = !icdInput.includes("O00–O99");
+      bool = !icdInput.includes("O");
       age = calculateAge(document.getElementById("dob").value);
     } else {
       bool = false;
