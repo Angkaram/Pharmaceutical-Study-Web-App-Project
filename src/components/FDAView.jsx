@@ -13,7 +13,7 @@ import ContractsButton from './ContractsButton';
 import Sidebar from './Sidebar';
 import NotificationContext from './NotificationContext';
 import ValidateDomain from "./validation";
-
+import NavigationBar from './NavigationBar';
 
 function FDAView() {
 
@@ -81,17 +81,7 @@ const handlePopupClick = () => {
   return (
     <div className='fdaview'> 
 
-        <div className = 'nav-bar' style={{backgroundColor: '#08d3b4'}}>
-            <div className='janeHopkinsTitleText'>FDA
-              <div className='hospitalTitleText' style={{fontSize: 25, textAlign: 'center'}}>U.S. Food and Drug Administration</div>
-            </div>
-            <div className='displayEmail'>{user?.email}</div>
-            <button className='signOutButton' onClick={logout}>
-              <div className='signOutIcon'></div>
-              <div className='signOutText' style={{color: '#069882'}}>Sign Out</div>
-            </button>
-          
-        </div>
+      <NavigationBar isFDAView={true} user={user}/>
 
       <div className='doctorNavButtonLocations'>
           <div className="welcomeBro" style={{borderColor: '#08d3b4'}}>

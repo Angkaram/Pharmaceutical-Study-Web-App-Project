@@ -7,7 +7,7 @@ import { auth } from "./firebase-config";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 import ValidateDomain from "./validation";
-
+import NavigationBar from './NavigationBar';
 
 function AdminPatientView() {
 
@@ -66,19 +66,7 @@ function AdminPatientView() {
     return (
       <div className='adminView'> 
 
-      <div className='nav-bar' style={{backgroundColor: '#6fabd0'}}>
-  
-        <div className='doctorViewTitle'>
-          <div className='janeHopkinsTitleText'>Jane Hopkins
-            <div className='hospitalTitleText'>Hospital</div>
-          </div>
-        </div>
-        <div className='displayEmail'>{user?.email}</div>
-        <button className='signOutButton' onClick={logout} style={{border: 'black' }}>
-          <div className='signOutIcon'></div>
-          <div className='signOutText' style={{color: 'black' }}>Sign Out</div>
-        </button>
-      </div>
+        <NavigationBar isAdminView={true} user={user}/>
       
       <div className='doctorNavButtonLocations' >
           <div className="welcomeBro" style={{borderColor: '#6fabd0'}}>

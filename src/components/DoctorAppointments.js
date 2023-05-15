@@ -12,6 +12,7 @@ import { signOut } from "firebase/auth";
 import { useLocation } from "react-router-dom";
 import { auth } from "./firebase-config";
 import ValidateDomain from "./validation";
+import NavigationBar from "./NavigationBar";
 
 
 
@@ -95,18 +96,7 @@ function DoctorAppointments() {
 
     return (
         <div className='center'> 
-            <div className='nav-bar'>
-                <div className='doctorViewTitle'>
-                    <div className='janeHopkinsTitleText'>Jane Hopkins
-                    <div className='hospitalTitleText'>Hospital</div>
-                    </div>
-                </div>
-                <div className='displayEmail'>{user?.email}</div>
-                <button className='signOutButton' onClick={logout}>
-                    <div className='signOutIcon'></div>
-                    <div className='signOutText'>Sign Out</div>
-                </button>
-            </div>
+            <NavigationBar isDoctorView={true} user={user}/>
             <div className="doctorNavButtonLocations">
                 <div className="welcomeBro">
                     <button className='welcomeContainer' onClick={() => DoctorHomePage(user)}>Welcome Page</button>

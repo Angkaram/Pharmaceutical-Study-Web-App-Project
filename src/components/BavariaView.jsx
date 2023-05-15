@@ -13,7 +13,7 @@ import NotificationContext from './NotificationContext';
 import Sidebar from './Sidebar';
 import ManageShipmentsView from './ManageShipmentsView';
 import ValidateDomain from "./validation";
-
+import NavigationBar from './NavigationBar';
 
 function BavariaView() {
 
@@ -88,18 +88,7 @@ function BavariaView() {
 
   return (
     <div className='fdaview'>
-
-          <div className = 'nav-bar' style={{backgroundColor: '#f46f74'}}>
-            <div className='janeHopkinsTitleText'>Bavaria
-              <div className='hospitalTitleText'>Pharmaceuticals</div>
-            </div>
-            <div className='displayEmail'>{user?.email}</div>
-            <button className='signOutButton' onClick={logout}>
-              <div className='signOutIcon'></div>
-              <div className='signOutText' style={{color: '#e7121a' }}>Sign Out</div>
-            </button>
-          
-         </div>
+       <NavigationBar isBavariaView={true} user={user}/>
 
       <div className='doctorNavButtonLocations'>
         <div className="welcomeBro" style={{borderColor: '#f46f74'}}>

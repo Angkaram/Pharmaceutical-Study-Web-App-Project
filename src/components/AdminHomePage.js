@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import "./DoctorHomePage.css";
 import "./DoctorView.css";
+import NavigationBar from "./NavigationBar";
 
 function AdminHomePage ({ user, LogOut}) { 
 
@@ -20,17 +21,7 @@ function AdminHomePage ({ user, LogOut}) {
     return (
       <div className='welcome-body'>
 
-        <div className = 'nav-bar' style={{backgroundColor: '#6fabd0'}}>
-            <div className='janeHopkinsTitleText'>Jane Hopkins
-              <div className='hospitalTitleText'>Hospital</div>
-            </div>
-            <div className='displayEmail'>{user?.email}</div>
-
-            <button className='signOutButton' style={{border: 'black' }} onClick={LogOut}>
-              <div className='signOutIcon'></div>
-              <div className='signOutText' style={{color: 'black' }}>Sign Out</div>
-            </button>
-        </div>
+        <NavigationBar isAdminView={true} user={user}/>
 
         <div className='welcome-container'>
           <h1 className="title"> Welcome, Admin</h1>

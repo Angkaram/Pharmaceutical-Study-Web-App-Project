@@ -12,6 +12,7 @@ import NotificationContext from './NotificationContext';
 import { useContext } from 'react';
 import ShipmentsButton from "./ShipmentsButton";
 import ValidateDomain from "./validation";
+import NavigationBar from './NavigationBar';
 
 
 function ManageShipmentsView () {
@@ -81,16 +82,7 @@ function ManageShipmentsView () {
     return (
         <div className='bavariabody'>
 
-            <div className = 'nav-bar' style={{backgroundColor: '#f46f74'}}>
-                <div className='janeHopkinsTitleText'>Bavaria
-                    <div className='hospitalTitleText'>Pharmaceuticals</div>
-                </div>
-                <div className='displayEmail'>{user?.email}</div>
-                <button className='signOutButton' onClick={logout}>
-                    <div className='signOutIcon'></div>
-                    <div className='signOutText' style={{color: '#e7121a' }}>Sign Out</div>
-                </button>
-            </div>
+          <NavigationBar isBavariaView={true} user={user}/> 
 
             <div>
                 <button className='notification-circle' onClick={handleNotificationClick}>
