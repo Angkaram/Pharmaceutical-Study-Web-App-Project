@@ -12,7 +12,7 @@ import AdminPopup from './AdminPopup';
 import "./Admin.css";
 import { ClipLoader } from "react-spinners";
 
-function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isBavariaView, isAdminView}) {
+function DisplayStudyData({isFDAView, isBavariaView, isAdminView}) {
 
     const { entities } = useJaneHopkins();
     const [study, setStudy] = useState([]);
@@ -96,17 +96,7 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
             <tbody>
               
             {study.filter((study)=> {     
-              // filtering still not working  
-              if (study.status.includes("Approved")) {
-                //console.log(study);
-                return study;
-              } 
-              else if (isBavariaView) {
-                return study;
-              }
-              else if (nameSearch === "" && statusSearch === "" && startSearch === "") {
-                return study;
-              }
+              return study;
             }).map((study) => {
               return (
   

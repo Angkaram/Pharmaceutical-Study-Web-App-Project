@@ -2,21 +2,18 @@ import { useLocation } from 'react-router-dom';
 import './loginprompt.css';
 import "./loginprompt.js";
 import './home.css';
-import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import './DoctorView.css';
-import './Notifications.css';
+
 import './ManageStudyView.css';
 import useJaneHopkins from '../hooks/useJaneHopkins';
 import { useEffect, useState } from 'react';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { useContext } from 'react';
-import NotificationContext from './NotificationContext';
 import DisplayStudyData from './DisplayStudyData';
 import Sidebar from './Sidebar';
-import ValidateDomain from "./validation";
+
 import NavigationBar from './NavigationBar';
 
 function ManageStudyView() {
@@ -47,55 +44,31 @@ function ManageStudyView() {
   const location = useLocation();
   const navigate = useNavigate();
   const [user, setUser] = useState(location.state);
-  const logout = async () => {
-    await signOut(auth);
-    navigate("/");
-  };
 
-  // for notification system
-  const { notifications } = useContext(NotificationContext);
-  const [showNotifications, setShowNotifications] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  const [nameSearch, setNameSearch] = useState("");
-  const [statusSearch, setStatusSearch] = useState("");
-  const [startSearch, setStartSearch] = useState("");
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+      const user = {
+        email: userAuth?.email,
+        role: userAuth?.displayName,
+        id: userAuth?.uid
+      };
+      setUser(user);
+      setLoading(false);
 
-  if (user?.email == null) {
-    
-    const unsubscribe = auth.onAuthStateChanged(userAuth => {
-    const user= {
-      email: userAuth?.email,
-      role: userAuth?.displayName,
-      id: userAuth?.uid
-    }
-    if (userAuth) {
-      console.log(userAuth)
-      setUser(user)
-    } else {
-      setUser(null)
-    }
-    
-    if (user.role != 'doctor') {
-      navigate("/Login");
-    }
+      if (!userAuth || user.role !== "doctor") {
+        navigate("/Login");
+      }
+    });
 
-    })
-    return unsubscribe
-  };
+    return unsubscribe;
+  }, []);
 
-  const handleNotificationClick = () => {
-    setShowNotifications(!showNotifications);
-    const notificationCircle = document.querySelector('.notification-circle');
-    if (showNotifications) {
-      notificationCircle.classList.remove('clicked');
-    } else {
-      notificationCircle.classList.add('clicked');
-    }
-  };
-  
-  const handlePopupClick = () => {
-    setShowNotifications(false);
-  };
+  if (loading) {
+    // Fixes the issue of the view briefly showing
+    return null;
+  }
 
   
   const studyID = '0187a035-03e5-4828-43fc-269e5c9c0961'
@@ -107,25 +80,8 @@ function ManageStudyView() {
 
     <Sidebar></Sidebar>
 
-    <div>
-      <button className='notification-circle' onClick={handleNotificationClick}>
-        <div class="notification-circle-icon"></div>
-        <div class="notification-number">{notifications.length}</div>
-      </button>
-        
-      {showNotifications && (
-        <div className="notification-popup" onClick={handlePopupClick}>
-          {notifications.map((notification) => (
-            <div key={notification.id} className="notification-item">
-              {notification.message}
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-
     <div className='patientTableLocation'>
-      <DisplayStudyData nameSearch={nameSearch} statusSearch={statusSearch} startSearch={startSearch} studyID={studyID}/>
+      <DisplayStudyData />
     </div>
     
     <div className='doctorNavButtonLocations'>
@@ -160,17 +116,9 @@ function AddStudyButton(togglePopup) {
     
     console.log(addStudyResponse);
 
-    dispatch({
-      type: 'ADD_NOTIFICATION',
-      payload: {
-        id: Date.now(),
-        message: 'New Study Created',
-      },
-    });
   }
 
-  // for the notification system
-  const { dispatch } = useContext(NotificationContext);
+
 
   // Initial state of the dropdown menu
   const initialState = () => {
@@ -207,23 +155,23 @@ function AddStudyButton(togglePopup) {
       <div className="popup-middle">
         <div className="popup-section">
           <h3>General Information</h3>
-          <p><b>Study Start:</b>
+          <div style={{marginTop:'20px'}}><b>Study Start:</b>
             <DatePicker
             selected={startDate}
             onChange={(date) => setStartDate(date)}
             id="start"
             dateFormat="MMMM d, yyyy"
             />
-          </p>
-          <p><b>Study End: </b>
+          </div>
+          <div style={{marginTop:'15px'}}><b>Study End: </b>
             <DatePicker
             selected={endDate}
             onChange={(date) => setEndDate(date)}
             id="end"
             dateFormat="MMMM d, yyyy"
             />
-          </p>
-          <p><b>Max Participants: </b><input type="number" id = "maxPatients"></input></p>
+          </div>
+          <div style={{marginTop:'15px'}}><b>Max Participants: </b><input type="number" id = "maxPatients"></input></div>
 
         </div>
       </div>

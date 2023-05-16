@@ -1,14 +1,12 @@
 import useJaneHopkins from '../hooks/useJaneHopkins';
 import "./DoctorView.css";
-import { css } from "@emotion/react";
-import { ClipLoader } from "react-spinners";
+import DatePicker from 'react-datepicker';
 import { useState } from 'react';
 
 function AddAppointment({togglePopup, selectedPatient}) {
 
-  const [isLoading, setIsLoading] = useState(true);
-
   const {entities} = useJaneHopkins();
+  const [date, setDate] = useState(null);
 
   // Current amount of doses patient has
   let currentDose = selectedPatient.doses;
@@ -42,12 +40,22 @@ function AddAppointment({togglePopup, selectedPatient}) {
       hivViralLoad: document.getElementById("hivViralLoad").value,
     }
 
-    console.log(newVisit);
+    let updatedVisit;
+
+    if (selectedPatient.visits) {
+      updatedVisit = selectedPatient.visits.concat(newVisit);
+    } else {
+      updatedVisit = newVisit;
+    }
+
+    //console.log(selectedPatient.visits);
+    console.log(updatedVisit);
+    //console.log(newVisit);
 
     // Update the patient
     const updated = await entities.patient.update({
       _id: selectedPatient._id,
-      visits: newVisit,
+      visits: updatedVisit,
       // If we can give doses, doses is added to array, otherwise it will not be added
       ...(canGiveDoses === true
       ? { doses: givenDose }
@@ -123,7 +131,14 @@ function AddAppointment({togglePopup, selectedPatient}) {
         <div className="add-appt-section">
           <h3>Appointment Details</h3>
           <p><strong>Selected Patient:</strong> {selectedPatient.name}</p>
-          <p><strong>Date:</strong> <input type="text" placeholder="Year,Month,Day" id="dateTime"></input></p>
+          <div style={{marginLeft:'30px'}}><strong>Date:</strong> 
+          <DatePicker
+            selected={date}
+            onChange={(date) => setDate(date)}
+            id="dateTime"
+            dateFormat="yyyy M, d"
+          />   
+          </div>
           <p><strong>Notes:</strong> <input type="text" id="notes"></input></p>
           <p><strong>HIV Viral Load:</strong> <input type="text" id="hivViralLoad"></input></p>
         </div>

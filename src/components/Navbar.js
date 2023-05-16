@@ -6,7 +6,7 @@ const Nav = () => {
         <div className = "background-color">
             <NavigationBar />
             
-        <body className="mission-container">
+        <div className="mission-container">
             <div className="mission-head">
                 <h1> Our Mission </h1>
             </div>
@@ -45,7 +45,7 @@ const Nav = () => {
 
             </div>
 
-        </body>
+        </div>
 
 
         

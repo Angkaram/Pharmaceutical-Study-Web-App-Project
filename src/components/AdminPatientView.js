@@ -1,5 +1,5 @@
 import DisplayPatientData from "./DisplayPatientData";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./DoctorView.css";
 import "./Admin.css";
 import { signOut } from "firebase/auth";
@@ -19,28 +19,30 @@ function AdminPatientView() {
 
   const [isChecked, setIsChecked] = useState(false);
 
-  if (user?.email == null) {
-    
-    const unsubscribe = auth.onAuthStateChanged(userAuth => {
-    const user= {
-      email: userAuth?.email,
-      role: userAuth?.displayName,
-      id: userAuth?.uid
-    }
-    if (userAuth) {
-      console.log(userAuth)
-      setUser(user)
-    } else {
-      setUser(null)
-    }
-  
-    if (user.role != "admin") {
-      navigate("/Login");
-    }
+  const [loading, setLoading] = useState(true);
 
-    })
-    return unsubscribe
-  };
+    useEffect(() => {
+      const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+        const user = {
+          email: userAuth?.email,
+          role: userAuth?.displayName,
+          id: userAuth?.uid
+        };
+        setUser(user);
+        setLoading(false);
+  
+        if (!userAuth || user.role !== "admin") {
+          navigate("/Login");
+        }
+      });
+  
+      return unsubscribe;
+    }, []);
+  
+    if (loading) {
+      // Fixes the issue of the view briefly showing
+      return null;
+    }
 
   const logout = async () => {
     await signOut(auth);

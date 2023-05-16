@@ -197,14 +197,14 @@ function AddPatientButton(togglePopup) {
         <div className="popup-section" >
           <h3>General Information</h3>
 
-          <p><b>DOB: </b>
+          <div style={{marginLeft:'10px'}}><b>DOB: </b>
           <DatePicker
             selected = {date}
             onChange={(date => setDate(date))}
             id = "dob"
             dateFormat="MMMM d, yyyy"
           />
-          </p>
+          </div>
 
           <p><b>Insurance Number: </b><input type="text" id = "insuranceNumber"></input></p>
           <p><b>Weight:</b><input type="text" id = "weight"></input></p>
