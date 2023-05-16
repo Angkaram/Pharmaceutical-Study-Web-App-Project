@@ -158,7 +158,7 @@ function FDAHomePage({ user, LogOut }) {
           <div className="box-container" >
   
             <div className="box" style={{backgroundColor: '#08d3b4'}}>
-                <button onClick={() => FDAView(user)}><h3>Manage Contracts</h3></button>
+                <button onClick={FDAView}><h3>Manage Contracts</h3></button>
             </div>
   
           </div>  

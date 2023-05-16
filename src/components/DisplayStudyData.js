@@ -7,7 +7,7 @@ import AdminPopup from "./AdminPopup";
 import "./Admin.css";
 
 // new function to display Study data:
-function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isBavariaView}) {
+function DisplayStudyData({isFDAView, isBavariaView}) {
 
     const { entities } = useJaneHopkins();
     const [study, setStudy] = useState([]);
@@ -59,7 +59,7 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
                   <th style={{backgroundColor: bavariaColor}}>Agreed by Bavaria</th>
                   <th style={{backgroundColor: bavariaColor}}>Agreed by FDA</th>
                   <th style={{backgroundColor: bavariaColor}}>Max Participants</th>
-                  {isOpen && <BavariaPopup selectedStudy={selectedStudy} togglePopup={togglePopup}/>}
+                  
                   </>
                 ) : (
                   <>
@@ -70,28 +70,21 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
                   <th>Agreed by Bavaria</th>
                   <th>Agreed by FDA</th>
                   <th>Max Participants</th>
-                  {isOpen && <AdminPopup selectedStudy={selectedStudy} togglePopup={togglePopup} isDoctorView/>}
+                  
                   </>
                 )}
               </tr>
             </thead>
+
             <tbody>
+
               
             {study.filter((study)=> {
-              if (isFDAView || isBavariaView) {
-                return study;
-              }/* NEEDS some tweaking to get working
-              else if (study.name.toLowerCase().includes(nameSearch.toLowerCase()) && study.status.includes(statusSearch) 
-              && study.startDate.includes(startSearch)) { 
-                return study;
-              } */
-              else if (nameSearch === "" && statusSearch === "" && startSearch === "") {
-                return study;
-              }
+              return study;
             }).map((study) => {
               return (
   
-                <tr key={study.id}>
+                <tr key={study._id}>
                   
                         <>
                           <td onClick={() => handleStudyClick(study)}>
@@ -111,8 +104,20 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
   
             </tbody>
           </table>
+
+          
   
         )} 
+        {isBavariaView ? (
+        <>
+        {isOpen && <BavariaPopup selectedStudy={selectedStudy} togglePopup={togglePopup}/>}
+        </>
+      ) : (
+        <>
+        {isOpen && <AdminPopup selectedStudy={selectedStudy} togglePopup={togglePopup} isDoctorView/>}
+        </>
+      )
+      }
      
   </div>
 
