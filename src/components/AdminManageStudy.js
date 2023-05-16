@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import DisplayStudyData from "./AdminDisplayStudyData";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import './ManageStudyView.css';
 import Sidebar from './Sidebar';
 import { useLocation } from 'react-router-dom';
@@ -15,28 +15,32 @@ function AdminManageStudy() {
     const navigate = useNavigate();
     const [user, setUser] = useState(location.state);
 
-    if (user?.email == null) {
-    
-        const unsubscribe = auth.onAuthStateChanged(userAuth => {
-        const user= {
-            email: userAuth?.email,
-            role: userAuth?.displayName,
-            id: userAuth?.uid
-        }
-        if (userAuth) {
-            console.log(userAuth)
-            setUser(user)
-        } else {
-            setUser(null)
-        }
-                
-        if (user.role != "admin") {
-            navigate("/Login");
-        }
 
-        })
-        return unsubscribe
-    };
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+      const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+        const user = {
+          email: userAuth?.email,
+          role: userAuth?.displayName,
+          id: userAuth?.uid
+        };
+        setUser(user);
+        setLoading(false);
+  
+        if (!userAuth || user.role !== "admin") {
+          navigate("/Login");
+        }
+      });
+  
+      return unsubscribe;
+    }, []);
+  
+    if (loading) {
+      // Fixes the issue of the view briefly showing
+      return null;
+    }
+    
 
     const logout = async () => {
       await signOut(auth);

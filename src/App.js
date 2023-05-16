@@ -10,7 +10,7 @@ import DoctorView from "./components/DoctorView";
 import FDAView from "./components/FDAView";
 import BavariaView from "./components/BavariaView";
 import ManageStudyView from "./components/ManageStudyView";
-import NotificationProvider from "./components/NotificationProvider";
+
 import DoctorAppointments from "./components/DoctorAppointments";
 import ManageShipmentsView from "./components/ManageShipmentsView";
 
@@ -20,7 +20,7 @@ import AdminPatientView from "./components/AdminPatientView";
 function App() {
 
   return (
-    <NotificationProvider>
+
       <BrowserRouter>
           <Routes>
             <Route path = "/" element = {<Nav />} />
@@ -32,14 +32,14 @@ function App() {
             <Route path = "/BavariaView" element = {<BavariaView />} />
             <Route path = "/Appointments" element = {<DoctorAppointments />} />
             <Route path = "/ManageStudyView" element = {<ManageStudyView />} />
-            <Route path = "/ManageShipmentsView" element = {<ManageShipmentsView/>} />
+            <Route path = "/ManageShipmentsView" element = {<ManageShipmentsView />} />
 
-            <Route path = "/AdminManageStudy" element = {<AdminManageStudy/>} />
-            <Route path = "/AdminManagePatient" element = {<AdminPatientView/>} />
+            <Route path = "/AdminManageStudy" element = {<AdminManageStudy />} />
+            <Route path = "/AdminManagePatient" element = {<AdminPatientView />} />
             
           </Routes>
     </BrowserRouter>
-  </NotificationProvider>
+
   );
 }
 

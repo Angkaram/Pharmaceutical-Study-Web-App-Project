@@ -106,7 +106,7 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
           }).map((patient) => {
             return (
 
-              <tr key={patient.id}>
+              <tr key={patient._id}>
                 {isFDAView || isBavariaView ? (
                       <td>{patient.insuranceNumber}</td>
                 

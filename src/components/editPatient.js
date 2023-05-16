@@ -125,34 +125,34 @@ function EditPatient({togglePopup, selectedPatient}) {
           <h3> Patient Picture URL: <input type="text" id="patientPicture" value={patientPicture} onChange={e => setPatientPicture(e.target.value)} style={{width: '100%'}}></input></h3>
 
         </div>
-        <div class="popup-middle">
-          <div class="popup-section">
+        <div className="popup-middle">
+          <div className="popup-section">
             <h3>General Information</h3>
             <p><b>DOB: </b><input type="text" id = "dob" value={dob} onChange={e => setDob(e.target.value)} style={{width: '100%'}}></input></p>
             <p><b>Insurance Number: </b><input type="text" id = "insuranceNumber" value={insuranceNumber} onChange={e => setInsuranceNumber(e.target.value)} style={{width: '100%'}}></input></p>
             <p><b>Weight:</b><input type="text" id = "weight" value={weight} onChange={e => setWeight(e.target.value)} style={{width: '100%'}}></input></p>
             <p><b>Address: </b><input type="text" id = "address" value={address} onChange={e => setAddress(e.target.value)} style={{width: '100%'}}></input></p>
           </div>
-          <div class="popup-section">
+          <div className="popup-section">
             <h3>Health Information</h3>
             <p><strong>Patient ID:</strong> <input type="text" id = "uuid" value={uuid} onChange={e => setUuid(e.target.value)} style={{width: '100%'}}></input></p>
             <p><strong>Blood Type:</strong> <input type="text" id = "bloodType" value={bloodType} onChange={e => setBloodType(e.target.value)} style={{width: '100%'}}></input></p>
           </div>
-          <div class="popup-section">
+          <div className="popup-section">
             <h3>Vital Signs</h3>
             <p><strong>Height:</strong> <input type="text" id = "height" value={height} onChange={e => setHeight(e.target.value)} style={{width: '100%'}}></input></p>
             <p><strong>Blood Pressure:</strong> <input type="text" id = "bloodPressure" value={bloodPressure} onChange={e => setBloodPressure(e.target.value)} style={{width: '100%'}}></input></p>
             <p><strong>Temperature:</strong> <input type="text" id = "temperature" value={temperature} onChange={e => setTemperature(e.target.value)} style={{width: '100%'}}></input></p>
             <p><strong>Oxygen Saturation:</strong> <input type="text" id = "oxygenSaturation" value={oxygenSaturation} onChange={e => setOxygenSaturation(e.target.value)} style={{width: '100%'}}></input></p>
           </div>
-          <div class="popup-section">
+          <div className="popup-section">
             <h3>Medical History</h3>
             <p><strong>Current Medications:</strong> <input type="text" id = "currentMedication" value={currentMedication} onChange={e => setCurrentMedication(e.target.value)} style={{width: '100%'}}></input></p>
             <p><strong>Family History:</strong> <input type="text" id = "familyHistory" value={familyHistory} onChange={e => setFamilyHistory(e.target.value)} style={{width: '100%'}}></input></p>
             <p><strong>Allergies:</strong> <input type="text" id = "allergies" value={allergies} onChange={e => setAllergies(e.target.value)} style={{width: '100%'}}></input></p>
             <p><strong>ICD Health Code:</strong> <input type="text" id = "ICD" value={icd} onChange={e => setIcd(e.target.value)} style={{width: '100%'}}></input></p>
           </div>
-          <div class="popup-section">
+          <div className="popup-section">
             <h3>Insurance & Employment Details</h3>
             <p className='checkbox'><strong className='checkbox-test'>Currently Employed:<input type="checkbox" id="employed" checked={isEmployed} onChange={e => setIsEmployed(e.target.checked)} /></strong></p>
             <p className='checkbox'><strong>Currently Insured:<input type="checkbox" id="insured" checked={isInsured} onChange={e => setIsInsured(e.target.checked)} /></strong></p>
