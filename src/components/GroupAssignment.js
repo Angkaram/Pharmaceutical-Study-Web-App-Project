@@ -7,6 +7,8 @@ function AssignmentPopup({selectedStudy, togglePopup, isFDAView}) {
   const { entities } = useJaneHopkins();
   const [patients, setPatients] = useState([]);
   const [studyID, setStudyID] = useState([]);
+  const [drugs, setDrugs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
       async function fetchPatientsAndStudies() {
@@ -20,6 +22,16 @@ function AssignmentPopup({selectedStudy, togglePopup, isFDAView}) {
       fetchPatientsAndStudies();
   }, [entities.patient]); 
 
+  useEffect(() => {
+    async function fetchDrug() {
+      const drugList = await entities.drug.list();
+      setDrugs(drugList.items);
+      setIsLoading(false);
+    }
+
+    fetchDrug();
+  }, [entities.drug]);
+
   const [isOpen, setIsOpen] = useState(false);
   const togglePopupResults = () => {
     setIsOpen(!isOpen);
@@ -28,11 +40,16 @@ function AssignmentPopup({selectedStudy, togglePopup, isFDAView}) {
     togglePopupResults();
   }
 
+  const selectedTreatmentDrug = drugs.filter(drug => drug._id === selectedStudy.realDrug);
+  const selectedPlaceboDrug = drugs.filter(drug => drug._id === selectedStudy.placeboDrug);
 
   const patientsInStudy = patients.filter(patient => patient.assignedStudy === studyID);
   const getPatientListByDrug = (assignedDrug) => {
     if (assignedDrug === "Treatment") {
-      const filteredPatients = patientsInStudy.filter(patient => patient.assignedDrug === "0188019c-e166-7fc1-dfc8-6e4d5461b5b6");
+      const filteredPatients = patientsInStudy.filter(patient => {
+        // Check if the patient's assignedDrug is present in the selectedTreatmentDrug.id array
+        return selectedTreatmentDrug[0].id.some(drugIdObj => drugIdObj.id === patient.assignedDrug);
+      });
       const listPatients = filteredPatients.map(patient => <li key={patient._id}>{patient.name}</li>);
 
       return (
@@ -45,7 +62,10 @@ function AssignmentPopup({selectedStudy, togglePopup, isFDAView}) {
       );
 
     } else {
-      const filteredPatients = patientsInStudy.filter(patient => patient.assignedDrug === "0188019c-d349-f3bc-d935-91bd80ece6c2");
+      const filteredPatients = patientsInStudy.filter(patient => {
+        // Check if the patient's assignedDrug is present in the selectedTreatmentDrug.id array
+        return selectedPlaceboDrug[0].id.some(drugIdObj => drugIdObj.id === patient.assignedDrug);
+      });
       const listPatients = filteredPatients.map(patient => <li key={patient._id}>{patient.name}</li>);
 
       return (
@@ -83,7 +103,7 @@ function AssignmentPopup({selectedStudy, togglePopup, isFDAView}) {
               </div>
             </div>
             <button className='add-patient' style={{border: '4px solid #007bff', color: '#007bff'}} onClick={togglePopupResults}>
-              Create Result Report
+              Create Study Report
             </button>
         </div>
         {isOpen && <StudyResultsPopup togglePopup={togglePopupResults} selectedStudy={selectedStudy} patientsInStudy={patientsInStudy} isFDAView={!isFDAView} isBavariaView={false}/>}

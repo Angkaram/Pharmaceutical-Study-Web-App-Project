@@ -8,6 +8,8 @@ function StudyResultsPopup({selectedStudy, togglePopup, isFDAView, isBavariaView
   const { entities } = useJaneHopkins();
   const [patients, setPatients] = useState([]);
   const [studyID, setStudyID] = useState([]);
+  const [drugs, setDrugs] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
       async function fetchPatientsAndStudies() {
@@ -19,7 +21,17 @@ function StudyResultsPopup({selectedStudy, togglePopup, isFDAView, isBavariaView
       }
   
       fetchPatientsAndStudies();
-  }, [entities.patient]); 
+  }, [entities.patient]);
+  
+  useEffect(() => {
+    async function fetchDrug() {
+      const drugList = await entities.drug.list();
+      setDrugs(drugList.items);
+      setIsLoading(false);
+    }
+
+    fetchDrug();
+  }, [entities.drug]);
 
   const [isOpen, setIsOpen] = useState(false);
   const togglePopupResults = () => {
@@ -58,11 +70,19 @@ function StudyResultsPopup({selectedStudy, togglePopup, isFDAView, isBavariaView
   }
 
   const patientsInStudy = patients.filter(patient => patient.assignedStudy === studyID);
-  const treatmentPatients = patientsInStudy.filter(patient => patient.assignedDrug === "0188019c-e166-7fc1-dfc8-6e4d5461b5b6");
-  const controlPatients = patientsInStudy.filter(patient => patient.assignedDrug === "0188019c-d349-f3bc-d935-91bd80ece6c2");
+  const selectedTreatmentDrug = drugs.filter(drug => drug._id === selectedStudy.realDrug);
+  const treatmentPatients = patientsInStudy.filter(patient => {
+    // Check if the patient's assignedDrug is present in the selectedTreatmentDrug.id array
+    return selectedTreatmentDrug[0].id.some(drugIdObj => drugIdObj.id === patient.assignedDrug);
+  });
+  const selectedPlaceboDrug = drugs.filter(drug => drug._id === selectedStudy.placeboDrug);
+  const controlPatients = patientsInStudy.filter(patient => {
+    // Check if the patient's assignedDrug is present in the selectedTreatmentDrug.id array
+    return selectedPlaceboDrug[0].id.some(drugIdObj => drugIdObj.id === patient.assignedDrug);
+  });
   const getPatientListByDrug = (assignedDrug) => {
     if (assignedDrug === "Treatment") {
-      const filteredPatients = patientsInStudy.filter(patient => patient.assignedDrug === "0188019c-e166-7fc1-dfc8-6e4d5461b5b6");
+      const filteredPatients = treatmentPatients;
       const listPatients = filteredPatients.map(patient =>
         <div>
           <h3 key = {patient._id} > Patient ID: {patient._id} </h3>
@@ -117,7 +137,7 @@ function StudyResultsPopup({selectedStudy, togglePopup, isFDAView, isBavariaView
       );
 
     } else {
-      const filteredPatients = patientsInStudy.filter(patient => patient.assignedDrug === "0188019c-d349-f3bc-d935-91bd80ece6c2");
+      const filteredPatients = controlPatients;
       const listPatients = filteredPatients.map(patient => 
         <div>
           <h3 key = {patient._id} > Patient ID: {patient._id} </h3>
