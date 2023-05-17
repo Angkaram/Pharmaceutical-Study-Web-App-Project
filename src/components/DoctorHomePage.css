@@ -4,7 +4,7 @@ html {
   position: relative;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  background-image: url(../assets/images/unibg.v1.v1.jpg);
+  background-image: url(../assets/images/univbg.jpg);
   background-repeat: no-repeat;
   background-size: fill;
   /* Background image may look a little odd but a different image would be required for it to look less weird ^  */
