@@ -15,7 +15,21 @@ function ShipmentsButton(togglePopup) {
       batchNumber: document.getElementById("batchNumber").value,
       placebo: placebo
       
-    });
+    },
+    {
+    aclInput: {
+      acl: [
+        {
+          principal: {
+            nodes:  "FDA",
+          },
+          operations: ["READ"],
+          path: "placebo",
+        },
+      ]
+    }
+  } 
+    );
     console.log(addShipmentResponse);
 
     dispatch({

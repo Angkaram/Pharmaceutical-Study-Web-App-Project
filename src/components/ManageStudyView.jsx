@@ -178,7 +178,29 @@ function AddStudyButton(togglePopup) {
       start: document.getElementById("start").value,
       end: document.getElementById("end").value,
       maxPatients: Number(document.getElementById("maxPatients").value),
-    });
+    
+    },
+    {
+      aclInput: {
+        acl: [
+          {
+            principal: {
+              nodes: ["FDA", "bavaria"]
+            },
+            operations: ["READ"],
+            path: "placeboDrug",
+          },
+          {
+            principal: {
+              nodes:  ["FDA", "bavaria"]
+            },
+            operations: ["READ"],
+            path: "real",
+          }
+        ]
+      }
+    } 
+    );
     
     console.log(addStudyResponse);
 
