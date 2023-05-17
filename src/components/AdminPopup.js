@@ -4,10 +4,12 @@ import DisplayStudyPatients from './DisplayStudyPatient';
 import AssignDrug from './ChooseStudyDrug';
 import AssignmentPopup from './GroupAssignment';
 import StudyResultsPopup from './StudyResults';
+import DoctorView from './DoctorView';
 
-function AdminPopup({selectedStudy, togglePopup, isFDAView}) {
+function AdminPopup({selectedStudy, togglePopup, isFDAView, isBavariaView, isDoctorView}) {
     const { entities } = useJaneHopkins();
     const [patients, setPatients] = useState([]);
+    let canAdd; // Boolean will determine if we can add the patient or not
 
     const [isDrugOpen, setIsDrugOpen] = useState(false);
     const toggleDrugSelect = () => {
@@ -37,12 +39,19 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView}) {
     } else {
         hasPatient = true;
     }
+
+    const eligiblePatients = patients.filter(patient => patient.isEligible);
+    if (selectedStudy.maxPatients > eligiblePatients.length) {
+        canAdd = false;
+    } else {
+        canAdd = true;
+    }
     
     const addRandomPatients = async() => {
         const study = await entities.study.get(selectedStudy._id);
         const studyID = study._id;
 
-        const eligiblePatients = patients.filter(patient => patient.isEligible);
+        //const eligiblePatients = patients.filter(patient => patient.isEligible);
         //console.log(eligiblePatients);
         const x = study.maxPatients;
 
@@ -72,30 +81,40 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView}) {
         });
 
         console.log(updated);
-    }
+    };
 
-    const notifyFDA = async() => {
-        //const study = await entities.study.get(selectedStudy._id);
+    async function handleButtonClick() {
+        await addRandomPatients();
+        window.location.reload();
+    };
 
-        const update = await entities.study.update({
+    const notifyFDA = async () => {
+        try {
+            const update = await entities.study.update({
             _id: selectedStudy._id,
-            isFDANotified: true
-        });
-    }
+            isFDANotified: true,
+            });
+            console.log("Data updated successfully!");
+            window.location.reload();
+
+        } catch (error) {
+            console.log("Error updating data:", error);
+        }
+    };   
 
     const sendAssignment = async() => {
-        const sent = await entities.study.update({
-            _id: selectedStudy._id,
-            isAssignmentSent: true
-        });
-    }
+        try {
+            const sent = await entities.study.update({
+                _id: selectedStudy._id,
+                isAssignmentSent: true
+            });
+            console.log("Data updated successfully!");
+            window.location.reload();
 
-    const releaseResults = async() => {
-        const released = await entities.study.update({
-            _id: selectedStudy._id,
-            isResultsReleased: true
-        });
-    }
+        } catch (error) {
+            console.log("Error updating data:", error);
+        }
+    };
 
     const [studyID, setStudyID] = useState([]);
     const patientsInStudy = patients.filter(patient => patient.assignedStudy === studyID);
@@ -107,6 +126,8 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView}) {
     let color;
     if (isFDAView) {
         color = '#08d3b4';
+    } else if (isDoctorView){
+        color = '#0e619c';
     } else {
         color = '#6fabd0';
     }
@@ -116,37 +137,38 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView}) {
     const [studyData, setStudyData] = useState(selectedStudy); 
     const approveStudy = async() => {
         const study = await entities.study.get(selectedStudy._id);
-      
+    
         let updated = null;
-      
+    
         if (study.isBavariaAgreed) {
-          updated = await entities.study.update({
-            _id: study._id,
-            isFdaAgreed: true,
-            status: "Approved"
-          });
+            updated = await entities.study.update({
+                _id: study._id,
+                isFdaAgreed: true,
+                status: "Approved"
+            });
         } else {
-          updated = await entities.study.update({
-            _id: study._id,
-            isFdaAgreed: true
-          });
+            updated = await entities.study.update({
+                _id: study._id,
+                isFdaAgreed: true
+            });
         }
-      
+
         setStudyData(updated);
         console.log("Approve Study Button from the FDA was clicked");
-      }      
+    }      
     useEffect(() => {
         setIsFdaAgreed(selectedStudy.isBavariaAgreed === "True");
     }, [selectedStudy]);
+
     // to make the page reload once data is input into the system
-    async function handleButtonClick() {
+    async function handleApproveClick() {
         await approveStudy();
         window.location.reload();
     };
 
     const cancelStudy = async() => {
         const study = await entities.study.get(selectedStudy._id);
-      
+    
         const updated = await entities.study.update({
         _id: study._id,
         isFdaAgreed: false,
@@ -156,7 +178,7 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView}) {
         maxPatients: 0,
         status: "Cancelled"
         });
-      
+    
         setStudyData(updated);
     }
     // to make the page reload once data is input into the system
@@ -208,22 +230,30 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView}) {
                     <></>
                 }
 
-                {selectedStudy.status === "Cancelled" ? (
+                {!hasPatient && isDoctorView ? (
+                    <div className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500', backgroundColor: '#ececec'}}>Awaiting Patients</div>
+                ) : hasPatient && isDoctorView ? (
+                    <DisplayStudyPatients studyPatients = {selectedStudy.studyPatients} isDoctorView={isDoctorView} />
+                ) :
+                
+                selectedStudy.status === "Cancelled" ? (
                     <div className='add-patient' style={{border: '4px solid #EE6C4D', color: '#EE6C4D', backgroundColor: '#ececec'}}>Study Cancelled</div>
-                    ) : selectedStudy.status === "Pending" ? (
+                    ) : selectedStudy.status === "Pending" && isFDAView || isBavariaView? (
                         <>
                             <div style={{ display: "flex", flexDirection: "row" }}>
-                                <button className='add-patient' onClick={() => { approveStudy(); handleButtonClick(); } }>Approve Study</button>
+                                <button className='add-patient' onClick={() => { approveStudy(); handleApproveClick(); } }>Approve Study</button>
                                 <button className='add-patient' style={{color: "red", borderColor: "red", marginLeft: "2px"}}onClick={() => { cancelStudy(); handleCancelButtonClick(); } }>Cancel Study</button>
                             </div>
                         </> 
+                    ) : selectedStudy.status === "Pending" && !isFDAView && !isBavariaView? (
+                        <div className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500', backgroundColor: '#ececec'}}>Study Approval Pending</div>
                     ) : selectedStudy.status === "Completed" && !selectedStudy.isFDANotified && !isFDAView ? (
                         <div style={{ display: "flex", flexDirection: "row" }}>
                             <div className='add-patient' style={{border: '4px solid #0E619C', color: '#0E619C', backgroundColor: '#ececec'}}>Study Completed</div>
                             <button className='add-patient' style={{border: '4px solid #00FF00', color: '#00FF00'}} onClick={() => {notifyFDA();}}>Notify FDA</button>
                         </div>
                     ) : selectedStudy.status === "Completed" && !selectedStudy.isFDANotified ? (
-                        <div className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500', backgroundColor: '#ececec'}}>Awaiting Study Status</div>
+                        <div className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500', backgroundColor: '#ececec'}}>Awaiting Admin Notification</div>
                     ) : selectedStudy.status === "Completed" && selectedStudy.isFDANotified && !selectedStudy.isAssignmentSent && isFDAView ? (
                         <div style={{ display: "flex", flexDirection: "row" }}>
                             <div className='add-patient' style={{border: '4px solid #0E619C', color: '#0E619C', backgroundColor: '#ececec'}}>Study Completed</div>
@@ -242,18 +272,27 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView}) {
                     ) : selectedStudy.status === "Completed" && selectedStudy.isFDANotified && selectedStudy.isAssignmentSent && !selectedStudy.isReportSent ? (
                         <div className='add-patient' style={{border: '4px solid #00FF00', color: '#00FF00'}}>Awaiting Study Report</div>
                     ) : selectedStudy.status === "Completed" && selectedStudy.isFDANotified && selectedStudy.isAssignmentSent && selectedStudy.isReportSent ? (
-                        <div style={{ display: "flex", flexDirection: "row" }}>
                             <button className='add-patient' style={{border: '4px solid #0E619C', color: '#0E619C'}} onClick={togglePopupResults}>Study Report</button>
-                            <button className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500'}} onClick={() => {releaseResults();}}>Send Report To Bavaria</button>
-                        </div>
                     ) : selectedStudy.status === "Completed" && selectedStudy.isFDANotified && selectedStudy.isAssignmentSent && selectedStudy.isReportSent && selectedStudy.isResultsReleased ? (
                         <button className='add-patient' style={{border: '4px solid #0E619C', color: '#0E619C'}} onClick={togglePopupResults}>Study Ended - See Report</button>
                     ): hasPatient ? (
                         <DisplayStudyPatients studyPatients = {selectedStudy.studyPatients} isFDAView={isFDAView} />
                     ): isFDAView ? (
                         <div className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500', backgroundColor: '#ececec'}}>Need Patients</div>
+                    ): canAdd && selectedStudy.studyPatients === null && !isFDAView && !isBavariaView? (
+                        <button className='add-patient' onClick={() => { handleButtonClick();
+                            const messageElem = document.createElement('div');
+                            messageElem.innerText = 'Patients Added to Study. Refreshing page...';
+                            messageElem.classList.add('message'); // Add CSS class to the message element
+                            document.body.appendChild(messageElem);
+                            setTimeout(() => {
+                                messageElem.remove();
+                            }, 1000); // Delay message display for 1 second (1000 milliseconds)
+                            }}
+                        >Add {selectedStudy.maxPatients.toString()} Random Eligible Patients</button>
                     ):
-                        <button className='add-patient' onClick={addRandomPatients}>Add {selectedStudy.maxPatients.toString()} Random Eligible Patients</button>
+                        <div className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500', backgroundColor: '#ececec'}}>Not Enough Eligible Patients</div>
+                    
                 }             
 
             </div>

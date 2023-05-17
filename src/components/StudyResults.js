@@ -30,10 +30,31 @@ function StudyResultsPopup({selectedStudy, togglePopup, isFDAView, isBavariaView
   }
 
   const sendReport = async() => {
-    const sent = await entities.study.update({
-        _id: selectedStudy._id,
-        isReportSent: true
-    });
+    try {
+      const sent = await entities.study.update({
+          _id: selectedStudy._id,
+          isReportSent: true
+      });
+      console.log("Data updated successfully!");
+      window.location.reload();
+      
+    } catch (error) {
+      console.log("Error updating data:", error);
+    }
+  }
+
+  const releaseResults = async() => {
+    try {
+        const released = await entities.study.update({
+            _id: selectedStudy._id,
+            isResultsReleased: true
+        });
+        console.log("Data updated successfully!");
+        window.location.reload();
+        
+    } catch (error) {
+        console.log("Error updating data:", error);
+    }
   }
 
   const patientsInStudy = patients.filter(patient => patient.assignedStudy === studyID);
@@ -184,18 +205,33 @@ function StudyResultsPopup({selectedStudy, togglePopup, isFDAView, isBavariaView
                 </div>
               </div>
               <div style={{ display: "flex", justifyContent: 'center' }}>
-              {!isFDAView && !isBavariaView && (
-                <button className='add-patient' style={{border: '4px solid #00FF00', color: '#00FF00'}} onClick={() => {sendReport();}}>Send Report To FDA</button>
-              )}       
+              {selectedStudy && !isFDAView && !isBavariaView && (selectedStudy.isReportSent ? (
+                  <div className="add-patient" style={{ border: "4px solid #007bff", color: "#007bff", backgroundColor: "#ececec" }}>
+                    Report Sent To FDA
+                  </div>
+                ) : (
+                  <button className="add-patient" style={{ border: "4px solid #007bff", color: "#007bff" }} onClick={sendReport}>
+                    Send Report To FDA
+                  </button>
+                )
+              )}
+              {selectedStudy && isFDAView && !isBavariaView && (selectedStudy.isResultsReleased ? (
+                  <div className="add-patient" style={{ border: "4px solid #007bff", color: "#007bff", backgroundColor: "#ececec" }}>
+                    Report Sent To Bavaria
+                  </div>
+                ) : (
+                  <button className='add-patient' style={{border: '4px solid #007bff', color: '#007bff'}} onClick={() => {releaseResults();}}>
+                    Send Report To Bavaria
+                  </button>
+                )
+              )}      
               {isBavariaView && (
-                <div style={{display: 'flex', justifyContent: 'center'}}>
-                  <button className='add-patient' style={{border: '4px solid #00FF00', color: '#00FF00'}} onClick={handleReportClick}>Generate Report</button>
+                <div style={{display: 'flex', flexDirection: "row", justifyContent: 'center'}}>
+                  <button className='add-patient' style={{border: '4px solid #007bff', color: '#007bff', marginRight: '30px'}} onClick={handleReportClick}>Generate Report</button>
                   {isOpen && (
-                    <div className="studyResultsPopupInner">
-                      <PDFDownloadLink document={<PDFDocument treatment={treatmentPatients} control={controlPatients} />} fileName="study-report.pdf">
+                      <PDFDownloadLink document={<PDFDocument treatment={treatmentPatients} control={controlPatients} />} fileName="study-report.pdf" className='add-patient' style={{border: '4px solid #00FF00', color: '#00FF00', marginLeft: '30px'}}>
                         {({ blob, url, loading, error }) => (loading ? 'Generating report...' : 'Download PDF')}
                       </PDFDownloadLink>
-                    </div>
                   )}
                 </div>
               )}

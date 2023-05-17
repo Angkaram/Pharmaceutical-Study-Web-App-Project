@@ -24,17 +24,42 @@ function AddPatientButton(togglePopup) {
     const currentlyEmployed = document.getElementById("employed").checked ? "True" : "False";
     const currentlyInsured = document.getElementById("insured").checked ? "True" : "False";
 
+    // Function calculates a user's age
+    function calculateAge(dob) {
+
+      // Convert string to a date object
+      const birthday = new Date(dob);
+      // Get current date as date object
+      const currentDate = new Date();
+
+      // "Subtract" 2 dates, get the age in milliseconds
+      const ageInMilliseconds = currentDate - birthday;
+
+      // Convert age in milliseconds to years 
+      const ageInYears = Math.floor(ageInMilliseconds / (365.25 * 24 * 60 * 60 * 1000));
+
+      // Return age in years
+      return ageInYears;
+    }
+
     // Check if the patient is eligible or not
     let bool;
-    if (document.getElementById("dob").value === "January 1, 2005" || Number(document.getElementById("dob").value.slice(-4)) < 2005) {
-      bool = !icdInput.includes("O00–O99");
+    let age = 0;
+    if (document.getElementById("dob").value === "") {
+      bool = false;
+    } else if (document.getElementById("dob").value === "January 1, 2005" || Number(document.getElementById("dob").value.slice(-4)) < 2005) {
+      bool = !icdInput.includes("O");
+      age = calculateAge(document.getElementById("dob").value);
     } else {
       bool = false;
+      age = calculateAge(document.getElementById("dob").value);
     }
+
     const addPatientResponse = await entities.patient.add(
       {
         name: document.getElementById("name").value,
-        //age: document.getElementById("age").value,
+        patientPicture: document.getElementById("patientPicture").value,
+        age: age,
         dob: document.getElementById("dob").value,
         insuranceNumber: document.getElementById("insuranceNumber").value,
         address: document.getElementById("address").value,
@@ -51,6 +76,7 @@ function AddPatientButton(togglePopup) {
         currentlyEmployed: currentlyEmployed,
         currentlyInsured: currentlyInsured,
         isEligible: bool,
+        bloodType: document.getElementById("bloodType").value
       },
       {
         aclInput: {
@@ -62,6 +88,13 @@ function AddPatientButton(togglePopup) {
               operations: ["READ"],
               path: "dob",
             },
+
+            {principal: {
+              nodes: ["Bavaria", "FDA"],
+            },
+            operations: ["READ"],
+            path: "patientPicture",
+          },
 
             {principal: {
               nodes: ["Bavaria", "FDA"],
@@ -138,10 +171,15 @@ function AddPatientButton(togglePopup) {
       },
     );
   }
-   //console.log(currentlyEmployed);
-    //console.log(currentlyInsured);
-   //console.log(addPatientResponse);
+  //console.log(currentlyEmployed);
+  //console.log(currentlyInsured);
+  //console.log(addPatientResponse);
 
+   async function handleButtonClick() {
+    await addPatient();
+    window.location.reload();
+  };
+  
   return (
     <div className="largeView">
     <div className="popup-content">
@@ -152,19 +190,21 @@ function AddPatientButton(togglePopup) {
         
       </div>
       <h3> Patient Name: <input type="text" id="name"></input></h3> 
+
+      <h3> Patient Picture URL: <input type="text" id="patientPicture"></input></h3>
       
       <div className="popup-middle">
         <div className="popup-section" >
           <h3>General Information</h3>
 
-          <p><b>DOB: </b>
+          <div style={{marginLeft:'10px'}}><b>DOB: </b>
           <DatePicker
             selected = {date}
             onChange={(date => setDate(date))}
             id = "dob"
             dateFormat="MMMM d, yyyy"
           />
-          </p>
+          </div>
 
           <p><b>Insurance Number: </b><input type="text" id = "insuranceNumber"></input></p>
           <p><b>Weight:</b><input type="text" id = "weight"></input></p>
@@ -173,7 +213,7 @@ function AddPatientButton(togglePopup) {
         <div className="popup-section" >
           <h3>Health Information</h3>
           <p><strong>Patient ID:</strong> <input type="text" id = "uuid"></input></p>
-          <p><strong>Blood Type:</strong> <input type="text"></input></p>
+          <p><strong>Blood Type:</strong> <input type="text" id = "bloodType"></input></p>
 
           <p className='checkbox'><strong className='checkbox-test'>Currently Employed:
             <input type="checkbox" checked = {isEmployed} onChange={()=> setIsEmployed(!isEmployed)} id = "employed"></input>
@@ -200,8 +240,7 @@ function AddPatientButton(togglePopup) {
         </div>
 
       </div>
-      <button className='add-patient' onClick={() => {
-        addPatient();
+      <button className='add-patient' onClick={() => {handleButtonClick();
         const messageElem = document.createElement('div');
         messageElem.innerText = 'New Patient Added Successfully';
         messageElem.classList.add('message'); // Add CSS class to the message element

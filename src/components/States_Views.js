@@ -11,6 +11,7 @@ import './DoctorHomePage.css';
 import './FDAHomePage.css';
 import './BavariaHomePage.css';
 import AdminHomePage from "./AdminHomePage";
+import NavigationBar from './NavigationBar';
 /*
 import ShipmentsButton from './ShipmentsButton';
 import ManageStudyView from './ManageStudyView';
@@ -104,19 +105,8 @@ function DoctorHomePage({ user, LogOut}) {
     // doctorbody in DoctorHomePage.css
     <div className='welcome-body'>
       
+      <NavigationBar isDoctorView={true} user={user}/>
 
-      {/* classNames start: DoctorView.css */}
-        <div className = 'nav-bar'>
-          <div className='janeHopkinsTitleText'>Jane Hopkins
-            <div className='hospitalTitleText'>Hospital</div>
-          </div>
-          <div className='displayEmail'>{user?.email}</div>
-          <button className='signOutButton' onClick={LogOut}>
-            <div className='signOutIcon'></div>
-            <div className='signOutText'>Sign Out</div>
-          </button>
-        {/* end: DoctorView.css */}
-      </div>
       <div className='welcome-container'>
         <h1 className="title"> Welcome, Doctor</h1>
         <div className="box-container">
@@ -151,7 +141,7 @@ function FDAHomePage({ user, LogOut }) {
   return (
     <div className='fdabody'>
 
-          <div className = 'nav-bar' style={{backgroundColor: '#08d3b4'}}>
+          {/* <div className = 'nav-bar' style={{backgroundColor: '#08d3b4'}}>
             <div className='janeHopkinsTitleText'>FDA
               <div className='hospitalTitleText' style={{fontSize: 25, textAlign: 'center'}}>U.S. Food and Drug Administration</div>
             </div>
@@ -161,13 +151,14 @@ function FDAHomePage({ user, LogOut }) {
               <div className='signOutText' style={{color: '#069882'}}>Sign Out</div>
             </button>
           
-        </div>
+        </div> */}
+        <NavigationBar isFDAView={true} user={user}/>
         <div className='welcome-container'>
           <h1 className="title"> Welcome</h1>
           <div className="box-container" >
   
             <div className="box" style={{backgroundColor: '#08d3b4'}}>
-                <button onClick={() => FDAView(user)}><h3>Manage Contracts</h3></button>
+                <button onClick={FDAView}><h3>Manage Contracts</h3></button>
             </div>
   
           </div>  
@@ -192,17 +183,7 @@ function BavariaHomePage({ user, LogOut }) {
   return (
         <div className='bavariabodyWelcome'>
 
-          <div className = 'nav-bar' style={{backgroundColor: '#f46f74'}}>
-            <div className='janeHopkinsTitleText'>Bavaria
-              <div className='hospitalTitleText'>Pharmaceuticals</div>
-            </div>
-            <div className='displayEmail'>{user?.email}</div>
-            <button className='signOutButton' onClick={LogOut}>
-              <div className='signOutIcon'></div>
-              <div className='signOutText' style={{color: '#e7121a' }}>Sign Out</div>
-            </button>
-          
-        </div>
+          <NavigationBar isBavariaView={true} user={user}/>
         <div className='welcome-container'>
           <h1 className="title"> Welcome</h1>
           <div className="box-container" >

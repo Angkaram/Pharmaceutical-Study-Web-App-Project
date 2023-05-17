@@ -54,7 +54,7 @@ function DisplayDrugsData (isFDAView, isBavariaView) {
                     <th style={{backgroundColor: bavariaColor}}>Sent to FDA</th>
                     <th style={{backgroundColor: bavariaColor}}>Placebo</th>
                     <th style={{backgroundColor: bavariaColor}}>Batch Number</th>
-                    {isOpen && <BavariaShipmentsPopup selectedDrug={selectedDrug} togglePopup={togglePopup}/>}
+                    
                     </>
                   ) : (
                     <>
@@ -81,7 +81,7 @@ function DisplayDrugsData (isFDAView, isBavariaView) {
               }).map((drug) => {
                 return (
     
-                  <tr key={drug.id}>
+                  <tr key={drug._id}>
                     
                           <>
                             <td onClick={() => handleDrugClick(drug)}>
@@ -100,6 +100,13 @@ function DisplayDrugsData (isFDAView, isBavariaView) {
             </table>
     
           )} 
+          {isBavariaView ?(
+            <>
+            {isOpen && <BavariaShipmentsPopup selectedDrug={selectedDrug} togglePopup={togglePopup}/>}
+            </>
+          ):
+          <></>
+          }
        
     </div>
   

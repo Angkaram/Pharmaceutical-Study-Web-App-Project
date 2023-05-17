@@ -8,7 +8,7 @@ import AddAppointment from './addAppointment';
 import EditPatient from './editPatient';
 import "./DoctorView.css";
 
-function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, isBavariaView, isAdminView, filterEligible, idSearch}) {
+function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, isBavariaView, isAdminView, filterEligible, idSearch, ageSearch}) {
 
   const { entities } = useJaneHopkins();
   const [patients, setPatients] = useState([]);
@@ -57,32 +57,6 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
     setSelectedPatient(patient);
   }
 
-  // for giving doses to the patients:
-  // initialize state for current dose number
-  const [currentDose, setCurrentDose] = useState(1);
-
-  // for giving doses to the patients:
-  const applyDose = async() => {
-    const patient = await entities.patient.get(selectedPatient._id);
-
-    const updated = await entities.patient.update({
-      _id: patient._id,
-      doses: currentDose // use current dose number instead of 1
-    });
-    setPatientData(updated);
-    console.log(`Dose ${currentDose} applied`);
-
-    // increment dose number if it's less than 5
-    if (currentDose < 5) {
-      setCurrentDose(currentDose + 1);
-    }
-  }
-  // to make the page reload once data is input into the system
-  async function handleButtonClick() {
-    await applyDose();
-    //window.location.reload();
-  };
-
   return (
     <div>
       <ClipLoader color={"blue"} loading={isLoading} css={override} size={40} />
@@ -108,7 +82,7 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
                   <th>Age</th>
                   <th>Date of Birth</th>
                   <th>Insurance Number</th>
-                  <th>Address</th>
+                  <th>Assigned Study</th>
                 </>
               )}
             </tr>
@@ -123,16 +97,16 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
               return patient;
             }
             else if (patient.name.toLowerCase().includes(nameSearch.toLowerCase()) && patient.insuranceNumber.includes(insuranceSearch) 
-            && patient.icdHealthCodes.some(code => code.code.toLowerCase().includes(ICDSearch.toLowerCase()))) { 
+            && patient.icdHealthCodes.some(code => code.code.toLowerCase().includes(ICDSearch.toLowerCase())) && patient.age.toString().includes(ageSearch.toString())) { 
               return patient;
             } 
-            else if (nameSearch === "" && insuranceSearch === "" && ICDSearch === "") {
+            else if (nameSearch === "" && insuranceSearch === "" && ICDSearch === "" && ageSearch.toString() === "") {
               return patient;
             }
           }).map((patient) => {
             return (
 
-              <tr key={patient.id}>
+              <tr key={patient._id}>
                 {isFDAView || isBavariaView ? (
                       <td>{patient.insuranceNumber}</td>
                 
@@ -152,7 +126,11 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
                         <td>{patient.age}</td>
                         <td>{patient.dob}</td>
                         <td>{patient.insuranceNumber}</td>
-                        <td>{patient.address}</td>
+                        {patient.assignedStudy !== null ? (
+                          <td>{patient.assignedStudy}</td>
+                        ):
+                        <td>N/A</td>
+                        }
                       </>
                     )}
                   </tr>
@@ -162,37 +140,50 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
           </tbody>
         </table>
       )}{selectedPatient && (
-        <div class="largeView">
-        <div class="popup-content">
+        <div className="largeView">
+        <div className="popup-content">
         <button id="close" onClick={() => setSelectedPatient(null)}>X</button>
-          <div class="popup-top">
-            <h3 class = "pName"> Patient:<i> <br></br>&emsp; {selectedPatient.name}</i></h3> 
+          <div className="popup-top">
+            <h3 className = "pName"> Patient:<i> <br></br>&emsp; {selectedPatient.name}</i></h3> 
           
-            <img class = "profilePic" src = "https://www.unitedway.ca/wp-content/uploads/2017/06/TempProfile.jpg"/> 
+            {selectedPatient.patientPicture ? (
+              <img className="profilePic" src={selectedPatient.patientPicture} />
+            ) : (
+              <img className="profilePic" src="https://www.unitedway.ca/wp-content/uploads/2017/06/TempProfile.jpg" alt="Default Profile Picture" />
+            )}
+            
           </div>
-          <div class="popup-middle">
-            <div class="popup-section">
+          <div className="popup-middle">
+            <div className="popup-section">
               <h3>General Information</h3>
               <p><b>DOB: </b>{selectedPatient.dob}</p>
               <p><b>Insurance Number: </b>{selectedPatient.insuranceNumber}</p>
               <p><b>Weight:</b>{selectedPatient.weight}</p>
               <p><b>Address: </b>{selectedPatient.address}</p>
             </div>
-            <div class="popup-section">
+            <div className="popup-section">
               <h3>Health Information</h3>
               <p><strong>Patient ID:</strong> {selectedPatient.uuid}</p>
               <p><strong>Blood Type:</strong> {selectedPatient.bloodType}</p>
             </div>
-            <div class="popup-section">
+            <div className="popup-section">
               <h3>Vital Signs</h3>
               <p><strong>Height:</strong> {selectedPatient.height}</p>
               <p><strong>Blood Pressure:</strong> {selectedPatient.bloodPressure}</p>
               <p><strong>Temperature:</strong> {selectedPatient.temperature}</p>
               <p><strong>Oxygen Saturation:</strong> {selectedPatient.oxygenSaturation}</p>
             </div>
-            <div class="popup-section">
+            <div className="popup-section">
               <h3>Medical History</h3>
-              <p><strong>Current Medications:</strong> {selectedPatient.medicationArray} </p>
+              <p><strong>Current Medications: </strong>
+              {selectedPatient.currentMedications.map((medication, index) => (
+                  <span key={index}>
+                    {medication.medication}
+                    {index < selectedPatient.currentMedications.length - 1 ? ", " : ""}
+                  </span>
+                ))}
+              
+              </p>
               <p><strong>Family History:</strong> {selectedPatient.familyHistory} </p>
               <p>
                 <strong>Allergies:</strong>{" "}
@@ -205,9 +196,9 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
               </p>
 
             </div>
-            <button className='add-patient' onClick={togglePopup}>Add Appointment</button>
+            <button className='add-patient' onClick={togglePopup}>
+            {selectedPatient.doses < 5 && selectedPatient.isStudy === true ? 'Add Appointment and Dose' : 'Create Appointment'}</button>
             <button className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500'}} onClick={togglePopupNew}>Edit Patient</button>
-            <button className='add-patient' style={{border: '4px solid blue', color: 'blue'}} onClick={handleButtonClick}>{selectedPatient.doses === null ? 'Apply Dose 1' : `Apply Dose ${selectedPatient.doses}`}</button>          
           </div>
         </div>
       </div>

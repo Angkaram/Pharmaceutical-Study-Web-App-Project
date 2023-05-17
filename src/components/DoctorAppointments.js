@@ -12,15 +12,15 @@ import { signOut } from "firebase/auth";
 import { useLocation } from "react-router-dom";
 import { auth } from "./firebase-config";
 import ValidateDomain from "./validation";
+import NavigationBar from "./NavigationBar";
 
 
 
 function DoctorAppointments() {
 
     const location = useLocation();
-
     const navigate = useNavigate();
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(location.state);
     const logout = async () => {
     await signOut(auth);
     navigate("/");
@@ -29,46 +29,38 @@ function DoctorAppointments() {
     const [patients, setPatients] = useState([]);
 
     useEffect(() => {
-        async function fetchPatients() {
-          const patientList = await entities.patient.list();
-          setPatients(patientList.items);
-        }
-    
-        fetchPatients();
-      }, [entities.patient]);
+      async function fetchPatients() {
+        const patientList = await entities.patient.list();
+        setPatients(patientList.items);
+      }
+  
+      fetchPatients();
+    }, [entities.patient]);
 
-    if (user?.email == null) {
-    
-        let view;
-        const unsubscribe = auth.onAuthStateChanged(userAuth => {
-        const user= {
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+      const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+        const user = {
           email: userAuth?.email,
           role: userAuth?.displayName,
           id: userAuth?.uid
-        }
-        if (userAuth) {
-          console.log(userAuth)
-          setUser(user)
-        } else {
-          setUser(null)
-        }
-      
-        // Validates the user
-        let isValidated = ValidateDomain(user.email, user.role);
-      
-        // Checks their role and redirects them accordingly
-        if (isValidated === true) {
-          if (user.role === 'doctor') {
-            view = <DoctorHomePage user = {user} LogOut = {logout} />;
-          }
-        // If everything fails, kicks unauthorized user to the login page
-        } else {
+        };
+        setUser(user);
+        setLoading(false);
+  
+        if (!userAuth || user.role !== "doctor") {
           navigate("/Login");
         }
-    
-      })
-      return unsubscribe
-      };
+      });
+  
+      return unsubscribe;
+    }, []);
+  
+    if (loading) {
+      // Fixes the issue of the view briefly showing
+      return null;
+    }
 
     const locales = {
         "en-US": require("date-fns/locale/en-US")
@@ -106,25 +98,14 @@ function DoctorAppointments() {
 
     return (
         <div className='center'> 
-            <div className='nav-bar'>
-                <div className='doctorViewTitle'>
-                    <div className='janeHopkinsTitleText'>Jane Hopkins
-                    <div className='hospitalTitleText'>Hospital</div>
-                    </div>
-                </div>
-                <div className='displayEmail'>{user?.email}</div>
-                <button className='signOutButton' onClick={logout}>
-                    <div className='signOutIcon'></div>
-                    <div className='signOutText'>Sign Out</div>
-                </button>
-            </div>
+            <NavigationBar isDoctorView={true} user={user}/>
             <div className="doctorNavButtonLocations">
                 <div className="welcomeBro">
-                    <button onClick={() => DoctorHomePage(user)}>Welcome Page</button>
+                    <button className='welcomeContainer' onClick={() => DoctorHomePage(user)}>Welcome Page</button>
                 </div>
                 
                 <div className="appointmentBro">
-                    <button onClick={() => DoctorView(user)}>Manage Patients</button>
+                    <button className='welcomeContainer' onClick={() => DoctorView(user)}>Manage Patients</button>
                 </div>
             </div>
 

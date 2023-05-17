@@ -7,7 +7,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "./firebase-config";
 import ValidateDomain from "./validation";
 import homeIcon from "./Icons/homeIcon.png";
-
+import NavigationBar from "./NavigationBar";
 import './home.css';
 import './DoctorView.css';
 
@@ -58,33 +58,7 @@ function SignUp() {
 
     return (
     <div className="loginPage">
-    <nav className="logInNavbar">
-        <div className="medTitle">
-            <div className="abbrvMD">MDMS</div>
-                Medical Data
-            <div className="manageTitle">Management System</div>
-        </div>
-            
-        <div className="links">
-            <a href="/" style={{
-                        color: "#0E619C",
-                        backgroundColor: '#fff',
-                        transition: 'all 0.2s',
-                        textDecoration: 'none',
-                        padding: '5px 10px',
-                        borderRadius: '36px',
-                        border: '1px solid #0E619C'
-                    }}
-                    onMouseOver={e => {
-                        e.target.style.backgroundColor = '#9ea5aa';
-                    }}
-                    onMouseOut={e => {
-                        e.target.style.color = '#0E619C';
-                        e.target.style.backgroundColor = '#fff';
-                    }}
-            > <img src={homeIcon}/> Home </a>
-        </div>
-    </nav> 
+        <NavigationBar isSignup={true} />
     <section className="container">
         
         <div className="background">

@@ -11,12 +11,13 @@ import DisplayPatientData from './DisplayPatientData';
 import './DoctorView.css';
 import View from "./States_Views";
 import ValidateDomain from "./validation";
-
+import NavigationBar from './NavigationBar';
 
 function DoctorView() {
 
+  const location = useLocation();
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(location.state);
   const logout = async () => {
     await signOut(auth);
     navigate("/");
@@ -28,41 +29,31 @@ function DoctorView() {
   const [ICDSearch, setICDSearch] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   
-  if (user?.email == null) {
-    
-    let view;
-    const unsubscribe = auth.onAuthStateChanged(userAuth => {
-    const user= {
-      email: userAuth?.email,
-      role: userAuth?.displayName,
-      id: userAuth?.uid
-    }
-    if (userAuth) {
-      console.log(userAuth)
-      setUser(user)
-    } else {
-      setUser(null)
-    }
-  
-    // Validates the user
-    let isValidated = ValidateDomain(user.email, user.role);
-  
-    // Checks their role and redirects them accordingly
-    if (isValidated === true) {
-      if (user.role === 'doctor') {
-        view = <DoctorHomePage user = {user} LogOut = {logout} />;
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+      const user = {
+        email: userAuth?.email,
+        role: userAuth?.displayName,
+        id: userAuth?.uid
+      };
+      setUser(user);
+      setLoading(false);
+
+      if (!userAuth || user.role !== "doctor") {
+        navigate("/Login");
       }
-    // If everything fails, kicks unauthorized user to the login page
-    } else {
-      navigate("/Login");
-    }
+    });
 
-  })
-  return unsubscribe
-  };
+    return unsubscribe;
+  }, []);
 
+  if (loading) {
+    // Fixes the issue of the view briefly showing
+    return null;
+  }
 
- 
   const togglePopup = () => {
     setIsOpen(!isOpen);
   }
@@ -71,6 +62,7 @@ function DoctorView() {
     setInsuranceSearch("");
     setNameSearch("");
     setICDSearch("");
+    setAgeSearch("");
   }
 
   const DoctorAppointments = () => {
@@ -87,20 +79,11 @@ function DoctorView() {
   return (
     <div className='managePatient'>
       {/* NTS: REVERT BACK IF FAILS + DoctorView.css */}
-      <div className = 'nav-bar'>
-        <div className='janeHopkinsTitleText'>Jane Hopkins
-          <div className='hospitalTitleText'>Hospital</div>
-        </div>
-        <div className='displayEmail'>{user?.email}</div>
-        <button className='signOutButton' onClick={logout}>
-          <div className='signOutIcon'></div>
-          <div className='signOutText'>Sign Out</div>
-        </button>
-      </div>
+      <NavigationBar isDoctorView={true} user={user}/>
 
       <div className='doctorNavButtonLocations'>
         <div className="welcomeBro">
-          <button onClick={() => DoctorHomePage(user)}>Welcome Page</button>
+          <button className='welcomeContainer' onClick={() => DoctorHomePage(user)}>Welcome Page</button>
         </div>
 
         {/* <div className='welcomeBro'>
@@ -108,11 +91,11 @@ function DoctorView() {
         </div> */}
 
         <div className='appointmentBro'>
-          <button onClick={() => DoctorAppointments(user)}>Manage Appointments</button>
+          <button className='welcomeContainer' onClick={() => DoctorAppointments(user)}>Manage Appointments</button>
         </div>
 
         <div className='addPatientBro'>
-          <button onClick={togglePopup} >Add Patients</button>
+          <button className='welcomeContainer' onClick={togglePopup} >Add Patients</button>
         </div>
         
       </div>
@@ -152,7 +135,7 @@ function DoctorView() {
       </div>
 
       <div className='patientTableLocation'>
-        <DisplayPatientData nameSearch={nameSearch} insuranceSearch={insuranceSearch} ICDSearch={ICDSearch} patientId={patientId} />
+        <DisplayPatientData nameSearch={nameSearch} insuranceSearch={insuranceSearch} ICDSearch={ICDSearch} patientId={patientId} ageSearch={ageSearch}/>
       </div>
 
       {isOpen && <AddPatientButton handleClose={togglePopup} />}

@@ -10,8 +10,9 @@ import { css } from "@emotion/react";
 import "react-datepicker/dist/react-datepicker.css";
 import AdminPopup from './AdminPopup';
 import "./Admin.css";
+import { ClipLoader } from "react-spinners";
 
-function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isBavariaView, isAdminView}) {
+function DisplayStudyData({isFDAView, isBavariaView, isAdminView}) {
 
     const { entities } = useJaneHopkins();
     const [study, setStudy] = useState([]);
@@ -35,10 +36,12 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
 
   
     const override = css`
-      display: block;
-      margin: 0 auto;
-      border-color: red;
-    `;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+  `;
   
     const handleStudyClick = (study) => {
       setSelectedStudy(study);
@@ -48,7 +51,8 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
   
     return (
       <div>
-        
+        <ClipLoader color={"#08d3b4"} loading={isLoading} css={override} size={40} />
+        {!isLoading && (
           <table className="patientTable">
             <thead>
             <tr>
@@ -92,17 +96,7 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
             <tbody>
               
             {study.filter((study)=> {     
-              // filtering still not working  
-              if (study.status.includes("Approved")) {
-                //console.log(study);
-                return study;
-              } 
-              else if (isBavariaView) {
-                return study;
-              }
-              else if (nameSearch === "" && statusSearch === "" && startSearch === "") {
-                return study;
-              }
+              return study;
             }).map((study) => {
               return (
   
@@ -149,15 +143,16 @@ function DisplayStudyData({nameSearch, statusSearch, startSearch, isFDAView, isB
   
             </tbody>
           </table>
+        )}
         {isFDAView && isOpen ? (
             <AdminPopup selectedStudy={selectedStudy} togglePopup={togglePopup} isFDAView={true}/>
-        ): isOpen ? (
+        ): isAdminView && isOpen ? (
             <AdminPopup selectedStudy={selectedStudy} togglePopup={togglePopup}/>
         ):
           <></>
         }
         </div>
-      )
+    )
   };
 
   export default DisplayStudyData;

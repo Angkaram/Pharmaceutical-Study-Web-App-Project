@@ -1,8 +1,6 @@
 import useBavaria from '../hooks/useBavaria';
 import "./DoctorView.css";
 import { useState } from 'react';
-import { useContext } from 'react';
-import NotificationContext from './NotificationContext';
 
 function ShipmentsButton(togglePopup) {
   const {entities} = useBavaria();
@@ -31,17 +29,8 @@ function ShipmentsButton(togglePopup) {
   } 
     );
     console.log(addShipmentResponse);
-
-    dispatch({
-      type: 'ADD_NOTIFICATION',
-      payload: {
-        id: Date.now(),
-        message: 'New shipment sent to FDA.',
-      },
-    });
   }
-    // for the notification system
-    const { dispatch } = useContext(NotificationContext);
+
 
     // to make the page reload once data is input into the system
     async function handleButtonClick() {

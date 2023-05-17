@@ -1,16 +1,48 @@
 import DisplayPatientData from "./DisplayPatientData";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./DoctorView.css";
 import "./Admin.css";
 import { signOut } from "firebase/auth";
 import { auth } from "./firebase-config";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
+import ValidateDomain from "./validation";
+import NavigationBar from './NavigationBar';
 
 function AdminPatientView() {
 
+  const location = useLocation();
   const navigate = useNavigate();
+  const [user, setUser] = useState(location.state);
+  const [nameSearch, setNameSearch] = useState("");
+  const [idSearch, setIDSearch] = useState("");
 
-  const [user, setUser] = useState(null);
+  const [isChecked, setIsChecked] = useState(false);
+
+  const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+      const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+        const user = {
+          email: userAuth?.email,
+          role: userAuth?.displayName,
+          id: userAuth?.uid
+        };
+        setUser(user);
+        setLoading(false);
+  
+        if (!userAuth || user.role !== "admin") {
+          navigate("/Login");
+        }
+      });
+  
+      return unsubscribe;
+    }, []);
+  
+    if (loading) {
+      // Fixes the issue of the view briefly showing
+      return null;
+    }
 
   const logout = async () => {
     await signOut(auth);
@@ -26,11 +58,6 @@ function AdminPatientView() {
   };
 
 
-  const [nameSearch, setNameSearch] = useState("");
-  const [idSearch, setIDSearch] = useState("");
-
-  const [isChecked, setIsChecked] = useState(false);
-
   const filterEligible = isChecked;
 
   const clearSearch = () => {
@@ -41,19 +68,7 @@ function AdminPatientView() {
     return (
       <div className='adminView'> 
 
-      <div className='nav-bar' style={{backgroundColor: '#6fabd0'}}>
-  
-        <div className='doctorViewTitle'>
-          <div className='janeHopkinsTitleText'>Jane Hopkins
-            <div className='hospitalTitleText'>Hospital</div>
-          </div>
-        </div>
-        <div className='displayEmail'>{user?.email}</div>
-        <button className='signOutButton' onClick={logout} style={{border: 'black' }}>
-          <div className='signOutIcon'></div>
-          <div className='signOutText' style={{color: 'black' }}>Sign Out</div>
-        </button>
-      </div>
+        <NavigationBar isAdminView={true} user={user}/>
       
       <div className='doctorNavButtonLocations' >
           <div className="welcomeBro" style={{borderColor: '#6fabd0'}}>
