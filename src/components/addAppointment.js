@@ -129,7 +129,7 @@ function AddAppointment({togglePopup, selectedPatient}) {
       </div>
 
         <div className="add-appt-section">
-          <h3>Appointment Details</h3>
+          <h3>Visit Details</h3>
           <p><strong>Selected Patient:</strong> {selectedPatient.name}</p>
           <div style={{marginLeft:'30px'}}><strong>Date:</strong> 
           <DatePicker
@@ -156,13 +156,13 @@ function AddAppointment({togglePopup, selectedPatient}) {
         ):
           <button className='add-patient'onClick = {() => {updatePatient();
             const messageElem = document.createElement('div');
-            messageElem.innerText = `New Appointment Created`;
+            messageElem.innerText = `New Visit Recorded`;
             messageElem.classList.add('message'); // Add CSS class to the message element
             document.body.appendChild(messageElem);
             setTimeout(() => {
                 messageElem.remove();
             }, 1000); // Delay message display for 1 second (1000 milliseconds)
-          }}>Create Appointment</button>
+          }}>Record Visit</button>
         }
       </div>
     </div>

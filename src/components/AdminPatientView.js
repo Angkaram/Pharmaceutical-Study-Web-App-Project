@@ -75,8 +75,8 @@ function AdminPatientView() {
               <button onClick = {gotoHomePage} className='welcomeContainer' style={{color: '#6fabd0'}}>Welcome Page</button>
           </div>
 
-          <div className='addPatientBro' style={{borderColor: '#6fabd0'}}>
-              <button onClick = {gotoStudy} style={{color: '#6fabd0'}}>Manage Study</button>
+          <div className='welcomeBro' style={{borderColor: '#6fabd0'}}>
+              <button onClick = {gotoStudy} className='welcomeContainer' style={{color: '#6fabd0'}}>Manage Study</button>
           </div>
         </div>
   

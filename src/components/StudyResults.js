@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { PDFDownloadLink, Document } from '@react-pdf/renderer';
 import PDFDocument from './PDFDocument';
 
-function StudyResultsPopup({selectedStudy, togglePopup, isFDAView, isBavariaView}) {
+function StudyResultsPopup({selectedStudy, togglePopup, isFDAView, isBavariaView, isAdminView}) {
   const { entities } = useJaneHopkins();
   const [patients, setPatients] = useState([]);
   const [studyID, setStudyID] = useState([]);
@@ -200,17 +200,25 @@ function StudyResultsPopup({selectedStudy, togglePopup, isFDAView, isBavariaView
     }
 
   }
-  
+
+  let color;
+    if (isFDAView) {
+        color = '#08d3b4';
+    } else if (isAdminView) {
+      color = '#6fabd0';
+    } else {
+        color = '#f46f74';
+    }
   
   return (
     <div className='studyResultsPopup'>
       <div className="largeView">
 
-          <div className="popup-content">
+          <div className="popup-content" style={{borderColor: color}}>
 
               <div className="popup-top">
                   <h2>{selectedStudy.name} Study Results</h2>
-                  <button id="close" onClick={togglePopup}>X</button>
+                  <button id="close" onClick={togglePopup} style={{borderColor: color}}>X</button>
               </div>
               <div className="popup-middle" style={{ display: "flex", justifyContent: "space-between"}}>
                 <div className="popup-section-container" style={{ width: "50%"}}>

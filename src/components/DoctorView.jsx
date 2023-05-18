@@ -91,7 +91,7 @@ function DoctorView() {
         </div> */}
 
         <div className='appointmentBro'>
-          <button className='welcomeContainer' onClick={() => DoctorAppointments(user)}>Manage Appointments</button>
+          <button className='welcomeContainer' onClick={() => DoctorAppointments(user)}>View Visits</button>
         </div>
 
         <div className='addPatientBro'>

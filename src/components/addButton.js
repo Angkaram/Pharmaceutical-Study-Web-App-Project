@@ -145,7 +145,13 @@ function AddPatientButton(togglePopup) {
             nodes: ["Bavaria", "FDA"],
           },
           operations: ["READ"],
-          path: "icdHealthCodes",},/*
+          path: "icdHealthCodes",},
+          {principal: {
+            nodes: ["Bavaria", "FDA"],
+          },
+          operations: ["WRITE"],
+          path: "assignedDrug",}
+          /*
           {principal: {
             nodes: ["Bavaria", "FDA"],
           },

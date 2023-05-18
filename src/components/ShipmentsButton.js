@@ -19,11 +19,32 @@ function ShipmentsButton(togglePopup) {
       acl: [
         {
           principal: {
-            nodes:  "FDA",
+            nodes:  ["Bavaria","FDA"]
           },
           operations: ["READ"],
           path: "placebo",
         },
+        {
+          principal: {
+            nodes:  ["Bavaria","FDA"]
+          },
+          operations: ["READ"],
+          path: "batchNumber",
+        },
+        {
+          principal: {
+            nodes:  ["Bavaria","FDA"]
+          },
+          operations: ["READ"],
+          path: "sendFDA",
+        },
+        {
+          principal: {
+            nodes:  ["Bavaria","FDA"]
+          },
+          operations: ["READ"],
+          path: "id",
+        }
       ]
     }
   } 

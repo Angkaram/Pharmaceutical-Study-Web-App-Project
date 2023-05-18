@@ -64,8 +64,8 @@ function AdminManageStudy() {
                     <button onClick = {gotoHomePage} className='welcomeContainer' style={{color: '#6fabd0'}}>Welcome Page</button>
                 </div>
 
-                <div className='addPatientBro' style={{borderColor: '#6fabd0'}}>
-                    <button onClick = {gotoPatientPage} style={{color: '#6fabd0'}}>Manage Patient</button>
+                <div className='welcomeBro' style={{borderColor: '#6fabd0'}}>
+                    <button onClick = {gotoPatientPage} className='welcomeContainer' style={{color: '#6fabd0'}}>Manage Patient</button>
                 </div>
             </div>
 

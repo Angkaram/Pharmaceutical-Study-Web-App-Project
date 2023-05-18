@@ -85,12 +85,12 @@ function ManageStudyView() {
     </div>
     
     <div className='doctorNavButtonLocations'>
-        <div className="welcomeBro">
-          <button onClick={() => DoctorHomePage(user)}>Welcome Page</button>
-        </div>
-        <div className='addPatientBro'>
-          <button onClick={togglePopup} >Add Study</button>
-        </div>
+      <div className="welcomeBro">
+          <button className='welcomeContainer' onClick={() => DoctorHomePage(user)} style={{color: 'black'}}>Welcome Page</button>
+      </div>
+      <div className='welcomeBro'>
+          <button className='welcomeContainer' onClick={togglePopup} style={{color: 'black'}}>Add Study</button>
+      </div>
     </div> 
 
     {isOpen && <AddStudyButton handleClose={togglePopup}/>}
@@ -119,18 +119,116 @@ function AddStudyButton(togglePopup) {
         acl: [
           {
             principal: {
-              nodes: ["FDA", "bavaria"]
+              nodes: ["Bavaria","FDA"]
             },
             operations: ["READ"],
+            path: "name",
+          },
+          {
+            principal: {
+              nodes: ["Bavaria","FDA"]
+            },
+            operations: ["READ"],
+            path: "status",
+          },
+          {
+            principal: {
+              nodes: ["Bavaria","FDA"]
+            },
+            operations: ["READ"],
+            path: "start",
+          },
+          {
+            principal: {
+              nodes: ["Bavaria","FDA"]
+            },
+            operations: ["READ"],
+            path: "end",
+          },
+          {
+            principal: {
+              nodes: ["Bavaria"]
+            },
+            operations: ["UPDATE"],
+            path: "isBavariaAgreed",
+          },
+          {
+            principal: {
+              nodes: ["Bavaria","FDA"]
+            },
+            operations: ["UPDATE"],
+            path: "isFdaAgreed",
+          },
+          {
+            principal: {
+              nodes: ["Bavaria","FDA"]
+            },
+            operations: ["WRITE"],
             path: "placeboDrug",
           },
           {
             principal: {
-              nodes:  ["FDA", "bavaria"]
+              nodes: ["Bavaria","FDA"]
+            },
+            operations: ["WRITE"],
+            path: "realDrug",
+          },
+          {
+            principal: {
+              nodes: ["Bavaria","FDA"]
             },
             operations: ["READ"],
-            path: "real",
-          }
+            path: "isFDANotified",
+          },
+          {
+            principal: {
+              nodes: ["Bavaria","FDA"]
+            },
+            operations: ["READ"],
+            path: "isAssignmentSent",
+          },
+          {
+            principal: {
+              nodes: ["Bavaria","FDA"]
+            },
+            operations: ["READ"],
+            path: "isReportSent",
+          },
+          {
+            principal: {
+              nodes: ["Bavaria","FDA"]
+            },
+            operations: ["READ"],
+            path: "isResultsReleased",
+          },
+          {
+            principal: {
+              nodes: ["Bavaria","FDA"]
+            },
+            operations: ["READ"],
+            path: "maxPatients",
+          },
+          {
+            principal: {
+              nodes: ["Bavaria","FDA"]
+            },
+            operations: ["READ"],
+            path: "studyPatients",
+          },
+          {
+            principal: {
+              nodes: ["Bavaria","FDA"]
+            },
+            operations: ["READ"],
+            path: "fdaNotified",
+          },
+          {
+            principal: {
+              nodes: ["Bavaria","FDA"]
+            },
+            operations: ["READ"],
+            path: "assignmentSent",
+          },
         ]
       }
     } 

@@ -112,7 +112,7 @@ function DoctorHomePage({ user, LogOut}) {
         <div className="box-container">
 
           <div className="box">
-              <button onClick={() => Appointments(user)}><h3>Manage Appointments</h3></button>
+              <button onClick={() => Appointments(user)}><h3>View Visits</h3></button>
           </div>
 
           <div className="box">

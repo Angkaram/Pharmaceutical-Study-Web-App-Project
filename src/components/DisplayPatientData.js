@@ -165,6 +165,15 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
               <h3>Health Information</h3>
               <p><strong>Patient ID:</strong> {selectedPatient.uuid}</p>
               <p><strong>Blood Type:</strong> {selectedPatient.bloodType}</p>
+              <p>
+                <strong>ICD Health Codes:</strong>{" "}
+                {selectedPatient.icdHealthCodes.map((code, index) => (
+                  <span key={index}>
+                    {code.code}
+                    {index < selectedPatient.icdHealthCodes.length - 1 ? ", " : ""}
+                  </span>
+                ))}
+              </p>
             </div>
             <div className="popup-section">
               <h3>Vital Signs</h3>
@@ -197,7 +206,7 @@ function DisplayPatientData({nameSearch, insuranceSearch, ICDSearch, isFDAView, 
 
             </div>
             <button className='add-patient' onClick={togglePopup}>
-            {selectedPatient.doses < 5 && selectedPatient.isStudy === true ? 'Add Appointment and Dose' : 'Create Appointment'}</button>
+            {selectedPatient.doses < 5 && selectedPatient.isStudy === true ? 'Record Visit and Apply Dose' : 'Record Visit'}</button>
             <button className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500'}} onClick={togglePopupNew}>Edit Patient</button>
           </div>
         </div>

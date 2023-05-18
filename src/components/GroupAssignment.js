@@ -84,7 +84,7 @@ function AssignmentPopup({selectedStudy, togglePopup, isFDAView}) {
   return (
     <div className="largeView">
 
-        <div className="popup-content">
+        <div className="popup-content" style={{borderColor: '#6fabd0'}}>
 
             <div className="popup-top">
                 <h2>{selectedStudy.name} Group Assignment</h2>
