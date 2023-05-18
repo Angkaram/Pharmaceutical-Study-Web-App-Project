@@ -191,14 +191,14 @@ function AddStudyButton(togglePopup) {
             principal: {
               nodes: ["Bavaria","FDA"]
             },
-            operations: ["READ"],
+            operations: ["READ", "WRITE", "UPDATE"],
             path: "isReportSent",
           },
           {
             principal: {
               nodes: ["Bavaria","FDA"]
             },
-            operations: ["READ"],
+            operations: ["READ", "WRITE", "UPDATE"],
             path: "isResultsReleased",
           },
           {

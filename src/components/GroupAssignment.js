@@ -66,7 +66,7 @@ function AssignmentPopup({selectedStudy, togglePopup, isFDAView}) {
         // Check if the patient's assignedDrug is present in the selectedTreatmentDrug.id array
         return selectedPlaceboDrug[0].id.some(drugIdObj => drugIdObj.id === patient.assignedDrug);
       });
-      const listPatients = filteredPatients.map(patient => <li key={patient._id}>{patient.name}</li>);
+      const listPatients = filteredPatients.map(patient => <li key={patient._id}></li>);
 
       return (
         <div>

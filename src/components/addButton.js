@@ -171,12 +171,18 @@ function AddPatientButton(togglePopup) {
           operations: ["WRITE", "READ"],
           path: "doses",},
 
-          /*
+          {principal: {
+            nodes: ["Bavaria", "FDA"],
+          },
+          operations: ["READ"],
+          path: "visits",},
+
           {principal: {
             nodes: ["Bavaria", "FDA"],
           },
           operations: ["READ"],
           path: "currentMedications",},
+
           {principal: {
             nodes: ["Bavaria", "FDA"],
           },
@@ -187,7 +193,8 @@ function AddPatientButton(togglePopup) {
             nodes: ["Bavaria", "FDA"],
           },
           operations: ["READ"],
-          path: "Allergies",}*/
+          path: "allergies",}
+
           ],
         },
 

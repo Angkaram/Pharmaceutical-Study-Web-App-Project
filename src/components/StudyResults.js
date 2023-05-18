@@ -1,11 +1,11 @@
-import useJaneHopkins from '../hooks/useJaneHopkins';
+import useBavaria from '../hooks/useBavaria';
 import "./DoctorView.css";
 import { useState, useEffect } from 'react';
 import { PDFDownloadLink, Document } from '@react-pdf/renderer';
 import PDFDocument from './PDFDocument';
 
 function StudyResultsPopup({selectedStudy, togglePopup, isFDAView, isBavariaView, isAdminView}) {
-  const { entities } = useJaneHopkins();
+  const { entities } = useBavaria();
   const [patients, setPatients] = useState([]);
   const [studyID, setStudyID] = useState([]);
   const [drugs, setDrugs] = useState([]);
