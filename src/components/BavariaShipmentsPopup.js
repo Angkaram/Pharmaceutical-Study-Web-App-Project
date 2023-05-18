@@ -1,9 +1,9 @@
-import useJaneHopkins from '../hooks/useJaneHopkins';
+import useBavaria from '../hooks/useBavaria';
 import { useEffect, useState } from 'react';
 
 function BavariaShipmentsPopup({selectedDrug, togglePopup}) {
     const [drugData, setDrugData] = useState(selectedDrug);  
-    const { entities } = useJaneHopkins();
+    const { entities } = useBavaria();
     const [drug, setDrug] = useState([]);
     const [sendFDA, setSendFDA] = useState(false);
 

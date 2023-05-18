@@ -1,5 +1,5 @@
 import { useSubmit } from "react-router-dom";
-import useJaneHopkins from "../hooks/useJaneHopkins";
+import useFDA from "../hooks/useFDA";
 import { useState, useEffect } from "react";
 
 // Make a random drug ID (7 digit)
@@ -16,7 +16,7 @@ function generateRandomId() {
 
 // Assigns drug to patient
 function AssignDrug({toggleDrugSelect, selectedStudy}) {
-  const { entities } = useJaneHopkins();
+  const { entities } = useFDA();
   const [drugs, setDrugs] = useState([]); // Drugs array includes all drugs available to FDA
   const [placeboDrugs, setPlaceboDrugs] = useState([]); // Include all placebo drugs available to FDA
   const [realDrugs, setRealDrugs] = useState([]); // Include all real drugs available to FDA

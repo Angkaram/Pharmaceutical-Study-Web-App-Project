@@ -1,10 +1,10 @@
-import useJaneHopkins from '../hooks/useJaneHopkins';
+import useBavaria from '../hooks/useBavaria';
 import "./DoctorView.css";
 import { useState, useEffect } from 'react';
 import StudyResultsPopup from './StudyResults';
 
 function AssignmentPopup({selectedStudy, togglePopup, isFDAView}) {
-  const { entities } = useJaneHopkins();
+  const { entities } = useBavaria();
   const [patients, setPatients] = useState([]);
   const [studyID, setStudyID] = useState([]);
   const [drugs, setDrugs] = useState([]);

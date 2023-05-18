@@ -102,33 +102,39 @@ function AddPatientButton(togglePopup) {
             operations: ["READ"],
             path: "height",
           },
+
           {principal: {
             nodes: ["Bavaria", "FDA"],
           },
           operations: ["READ"],
           path: "weight",
         },
+
           {
             principal: {
             nodes: ["Bavaria", "FDA"],
           },
           operations: ["READ"],
           path: "bloodPressure",},
+
           {principal: {
             nodes: ["Bavaria", "FDA"],
           },
           operations: ["READ"],
           path: "temperature",},
+
           {principal: {
             nodes: ["Bavaria", "FDA"],
           },
           operations: ["READ"],
           path: "oxygenSaturation",},
+
           {principal: {
             nodes: ["Bavaria", "FDA"],
           },
           operations: ["READ"],
           path: "uuid",},
+
           {principal: {
             nodes: ["Bavaria", "FDA"],
           },
@@ -146,11 +152,25 @@ function AddPatientButton(togglePopup) {
           },
           operations: ["READ"],
           path: "icdHealthCodes",},
+
           {principal: {
             nodes: ["Bavaria", "FDA"],
           },
-          operations: ["WRITE"],
-          path: "assignedDrug",}
+          operations: ["WRITE", "READ"],
+          path: "assignedDrug",},
+
+          {principal: {
+            nodes: ["Bavaria", "FDA"],
+          },
+          operations: ["WRITE", "READ"],
+          path: "assignedStudy",},
+
+          {principal: {
+            nodes: ["Bavaria", "FDA"],
+          },
+          operations: ["WRITE", "READ"],
+          path: "doses",},
+
           /*
           {principal: {
             nodes: ["Bavaria", "FDA"],

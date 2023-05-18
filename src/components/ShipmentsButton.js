@@ -35,16 +35,16 @@ function ShipmentsButton(togglePopup) {
           principal: {
             nodes:  ["Bavaria","FDA"]
           },
-          operations: ["READ"],
+          operations: ["UPDATE", "READ"],
           path: "sendFDA",
         },
         {
           principal: {
             nodes:  ["Bavaria","FDA"]
           },
-          operations: ["READ"],
+          operations: ["UPDATE", "READ", "WRITE"],
           path: "id",
-        }
+        },
       ]
     }
   } 
