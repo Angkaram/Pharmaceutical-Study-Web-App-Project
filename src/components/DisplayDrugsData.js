@@ -1,4 +1,4 @@
-import useJaneHopkins from '../hooks/useJaneHopkins';
+import useBavaria from '../hooks/useBavaria';
 import { css } from "@emotion/react";
 import { ClipLoader } from "react-spinners";
 import { useEffect, useState } from 'react';
@@ -7,7 +7,7 @@ import BavariaShipmentsPopup from './BavariaShipmentsPopup';
 // new function to display Drugs data:
 function DisplayDrugsData (isFDAView, isBavariaView) {
 
-    const { entities } = useJaneHopkins();
+    const { entities } = useBavaria();
     const [drug, setDrug] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [selectedDrug, setSelectedDrug] = useState(null);

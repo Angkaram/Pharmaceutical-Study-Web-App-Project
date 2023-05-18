@@ -1,4 +1,5 @@
 import useJaneHopkins from '../hooks/useJaneHopkins';
+import useFDA from '../hooks/useFDA';
 import { useEffect, useState } from 'react';
 import DisplayStudyPatients from './DisplayStudyPatient';
 import AssignDrug from './ChooseStudyDrug';
@@ -253,7 +254,7 @@ function AdminPopup({selectedStudy, togglePopup, isFDAView, isBavariaView, isDoc
                             <button className='add-patient' style={{border: '4px solid #00FF00', color: '#00FF00'}} onClick={() => {notifyFDA();}}>Notify FDA</button>
                         </div>
                     ) : selectedStudy.status === "Completed" && !selectedStudy.isFDANotified ? (
-                        <div className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500', backgroundColor: '#ececec'}}>Awaiting Admin Notification</div>
+                        <div className='add-patient' style={{border: '4px solid #FFA500', color: '#FFA500', backgroundColor: '#ececec'}}>Awaiting Study Status</div>
                     ) : selectedStudy.status === "Completed" && selectedStudy.isFDANotified && !selectedStudy.isAssignmentSent && isFDAView ? (
                         <div style={{ display: "flex", flexDirection: "row" }}>
                             <div className='add-patient' style={{border: '4px solid #0E619C', color: '#0E619C', backgroundColor: '#ececec'}}>Study Completed</div>
