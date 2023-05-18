@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { auth } from "./firebase-config";
+import Sidebar from './Sidebar';
+import NavigationBar from './NavigationBar';
+import DisplayStudyData from './DisplayStudyData';
 import './loginprompt.css';
 import "./loginprompt.js";
 import './home.css';
-import { useNavigate } from "react-router-dom";
-import DisplayStudyData from './DisplayStudyData';
 import './DoctorView.css';
-import Sidebar from './Sidebar';
-import NavigationBar from './NavigationBar';
 
 function BavariaView() {
 
   const location = useLocation();
+  const [user, setUser] = useState(location.state);
   const navigate = useNavigate();
-  const user = location.state;
+  const [loading, setLoading] = useState(true);
 
   const studyID = '0187a035-03e5-4828-43fc-269e5c9c0961'
   const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +22,23 @@ function BavariaView() {
     setIsOpen(!isOpen);
   }
 
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+      const user = {
+        email: userAuth?.email,
+        role: userAuth?.displayName,
+        id: userAuth?.uid
+      };
+      setUser(user);
+      setLoading(false);
 
+      if (!userAuth || user.role !== "bavaria") {
+        navigate("/Login");
+      }
+    });
+
+    return unsubscribe;
+  }, []);
   
   const BavariaHomePage = () => {
     navigate("/View", { state: { user } });
@@ -33,7 +50,7 @@ function BavariaView() {
 
   return (
     <div className='fdaview'>
-       <NavigationBar isBavariaView={true} user={user}/>
+      <NavigationBar isBavariaView={true} user={user}/>
 
       <div className='doctorNavButtonLocations'>
         <div className="welcomeBro" style={{borderColor: '#f46f74'}}>

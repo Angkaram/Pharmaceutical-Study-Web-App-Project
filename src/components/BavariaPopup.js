@@ -126,8 +126,10 @@ function BavariaPopup({selectedStudy, togglePopup}) {
                     </div>
                 ): selectedStudy.isResultsReleased ? (
                     <button className='add-patient' onClick={togglePopupResults}>Study Completed - See Report</button>
-                ): !selectedStudy.isResultsReleased && selectedStudy.status === 'Completed' ? (
-                    <div className='add-patient' style={{backgroundColor: '#ececec', cursor: 'auto'}}> Study Completed, Awaiting Release</div>
+                ): !selectedStudy.isResultsReleased && selectedStudy.status === 'Completed' && !selectedStudy.notifyFDA ? (
+                    <div className='add-patient' style={{border: '4px solid #FFA500', color: "#FFA500", backgroundColor: '#ececec', cursor: 'auto'}}> Awaiting Study Status</div>
+                ): !selectedStudy.isResultsReleased && selectedStudy.status === 'Completed' && selectedStudy.notifyFDA ? (
+                    <div className='add-patient' style={{backgroundColor: '#ececec', cursor: 'auto'}}> Study Completed, Awaiting Report</div>
                 ): selectedStudy.status === 'Approved' ? (    
                     <div className='add-patient' style={{color: '#0074ae', border: '4px solid #0074ae', backgroundColor: '#ececec', cursor: 'auto'}}>Study Approved</div>
                 ): selectedStudy.status === 'Pending' ? (
