@@ -1,6 +1,7 @@
 # Medical Website Project
-A React and Vendia project for the medical website (as part of the CSC 131 course at Sacramento State University)
-Created by Angelo Karam, Rahul Gupta, Anthony Dominguez, Jacob Cruz, Devesh Naidu, Farhad Lakzaei, and Dakshina Ethdath Waduge
+A React and Vendia project for the medical website (as part of the CSC 131 course at Sacramento State University).
+
+Created by Angelo Karam, Rahul Gupta, Anthony Dominguez, Jacob Cruz, Devesh Naidu, Farhad Lakzaei, and Dakshina Ethdath Waduge.
 
 # Instructions and Notes:
 # Getting Started with Create React App
