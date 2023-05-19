@@ -1,5 +1,5 @@
-# CSC-131-Project
-Our REACT and Vendia project for the medical website. 
+# Medical Website Project
+Our REACT and Vendia project for the medical website (as part of the CSC 131 course at Sacramento State University 
 
 # Please Note:
 
