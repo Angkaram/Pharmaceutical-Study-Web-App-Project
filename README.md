@@ -1,15 +1,17 @@
 # Medical Website Project
-Our REACT and Vendia project for the medical website (as part of the CSC 131 course at Sacramento State University 
+A React and Vendia project for the medical website (as part of the CSC 131 course at Sacramento State University)
+Created by Angelo Karam, Rahul Gupta, Anthony Dominguez, Jacob Cruz, Devesh Naidu, Farhad Lakzaei, and Dakshina Ethdath Waduge
 
-# Please Note:
+# Instructions and Notes:
+# Getting Started with Create React App
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+# Packages Required to Install:
 
 ### `npm install firebase`
 
 ### `npm install react-router-dom`
-
-# Getting Started with Create React App
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
