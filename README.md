@@ -7,6 +7,8 @@ Created by Angelo Karam, Rahul Gupta, Anthony Dominguez, Jacob Cruz, Devesh Naid
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+This link also gives you the same instructions we have here. 
+
 # Packages Required to Install:
 
 ### `npm install firebase`
