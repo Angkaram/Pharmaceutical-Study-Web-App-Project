@@ -6,6 +6,9 @@ Created by Angelo Karam, Rahul Gupta, Anthony Dominguez, Jacob Cruz, Devesh Naid
 # Project Demo Video:
 https://www.youtube.com/watch?v=K2LDj28C5iA
 
+# Project Slideshow:
+https://docs.google.com/presentation/d/1ztrrF4vq9vsqPsltdld-QiT9-SA6IdFIfSAvAmyXMWY/edit?usp=sharing
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
