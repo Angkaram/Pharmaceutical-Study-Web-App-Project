@@ -3,7 +3,6 @@ A React and Vendia project for the medical website (as part of the CSC 131 cours
 
 Created by Angelo Karam, Rahul Gupta, Anthony Dominguez, Jacob Cruz, Devesh Naidu, Farhad Lakzaei, and Dakshina Ethdath Waduge.
 
-# Instructions and Notes:
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
