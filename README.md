@@ -6,6 +6,9 @@ Created by Angelo Karam, Rahul Gupta, Anthony Dominguez, Jacob Cruz, Devesh Naid
 # Project Demo Video:
 https://www.youtube.com/watch?v=K2LDj28C5iA
 
+# Project Figma:
+https://www.figma.com/file/pLwTa2C7uFNEG3KfBCwB7j/CSC-131-Project-Figma?type=design&node-id=614-2
+
 # Project Slideshow:
 https://docs.google.com/presentation/d/1ztrrF4vq9vsqPsltdld-QiT9-SA6IdFIfSAvAmyXMWY/edit?usp=sharing
 
