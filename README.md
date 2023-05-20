@@ -12,6 +12,9 @@ https://www.figma.com/file/pLwTa2C7uFNEG3KfBCwB7j/CSC-131-Project-Figma?type=des
 # Project Slideshow:
 https://docs.google.com/presentation/d/1ztrrF4vq9vsqPsltdld-QiT9-SA6IdFIfSAvAmyXMWY/edit?usp=sharing
 
+# Project Deliverable:
+https://docs.google.com/document/d/1fsrErC8dxBadVcksUDOcP9Iu9m3owUIf/edit?usp=sharing&ouid=112134719014287338083&rtpof=true&sd=true
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
