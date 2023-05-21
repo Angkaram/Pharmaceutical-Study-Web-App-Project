@@ -3,17 +3,22 @@ A React and Vendia project for the medical website (as part of the CSC 131 cours
 
 Created by Angelo Karam, Rahul Gupta, Anthony Dominguez, Jacob Cruz, Devesh Naidu, Farhad Lakzaei, and Dakshina Ethdath Waduge.
 
-# Project Demo Video:
-https://www.youtube.com/watch?v=K2LDj28C5iA
+# Client's Project Description:
+https://docs.google.com/document/d/1bWjbqZ7YbaT-ykfpPPl1AJMdyivspdhZWLtabedL_K8/edit?usp=sharing
 
-# Project Figma:
+# Project Deliverable:
+https://docs.google.com/document/d/1fsrErC8dxBadVcksUDOcP9Iu9m3owUIf/edit?usp=sharing&ouid=112134719014287338083&rtpof=true&sd=true
+
+# Project Figma UI Concepting:
 https://www.figma.com/file/pLwTa2C7uFNEG3KfBCwB7j/CSC-131-Project-Figma?type=design&node-id=614-2
 
 # Project Slideshow:
 https://docs.google.com/presentation/d/1ztrrF4vq9vsqPsltdld-QiT9-SA6IdFIfSAvAmyXMWY/edit?usp=sharing
 
-# Project Deliverable:
-https://docs.google.com/document/d/1fsrErC8dxBadVcksUDOcP9Iu9m3owUIf/edit?usp=sharing&ouid=112134719014287338083&rtpof=true&sd=true
+# Project Demo Video:
+https://www.youtube.com/watch?v=K2LDj28C5iA
+
+
 
 # Getting Started with Create React App
 
