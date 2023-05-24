@@ -5,6 +5,7 @@
 * Initial project requirements from Vendia Inc. [[Google Document]](https://docs.google.com/document/d/1bWjbqZ7YbaT-ykfpPPl1AJMdyivspdhZWLtabedL_K8/edit)
     - **Please Note:** Project requirements and client's needs evolved as the project progressed
     - The document above does not reflect those changes
+* Want to see the project in action? [[Deployed Project Link]](https://gleaming-kleicha-f0118d.netlify.app/)
 
 ## Contributors
 * **Team Leader -** Angelo Karam ([@angkaram](https://github.com/angkaram)) 
