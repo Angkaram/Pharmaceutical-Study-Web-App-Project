@@ -1,3 +1,7 @@
+<p align="center">
+   <img src="https://cdn.discordapp.com/attachments/882079944627347466/1111105496527683635/Untitled.jpg"/>
+</p>
+
 # Pharmaceutical Study Project
 * A React JS and Vendia web application for a pharmaceutical study and data management system
 * Concepted and engineered for the client [[Vendia Inc.]](https://www.vendia.com/) 
