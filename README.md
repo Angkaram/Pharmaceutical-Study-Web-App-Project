@@ -24,6 +24,9 @@ https://www.youtube.com/watch?v=K2LDj28C5iA
 # My Contributions
 [![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Angkaram&count_private=true)](https://github.com/anuraghazra/github-readme-stats)
 
+# A Quick Look at the Homepage and Login/Create Account Pages
+![](https://github.com/Angkaram/Pharmaceutical-Study-Web-App-Project/blob/main/projectGIF.gif)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
