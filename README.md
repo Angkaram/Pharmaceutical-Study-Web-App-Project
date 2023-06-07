@@ -3,6 +3,9 @@ A React and Vendia project for the medical website (as part of the CSC 131 cours
 
 Created by Angelo Karam, Rahul Gupta, Anthony Dominguez, Jacob Cruz, Devesh Naidu, Farhad Lakzaei, and Dakshina Ethdath Waduge.
 
+# Deployed Website Link:
+https://gleaming-kleicha-f0118d.netlify.app/
+
 # Client's Project Description:
 https://docs.google.com/document/d/1bWjbqZ7YbaT-ykfpPPl1AJMdyivspdhZWLtabedL_K8/edit?usp=sharing
 
