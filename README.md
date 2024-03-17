@@ -1,108 +1,43 @@
-# Pharmaceutical Study Web App Project
-A React and Vendia project for the medical website (as part of the CSC 131 course at Sacramento State University).
+<p align="center">
+   <img src="./MDMS.png"/>
+</p>
 
-Created by Angelo Karam, Rahul Gupta, Anthony Dominguez, Jacob Cruz, Devesh Naidu, Farhad Lakzaei, and Dakshina Ethdath Waduge.
+# Pharmaceutical Study Project
+* A React JS and Vendia web application designed to facilitate a pharmaceutical study and manage patient data in real-time
+* Concepted and engineered for the client [[Vendia Inc.]](https://www.vendia.com/) 
+* Additionally made as a part of the CSC 131 Software Engineering course at California State University Sacramento
+* Initial project requirements from Vendia Inc. [[Google Document]](https://docs.google.com/document/d/1bWjbqZ7YbaT-ykfpPPl1AJMdyivspdhZWLtabedL_K8/edit)
+    - **Please Note:** Project requirements and client's needs evolved as the project progressed
+    - The document above does not reflect those changes
+* Want to see the project in action? [[Deployed Project Link]](https://gleaming-kleicha-f0118d.netlify.app/)
 
-# Deployed Website Link:
-https://gleaming-kleicha-f0118d.netlify.app/
+## Contributors
+* **Team Leader -** Angelo Karam ([@angkaram](https://github.com/angkaram)) 
+* **Co-Leader -** Rahul Gupta ([@rahulio96](https://github.com/rahulio96))
+* Dakshina Ethdath Waduge ([@Dash-007](https://github.com/Dash-007))
+* Anthony Dominguez ([@AntToeeKnee](https://github.com/AntToeeKnee))
+* Jacob Cruz ([@Jdcruz831](https://github.com/Jdcruz831))
+* Farhad Lakzaei ([@Flakzaei](https://github.com/Flakzaei))
+* Devesh Naidu ([@deveshnaidu24](https://github.com/deveshnaidu24))
 
-# Client's Project Description:
-https://docs.google.com/document/d/1bWjbqZ7YbaT-ykfpPPl1AJMdyivspdhZWLtabedL_K8/edit?usp=sharing
-
-# Project Deliverable:
-https://docs.google.com/document/d/1fsrErC8dxBadVcksUDOcP9Iu9m3owUIf/edit?usp=sharing&ouid=112134719014287338083&rtpof=true&sd=true
-
-# Project Figma UI Concepting:
-https://www.figma.com/file/pLwTa2C7uFNEG3KfBCwB7j/CSC-131-Project-Figma?type=design&node-id=614-2
-
-# Project Slideshow:
-https://docs.google.com/presentation/d/1ztrrF4vq9vsqPsltdld-QiT9-SA6IdFIfSAvAmyXMWY/edit?usp=sharing
-
-# Project Demo Video:
-https://www.youtube.com/watch?v=K2LDj28C5iA
-
-# My Contributions
-[![Anurag's GitHub stats](https://github-readme-stats.vercel.app/api?username=Angkaram&count_private=true)](https://github.com/anuraghazra/github-readme-stats)
-
-# A Quick Look at the Homepage and Login/Create Account Pages
+## Quick Look at the Homepage and Login/Create Account Pages
 ![](https://github.com/Angkaram/Pharmaceutical-Study-Web-App-Project/blob/main/projectGIF.gif)
 
-# Getting Started with Create React App
+## Project Presentation
+* Project Slideshow [[Google Slides]](https://docs.google.com/presentation/d/1ztrrF4vq9vsqPsltdld-QiT9-SA6IdFIfSAvAmyXMWY/edit?usp=sharing)
+* Final Project Demonstration & Presentation for the Client [[YouTube Video]](https://www.youtube.com/watch?v=K2LDj28C5iA)
+    - Presented live to Professor Salem, Eliot Turner **(Client)**, and the rest of the class over Zoom meeting
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Deliverable
+* Requirements & Design Documents [[Google Document]](https://docs.google.com/document/d/1fCf03OumJVkP-86hABSN6WmD8mHMNC4t1xIJZEg_KWE/edit?usp=sharing)
+## Early Figma Concepts
+* Homepage, Login, & Signup concepts [[Figma Link]](https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FpLwTa2C7uFNEG3KfBCwB7j%2FCSC-131-Project-Figma%3Ftype%3Ddesign%26node-id%3D625-97%26scaling%3Dmin-zoom%26page-id%3D614%253A2)
+* Doctor View: Homepage, Appointments, & Patient Management concepts [[Figma Link]](https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FpLwTa2C7uFNEG3KfBCwB7j%2FCSC-131-Project-Figma%3Ftype%3Ddesign%26node-id%3D625-77%26scaling%3Dmin-zoom%26page-id%3D625%253A2)
 
-This link also gives you the same instructions we have here. 
-
-# Packages Required to Install:
-
-### `npm install firebase`
-
-### `npm install react-router-dom`
-
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
+## Technology Stack
+* Front End: React JS
+* Back End: Vendia Client SDK
+* Authentication: Firebase
+* Languages: JavaScript, HTML, CSS
+* Development Environment: Visual Studio Code
+* Dependency List [[Google Document]](https://docs.google.com/document/d/1mEffY8Q6ucsXkosKkInMPLr9AD-Nh4ThkWxgmBA6jsk/edit?usp=sharing)

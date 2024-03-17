@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.5e23c2de.css",
-    "main.js": "/static/js/main.3c129e75.js",
+    "main.css": "/static/css/main.d3bf47cd.css",
+    "main.js": "/static/js/main.c0ab2f47.js",
     "static/js/787.9de19a56.chunk.js": "/static/js/787.9de19a56.chunk.js",
-    "static/media/bgimage.jpg": "/static/media/bgimage.42e2c16c554b0d9cd363.jpg",
+    "static/media/univbg.jpg": "/static/media/univbg.a267058cdd1cbf1ec8d1.jpg",
+    "static/media/footer.png": "/static/media/footer.0d9e68326d431740d529.png",
+    "static/media/header.png": "/static/media/header.9de67f890082a4ea020a.png",
     "static/media/RobotoCondensed-Regular.ttf": "/static/media/RobotoCondensed-Regular.fc3d2f2e3a203d0037c1.ttf",
-    "static/media/fdaimage.jpg": "/static/media/fdaimage.30e3054db74ed144bfa5.jpg",
-    "static/media/bavariaimage.jpg": "/static/media/bavariaimage.3b982cf6ea55cecc4402.jpg",
     "index.html": "/index.html",
-    "main.5e23c2de.css.map": "/static/css/main.5e23c2de.css.map",
-    "main.3c129e75.js.map": "/static/js/main.3c129e75.js.map",
+    "main.d3bf47cd.css.map": "/static/css/main.d3bf47cd.css.map",
+    "main.c0ab2f47.js.map": "/static/js/main.c0ab2f47.js.map",
     "787.9de19a56.chunk.js.map": "/static/js/787.9de19a56.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.5e23c2de.css",
-    "static/js/main.3c129e75.js"
+    "static/css/main.d3bf47cd.css",
+    "static/js/main.c0ab2f47.js"
   ]
 }
