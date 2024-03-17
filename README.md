@@ -3,7 +3,7 @@
 </p>
 
 # Pharmaceutical Study Project
-* A React JS and Vendia web application for a pharmaceutical study and data management system
+* A React JS and Vendia web application designed to facilitate a pharmaceutical study and manage patient data in real-time
 * Concepted and engineered for the client [[Vendia Inc.]](https://www.vendia.com/) 
 * Additionally made as a part of the CSC 131 Software Engineering course at California State University Sacramento
 * Initial project requirements from Vendia Inc. [[Google Document]](https://docs.google.com/document/d/1bWjbqZ7YbaT-ykfpPPl1AJMdyivspdhZWLtabedL_K8/edit)
