@@ -1,5 +1,5 @@
 <p align="center">
-   <img src="https://github.com/rahulio96/Pharmaceutical-Study-Web-App-Project/blob/main/MDMS.jpg"/>
+   <img src="./MDMS.png"/>
 </p>
 
 # Pharmaceutical Study Project
@@ -24,7 +24,6 @@
 ![](https://github.com/Angkaram/Pharmaceutical-Study-Web-App-Project/blob/main/projectGIF.gif)
 
 ## Project Presentation
-
 * Project Slideshow [[Google Slides]](https://docs.google.com/presentation/d/1ztrrF4vq9vsqPsltdld-QiT9-SA6IdFIfSAvAmyXMWY/edit?usp=sharing)
 * Final Project Demonstration & Presentation for the Client [[YouTube Video]](https://www.youtube.com/watch?v=K2LDj28C5iA)
     - Presented live to Professor Salem, Eliot Turner **(Client)**, and the rest of the class over Zoom meeting
@@ -42,6 +41,3 @@
 * Languages: JavaScript, HTML, CSS
 * Development Environment: Visual Studio Code
 * Dependency List [[Google Document]](https://docs.google.com/document/d/1mEffY8Q6ucsXkosKkInMPLr9AD-Nh4ThkWxgmBA6jsk/edit?usp=sharing)
-
-## Original GitHub Repository
-* Repository [[Link]](https://github.com/Angkaram/Pharmaceutical-Study-Web-App-Project)
