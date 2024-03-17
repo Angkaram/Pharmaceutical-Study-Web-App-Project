@@ -1,5 +1,5 @@
 <p align="center">
-   <img src="https://cdn.discordapp.com/attachments/882079944627347466/1111105496527683635/Untitled.jpg"/>
+   <img src="https://github.com/rahulio96/Pharmaceutical-Study-Web-App-Project/blob/main/MDMS.jpg"/>
 </p>
 
 # Pharmaceutical Study Project
@@ -20,19 +20,19 @@
 * Farhad Lakzaei ([@Flakzaei](https://github.com/Flakzaei))
 * Devesh Naidu ([@deveshnaidu24](https://github.com/deveshnaidu24))
 
+## Quick Look at the Homepage and Login/Create Account Pages
+![](https://github.com/Angkaram/Pharmaceutical-Study-Web-App-Project/blob/main/projectGIF.gif)
+
 ## Project Presentation
 
 * Project Slideshow [[Google Slides]](https://docs.google.com/presentation/d/1ztrrF4vq9vsqPsltdld-QiT9-SA6IdFIfSAvAmyXMWY/edit?usp=sharing)
-
 * Final Project Demonstration & Presentation for the Client [[YouTube Video]](https://www.youtube.com/watch?v=K2LDj28C5iA)
     - Presented live to Professor Salem, Eliot Turner **(Client)**, and the rest of the class over Zoom meeting
 
 ## Project Deliverable
 * Requirements & Design Documents [[Google Document]](https://docs.google.com/document/d/1fCf03OumJVkP-86hABSN6WmD8mHMNC4t1xIJZEg_KWE/edit?usp=sharing)
-
 ## Early Figma Concepts
 * Homepage, Login, & Signup concepts [[Figma Link]](https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FpLwTa2C7uFNEG3KfBCwB7j%2FCSC-131-Project-Figma%3Ftype%3Ddesign%26node-id%3D625-97%26scaling%3Dmin-zoom%26page-id%3D614%253A2)
-
 * Doctor View: Homepage, Appointments, & Patient Management concepts [[Figma Link]](https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Fproto%2FpLwTa2C7uFNEG3KfBCwB7j%2FCSC-131-Project-Figma%3Ftype%3Ddesign%26node-id%3D625-77%26scaling%3Dmin-zoom%26page-id%3D625%253A2)
 
 ## Technology Stack
